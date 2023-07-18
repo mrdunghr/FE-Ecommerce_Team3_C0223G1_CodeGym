@@ -1,7 +1,7 @@
 import {useState} from "react";
 import "./sidebar.css";
-import {Link} from "react-router-dom";
-export default function Sidebar(){
+import {Link, Route, Routes} from "react-router-dom";
+export default function AdminSidebar(){
     return (
         <>
             <div id={'sidebar'}>
@@ -31,6 +31,16 @@ export default function Sidebar(){
                     <Link to={'/home/brands'}>Brands</Link>
                 </div>
             </div>
+            <Routes>
+                <Route path={'/home'}>
+                    <Route path={'dashboard'}></Route>
+                    <Route path={'articles'}></Route>
+                    <Route path={'menus'}></Route>
+                    <Route path={'authentication'}></Route>
+                    <Route path={'categories'}></Route>
+                </Route>
+            </Routes>
         </>
     )
 }
+
