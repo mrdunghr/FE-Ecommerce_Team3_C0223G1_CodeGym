@@ -6,7 +6,7 @@ export default function RouterHome(){
     return(
         <>
             <Routes>
-                <Route path={'/login'} element={<Login></Login>}></Route>
+                <Route path={'/'} element={<Login></Login>}></Route>
                 <Route path={'/register'} element={<CustomerRegister></CustomerRegister>}></Route>
             </Routes>
         </>

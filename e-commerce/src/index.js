@@ -11,7 +11,7 @@ import RouterHome from "./Router";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
       <BrowserRouter>
-            <Login></Login>
+            {/*<Login></Login>*/}
           <RouterHome></RouterHome>
       </BrowserRouter>
 );
