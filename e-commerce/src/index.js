@@ -3,16 +3,16 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
-import HomePage from "./pages/admin/home";
-import Header from "./components/admin/header";
-import Sidebar from "./components/admin/sidebar";
-import CustomerHome from "./pages/customer/customerHome";
+
+import Login from "./pages/login";
+import RouterHome from "./Router";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
       <BrowserRouter>
-            <CustomerHome></CustomerHome>
+            <Login></Login>
+          <RouterHome></RouterHome>
       </BrowserRouter>
 );
 

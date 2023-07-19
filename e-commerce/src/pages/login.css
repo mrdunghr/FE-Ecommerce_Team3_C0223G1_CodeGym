@@ -1,0 +1,51 @@
+#container{
+    width: 100%;
+    height: 750px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("https://img.freepik.com/free-photo/shopping-bag-cart_23-2148879372.jpg?w=1380&t=st=1689732539~exp=1689733139~hmac=1c0b49bdc75c4271ed5ee0c79c08f923b1b00b2d1ccbe80d841fe3c0516ab9c7");
+}
+#login-form{
+    width: 500px;
+    height: 350px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    background: #ececec;
+    font-weight: bold;
+
+    padding-left: 30px;
+    flex-direction: column;
+}
+
+#username, #password{
+    margin-top: 10px;
+    width: 450px;
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    font-size: 16px;
+    padding-left: 20px;
+}
+#submit{
+    margin-left: 190px;
+    margin-top: 30px;
+    width: 100px;
+    height: 50px;
+    border-radius: 5px;
+    font-family: Raleway, sans-serif;
+    font-weight: 700;
+    color: darkorange;
+    border: 1px solid #888888;
+    cursor: pointer;
+}
+#submit:hover{
+    background: darkorange;
+    color: #ececec;
+}
+input{
+    margin-top: 20px;
+}
+a{
+    margin-left: 170px;
+}
