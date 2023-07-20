@@ -1,6 +1,6 @@
 #dashboard-sidebar{
-    width: 30%;
-    height: 800px;
+    width: 100%;
+    height: 600px;
     display: flex;
     align-items: center;
     padding-left: 20px;
@@ -8,12 +8,13 @@
 #nav-dashboard{
     width: 80%;
     height: 360px;
-    border: 1px solid #dfe3e7;
+    /*border: 1px solid #dfe3e7;*/
     border-radius: 5px;
     background-color: #fff;
     background-clip: border-box;
     display: flex;
     flex-direction: column;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 #first-nav{
     display: flex;
