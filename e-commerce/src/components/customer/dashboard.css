@@ -36,13 +36,16 @@
     color: grey;
     flex-direction: column;
     display: flex;
-    padding-left: 25px;
     font-size: 16px;
+
 }
-#second-nav span{
+#second-nav a{
     margin-top: 20px;
+    text-decoration: none;
+    color: #888;
+    margin-left: 20px;
 }
-#second-nav span:hover{
+#second-nav a:hover{
     color: darkorange;
     cursor: pointer;
 }

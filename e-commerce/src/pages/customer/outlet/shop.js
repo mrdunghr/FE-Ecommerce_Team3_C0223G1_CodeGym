@@ -1,10 +1,11 @@
 import "./shop.css"
 
-export const Shop = () =>{
+ export const Shop = () =>{
 
     return(
         <>
             <div id={'shop-container'}>
+                <p>Manage Shops</p>
                 <div id={'main-shop'}>
                     <input type="text" placeholder={'Search'} id={'search'}/>
                     <table id={'table-shop'}>
@@ -27,6 +28,27 @@ export const Shop = () =>{
                             <td>Rat OK</td>
                         </tr>
                     </table>
+                </div>
+            </div>
+        </>
+    )
+}
+export const CreateShop = () =>{
+    return(
+        <>
+            <div id={'shop-container'}>
+                <p>Add new shop</p>
+                <div id={'main-shop'}>
+                    <div id={'first-main-shop'}>
+                        <input type="text" placeholder={'Name'}/>
+                        <input type="text" placeholder={''}/>
+                        <button>Save change</button>
+                    </div>
+                    <div id={'second-main-shop'}>
+                        <input type="text" placeholder={'Delivery Address'}/>
+                        <textarea name="" id="" cols="30" rows="10"></textarea>
+                        <button>Cancel</button>
+                    </div>
                 </div>
             </div>
         </>

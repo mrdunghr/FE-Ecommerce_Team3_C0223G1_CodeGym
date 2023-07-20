@@ -2,8 +2,8 @@
 import "./customerHome.css"
 import CustomerHeader from "../../components/customer/header";
 import Dashboard from "../../components/customer/dashboard";
-// import {Outlet} from "react-router-dom";
-import {Shop} from "./outlet/shop";
+// import {CreateShop, Shop} from "./outlet/shop";
+import {Outlet} from "react-router-dom";
 
 export default function CustomerHome(){
     return(
@@ -16,7 +16,7 @@ export default function CustomerHome(){
                     <Dashboard></Dashboard>
                 </div>
                 <div id={'main-outlet'}>
-                        <Shop></Shop>
+                        <Outlet></Outlet>
                 </div>
             </div>
         </>

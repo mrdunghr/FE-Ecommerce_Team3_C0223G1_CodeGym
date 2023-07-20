@@ -7,6 +7,7 @@ import {BrowserRouter} from "react-router-dom";
 import Login from "./pages/login";
 import RouterHome from "./Router";
 import CustomerHome from "./pages/customer/customerHome";
+import {ProductManager} from "./pages/customer/productManager";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -14,7 +15,8 @@ root.render(
       <BrowserRouter>
             {/*<Login></Login>*/}
           {/*<RouterHome></RouterHome>*/}
-          <CustomerHome></CustomerHome>
+          {/*<CustomerHome></CustomerHome>*/}
+          <ProductManager></ProductManager>
       </BrowserRouter>
 );
 

@@ -1,4 +1,5 @@
 import "./dashboard.css"
+import {Link} from "react-router-dom";
 export default function Dashboard(){
     return(
         <>
@@ -9,9 +10,9 @@ export default function Dashboard(){
                         <h2>Hieu</h2>
                     </div>
                     <div id={'second-nav'}>
-                        <span>Dashboard</span>
-                        <span>Add New Shop</span>
-                        <span>Manage Products</span>
+                        <Link to={'/home/customer'}>Dashboard</Link>
+                        <Link to={'/home/customer/create-shop'}>Add New Shop</Link>
+                        <Link>Manage Products</Link>
                     </div>
                 </div>
             </div>
