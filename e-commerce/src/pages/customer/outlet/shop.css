@@ -1,0 +1,103 @@
+#shop-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    /*align-items: center;*/
+    color: black;
+    flex-direction: column;
+}
+#shop-container p{
+    font-weight: 400;
+    font-size: 25px;
+    text-indent: 20px;
+}
+#main-shop{
+    height: 50%;
+    width: 100%;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+}
+#first-main-shop{
+    width: 45%;
+    height: 100%;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+#first-main-shop input{
+    width: 83.5%;
+    height: 45px;
+    margin-top: 20px;
+    border: 1px solid grey;
+    padding-left: 20px;
+}
+#first-main-shop button{
+    height: 50px;
+    width: 88.5%;
+    margin-top: 80px;
+    font-size: 17px;
+    color: white;
+    background: darkorange;
+    cursor: pointer;
+    border: none;
+}
+#second-main-shop{
+    width: 45%;
+    height: 100%;
+    float: left;
+    padding: 20px;
+
+}
+#second-main-shop input{
+    width: 83.5%;
+    height: 45px;
+    margin-top: 20px;
+    border: 1px solid grey;
+    padding-left: 20px;
+}
+#second-main-shop textarea{
+    width: 87.5%;
+    height: 100px;
+    margin-top: 20px;
+    resize: none;
+}
+#search{
+    margin-left: 30px;
+    height: 30px;
+    width: 250px;
+    padding-left: 20px;
+}
+#table-shop{
+    margin-top: 30px;
+    width: 100%;
+}
+#table-shop tr{
+    border: 1px solid grey;
+
+}
+#table-shop  th, td{
+    border-collapse: collapse;
+    padding: 20px;
+    text-align: center;
+}
+#second-main-shop button{
+    width: 88.5%;
+    height: 50px;
+    margin-top: 15px;
+    font-size: 17px;
+    color: white;
+    background: black;
+    cursor: pointer;
+    border: none;
+}
+
+#second-main-shop button:hover{
+    color: black;
+    background: white;
+}
+#first-main-shop button:hover{
+    color: darkorange;
+    background: white;
+}

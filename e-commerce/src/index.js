@@ -6,14 +6,21 @@ import {BrowserRouter} from "react-router-dom";
 
 import Login from "./pages/login";
 import RouterHome from "./Router";
+<<<<<<< HEAD
 import {CustomerHome} from "./pages/customer/Customer-Home";
+=======
+import CustomerHome from "./pages/customer/customerHome";
+import {ProductManager} from "./pages/customer/productManager";
+>>>>>>> 4d8e83fcc2b0e367ab59fb2d5491107193da91b9
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
       <BrowserRouter>
             {/*<Login></Login>*/}
-          <CustomerHome></CustomerHome>
+          {/*<RouterHome></RouterHome>*/}
+          {/*<CustomerHome></CustomerHome>*/}
+          <ProductManager></ProductManager>
       </BrowserRouter>
 );
 
