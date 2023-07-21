@@ -2,6 +2,8 @@ import React from 'react';
 import Swal from 'sweetalert2';
 
 export default function Header() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    console.log(user)
     const showSwalDialog = () => {
         Swal.fire({
             title: 'Setting / Logout',
@@ -29,7 +31,7 @@ export default function Header() {
                             <div className="avatar me-1">
                                 <img src="/avatar/avatar-s-1.png" alt="" srcSet="" />
                             </div>
-                            <div className="d-none d-md-block d-lg-inline-block">Hi, <b>Ha Dung</b></div>
+                            <div className="d-none d-md-block d-lg-inline-block">Hi, <b>{user === null ? null : user.fullName}</b></div>
                         </a>
                     </li>
                 </ul>

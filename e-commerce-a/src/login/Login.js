@@ -16,7 +16,7 @@ export default function Login({ onLogin }) {
         axios
             .post('http://localhost:8080/api/v1/users/login', formData)
             .then((response) => {
-                console.log(response)
+                localStorage.setItem("user", JSON.stringify(response.data))
                 // Kiểm tra xem đăng nhập thành công hay không
                 onLogin();
             })
