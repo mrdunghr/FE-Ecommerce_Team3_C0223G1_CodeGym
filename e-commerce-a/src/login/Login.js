@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../style-all/css/app.css';
 import '../style-all/css/bootstrap.css';
+import axios from "axios";
 
 export default function Login({ onLogin }) {
     const [formData, setFormData] = useState({
@@ -11,18 +12,21 @@ export default function Login({ onLogin }) {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        // Thực hiện kiểm tra tài khoản ở đây (giả định thông tin tài khoản cứng)
-        const hardcodedEmail = 'admin@gmail.com';
-        const hardcodedPassword = '123123123';
-
-        if (formData.email === hardcodedEmail && formData.password === hardcodedPassword) {
-            // Đăng nhập thành công
-            onLogin();
-        } else {
-            // Đăng nhập thất bại
-            alert('Invalid credentials. Please try again.');
-        }
+        // Gọi API đăng nhập
+        axios
+            .post('http://localhost:8080/api/v1/users/login', formData)
+            .then((response) => {
+                console.log(response)
+                // Kiểm tra xem đăng nhập thành công hay không
+                onLogin();
+            })
+            .catch((error) => {
+                console.log(error);
+                // Xử lý lỗi khi gọi API
+                alert('An error occurred. Please try again later.');
+            });
     };
+
 
     const handleChange = (event) => {
         const { name, value } = event.target;
