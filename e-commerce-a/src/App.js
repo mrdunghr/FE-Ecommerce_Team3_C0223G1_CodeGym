@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import Login from './login/Login';
 import Home from "./home/Home";
@@ -23,14 +23,25 @@ import Menu from "./pages/Menu";
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+    useEffect(() => {
+        // Kiểm tra xem có thông tin đăng nhập trong localStorage không
+        const loggedInStatus = localStorage.getItem('isLoggedIn');
+        setIsLoggedIn(loggedInStatus === 'true');
+    }, []);
+
     const handleLogin = () => {
         // Thực hiện xác thực tài khoản ở đây (giả định đăng nhập thành công)
         setIsLoggedIn(true);
+        // Lưu thông tin đăng nhập vào localStorage
+        localStorage.setItem('isLoggedIn', 'true');
     };
 
     const handleLogout = () => {
         setIsLoggedIn(false);
+        // Xóa thông tin đăng nhập khỏi localStorage
+        localStorage.removeItem('isLoggedIn');
     };
+
 
     return (
         <div>

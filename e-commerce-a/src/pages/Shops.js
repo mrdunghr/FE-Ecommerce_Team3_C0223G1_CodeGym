@@ -7,13 +7,13 @@ export default function Shops(){
 
     useEffect(() => {
         fetchListS();
-    }, []);
+    }, [page]);
 
     const fetchListS = () => {
         axios
-            .get(`http://localhost:8080/api/v1/shop/list`)
+            .get(`http://localhost:8080/api/v1/shop/list?page=${page}`)
             .then(response => {
-                const data = response.data;
+                const data = response.data.content;
                 console.log(response)
                 setListShop(data);
             })
@@ -114,6 +114,15 @@ export default function Shops(){
                                 ))}
                                 </tbody>
                             </table>
+                        </div>
+                        <div>
+                            <nav aria-label="Page navigation example">
+                                <ul className="pagination pagination-danger justify-content-center">
+                                    <button className="btn btn-secondary" onClick={handlePrevPage}>Previous</button>
+                                    &nbsp;&nbsp;
+                                    <button className="btn btn-secondary" onClick={handleNextPage}>Next</button>
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                 </section>
