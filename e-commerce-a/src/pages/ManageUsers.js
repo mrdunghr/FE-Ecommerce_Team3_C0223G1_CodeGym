@@ -121,6 +121,13 @@ export default function ManageUsers() {
                                         <td className="hideable-column">{user.lastName}</td>
                                         <td className="hideable-column">{user.roles[0].name}</td>
                                         <td className="hideable-column">{user.enabled ? 'Enabled' : 'Disabled'}</td>
+                                        <td>
+                                            <a className="fas fa-edit icon-green" href="/Admin/users/edit/6"
+                                               title="Edit this user"></a>
+                                            &nbsp;&nbsp;
+                                            <a className="fas fa-trash icon-red link-delete"
+                                               href="/Admin/users/delete/6" entityid="6" title="Delete this user"></a>
+                                        </td>
                                     </tr>
                                 ))}
                                 </tbody>
