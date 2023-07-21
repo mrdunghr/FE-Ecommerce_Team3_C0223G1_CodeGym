@@ -1,11 +1,11 @@
 
-import "./customerHome.css"
+import "./customerProfile.css"
 import CustomerHeader from "../../components/customer/header";
 import Dashboard from "../../components/customer/dashboard";
 // import {CreateShop, Shop} from "./outlet/shop";
 import {Outlet} from "react-router-dom";
 
-export default function CustomerHome(){
+export default function CustomerProfile(){
     return(
         <>
             <div id={'display'}>

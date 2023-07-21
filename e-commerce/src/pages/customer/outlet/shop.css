@@ -27,7 +27,7 @@
     padding: 20px;
 }
 #first-main-shop input{
-    width: 83.5%;
+    width: 95%;
     height: 45px;
     margin-top: 20px;
     border: 1px solid grey;
@@ -35,7 +35,7 @@
 }
 #first-main-shop button{
     height: 50px;
-    width: 88.5%;
+    width: 95%;
     margin-top: 80px;
     font-size: 17px;
     color: white;
@@ -51,14 +51,14 @@
 
 }
 #second-main-shop input{
-    width: 83.5%;
+    width: 95%;
     height: 45px;
     margin-top: 20px;
     border: 1px solid grey;
     padding-left: 20px;
 }
 #second-main-shop textarea{
-    width: 87.5%;
+    width: 95%;
     height: 100px;
     margin-top: 20px;
     resize: none;
@@ -83,7 +83,7 @@
     text-align: center;
 }
 #second-main-shop button{
-    width: 88.5%;
+    width: 95%;
     height: 50px;
     margin-top: 15px;
     font-size: 17px;

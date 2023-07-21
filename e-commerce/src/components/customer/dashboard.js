@@ -10,9 +10,9 @@ export default function Dashboard(){
                         <h2>Hieu</h2>
                     </div>
                     <div id={'second-nav'}>
-                        <Link to={'/home/customer'}>Dashboard</Link>
-                        <Link to={'/home/customer/create-shop'}>Add New Shop</Link>
-                        <Link>Manage Products</Link>
+                        <Link to={'/customer/profile'}>Dashboard</Link>
+                        <Link to={'add-shop'}>Add New Shop</Link>
+                        <Link to={'/product-manager'}>Manage Products</Link>
                     </div>
                 </div>
             </div>

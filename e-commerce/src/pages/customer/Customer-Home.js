@@ -1,12 +1,20 @@
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import {FaPhoneAlt, FaStar} from 'react-icons/fa';
+import {useEffect, useState} from "react";
+import "./customerHome.css"
 const StarIcon = () => <FaStar style={{ marginRight: '10px', color: 'yellow' }} />;
 
 export function CustomerHome() {
+    const location = useLocation()
+    const [user, setUser] = useState(null)
+    console.log(user)
+    useEffect(() => {
+        setUser(location.state)
+    }, [])
+
     return (
         <>
-            <div className="col-12" style={{backgroundColor:"#F0FFFF"}}>
-                <h1>User</h1>
+            <div className="col-12">
                 <div className="row">
                     <div className="col-12">
                         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -22,18 +30,24 @@ export function CustomerHome() {
                                         </Link>
                                     </li>
                                     <li className="nav-item active mr-2">
-                                        <Link className="nav-link" to="/"style={{marginLeft: 0,fontSize:"17px"}}>
+                                        <Link className="nav-link" to="/customer/profile"style={{marginLeft: 0,fontSize:"17px"}}>
                                             Seller Centre
                                             <span className="sr-only">(current)</span>
                                         </Link>
                                     </li>
                                 </ul>
                             </div>
+                            <div className="form-inline my-2 my-lg-0">
+                                {user === null ? null : <>
+                                    <img src="/image/avatar/avatar-s-2.png" alt="" style={{width : "35px", borderRadius : "50%", marginRight : "20px"}}/>
+                                    <span style={{color : "white"}}>Hi, </span><h2 style={{color : "white", marginLeft : "10px"}}> {user.firstName}</h2>
+                                </>}
+                            </div>
                         </nav>
                     </div>
                 </div>
                 <hr/>
-                <div className="row" style={{backgroundColor:"#E1f0f0"}}>
+                <div className="row" style={{}}>
                     <div className="col" style={{textAlign: "left"}}>
                         <img src="/image/logo.png" alt="" style={{width: "200px", height: "70px"}}/>
                     </div>
@@ -81,7 +95,7 @@ export function CustomerHome() {
                                 CONTACT
                             </Link>
                             <div className="form-inline my-2 my-lg-0 ml-auto">
-                                <Link to={'/'}>
+                                {user === null ? <Link to={'/login'}>
                                     <button
                                         className="btn btn-outline-danger my-2 my-sm-0"
                                         type="submit"
@@ -90,7 +104,7 @@ export function CustomerHome() {
                                     >
                                         Register / Sign in
                                     </button>
-                                </Link>
+                                </Link> : <></>}
                             </div>
                         </nav>
                     </div>
@@ -160,14 +174,13 @@ export function CustomerHome() {
                     </div>
                     <div className="col-3"style={{paddingBlock:"20px"}}>
                         <div style={{backgroundColor:"#E1f0f0"}}>
-                        <Link className="navbar-brand" to="/" style={{ marginLeft: 10, color: "#F05d0e",fontSize:"17px"}}>
-                            BEST SELLERS
-                        </Link>
-                        </div>
-                        <div>
+                            <Link className="navbar-brand" to="/" style={{ marginLeft: 10, color: "#F05d0e",fontSize:"17px"}}>
+                                BEST SELLERS
+                            </Link>
+                            <div className="col-12 product-items"></div>
                         </div>
                     </div>
-                    </div>
+                </div>
             </div>
         </>
     );

@@ -13,9 +13,9 @@
     border-radius: 5px;
     background: #ececec;
     font-weight: bold;
-
-    padding-left: 30px;
+    padding-left: 20px;
     flex-direction: column;
+    padding-top: 20px;
 }
 
 #username, #password{
@@ -46,6 +46,7 @@
 input{
     margin-top: 20px;
 }
-a{
+#container a{
     margin-left: 170px;
+    font-size: 15px;
 }

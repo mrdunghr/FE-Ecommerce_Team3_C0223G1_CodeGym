@@ -29,8 +29,14 @@ body{
     float: left;
     height: 100%;
 }
-#first-header span{
-    margin-right: 30px;
+#first-header a{
+    margin-right: 20px;
+    font-size: 17px;
+    text-decoration: none;
+    color: white;
+}
+#first-header a:hover{
+    color: black;
 }
 #second-header{
     display: flex;
@@ -40,8 +46,14 @@ body{
     align-items: center;
     justify-content: right;
 }
-#second-header span{
-    margin-right: 30px;
+#second-header a{
+    margin-right: 20px;
+    font-size: 17px;
+    text-decoration: none;
+    color: white;
+}
+#second-header a:hover{
+    color: black;
 }
 /*NAVBAR*/
 #navbar{
@@ -69,7 +81,11 @@ body{
     justify-content: center;
     font-size: 14px;
 }
-#main-navbar span{
+#main-navbar a{
     margin-right: 20px;
     color: black;
+    text-decoration: none;
+}
+#main-navbar a:hover{
+    color: darkorange;
 }
