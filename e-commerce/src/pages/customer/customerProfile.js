@@ -4,6 +4,7 @@ import CustomerHeader from "../../components/customer/header";
 import Dashboard from "../../components/customer/dashboard";
 // import {CreateShop, Shop} from "./outlet/shop";
 import {Outlet} from "react-router-dom";
+import {CustomerFooter} from "../../components/customer/footer";
 
 export default function CustomerProfile(){
     return(
@@ -17,6 +18,9 @@ export default function CustomerProfile(){
                 </div>
                 <div id={'main-outlet'}>
                         <Outlet></Outlet>
+                </div>
+                <div id={'customer-footer'}>
+                    <CustomerFooter></CustomerFooter>
                 </div>
             </div>
         </>

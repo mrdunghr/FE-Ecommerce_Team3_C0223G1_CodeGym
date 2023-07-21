@@ -1,11 +1,12 @@
 #product-display{
     width: 100%;
-    height: 1000px;
+    height: 1060px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 #product-main{
+    margin-top: 80px;
     width: 80%;
     height: 500px;
     display: flex;
@@ -43,4 +44,9 @@
 }
 #product-container input{
     margin-left: 20px;
+}
+#customer-footer{
+    width: 100%;
+    height: 300px;
+
 }

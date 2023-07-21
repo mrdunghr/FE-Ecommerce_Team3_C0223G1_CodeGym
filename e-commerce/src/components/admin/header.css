@@ -7,6 +7,8 @@
     height: 80px;
     justify-content: end;
     align-items: center;
+    z-index: 99;
+
 }
 #header p{
     margin-right: 40px;

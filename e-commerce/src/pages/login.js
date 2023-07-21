@@ -5,6 +5,8 @@ import axios from "axios";
 import * as Yup from "yup";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import Swal from "sweetalert2";
+import {useDispatch} from "react-redux";
+import {createAction} from "@reduxjs/toolkit";
 
     const validationSchema = Yup.object().shape({
         email : Yup.string()
@@ -12,7 +14,9 @@ import Swal from "sweetalert2";
         password : Yup.string()
             .required("Required")
     })
+    const updateUser = createAction('updateUser')
   const Login = () =>{
+      const dispatch = useDispatch();
        const navigate =  useNavigate()
     return(
         <>
@@ -26,6 +30,8 @@ import Swal from "sweetalert2";
                         onSubmit={(values) => {
                             console.log(values)
                             axios.post("http://localhost:8080/api/v1/customers/login", values).then((res) => {
+                                dispatch(updateUser(res.data))
+                                sessionStorage.setItem('user', JSON.stringify(res.data))
                                 Swal.fire("Sign in successful!")
                                 navigate('/', {state : res.data})
                             }).catch((res) => {

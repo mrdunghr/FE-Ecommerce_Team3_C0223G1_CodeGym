@@ -1,20 +1,15 @@
 import {Link, useLocation} from "react-router-dom";
 import {FaPhoneAlt, FaStar} from 'react-icons/fa';
-import {useEffect, useState} from "react";
 import "./customerHome.css"
+import {CustomerFooter} from "../../components/customer/footer";
 const StarIcon = () => <FaStar style={{ marginRight: '10px', color: 'yellow' }} />;
 
 export function CustomerHome() {
-    const location = useLocation()
-    const [user, setUser] = useState(null)
+    const user = JSON.parse(sessionStorage.getItem('user'))
     console.log(user)
-    useEffect(() => {
-        setUser(location.state)
-    }, [])
-
     return (
         <>
-            <div className="col-12">
+            <div className="col-12" style={{height : "1000px"}}>
                 <div className="row">
                     <div className="col-12">
                         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -40,7 +35,7 @@ export function CustomerHome() {
                             <div className="form-inline my-2 my-lg-0">
                                 {user === null ? null : <>
                                     <img src="/image/avatar/avatar-s-2.png" alt="" style={{width : "35px", borderRadius : "50%", marginRight : "20px"}}/>
-                                    <span style={{color : "white"}}>Hi, </span><h2 style={{color : "white", marginLeft : "10px"}}> {user.firstName}</h2>
+                                    <span style={{color : "white"}}>Hi, </span><h2 style={{color : "white", marginLeft : "10px", fontSize : "20px", textTransform : "capitalize"}}> {user.fullName}</h2>
                                 </>}
                             </div>
                         </nav>
@@ -110,36 +105,36 @@ export function CustomerHome() {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-3" style={{padding: '30px',backgroundColor:"white",boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px'}}>
+                    <div className="col-3 sidebarHome" style={{padding: '30px',backgroundColor:"white",boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px'}}>
                         <div style={{ marginBottom: '10px' }}>
-                            <StarIcon /> <span>Automotive</span>
+                            <StarIcon /> <Link>Automotive</Link>
                         </div>
                         <div style={{ marginBottom: '10px' }}>
-                            <StarIcon /> <span>Beauty</span>
+                            <StarIcon /> <Link>Beauty</Link>
                         </div>
                         <div style={{ marginBottom: '10px' }}>
-                            <StarIcon /> <span>Books</span>
+                            <StarIcon /> <Link>Books</Link>
                         </div>
                         <div style={{ marginBottom: '10px' }}>
-                            <StarIcon /> <span>Cameras</span>
+                            <StarIcon /> <Link>Cameras</Link>
                         </div>
                         <div style={{ marginBottom: '10px' }}>
-                            <StarIcon /> <span>Bike,E-Bike</span>
+                            <StarIcon /> <Link>Bike, E-Bike</Link>
                         </div>
                         <div style={{ marginBottom: '10px' }}>
-                            <StarIcon /> <span>Car</span>
+                            <StarIcon /> <Link>Car</Link>
                         </div>
                         <div style={{ marginBottom: '10px' }}>
-                            <StarIcon /> <span>Skincare</span>
+                            <StarIcon /> <Link>Skincare</Link>
                         </div>
                         <div style={{ marginBottom: '10px' }}>
-                            <StarIcon /> <span>Domestic Books</span>
+                            <StarIcon /> <Link>Domestic Books</Link>
                         </div>
                         <div style={{ marginBottom: '10px' }}>
-                            <StarIcon /> <span>Skincare</span>
+                            <StarIcon /> <Link>Skincare</Link>
                         </div>
                         <div style={{ marginBottom: '10px' }}>
-                            <StarIcon /> <span>Domestic Books</span>
+                            <StarIcon /> <Link>Domestic Books</Link>
                         </div>
                     </div>
                     <div className="col-6" style={{backgroundColor: "#F0FFFF"}}>
@@ -180,6 +175,9 @@ export function CustomerHome() {
                             <div className="col-12 product-items"></div>
                         </div>
                     </div>
+                </div>
+                <div id={'customer-footer'}>
+                    <CustomerFooter></CustomerFooter>
                 </div>
             </div>
         </>
