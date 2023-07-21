@@ -2,7 +2,7 @@ import {Link} from "react-router-dom";
 import "./header.css"
 import {useState} from "react";
 export default function CustomerHeader(){
-    const [customer, setCustomer] = useState({name : "Hieu"})
+    const user = JSON.parse(sessionStorage.getItem('user'))
     return(
         <>
             <div id={'cus-header'}>
@@ -15,7 +15,7 @@ export default function CustomerHeader(){
                     <div id={'second-header'}>
                         <Link>Recommendation</Link>
                         <Link>Question & Answer</Link>
-                        <Link>Hi, <b>{customer.name}</b></Link>
+                        <Link>Hi, <b>{user === null ? <></> : user.firstName}</b></Link>
                     </div>
                 </div>
                 <div id={'navbar'}>
@@ -23,7 +23,7 @@ export default function CustomerHeader(){
                         <img src="/image/logo.png" alt=""/>
                     </div>
                     <div id={'main-navbar'}>
-                        <Link>HOME</Link>
+                        <Link to={'/'}>HOME</Link>
                         <Link>CUSTOMER SERVICE</Link>
                         <Link>REGISTRY & GIFTING</Link>
                         <Link>GIFT CARDS</Link>

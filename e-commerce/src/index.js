@@ -7,13 +7,21 @@ import RouterHome from "./Router";
 import {Provider} from "react-redux";
 import {store} from "./store/store";
 
+import {CustomerHome} from "./pages/customer/Customer-Home";
+import {CustomerFooter} from "./components/customer/footer";
+import CustomerProfile from "./pages/customer/customerProfile";
+import {ProductManager} from "./pages/customer/productManager";
+
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <Provider store={store}>
       <BrowserRouter>
-            <RouterHome></RouterHome>
+            <CustomerHome></CustomerHome>
+          {/*<CustomerProfile></CustomerProfile>*/}
+          {/*<CustomerFooter></CustomerFooter>*/}
+          {/*<ProductManager></ProductManager>*/}
       </BrowserRouter>
     </Provider>
 );

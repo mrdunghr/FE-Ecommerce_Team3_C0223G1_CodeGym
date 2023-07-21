@@ -1,6 +1,7 @@
 import CustomerHeader from "../../components/customer/header";
 import "./productManager.css"
 import {Link} from "react-router-dom";
+import {CustomerFooter} from "../../components/customer/footer";
 
 export const ProductManager= () =>{
 
@@ -38,6 +39,9 @@ export const ProductManager= () =>{
                                 </tr>
                             </table>
                     </div>
+                </div>
+                <div id={'customer-footer'}>
+                    <CustomerFooter></CustomerFooter>
                 </div>
             </div>
         </>

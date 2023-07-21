@@ -1,0 +1,10 @@
+.sidebarHome a{
+    color: black;
+    text-decoration: none;
+}
+.sidebarHome a:hover{
+    color: darkorange;
+}
+#customer-footer{
+    margin-top: 380px;
+}
