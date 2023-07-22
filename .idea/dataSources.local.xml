@@ -7,14 +7,10 @@
         <identifier-quote-string>`</identifier-quote-string>
       </database-info>
       <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
-      <secret-storage>master_key</secret-storage>
       <user-name>root</user-name>
       <schema-mapping>
         <introspection-scope>
-          <node kind="schema">
-            <name qname="ecommerce_team3" />
-            <name qname="emultivendor" />
-          </node>
+          <node kind="schema" qname="ecommerce_team3" />
         </introspection-scope>
       </schema-mapping>
     </data-source>
