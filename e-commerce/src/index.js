@@ -3,25 +3,33 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
-
-import Login from "./pages/login";
 import RouterHome from "./Router";
-
-import {CustomerHome} from "./pages/customer/Customer-Home";
 
 import CustomerHome from "./pages/customer/customerHome";
 import {ProductManager} from "./pages/customer/productManager";
+
+import {Provider} from "react-redux";
+import {store} from "./store/store";
+
+
+import {CreateProduct} from "./pages/customer/product/create";
+
 
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+    <Provider store={store}>
       <BrowserRouter>
-            {/*<Login></Login>*/}
+            {/*<CustomerHome></CustomerHome>*/}
+          {/*<CustomerProfile></CustomerProfile>*/}
+          {/*<CustomerFooter></CustomerFooter>*/}
+          {/*<ProductManager></ProductManager>*/}
           {/*<RouterHome></RouterHome>*/}
-          {/*<CustomerHome></CustomerHome>*/}
-          <ProductManager></ProductManager>
+          {/*<Category></Category>*/}
+          <CreateProduct></CreateProduct>
       </BrowserRouter>
+    </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -1,12 +1,15 @@
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import {FaPhoneAlt, FaStar} from 'react-icons/fa';
+import "./customerHome.css"
+import {CustomerFooter} from "../../components/customer/footer";
 const StarIcon = () => <FaStar style={{ marginRight: '10px', color: 'yellow' }} />;
 
 export function CustomerHome() {
+    const user = JSON.parse(sessionStorage.getItem('user'))
+    console.log(user)
     return (
         <>
-            <div className="col-12" style={{backgroundColor:"#F0FFFF"}}>
-                <h1>User</h1>
+            <div className="col-12" >
                 <div className="row">
                     <div className="col-12">
                         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -22,18 +25,24 @@ export function CustomerHome() {
                                         </Link>
                                     </li>
                                     <li className="nav-item active mr-2">
-                                        <Link className="nav-link" to="/"style={{marginLeft: 0,fontSize:"17px"}}>
+                                        <Link className="nav-link" to="/customer/profile"style={{marginLeft: 0,fontSize:"17px"}}>
                                             Seller Centre
                                             <span className="sr-only">(current)</span>
                                         </Link>
                                     </li>
                                 </ul>
                             </div>
+                            <div className="form-inline my-2 my-lg-0">
+                                {user === null ? null : <>
+                                    <img src="/image/avatar/avatar-s-2.png" alt="" style={{width : "35px", borderRadius : "50%", marginRight : "20px"}}/>
+                                    <span style={{color : "white"}}>Hi, </span><h2 style={{color : "white", marginLeft : "10px", fontSize : "20px", textTransform : "capitalize"}}> {user.fullName}</h2>
+                                </>}
+                            </div>
                         </nav>
                     </div>
                 </div>
                 <hr/>
-                <div className="row" style={{backgroundColor:"#E1f0f0"}}>
+                <div className="row" style={{}}>
                     <div className="col" style={{textAlign: "left"}}>
                         <img src="/image/logo.png" alt="" style={{width: "200px", height: "70px"}}/>
                     </div>
@@ -81,7 +90,7 @@ export function CustomerHome() {
                                 CONTACT
                             </Link>
                             <div className="form-inline my-2 my-lg-0 ml-auto">
-                                <Link to={'/'}>
+                                {user === null ? <Link to={'/login'}>
                                     <button
                                         className="btn btn-outline-danger my-2 my-sm-0"
                                         type="submit"
@@ -90,42 +99,42 @@ export function CustomerHome() {
                                     >
                                         Register / Sign in
                                     </button>
-                                </Link>
+                                </Link> : <></>}
                             </div>
                         </nav>
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-3" style={{padding: '30px',backgroundColor:"white",boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px'}}>
+                    <div className="col-3 sidebarHome" style={{padding: '30px',backgroundColor:"white",boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px'}}>
                         <div style={{ marginBottom: '10px' }}>
-                            <StarIcon /> <span>Automotive</span>
+                            <StarIcon /> <Link to={'/category'}>Automotive</Link>
                         </div>
                         <div style={{ marginBottom: '10px' }}>
-                            <StarIcon /> <span>Beauty</span>
+                            <StarIcon /> <Link to={'/category'}>Beauty</Link>
                         </div>
                         <div style={{ marginBottom: '10px' }}>
-                            <StarIcon /> <span>Books</span>
+                            <StarIcon /> <Link to={'/category'}>Books</Link>
                         </div>
                         <div style={{ marginBottom: '10px' }}>
-                            <StarIcon /> <span>Cameras</span>
+                            <StarIcon /> <Link to={'/category'}>Cameras</Link>
                         </div>
                         <div style={{ marginBottom: '10px' }}>
-                            <StarIcon /> <span>Bike,E-Bike</span>
+                            <StarIcon /> <Link to={'/category'}>Bike, E-Bike</Link>
                         </div>
                         <div style={{ marginBottom: '10px' }}>
-                            <StarIcon /> <span>Car</span>
+                            <StarIcon /> <Link to={'/category'}>Car</Link>
                         </div>
                         <div style={{ marginBottom: '10px' }}>
-                            <StarIcon /> <span>Skincare</span>
+                            <StarIcon /> <Link to={'/category'}>Skincare</Link>
                         </div>
                         <div style={{ marginBottom: '10px' }}>
-                            <StarIcon /> <span>Domestic Books</span>
+                            <StarIcon /> <Link>Domestic Books</Link>
                         </div>
                         <div style={{ marginBottom: '10px' }}>
-                            <StarIcon /> <span>Skincare</span>
+                            <StarIcon /> <Link>Skincare</Link>
                         </div>
                         <div style={{ marginBottom: '10px' }}>
-                            <StarIcon /> <span>Domestic Books</span>
+                            <StarIcon /> <Link>Domestic Books</Link>
                         </div>
                     </div>
                     <div className="col-6" style={{backgroundColor: "#F0FFFF"}}>
@@ -137,13 +146,13 @@ export function CustomerHome() {
                             </ol>
                             <div className="carousel-inner">
                                 <div className="carousel-item active">
-                                    <img src="/image/1.png" className="d-block w-100" alt="..."style={{height:"400px",width:"750px",padding:'20px'}}/>
+                                    <img src="/image/6228c8689d1fe414adeb300a_1646839912310.jpg" className="d-block w-100" alt="..."style={{height:"400px",width:"750px",padding:'20px'}}/>
                                 </div>
                                 <div className="carousel-item">
-                                    <img src="/image/2.jpg" className="d-block w-100" alt="..."style={{height:"400px",width:"750px",padding:'20px'}}/>
+                                    <img src="/image/modern-teaching-concept-P7BTJU7.jpg" className="d-block w-100" alt="..."style={{height:"400px",width:"750px",padding:'20px'}}/>
                                 </div>
                                 <div className="carousel-item">
-                                    <img src="/image/3.jpg" className="d-block w-100" alt="..."style={{height:"400px",width:"750px",padding:'20px'}}/>
+                                    <img src="/image/logo.png" className="d-block w-100" alt="..."style={{height:"400px",width:"750px",padding:'20px'}}/>
                                 </div>
                             </div>
                             <button className="carousel-control-prev" type="button"
@@ -160,14 +169,16 @@ export function CustomerHome() {
                     </div>
                     <div className="col-3"style={{paddingBlock:"20px"}}>
                         <div style={{backgroundColor:"#E1f0f0"}}>
-                        <Link className="navbar-brand" to="/" style={{ marginLeft: 10, color: "#F05d0e",fontSize:"17px"}}>
-                            BEST SELLERS
-                        </Link>
-                        </div>
-                        <div>
+                            <Link className="navbar-brand" to="/" style={{ marginLeft: 10, color: "#F05d0e",fontSize:"17px"}}>
+                                BEST SELLERS
+                            </Link>
+                            <div className="col-12 product-items"></div>
                         </div>
                     </div>
-                    </div>
+                </div>
+                <div id={'customer-footer'}>
+                    <CustomerFooter></CustomerFooter>
+                </div>
             </div>
         </>
     );

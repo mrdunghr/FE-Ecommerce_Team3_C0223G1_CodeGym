@@ -1,0 +1,54 @@
+#main-create{
+    width: 100%;
+    /*height: 600px;*/
+    height: 1300px;
+
+}
+#main-create h2{
+    text-indent: 400px;
+    margin-top: 50px;
+}
+#create-product-table{
+    margin-top: 20px;
+    width: 80%;
+    height: 500px;
+    margin-left: 150px;
+    font-size: 20px;
+}
+#create-product-table input{
+    width: 800px;
+    height: 40px;
+    border-radius: 5px;
+    border: 0.5px solid grey;
+}
+#create-product-table td{
+    text-align: left;
+    margin-left: 20px;
+}
+#create-product-table textarea{
+    width: 800px;
+    resize: none;
+    height: 200px;
+    font-size: 15px;
+    padding: 10px;
+}
+#create-product-table input[type=checkbox]{
+    width: 25px;
+}
+#create-product-table button{
+    margin-left: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+}
+#create-product-table #btn-create-prod{
+    background: #0d6efd;
+}
+#create-product-table #btn-cancel-prod{
+    background: red;
+}
+#footer{
+    width: 100%;
+    height: 300px;
+}
