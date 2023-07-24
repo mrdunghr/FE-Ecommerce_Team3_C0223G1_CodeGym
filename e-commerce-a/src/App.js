@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import Login from './login/Login';
 import Home from "./home/Home";
@@ -19,18 +19,30 @@ import Customers from "./pages/Customers";
 import Reviews from "./pages/Reviews";
 import ManageProducts from "./pages/ManageProducts";
 import Menu from "./pages/Menu";
+import AddUser from "./pages/AddUser";
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+    useEffect(() => {
+        // Kiểm tra xem có thông tin đăng nhập trong localStorage không
+        const loggedInStatus = localStorage.getItem('isLoggedIn');
+        setIsLoggedIn(loggedInStatus === 'true');
+    }, []);
+
     const handleLogin = () => {
         // Thực hiện xác thực tài khoản ở đây (giả định đăng nhập thành công)
         setIsLoggedIn(true);
+        // Lưu thông tin đăng nhập vào localStorage
+        localStorage.setItem('isLoggedIn', 'true');
     };
 
     const handleLogout = () => {
         setIsLoggedIn(false);
+        // Xóa thông tin đăng nhập khỏi localStorage
+        localStorage.removeItem('isLoggedIn');
     };
+
 
     return (
         <div>
@@ -43,6 +55,7 @@ function App() {
                             <Route path={"/articles"} element={<Articles/>}></Route>
                             <Route path={"/menus"} element={<Menu/>}></Route>
                             <Route path={"/users"} element={<ManageUsers/>}></Route>
+                            <Route path={"/users/add-user"} element={<AddUser/>}></Route>
                             <Route path={"/categories"} element={<Categories/>}></Route>
                             <Route path={"/brands"} element={<Brands/>}></Route>
                             <Route path={"/contacts"} element={<Contact />}></Route>

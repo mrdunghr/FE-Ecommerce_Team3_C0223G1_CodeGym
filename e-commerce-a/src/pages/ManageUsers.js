@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 export default function ManageUsers() {
     const [listUser, setListUser] = useState([]);
@@ -52,15 +53,15 @@ export default function ManageUsers() {
                     <div className="card">
                         <div className="card-header">
                             <h3>Manage Users </h3> <br/>
-                            <a href="/Admin/users/new" className="fas fa-user-plus fa-2x mr-2" title="Add New User"></a>
+                            <Link to="/users/add-user" className="fas fa-user-plus fa-2x mr-2" title="Add New User"></Link>
                             &nbsp;&nbsp;
-                            <a href="/Admin/users/export/csv" className="fas fa-file-csv fa-2x mr-2 icon-success"
+                            <a href="http://localhost:8080/api/v1/users/export/csv" className="fas fa-file-csv fa-2x mr-2 icon-success"
                                title="Export to CSV"></a>
                             &nbsp;&nbsp;
-                            <a href="/Admin/users/export/excel" className="fas fa-file-excel fa-2x mr-2 icon-excel"
+                            <a href="http://localhost:8080/api/v1/users/export/excel" className="fas fa-file-excel fa-2x mr-2 icon-excel"
                                title="Export to Excel"></a>
                             &nbsp;&nbsp;
-                            <a href="/Admin/users/export/pdf" className="fas fa-file-pdf fa-2x icon-red"
+                            <a href="http://localhost:8080/api/v1/users/export/pdf" className="fas fa-file-pdf fa-2x icon-red"
                                title="Export to PDF"></a>
                         </div>
                         <div className="card-body">
@@ -121,6 +122,13 @@ export default function ManageUsers() {
                                         <td className="hideable-column">{user.lastName}</td>
                                         <td className="hideable-column">{user.roles[0].name}</td>
                                         <td className="hideable-column">{user.enabled ? 'Enabled' : 'Disabled'}</td>
+                                        <td>
+                                            <a className="fas fa-edit icon-green" href="/Admin/users/edit/6"
+                                               title="Edit this user"></a>
+                                            &nbsp;&nbsp;
+                                            <a className="fas fa-trash icon-red link-delete"
+                                               href="/Admin/users/delete/6" entityid="6" title="Delete this user"></a>
+                                        </td>
                                     </tr>
                                 ))}
                                 </tbody>
