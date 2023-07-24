@@ -9,7 +9,7 @@ export function CustomerHome() {
     console.log(user)
     return (
         <>
-            <div className="col-12" style={{height : "1000px"}}>
+            <div className="col-12" >
                 <div className="row">
                     <div className="col-12">
                         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -107,25 +107,25 @@ export function CustomerHome() {
                 <div className="row">
                     <div className="col-3 sidebarHome" style={{padding: '30px',backgroundColor:"white",boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px'}}>
                         <div style={{ marginBottom: '10px' }}>
-                            <StarIcon /> <Link>Automotive</Link>
+                            <StarIcon /> <Link to={'/category'}>Automotive</Link>
                         </div>
                         <div style={{ marginBottom: '10px' }}>
-                            <StarIcon /> <Link>Beauty</Link>
+                            <StarIcon /> <Link to={'/category'}>Beauty</Link>
                         </div>
                         <div style={{ marginBottom: '10px' }}>
-                            <StarIcon /> <Link>Books</Link>
+                            <StarIcon /> <Link to={'/category'}>Books</Link>
                         </div>
                         <div style={{ marginBottom: '10px' }}>
-                            <StarIcon /> <Link>Cameras</Link>
+                            <StarIcon /> <Link to={'/category'}>Cameras</Link>
                         </div>
                         <div style={{ marginBottom: '10px' }}>
-                            <StarIcon /> <Link>Bike, E-Bike</Link>
+                            <StarIcon /> <Link to={'/category'}>Bike, E-Bike</Link>
                         </div>
                         <div style={{ marginBottom: '10px' }}>
-                            <StarIcon /> <Link>Car</Link>
+                            <StarIcon /> <Link to={'/category'}>Car</Link>
                         </div>
                         <div style={{ marginBottom: '10px' }}>
-                            <StarIcon /> <Link>Skincare</Link>
+                            <StarIcon /> <Link to={'/category'}>Skincare</Link>
                         </div>
                         <div style={{ marginBottom: '10px' }}>
                             <StarIcon /> <Link>Domestic Books</Link>
@@ -146,13 +146,13 @@ export function CustomerHome() {
                             </ol>
                             <div className="carousel-inner">
                                 <div className="carousel-item active">
-                                    <img src="/image/1.png" className="d-block w-100" alt="..."style={{height:"400px",width:"750px",padding:'20px'}}/>
+                                    <img src="/image/6228c8689d1fe414adeb300a_1646839912310.jpg" className="d-block w-100" alt="..."style={{height:"400px",width:"750px",padding:'20px'}}/>
                                 </div>
                                 <div className="carousel-item">
-                                    <img src="/image/2.jpg" className="d-block w-100" alt="..."style={{height:"400px",width:"750px",padding:'20px'}}/>
+                                    <img src="/image/modern-teaching-concept-P7BTJU7.jpg" className="d-block w-100" alt="..."style={{height:"400px",width:"750px",padding:'20px'}}/>
                                 </div>
                                 <div className="carousel-item">
-                                    <img src="/image/3.jpg" className="d-block w-100" alt="..."style={{height:"400px",width:"750px",padding:'20px'}}/>
+                                    <img src="/image/logo.png" className="d-block w-100" alt="..."style={{height:"400px",width:"750px",padding:'20px'}}/>
                                 </div>
                             </div>
                             <button className="carousel-control-prev" type="button"

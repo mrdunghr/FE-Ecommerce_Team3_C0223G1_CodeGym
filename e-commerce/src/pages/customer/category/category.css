@@ -157,3 +157,6 @@
     color: darkorange;
     background: white;
 }
+.sidebar-product-item .old-price{
+    margin-right: 5px;
+}
