@@ -19,7 +19,7 @@ export default function CustomerProfile(){
                 <div id={'main-outlet'}>
                         <Outlet></Outlet>
                 </div>
-                <div id={'customer-footer'}>
+                <div id={'customer-footer'} >
                     <CustomerFooter></CustomerFooter>
                 </div>
             </div>

@@ -1,7 +1,7 @@
-import CustomerHeader from "../../components/customer/header";
+import CustomerHeader from "../../../components/customer/header";
 import "./productManager.css"
 import {Link} from "react-router-dom";
-import {CustomerFooter} from "../../components/customer/footer";
+import {CustomerFooter} from "../../../components/customer/footer";
 
 export const ProductManager= () =>{
 

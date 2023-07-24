@@ -4,8 +4,9 @@ import Login from "./pages/login";
 import {CustomerRegister} from "./pages/register";
 import {CreateShop, Shop} from "./pages/customer/outlet/shop";
 import CustomerProfile from "./pages/customer/customerProfile";
-import {ProductManager} from "./pages/customer/productManager";
+import {ProductManager} from "./pages/customer/product/productManager";
 import {CustomerHome} from "./pages/customer/Customer-Home";
+import {Category} from "./pages/customer/category/category";
 
 export default function RouterHome(){
     return(
@@ -19,7 +20,7 @@ export default function RouterHome(){
                     <Route path={'add-shop'} element={<CreateShop></CreateShop>}></Route>
                 </Route>
                 <Route path={'/product-manager'} element={<ProductManager></ProductManager>}></Route>
-
+                <Route path={'/category'} element={<Category></Category>}></Route>
             </Routes>
         </>
     )

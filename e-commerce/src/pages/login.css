@@ -43,7 +43,7 @@
     background: darkorange;
     color: #ececec;
 }
-input{
+#login-form input{
     margin-top: 20px;
 }
 #container a{
