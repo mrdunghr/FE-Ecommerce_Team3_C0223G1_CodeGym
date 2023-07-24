@@ -1,10 +1,23 @@
 import CustomerHeader from "../../../components/customer/header";
 import "./productManager.css"
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {CustomerFooter} from "../../../components/customer/footer";
+import {useEffect, useState} from "react";
+import axios from "axios";
 
 export const ProductManager= () =>{
-
+    const [products, setProducts] = useState([])
+    const user = JSON.parse(sessionStorage.getItem('user'))
+    const navigate = useNavigate()
+    if (user === null){
+        navigate('/login')
+    }
+    useEffect(() =>{
+        axios.get('http://localhost:8080/api/v1/products/customer-list/' + user.id).then((res) =>{
+            console.log(res)
+            setProducts(res.data.content)
+        })
+    },[])
     return(
         <>
             <div id={'product-display'}>
@@ -27,16 +40,18 @@ export const ProductManager= () =>{
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>None</td>
-                                    <td>OK</td>
-                                    <td>OK</td>
-                                    <td>OK</td>
-                                    <td>OK</td>
-                                    <td>OK</td>
-                                    <td>OK</td>
-                                </tr>
+                                {products.map(p => (
+                                    <tr>
+                                        <td>{p.id}</td>
+                                        <td><img src="/image/image-thumbnail.png" alt=""/></td>
+                                        <td>{p.name}</td>
+                                        <td>{p.brand.logo}</td>
+                                        <td>{p.category.name}</td>
+                                        <td>{p.shop.name}</td>
+                                        <td>{p.enable ? "Active" : "Inactive"}</td>
+                                        <td>OK</td>
+                                    </tr>
+                                ))}
                             </table>
                     </div>
                 </div>

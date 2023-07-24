@@ -64,6 +64,9 @@ export const CreateShop = () =>{
                 axios.post('http://localhost:8080/api/v1/shop/create', values).then((res) => {
                     console.log(res)
                     Swal.fire("Create success!")
+                }).catch((errors) => {
+                    console.log(errors)
+                    Swal.fire("Khong ok")
                 })
             }}
         >
