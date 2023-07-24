@@ -2,11 +2,25 @@ import {Link, useLocation} from "react-router-dom";
 import {FaPhoneAlt, FaStar} from 'react-icons/fa';
 import "./customerHome.css"
 import {CustomerFooter} from "../../components/customer/footer";
+import {useEffect, useState} from "react";
+import axios from "axios";
 const StarIcon = () => <FaStar style={{ marginRight: '10px', color: 'yellow' }} />;
 
 export function CustomerHome() {
     const user = JSON.parse(sessionStorage.getItem('user'))
     console.log(user)
+    const [bestSellerList, setBestSellerList] = useState([])
+    const [categories, setCategories] = useState([])
+    useEffect(() => {
+        axios.get("http://localhost:8080/api/v1/products/list-product-discount").then((res) => {
+            setBestSellerList(res.data)
+        })
+    }, [])
+    useEffect(() => {
+        axios.get("http://localhost:8080/api/v1/category/all").then((res) => {
+            setCategories(res.data)
+        })
+    }, [])
     return (
         <>
             <div className="col-12" >
@@ -106,36 +120,14 @@ export function CustomerHome() {
                 </div>
                 <div className="row">
                     <div className="col-3 sidebarHome" style={{padding: '30px',backgroundColor:"white",boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px'}}>
-                        <div style={{ marginBottom: '10px' }}>
-                            <StarIcon /> <Link to={'/category'}>Automotive</Link>
-                        </div>
-                        <div style={{ marginBottom: '10px' }}>
-                            <StarIcon /> <Link to={'/category'}>Beauty</Link>
-                        </div>
-                        <div style={{ marginBottom: '10px' }}>
-                            <StarIcon /> <Link to={'/category'}>Books</Link>
-                        </div>
-                        <div style={{ marginBottom: '10px' }}>
-                            <StarIcon /> <Link to={'/category'}>Cameras</Link>
-                        </div>
-                        <div style={{ marginBottom: '10px' }}>
-                            <StarIcon /> <Link to={'/category'}>Bike, E-Bike</Link>
-                        </div>
-                        <div style={{ marginBottom: '10px' }}>
-                            <StarIcon /> <Link to={'/category'}>Car</Link>
-                        </div>
-                        <div style={{ marginBottom: '10px' }}>
-                            <StarIcon /> <Link to={'/category'}>Skincare</Link>
-                        </div>
-                        <div style={{ marginBottom: '10px' }}>
-                            <StarIcon /> <Link>Domestic Books</Link>
-                        </div>
-                        <div style={{ marginBottom: '10px' }}>
-                            <StarIcon /> <Link>Skincare</Link>
-                        </div>
-                        <div style={{ marginBottom: '10px' }}>
-                            <StarIcon /> <Link>Domestic Books</Link>
-                        </div>
+                        {categories.map(cate => {
+                            return (
+                                <div style={{marginBottom: '10px'}}>
+                                    <StarIcon></StarIcon>
+                                    <Link to={{pathname: "/category", state: {id : cate.id}}}>{cate.enable ? null : cate.name}</Link>
+                                </div>
+                            )
+                        })}
                     </div>
                     <div className="col-6" style={{backgroundColor: "#F0FFFF"}}>
                         <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
@@ -168,11 +160,27 @@ export function CustomerHome() {
                         </div>
                     </div>
                     <div className="col-3"style={{paddingBlock:"20px"}}>
-                        <div style={{backgroundColor:"#E1f0f0"}}>
+                        <div className={'col-12'}>
                             <Link className="navbar-brand" to="/" style={{ marginLeft: 10, color: "#F05d0e",fontSize:"17px"}}>
                                 BEST SELLERS
                             </Link>
-                            <div className="col-12 product-items"></div>
+                            <div className="col-12 product-items">
+                                {bestSellerList.map((item) => {
+                                    console.log(bestSellerList)
+                                    return  (
+                                        <div className={'best-seller-items'}>
+                                            <div className={'best-seller-items-image'}>
+                                                <img src="/image/image-thumbnail.png" alt=""/>
+                                            </div>
+                                            <div className={'best-seller-items-description'}>
+                                                <Link>{item.name}</Link><br/>
+                                                <Link className={'old-price'}>${item.price}</Link>
+                                                <Link className={'new-price'}>${item.price - (item.discountPercent * item.price/100)}</Link>
+                                            </div>
+                                        </div>
+                                    )
+                                })}
+                            </div>
                         </div>
                     </div>
                 </div>

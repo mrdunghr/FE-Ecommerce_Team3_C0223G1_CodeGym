@@ -24,9 +24,9 @@ root.render(
           {/*<CustomerProfile></CustomerProfile>*/}
           {/*<CustomerFooter></CustomerFooter>*/}
           {/*<ProductManager></ProductManager>*/}
-          {/*<RouterHome></RouterHome>*/}
+          <RouterHome></RouterHome>
           {/*<Category></Category>*/}
-          <CreateProduct></CreateProduct>
+          {/*<CreateProduct></CreateProduct>*/}
       </BrowserRouter>
     </Provider>
 );

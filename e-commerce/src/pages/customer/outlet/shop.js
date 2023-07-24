@@ -1,7 +1,18 @@
 import "./shop.css"
+import {useEffect, useState} from "react";
+import axios from "axios";
+import {Field, Form, Formik} from "formik";
+import Swal from "sweetalert2";
 
  export const Shop = () =>{
-
+    const [shops, setShops] = useState([])
+     const user = JSON.parse(sessionStorage.getItem('user'))
+     useEffect(() => {
+         axios.get("http://localhost:8080/api/v1/shop/" + 3).then((res) => {
+             console.log(res.data.content)
+             setShops(res.data.content)
+         })
+     }, [])
     return(
         <>
             <div id={'shop-container'}>
@@ -18,15 +29,19 @@ import "./shop.css"
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Hieu</td>
-                            <td>None</td>
-                            <td>HN</td>
-                            <td>20/09/2001</td>
-                            <td>OK</td>
-                            <td>Rat OK</td>
-                        </tr>
+                        {shops.map(shop => {
+                            return(
+                                <tr>
+                                    <td>{shop.id}</td>
+                                    <td>{shop.name}</td>
+                                    <td><img src="/image/image-thumbnail.png" alt=""/></td>
+                                    <td>{shop.deliveryAddress}</td>
+                                    <td>{shop.createdTime}</td>
+                                    <td>{shop.enabled ? "Active" : "Inactive"}</td>
+                                    <td>OK</td>
+                                </tr>
+                            )
+                        })}
                     </table>
                 </div>
             </div>
@@ -34,23 +49,47 @@ import "./shop.css"
     )
 }
 export const CreateShop = () =>{
+    const user = JSON.parse(sessionStorage.getItem('user'))
     return(
-        <>
+        <Formik
+            initialValues={{
+                name : "",
+                deliveryAddress : "",
+                customer : user,
+                alias : "",
+                image : "ok"
+            }}
+            onSubmit={(values) =>{
+                console.log(values)
+                axios.post('http://localhost:8080/api/v1/shop/create', values).then((res) => {
+                    console.log(res)
+                    Swal.fire("Create success!")
+                })
+            }}
+        >
+            <Form>
             <div id={'shop-container'}>
                 <p>Add new shop</p>
                 <div id={'main-shop'}>
                     <div id={'first-main-shop'}>
-                        <input type="text" placeholder={'Name'}/>
-                        <input type="text" placeholder={''}/>
-                        <button>Save change</button>
+                        <Field name={'name'} placeholder={'Name'}/>
+                        <Field name={'alias'} placeholder={'Alias'}/>
+                        <Field  placeholder={'Image'}>
+                            {({field, form}) => (
+                                <input type="file"/>
+                            )}
+                        </Field>
+
+                        <button type={'submit'}>Save change</button>
                     </div>
                     <div id={'second-main-shop'}>
-                        <input type="text" placeholder={'Delivery Address'}/>
+                        <Field name={'deliveryAddress'} placeholder={'Delivery Address'}/>
                         <textarea name="" id="" cols="30" rows="10"></textarea>
-                        <button>Cancel</button>
+                        <button type={'reset'}>Cancel</button>
                     </div>
                 </div>
             </div>
-        </>
+            </Form>
+        </Formik>
     )
 }

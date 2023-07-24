@@ -8,3 +8,40 @@
 #customer-footer{
     margin-top: 380px;
 }
+.best-seller-items{
+    width: 100%;
+    height: 100px;
+}
+.best-seller-items-image{
+    width: 30%;
+    height: 100%;
+    float: left;
+}
+.best-seller-items-image img{
+    width: 100%;
+}
+.best-seller-items-description{
+    width: 65%;
+    height: 100%;
+    float: left;
+    padding-left: 10px;
+    font-size: 17px;
+    font-weight: 400;
+}
+.best-seller-items-description a{
+    text-decoration: none;
+    color: black;
+}
+.best-seller-items-description .old-price{
+    text-decoration-line: line-through;
+    color: #888888;
+    margin-right: 5px;
+}
+.best-seller-items-description .new-price{
+    color: red;
+}
+
+.product-items{
+    padding: 0;
+
+}

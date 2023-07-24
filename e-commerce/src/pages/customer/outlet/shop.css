@@ -2,10 +2,12 @@
     width: 100%;
     height: 100%;
     display: flex;
-    justify-content: center;
+    /*justify-content: center;*/
     /*align-items: center;*/
     color: black;
     flex-direction: column;
+    padding-top: 80px;
+
 }
 #shop-container p{
     font-weight: 400;
@@ -13,7 +15,6 @@
     text-indent: 20px;
 }
 #main-shop{
-    height: 50%;
     width: 100%;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
@@ -29,14 +30,14 @@
 #first-main-shop input{
     width: 95%;
     height: 45px;
-    margin-top: 20px;
+    margin-top: 15px;
     border: 1px solid grey;
     padding-left: 20px;
 }
 #first-main-shop button{
     height: 50px;
     width: 95%;
-    margin-top: 80px;
+    margin-top: 25px;
     font-size: 17px;
     color: white;
     background: darkorange;
