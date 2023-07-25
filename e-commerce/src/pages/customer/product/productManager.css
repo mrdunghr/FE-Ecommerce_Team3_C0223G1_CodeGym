@@ -68,6 +68,7 @@
     padding: 2px;
     background: green;
     border-radius: 2px;
+    margin-top: 10px;
 }
 .inactive-product{
     font-weight: bold;
@@ -75,4 +76,16 @@
     padding: 2px;
     background: grey;
     border-radius: 2px;
+    margin-top: 10px;
+
+}
+.block-icon{
+    color: red;
+}
+.product-icon{
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+.key-icon{
+    color: green;
 }

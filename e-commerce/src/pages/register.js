@@ -75,7 +75,7 @@ export const CustomerRegister = () =>{
                         {country.map(country => {
                             return (
                                 <>
-                                    <option value={country.id} >{country.name}</option>
+                                    <option value={country.id} >{country.code}</option>
                                 </>
                             )
                         })}
