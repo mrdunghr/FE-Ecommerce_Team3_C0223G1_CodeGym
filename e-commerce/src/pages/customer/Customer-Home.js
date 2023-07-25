@@ -123,8 +123,9 @@ export function CustomerHome() {
                         {categories.map(cate => {
                             return (
                                 <div style={{marginBottom: '10px'}}>
-                                    <StarIcon></StarIcon>
-                                    <Link to={{pathname: "/category", state: {id : cate.id}}}>{cate.enable ? null : cate.name}</Link>
+                                    {cate.enabled ? (<>
+                                        <StarIcon></StarIcon><Link to={{pathname: "/category", state : {id : cate.id}}}>{cate.name}</Link>
+                                    </>) : null}
                                 </div>
                             )
                         })}
@@ -173,7 +174,7 @@ export function CustomerHome() {
                                                 <img src="/image/image-thumbnail.png" alt=""/>
                                             </div>
                                             <div className={'best-seller-items-description'}>
-                                                <Link>{item.name}</Link><br/>
+                                                <Link to={'/product/' + item.id}>{item.name}</Link><br/>
                                                 <Link className={'old-price'}>${item.price}</Link>
                                                 <Link className={'new-price'}>${item.price - (item.discountPercent * item.price/100)}</Link>
                                             </div>
