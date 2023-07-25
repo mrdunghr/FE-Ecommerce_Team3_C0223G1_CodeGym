@@ -13,7 +13,7 @@ export const ProductManager= () =>{
                 </div>
                 <div id={'product-main'}>
                     <p>Manage Products</p>
-                    <Link>Add new Product</Link>
+                    <Link to={'/product/add'}>Add new Product</Link>
                     <div id={'product-container'}>
                          <input type="text" placeholder={'Search'}/>
                             <table id={'product-table'}>

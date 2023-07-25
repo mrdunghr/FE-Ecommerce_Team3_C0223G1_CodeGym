@@ -116,7 +116,9 @@ export default function ManageUsers() {
                                 {listUser.map((user, i) => (
                                     <tr key={listUser.id}>
                                         <td className="hideable-column">{user.id}</td>
-                                        <td className="hideable-column">{user.photos}</td>
+                                        <td>
+                                            <img src={user.photos} style={{width : "100px"}}/>
+                                        </td>
                                         <td className="hideable-column">{user.email}</td>
                                         <td className="hideable-column">{user.firstName}</td>
                                         <td className="hideable-column">{user.lastName}</td>
