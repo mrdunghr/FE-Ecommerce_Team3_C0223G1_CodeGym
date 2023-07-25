@@ -3,30 +3,24 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
-import RouterHome from "./Router";
 import {Provider} from "react-redux";
 import {store} from "./store/store";
-
-import {CustomerHome} from "./pages/customer/Customer-Home";
-import {CustomerFooter} from "./components/customer/footer";
-import CustomerProfile from "./pages/customer/customerProfile";
-import {ProductManager} from "./pages/customer/product/productManager";
-import {Category} from "./pages/customer/category/category";
-import {CreateProduct} from "./pages/customer/product/create";
-
-
-
+import RouterHome from "./Router";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <Provider store={store}>
       <BrowserRouter>
-            {/*<CustomerHome></CustomerHome>*/}
-          {/*<CustomerProfile></CustomerProfile>*/}
-          {/*<CustomerFooter></CustomerFooter>*/}
-          {/*<ProductManager></ProductManager>*/}
+
+          {/*  /!*<CustomerHome></CustomerHome>*!/*/}
+          {/*/!*<CustomerProfile></CustomerProfile>*!/*/}
+          {/*/!*<CustomerFooter></CustomerFooter>*!/*/}
+          {/*/!*<ProductManager></ProductManager>*!/*/}
           <RouterHome></RouterHome>
-          {/*<Category></Category>*/}
+          {/*/!*<Category></Category>*!/*/}
           {/*<CreateProduct></CreateProduct>*/}
+          {/*<DetailProduct></DetailProduct>*/}
+
+
       </BrowserRouter>
     </Provider>
 );
