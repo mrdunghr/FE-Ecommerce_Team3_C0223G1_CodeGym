@@ -9,15 +9,29 @@ export const ProductManager= () =>{
     const [products, setProducts] = useState([])
     const user = JSON.parse(sessionStorage.getItem('user'))
     const navigate = useNavigate()
-    if (user === null){
-        navigate('/login')
-    }
+
+    const [page, setPage] = useState(0)
     useEffect(() =>{
-        axios.get('http://localhost:8080/api/v1/products/customer-list/' + user.id).then((res) =>{
+        if(user === null){
+            navigate('/login')
+        }else{
+        axios.get('http://localhost:8080/api/v1/products/customer-list/' + user.id +"?page="+ page).then((res) =>{
             console.log(res)
             setProducts(res.data.content)
-        })
-    },[])
+        })}
+    },[page])
+    const handlePrevPage = () => {
+        if (page > 0) {
+            setPage((prevPage) => prevPage - 1);
+        }
+        console.log(page)
+    };
+
+    const handleNextPage = () => {
+        if (products.length > 1) { // điều kiện list có length > 1 thì không được next nữa, nhỏ hơn mới được tăng giá trị page
+            setPage((prevPage) => prevPage + 1);
+        }
+    };
     return(
         <>
             <div id={'product-display'}>
@@ -48,12 +62,15 @@ export const ProductManager= () =>{
                                         <td>{p.brand.logo}</td>
                                         <td>{p.category.name}</td>
                                         <td>{p.shop.name}</td>
-                                        <td>{p.enable ? "Active" : "Inactive"}</td>
+                                        <td>{p.enabled ? <p className={'active-product'} style={{fontSize : "15px"}}>Active</p> : <p className={'inactive-product'} style={{fontSize : "15px"}}>Inactive</p>}</td>
                                         <td>OK</td>
                                     </tr>
                                 ))}
                             </table>
+                        <button onClick={handlePrevPage}>Previous</button>
+                        <button onClick={handleNextPage}>Next</button>
                     </div>
+
                 </div>
                 <div id={'customer-footer'}>
                     <CustomerFooter></CustomerFooter>

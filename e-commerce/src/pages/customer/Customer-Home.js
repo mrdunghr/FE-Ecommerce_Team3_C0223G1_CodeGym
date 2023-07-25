@@ -39,10 +39,10 @@ export function CustomerHome() {
                                         </Link>
                                     </li>
                                     <li className="nav-item active mr-2">
-                                        <Link className="nav-link" to="/customer/profile"style={{marginLeft: 0,fontSize:"17px"}}>
+                                        {user === null ? null : <Link className="nav-link" to="/customer/profile"style={{marginLeft: 0,fontSize:"17px"}}>
                                             Seller Centre
                                             <span className="sr-only">(current)</span>
-                                        </Link>
+                                        </Link>}
                                     </li>
                                 </ul>
                             </div>

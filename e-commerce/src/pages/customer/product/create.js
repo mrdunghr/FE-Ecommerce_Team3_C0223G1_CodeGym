@@ -1,9 +1,14 @@
 import CustomerHeader from "../../../components/customer/header";
 import "./create.css"
 import {CustomerFooter} from "../../../components/customer/footer";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
+import axios from "axios";
+import {Form, Formik} from "formik";
+import {useNavigate} from "react-router-dom";
 
 export const CreateProduct = () =>{
+    const [shops, setShop] = useState([])
+    const user = JSON.parse(sessionStorage.getItem('user'))
     useEffect(() => {
         const tabs = document.querySelectorAll('.tab-btn');
         const all_content = document.querySelectorAll('.content');
@@ -19,8 +24,21 @@ export const CreateProduct = () =>{
             })
         })
     }, [])
+
+    useEffect(() => {
+        axios.get('http://localhost:8080/api/v1/shop/' + user.id)
+    })
     return(
-        <>
+        <Formik initialValues={{
+            name : "",
+            alias : "",
+            shortDescription : "",
+            fullDescription : "",
+            customer : {
+
+            }
+        }}>
+            <Form>
             <div id={'display'}>
                 <div id={'customer-header'}>
                     <CustomerHeader></CustomerHeader>
@@ -32,7 +50,6 @@ export const CreateProduct = () =>{
                         <button className={'tab-btn'}>Overview</button>
                         <button className={'tab-btn'}>Description</button>
                         <button className={'tab-btn'}>Images</button>
-                        <button className={'tab-btn'}>Details</button>
                     </div>
                     <div id={'content-box'}>
                         <div className={'content'}>
@@ -106,6 +123,7 @@ export const CreateProduct = () =>{
             </div>
 
             </div>
-        </>
+            </Form>
+        </Formik>
     )
 }

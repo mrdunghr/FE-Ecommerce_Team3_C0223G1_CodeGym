@@ -39,6 +39,7 @@
     height: 40px;
     border-radius: 10px;
     border: 0.5px solid grey;
+    padding: 10px;
 }
 #create-product-table input[type=checkbox]{
     width: 25px;
