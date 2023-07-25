@@ -7,7 +7,7 @@
     height: 160px;
 }
 #header{
-    background: darkorange;
+    background: #fe5502;
     height: 64px;
     width: 100%;
     font-family: "Raleway", sans-serif;
@@ -87,5 +87,5 @@ body{
     text-decoration: none;
 }
 #main-navbar a:hover{
-    color: darkorange;
+    color: #fe5502;
 }
