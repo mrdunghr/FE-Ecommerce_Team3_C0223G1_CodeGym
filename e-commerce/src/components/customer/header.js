@@ -10,7 +10,7 @@ export default function CustomerHeader(){
                     <div id={'first-header'}>
                         <Link to={''}>SHOP EVENTS & SAVE UP TO 50% OFF</Link>
                         <Link to={""}>Call us: <span style={{fontFamily : "Arial", letterSpacing : "2px"}}>0975163309</span></Link>
-                        <Link to={'/customer/profile'}>Seller Centre</Link>
+                        {user === null ? <></> : <Link to={'/customer/profile'}>Seller Centre</Link>}
                     </div>
                     <div id={'second-header'}>
                         <Link>Recommendation</Link>

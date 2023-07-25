@@ -10,6 +10,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <Provider store={store}>
       <BrowserRouter>
+
           {/*  /!*<CustomerHome></CustomerHome>*!/*/}
           {/*/!*<CustomerProfile></CustomerProfile>*!/*/}
           {/*/!*<CustomerFooter></CustomerFooter>*!/*/}
@@ -18,6 +19,7 @@ root.render(
           {/*/!*<Category></Category>*!/*/}
           {/*<CreateProduct></CreateProduct>*/}
           <DetailProduct></DetailProduct>
+
       </BrowserRouter>
     </Provider>
 );
