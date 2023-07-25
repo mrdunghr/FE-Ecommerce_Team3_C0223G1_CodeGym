@@ -39,6 +39,7 @@
     height: 40px;
     border-radius: 10px;
     border: 0.5px solid grey;
+    padding: 10px;
 }
 #create-product-table input[type=checkbox]{
     width: 25px;
@@ -46,7 +47,9 @@
 #add-description-product textarea{
     width: 100%;
     resize: none;
+    height: 250px;
 }
+
 .image-box-product{
     width: 100%;
     height: 200px;
@@ -85,4 +88,8 @@
 }
 #main-create #cancel-product{
     background: red;
+}
+#create-product-table select{
+    margin: 0;
+    height: 30px;
 }

@@ -41,6 +41,19 @@
     margin-top: 20px;
     width: 100%;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+}
+#product-container button:nth-child(odd){
+    margin-left: 500px;
+}
+#product-container button{
+    margin-left: 10px;
+    height: 35px;
+    border-radius: 5px;
+    border: none;
+    width: 80px;
+    color: white;
+    background: darkorange;
 }
 #product-container input{
     margin-left: 20px;
@@ -48,5 +61,31 @@
 #customer-footer{
     width: 100%;
     height: 300px;
+}
+.active-product{
+    font-weight: bold;
+    color: white;
+    padding: 2px;
+    background: green;
+    border-radius: 2px;
+    margin-top: 10px;
+}
+.inactive-product{
+    font-weight: bold;
+    color: white;
+    padding: 2px;
+    background: grey;
+    border-radius: 2px;
+    margin-top: 10px;
 
+}
+.block-icon{
+    color: red;
+}
+.product-icon{
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+.key-icon{
+    color: green;
 }

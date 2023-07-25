@@ -1,7 +1,39 @@
 import "./shop.css"
-
+import {useEffect, useState} from "react";
+import axios from "axios";
+import {Field, Form, Formik} from "formik";
+import Swal from "sweetalert2";
+import {useNavigate} from "react-router-dom";
+import BlockIcon from '@mui/icons-material/Block';
+import EditIcon from '@mui/icons-material/Edit';
+import KeyIcon from '@mui/icons-material/Key';
  export const Shop = () =>{
+    const [shops, setShops] = useState([])
+     const user = JSON.parse(sessionStorage.getItem('user'))
+     const navigate = useNavigate()
+     const [page, setPage] = useState(0)
+     useEffect(() => {
+         if(user === null){
+              navigate('/login')
+         }else{
+         axios.get("http://localhost:8080/api/v1/shop/" + user.id + "?page=" +page).then((res) => {
+             console.log(res.data.content)
+             setShops(res.data.content)
 
+         })}
+     }, [page])
+     const handlePrevPage = () => {
+         if (page > 0) {
+             setPage((prevPage) => prevPage - 1);
+         }
+         console.log(page)
+     };
+
+     const handleNextPage = () => {
+         if (shops.length > 1) { // điều kiện list có length > 1 thì không được next nữa, nhỏ hơn mới được tăng giá trị page
+             setPage((prevPage) => prevPage + 1);
+         }
+     };
     return(
         <>
             <div id={'shop-container'}>
@@ -18,39 +50,74 @@ import "./shop.css"
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Hieu</td>
-                            <td>None</td>
-                            <td>HN</td>
-                            <td>20/09/2001</td>
-                            <td>OK</td>
-                            <td>Rat OK</td>
-                        </tr>
+                        {shops.map(shop => {
+                            return(
+                                <tr>
+                                    <td>{shop.id}</td>
+                                    <td>{shop.name}</td>
+                                    <td><img src="/image/image-thumbnail.png" alt=""/></td>
+                                    <td>{shop.deliveryAddress}</td>
+                                    <td>{shop.createdTime}</td>
+                                    <td>{shop.enabled ? <p className={'active-shop'} style={{fontSize : "15px"}}>Active</p> : <p className={'inactive-shop'} style={{fontSize : "15px"}}>Inactive</p>}</td>
+                                    <td>{shop.enabled ? <BlockIcon className={'block-icon product-icon'}></BlockIcon> : <KeyIcon className={'key-icon product-icon'}></KeyIcon>} <EditIcon></EditIcon></td>
+                                </tr>
+                            )
+                        })}
                     </table>
+                </div>
+                <div>
+                    <button onClick={handlePrevPage}>Previous</button>
+                    <button onClick={handleNextPage}>Next</button>
                 </div>
             </div>
         </>
     )
 }
 export const CreateShop = () =>{
+    const user = JSON.parse(sessionStorage.getItem('user'))
     return(
-        <>
+        <Formik
+            initialValues={{
+                name : "",
+                deliveryAddress : "",
+                customer : user,
+                alias : "",
+                image : "ok"
+            }}
+            onSubmit={(values) =>{
+                console.log(values)
+                axios.post('http://localhost:8080/api/v1/shop/create', values).then((res) => {
+                    console.log(res)
+                    Swal.fire("Create success!")
+                }).catch((errors) => {
+                    console.log(errors)
+                    Swal.fire("Khong ok")
+                })
+            }}
+        >
+            <Form>
             <div id={'shop-container'}>
                 <p>Add new shop</p>
                 <div id={'main-shop'}>
                     <div id={'first-main-shop'}>
-                        <input type="text" placeholder={'Name'}/>
-                        <input type="text" placeholder={''}/>
-                        <button>Save change</button>
+                        <Field name={'name'} placeholder={'Name'}/>
+                        <Field name={'alias'} placeholder={'Alias'}/>
+                        <Field  placeholder={'Image'}>
+                            {({field, form}) => (
+                                <input type="file"/>
+                            )}
+                        </Field>
+
+                        <button type={'submit'}>Save change</button>
                     </div>
                     <div id={'second-main-shop'}>
-                        <input type="text" placeholder={'Delivery Address'}/>
+                        <Field name={'deliveryAddress'} placeholder={'Delivery Address'}/>
                         <textarea name="" id="" cols="30" rows="10"></textarea>
-                        <button>Cancel</button>
+                        <button type={'reset'}>Cancel</button>
                     </div>
                 </div>
             </div>
-        </>
+            </Form>
+        </Formik>
     )
 }
