@@ -20,6 +20,7 @@ import Reviews from "./pages/Reviews";
 import ManageProducts from "./pages/ManageProducts";
 import Menu from "./pages/Menu";
 import AddUser from "./pages/user/AddUser";
+import EditUser from "./pages/user/EditUser";
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -57,6 +58,7 @@ function App() {
 
                             <Route path={"/users"} element={<ManageUsers/>}></Route>
                             <Route path={"/users/add-user"} element={<AddUser/>}></Route>
+                            <Route path={"/users/edit-user/:userId"} element={<EditUser/>}></Route>
 
                             <Route path={"/categories"} element={<Categories/>}></Route>
                             <Route path={"/brands"} element={<Brands/>}></Route>
