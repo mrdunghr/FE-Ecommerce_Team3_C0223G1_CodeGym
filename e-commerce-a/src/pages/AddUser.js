@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import {Link} from "react-router-dom";
 import axios from "axios";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import app from "./firebase"; // Đường dẫn tới tệp firebase.js đã cấu hình
 
 export default function AddUser() {
     const [email, setEmail] = useState('');
@@ -25,7 +27,6 @@ export default function AddUser() {
     };
 
 
-
     const handleImageChange = (event) => {
         const file = event.target.files[0];
         const reader = new FileReader();
@@ -36,8 +37,21 @@ export default function AddUser() {
 
         if (file) {
             reader.readAsDataURL(file);
+            uploadImageToFirebaseStorage(file); // Thêm dòng này để tải hình ảnh lên Firebase Storage
         }
     };
+    const uploadImageToFirebaseStorage = async (file) => {
+        try {
+            const storage = getStorage(app);
+            const storageRef = ref(storage, "images/" + file.name);
+            await uploadBytes(storageRef, file);
+            const imageURL = await getDownloadURL(storageRef);
+            setSelectedImage(imageURL);
+        } catch (error) {
+            console.error("Lỗi khi tải hình ảnh lên Firebase Storage:", error);
+        }
+    };
+
 
     const handleSubmit =  async (event) => {
         event.preventDefault();
@@ -47,7 +61,7 @@ export default function AddUser() {
             lastName: lastName,
             password: password,
             enabled: enabled,
-            image: selectedImage,
+            photos: selectedImage, // cái này giờ không còn tên ảnh web nữa mà là link ảnh firebase
             roles: selectedRoles
         };
         console.log(data)
@@ -56,10 +70,26 @@ export default function AddUser() {
             const response = await axios.post("http://localhost:8080/api/v1/users/create-user", data);
             // Xử lý phản hồi theo cần thiết
             console.log("Tạo người dùng thành công:", response.data);
+            alert("Tạo người dùng thành công")
+
+            // Sau khi tạo thành công, reset tất cả dữ liệu đã chọn và nhập
+            resetForm();
         } catch (error) {
             console.error("Lỗi khi tạo người dùng:", error);
         }
     };
+
+    // Hàm reset form
+    const resetForm = () => {
+        setEmail('');
+        setFirstName('');
+        setLastName('');
+        setPassword('');
+        setEnabled(true);
+        setSelectedImage(null);
+        setSelectedRoles([]);
+    };
+
     const roles = [
         { id: 1, name: 'Admin', description: 'Manage everything' },
         { id: 2, name: 'Salesperson', description: 'Manage product price, customers, shipping, orders and sales report' },
