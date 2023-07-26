@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {Link} from "react-router-dom";
 import axios from "axios";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import app from "./firebase"; // Đường dẫn tới tệp firebase.js đã cấu hình
+import app from "../firebase"; // Đường dẫn tới tệp firebase.js đã cấu hình
 
 export default function AddUser() {
     const [email, setEmail] = useState('');
