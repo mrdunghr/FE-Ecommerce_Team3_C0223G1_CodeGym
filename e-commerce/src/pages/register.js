@@ -5,7 +5,7 @@ import {useNavigate} from "react-router-dom";
 import * as Yup from "yup"
 import "./register.css"
 
- const validationSchema = Yup.object().shape({
+const validationSchema = Yup.object().shape({
     email : Yup.string()
         .min(5, "Too short!")
         .max(45, "Too long!")
@@ -33,14 +33,14 @@ export const CustomerRegister = () =>{
         id : 0,
         name : "",
         code : ""}])
-   useEffect(() => {
-       axios.get("http://localhost:8080/api/v1/customers/list-country").then(res => {
-           console.log(res.data)
-           setCountry(res.data)
-       }).catch(err => {
-           console.log(err)
-       })
-   }, [])
+    useEffect(() => {
+        axios.get("http://localhost:8080/api/v1/customers/list-country").then(res => {
+            console.log(res.data)
+            setCountry(res.data)
+        }).catch(err => {
+            console.log(err)
+        })
+    }, [])
     return(
         <><div id={'container'}>
             <Formik
@@ -92,8 +92,7 @@ export const CustomerRegister = () =>{
                     <button type={'submit'} id={'submit'}>Submit</button>
                 </Form>
             </Formik>
-         </div>
+        </div>
         </>
     )
 }
-

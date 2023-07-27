@@ -4,7 +4,10 @@ import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {CustomerFooter} from "../../../components/customer/footer";
+import Rating from '@mui/material/Rating';
 export function DetailProduct() {
+    const [value, setValue] = useState(2);
+
     const { id } = useParams();
     const [product, setProduct] = useState({
         id: '',
@@ -13,10 +16,11 @@ export function DetailProduct() {
         price:'',
         inStock:'',
         shop:'',
-        brand:''
+        brand:'',
+        averageRating:''
     });
 
-    let [count, setCount] = useState(1)
+    let [count, setCount] = useState(0)
     const increaseClick = () => {
         const newValue = count + 1;
         setCount(newValue);
@@ -30,7 +34,7 @@ export function DetailProduct() {
 
     useEffect(() => {
         axios.get(`http://localhost:8080/api/v1/products/detail/${id}`).then((response) => {
-            setProduct({id: response.data.id, name: response.data.name,discountPercent: response.data.discountPercent,price: response.data.price,inStock: response.data.inStock,shop: response.data.shop,brand: response.data.brand})
+            setProduct({id: response.data.id, name: response.data.name,discountPercent: response.data.discountPercent,price: response.data.price,inStock: response.data.inStock,shop: response.data.shop,brand: response.data.brand,averageRating: response.data.averageRating})
         });
     }, []);
 
@@ -47,20 +51,12 @@ export function DetailProduct() {
                         </div>
                         <div className="col-6">
                             <h4>{product.name}</h4>
-                            <div className="stars">
-                                <form action="">
-                                    <input className="star star-5" id="star-5" type="radio" name="star"/>
-                                    <label className="star star-5" htmlFor="star-5"></label>
-                                    <input className="star star-4" id="star-4" type="radio" name="star"/>
-                                    <label className="star star-4" htmlFor="star-4"></label>
-                                    <input className="star star-3" id="star-3" type="radio" name="star"/>
-                                    <label className="star star-3" htmlFor="star-3"></label>
-                                    <input className="star star-2" id="star-2" type="radio" name="star"/>
-                                    <label className="star star-2" htmlFor="star-2"></label>
-                                    <input className="star star-1" id="star-1" type="radio" name="star"/>
-                                    <label className="star star-1" htmlFor="star-1"></label>
-                                </form>
-                            </div>
+
+                            <Rating
+                                name="read-only"
+                                value= {product.averageRating}
+                                readOnly
+                            />
                             <div>
                                 <div style={{display: 'flex', alignItems: 'center'}}>
                                     <h5 style={{color: '#fe5502'}}>Digital List Price:</h5>
@@ -80,7 +76,7 @@ export function DetailProduct() {
                                 </div>
                                 <div style={{display: 'flex', alignItems: 'center', margin: '10px 0'}}>
                                     <span>Brands: </span>
-                                    <span style={{color: "#fe5502"}}>{product.brand.name}</span>
+                                    <span style={{color: "#fe5502"}}>{product.brand.logo}</span>
                                 </div>
                             </div>
                             <div style={{marginTop: '20px'}}>
@@ -89,7 +85,6 @@ export function DetailProduct() {
                                 <button onClick={decreaseClick} style={{border: 'none',width: '32px', height: '32px'}}>-</button>
                             </div>
                             <button style={{marginRight:'20px',border: 'none',fontSize:'18px',width:'250px',height:'50px',backgroundColor:'#fe5502',color:'white'}}><i className="fa fa-shopping-cart" style={{color:'white'}} ></i> ADD TO CART</button>
-                            <button style={{fontSize:'18px', margin: '20px 0',width:'250px',height:'50px',backgroundColor:'white',color:'#fe5502', border: '1px solid #adabac'}}><i className="fa thin fa-heart"></i> ADD TO WISHLIST</button>
                         </div>
                     </div>
                     <div style={{ paddingTop: '70px', display: 'flex', alignItems: 'center' }}>
