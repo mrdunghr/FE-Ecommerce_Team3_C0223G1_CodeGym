@@ -13,6 +13,8 @@ export default function AddUser() {
     const [selectedImage, setSelectedImage] = useState(null);
     const [selectedRoles, setSelectedRoles] = useState([]);
 
+    console.log(selectedImage)
+
     const handleRoleChange = (roleId) => {
         setSelectedRoles((prevRoles) => {
             if (prevRoles.some((role) => role.id === roleId)) {
