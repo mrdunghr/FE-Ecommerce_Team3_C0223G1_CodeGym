@@ -1,4 +1,43 @@
+import React, {useEffect, useState} from "react";
+import axios from "axios";
+import {Link} from "react-router-dom";
+
 export default function Categories() {
+    const [listCategory, setListCategory] = useState([]);
+
+    useEffect(() => {
+        fetchListS();
+    }, []);
+    const fetchListS = () => {
+        axios
+            .get(`http://localhost:8080/api/v1/category/all`)
+            .then(response => {
+                const data = response.data;
+                console.log(response)
+                setListCategory(data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }; // hàm hiển thị danh sách
+
+    const handleToggleCategoryStatus = (categoryId, currentStatus) => {
+        // Tính toán trạng thái mới (nghịch đảo của trạng thái hiện tại)
+        const newStatus = !currentStatus;
+        console.log(newStatus)
+
+        axios
+            .put(`http://localhost:8080/api/v1/category/${categoryId}/enabled/${newStatus}`)
+            .then((response) => {
+                console.log("Thay đổi trạng thái category thành công:", response.data);
+                // Sau khi thay đổi thành công, cập nhật danh sách category bằng cách gọi fetchListS
+                fetchListS();
+            })
+            .catch((error) => {
+                console.error("Lỗi khi thay đổi trạng thái category:", error);
+            });
+    };
+
     return (
         <>
             <div className="main-content container-fluid">
@@ -14,8 +53,7 @@ export default function Categories() {
                     <div className="card">
                         <div className="card-header">
                             <h3>Manage Categories </h3> <br/>
-                            <a href="/Admin/categories/new" className="fas fa-calendar-plus fa-2x mr-2"
-                               title="Add New Category"></a>
+                            <Link to="/category/add-category" className="fas fa-user-plus fa-2x mr-2" title="Add New Category"></Link>
                             &nbsp;&nbsp;
                             <a href="/Admin/categories/export/csv" className="fas fa-file-csv fa-2x mr-2 icon-success"
                                title="Export to CSV"></a>
@@ -58,6 +96,27 @@ export default function Categories() {
                                     <th>Action</th>
                                 </tr>
                                 </thead>
+                                <tbody>
+                                    {listCategory.map((category, i) => (
+                                        <tr key={listCategory.id}>
+                                            <td className="hideable-column">{category.id}</td>
+                                            <td>
+                                                <img src={category.image} style={{width : "100px"}}/>
+                                            </td>
+                                            <td className="hideable-column">{category.name}</td>
+                                            <td className="hideable-column">{category.alias}</td>
+                                            <td>
+                                                <a
+                                                    className={`fas ${category.enabled ? "fa-check-circle icon-green" : "fa-times-circle icon-red"}`}
+                                                    title={category.enabled ? "Disable this Category" : "Enable this Category"}
+                                                    onClick={() => handleToggleCategoryStatus(category.id, category.enabled)}
+                                                    style={{ color: category.enabled ? "green" : "red" }}
+                                                ></a>
+                                            </td>
+                                            <td>action</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
                             </table>
                         </div>
                     </div>
