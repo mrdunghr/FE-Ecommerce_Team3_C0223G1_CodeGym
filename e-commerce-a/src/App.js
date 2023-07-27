@@ -23,6 +23,7 @@ import AddUser from "./pages/user/AddUser";
 import EditUser from "./pages/user/EditUser";
 import AddCategory from "./pages/category/AddCategory";
 import EditCategory from "./pages/category/EditCategory";
+import NotFound from "./components/NotFound";
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -78,7 +79,8 @@ function App() {
                             <Route path={"/reports"} element={<Report/>}></Route>
                         </Route>
                     </Routes>
-                    <button onClick={handleLogout}>Logout</button>
+                    {/*<button onClick={handleLogout}>Logout</button>*/}
+                    <NotFound onNotFound={handleLogout}/>
                 </div>
             ) : (
                 <Login onLogin={handleLogin}/>
