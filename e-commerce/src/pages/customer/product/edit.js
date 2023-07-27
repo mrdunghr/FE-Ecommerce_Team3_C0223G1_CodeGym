@@ -5,6 +5,8 @@ import {Link, useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import CustomerHeader from "../../../components/customer/header";
 import Swal from "sweetalert2";
+import {getDownloadURL, getStorage, ref, uploadBytes} from "firebase/storage";
+import app from "../../../firebase";
 
 
 export const EditProduct = () =>{
@@ -13,6 +15,8 @@ export const EditProduct = () =>{
     const [categories, setCategory] = useState([])
     const navigate = useNavigate()
     const user = JSON.parse(sessionStorage.getItem('user'))
+    const [selectedImage, setSelectedImage] = useState(null)
+    const [urlImage, setUrlImage ] = useState("")
     const [product, setProduct] = useState({
         name : "",
         alias : "",
@@ -67,13 +71,41 @@ export const EditProduct = () =>{
         })
         axios.get('http://localhost:8080/api/v1/products/detail/' + id).then((res) => {
             setProduct(res.data)
+            setSelectedImage(res.data.mainImage)
         })
     }, [])
-    console.log(product)
+    const handleImageChange = (event) => {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+
+        reader.onloadend = () => {
+            setSelectedImage(reader.result);
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+            uploadImageToFirebaseStorage(file).then(r => {
+                console.log(r)
+            }); // Thêm dòng này để tải hình ảnh lên Firebase Storage
+        }
+    };
+    const uploadImageToFirebaseStorage = async (file) => {
+        try {
+            const storage = getStorage(app);
+            const storageRef = ref(storage, "images/" + file.name);
+            await uploadBytes(storageRef, file);
+            const imageURL = await getDownloadURL(storageRef);
+            console.log(imageURL)
+            setUrlImage(imageURL);
+        } catch (error) {
+            console.error("Lỗi khi tải hình ảnh lên Firebase Storage:", error);
+        }
+    };
+
     return(
         <Formik
             initialValues={{
-                name : "ok",
+                name : product.name,
                 alias : product.alias,
                 shortDescription : product.shortDescription,
                 fullDescription : product.fullDescription,
@@ -92,7 +124,7 @@ export const EditProduct = () =>{
                 category : {
                     id : product.category.id
                 },
-                mainImage : product.mainImage,
+                mainImage : urlImage,
                 inStock : product.inStock,
                 enabled : product.enabled,
             }}
@@ -192,8 +224,8 @@ export const EditProduct = () =>{
                                     <div id={'add-product-image'}>
                                         <div className={'image-box-product'}>
                                             <p>Main image: </p>
-                                            <img src="/image/image-thumbnail.png" alt=""/><br/>
-                                            <input type="file"/>
+                                            {product.mainImage === ".png" ? <img src={'/image/image-thumbnail.png'}></img> : <img src={selectedImage}></img>}<br/>
+                                            <input type="file" onChange={handleImageChange}/>
                                         </div>
                                     </div>
                                 </div>

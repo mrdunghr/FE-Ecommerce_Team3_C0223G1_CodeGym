@@ -2,7 +2,6 @@
 import "./customerProfile.css"
 import CustomerHeader from "../../components/customer/header";
 import Dashboard from "../../components/customer/dashboard";
-// import {CreateShop, Shop} from "./outlet/shop";
 import {Outlet} from "react-router-dom";
 import {CustomerFooter} from "../../components/customer/footer";
 

@@ -8,21 +8,23 @@
 }
 #form-register{
     width: 650px;
-    height: 550px;
+    height: 580px;
     border: 1px solid #fff;
     border-radius: 5px;
     background: #ececec;
     font-weight: bold;
     padding-left: 30px;
+    padding-right: 30px;
     flex-direction: column;
 }
 #form-register h2{
+    padding-top: 20px;
     color: darkorange;
     text-indent: 200px;
 }
 #form-register input{
     height: 30px;
-    width: 260px;
+    width: 360px;
     border-radius: 5px;
     border: none;
     margin-left: 20px;
@@ -30,7 +32,34 @@
 select{
     width: 260px;
     height: 30px;
-    margin-top: 20px;
+    margin-top: 0px;
     border-radius: 5px;
     margin-left: 20px;
+}
+#container {
+    display: flex;
+    justify-content: center;
+}
+
+.form-column {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+label {
+    font-weight: bold;
+    padding-bottom: 5px;
+}
+#register{
+    margin-left: 230px;
+    margin-top: 20px;
+    width: 100px;
+    height: 50px;
+    border-radius: 5px;
+    font-family: Raleway, sans-serif;
+    font-weight: 700;
+    color: darkorange;
+    border: 1px solid #888888;
+    cursor: pointer;
 }

@@ -1,20 +1,20 @@
 import CustomerHeader from "../../../components/customer/header";
-import "./category.css"
+import "../category/category.css"
 import {CustomerFooter} from "../../../components/customer/footer";
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
 
-export const Category = () =>{
-    const {id} = useParams()
-    console.log(id)
+export const SearchProduct = () =>{
+    const {search} = useParams()
+    console.log(search)
     const user = JSON.parse(sessionStorage.getItem('user'))
     const [products, setProducts] = useState([])
     const [name, setName] = useState()
     const [price, setPrice] = useState()
     const [discount, setDiscount] = useState()
     useEffect(() =>{
-        axios.get(`http://localhost:8080/api/v1/products/show-by-category/${id}?list=true`).then((res) => {
+        axios.get(`http://localhost:8080/api/v1/products/search/?name=${search}&list=true`).then((res) => {
             console.log(res)
             setProducts(res.data)
         }).catch(errors =>{
@@ -100,13 +100,22 @@ export const Category = () =>{
                                         <img src="/image/modern-teaching-concept-P7BTJU7.jpg" alt=""/>
                                     </div>
                                     <div className={'product-name'}>
-                                        <p>{prod.name}</p>
-                                        {prod.discountPercent === 0 ? <span className={'new-price'}>${prod.price}</span> :
-                                        <>
-                                            <span className={'old-price'}>${prod.price}</span>
-                                            <span className={'new-price'}>${prod.price - (prod.price * prod.discountPercent/100)}</span>
-                                        </>}
+                                        <span>{prod.name}</span>
+                                        <span className={'alias'}>( {prod.alias} )</span>
+                                        {prod.discountPercent === 0 ? (<>
+                                                <span className={'old-price'}>${prod.price.toFixed(2)}</span>
+                                                <span className={'new-price'}>${prod.price.toFixed(2)}</span>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <span className={'old-price'}>${prod.price.toFixed(2)}</span>
+                                                <span className={'new-price'}>
+                ${ (prod.price - (prod.price * prod.discountPercent/100)).toFixed(2)}
+            </span>
+                                            </>
+                                        )}
                                     </div>
+
                                 </div>
                             ))}
                         </div>

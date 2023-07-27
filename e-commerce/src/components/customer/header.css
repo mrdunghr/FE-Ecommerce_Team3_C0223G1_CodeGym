@@ -91,3 +91,6 @@ body{
 #main-navbar a:hover{
     color: #fe5502;
 }
+#cart{
+    color: darkorange;
+}

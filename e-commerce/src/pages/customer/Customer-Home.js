@@ -1,9 +1,10 @@
-import {Link, useLocation} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import {FaPhoneAlt, FaStar} from 'react-icons/fa';
 import "./customerHome.css"
 import {CustomerFooter} from "../../components/customer/footer";
 import {useEffect, useState} from "react";
 import axios from "axios";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 const StarIcon = () => <FaStar style={{ marginRight: '10px', color: 'yellow' }} />;
 
 export function CustomerHome() {
@@ -11,6 +12,14 @@ export function CustomerHome() {
     console.log(user)
     const [bestSellerList, setBestSellerList] = useState([])
     const [categories, setCategories] = useState([])
+    const [search,setSearch] = useState([])
+    const navigate = useNavigate();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // Điều hướng sang trang kết quả tìm kiếm và đưa dữ liệu sang trang mới
+        navigate(`/product/search/${search}`);
+    };
     useEffect(() => {
         axios.get("http://localhost:8080/api/v1/products/list-product-discount").then((res) => {
             setBestSellerList(res.data)
@@ -48,6 +57,7 @@ export function CustomerHome() {
                             </div>
                             <div className="form-inline my-2 my-lg-0">
                                 {user === null ? null : <>
+                                    <Link to={'/customer/cart'}><ShoppingCartIcon id={'cart'}/></Link>
                                     <img src="/image/avatar/avatar-s-2.png" alt="" style={{width : "35px", borderRadius : "50%", marginRight : "20px"}}/>
                                     <span style={{color : "white"}}>Hi, </span><h2 style={{color : "white", marginLeft : "10px", fontSize : "20px", textTransform : "capitalize"}}> {user.fullName}</h2>
                                 </>}
@@ -61,9 +71,9 @@ export function CustomerHome() {
                         <img src="/image/logo.png" alt="" style={{width: "200px", height: "70px"}}/>
                     </div>
                     <div className="col">
-                        <form className="d-flex">
+                        <form className="d-flex" onSubmit={handleSubmit}>
                             <input className="form-control me-4 h-100 mt-3" type="search" placeholder="Search"
-                                   aria-label="Search"/>
+                                   aria-label="Search" value={search} onChange={(e) => setSearch(e.target.value)}/>
                             <button className="btn btn-outline-success mt-3" type="submit">Search</button>
                         </form>
                     </div>
@@ -124,7 +134,7 @@ export function CustomerHome() {
                             return (
                                 <div style={{marginBottom: '10px'}}>
                                     {cate.enabled ? (<>
-                                        <StarIcon></StarIcon><Link to={{pathname: "/category", state : {id : cate.id}}}>{cate.name}</Link>
+                                        <StarIcon></StarIcon><Link to={"/category/" + cate.id}>{cate.name}</Link>
                                     </>) : null}
                                 </div>
                             )

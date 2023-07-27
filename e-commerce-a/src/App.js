@@ -21,6 +21,9 @@ import ManageProducts from "./pages/ManageProducts";
 import Menu from "./pages/Menu";
 import AddUser from "./pages/user/AddUser";
 import EditUser from "./pages/user/EditUser";
+import AddCategory from "./pages/category/AddCategory";
+import EditCategory from "./pages/category/EditCategory";
+import NotFound from "./components/NotFound";
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -61,6 +64,9 @@ function App() {
                             <Route path={"/users/edit-user/:userId"} element={<EditUser/>}></Route>
 
                             <Route path={"/categories"} element={<Categories/>}></Route>
+                            <Route path={"/category/add-category"} element={<AddCategory/>}></Route>
+                            <Route path={"/category/edit-category/:categoryId"} element={<EditCategory/>}></Route>
+
                             <Route path={"/brands"} element={<Brands/>}></Route>
                             <Route path={"/contacts"} element={<Contact />}></Route>
                             <Route path={"/products"} element={<ManageProducts/>}></Route>
@@ -73,7 +79,8 @@ function App() {
                             <Route path={"/reports"} element={<Report/>}></Route>
                         </Route>
                     </Routes>
-                    <button onClick={handleLogout}>Logout</button>
+                    {/*<button onClick={handleLogout}>Logout</button>*/}
+                    <NotFound onNotFound={handleLogout}/>
                 </div>
             ) : (
                 <Login onLogin={handleLogin}/>

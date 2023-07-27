@@ -94,6 +94,7 @@
     align-items: center;
     font-size: 19px;
     padding-top: 10px;
+    padding-left: 5px;
 }
 .old-price{
     color: darkgray;
@@ -159,4 +160,19 @@
 }
 .sidebar-product-item .old-price{
     margin-right: 5px;
+}
+#category-main input{
+    height: 35px;
+    width: 280px;
+    margin-left: 10px;
+    border-radius: 2px;
+    border: 0.5px solid grey;
+    padding-left: 10px;
+}
+#category-main input:first-child{
+    margin: 0;
+}
+.alias{
+    font-size: 14px;
+    color: #adabac;
 }

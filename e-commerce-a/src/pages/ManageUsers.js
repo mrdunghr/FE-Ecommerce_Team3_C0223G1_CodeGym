@@ -23,19 +23,6 @@ export default function ManageUsers() {
             });
     }; // hàm hiển thị danh sách
 
-    const handleDeleteUser = (userId) => {
-        axios
-            .delete(`http://localhost:8080/api/v1/users/${userId}`)
-            .then((response) => {
-                console.log("Xóa người dùng thành công:", response.data);
-                // Sau khi xóa thành công, cập nhật danh sách người dùng bằng cách gọi fetchListS
-                fetchListS();
-            })
-            .catch((error) => {
-                console.error("Lỗi khi xóa người dùng:", error);
-            });
-    };
-
     const handlePrevPage = () => {
         if (page > 0) {
             setPage((prevPage) => prevPage - 1);
@@ -140,7 +127,7 @@ export default function ManageUsers() {
                                         <td>
                                             <Link to={`/users/edit-user/${user.id}`} className="fas fa-edit icon-green" title="Chỉnh sửa người dùng"></Link>
                                             &nbsp;&nbsp;
-                                            <button className="fas fa-trash icon-red link-delete" onClick={() => handleDeleteUser(user.id)} title="Delete this user"></button>
+                                            <a className="fas fa-trash icon-red link-delete" href="/Admin/users/delete/6" entityid="6" title="Delete this user"></a>
                                         </td>
                                     </tr>
                                 ))}
