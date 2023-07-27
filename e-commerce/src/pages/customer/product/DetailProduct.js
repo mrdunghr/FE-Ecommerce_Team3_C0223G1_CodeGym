@@ -85,7 +85,6 @@ export function DetailProduct() {
                                 <button onClick={decreaseClick} style={{border: 'none',width: '32px', height: '32px'}}>-</button>
                             </div>
                             <button style={{marginRight:'20px',border: 'none',fontSize:'18px',width:'250px',height:'50px',backgroundColor:'#fe5502',color:'white'}}><i className="fa fa-shopping-cart" style={{color:'white'}} ></i> ADD TO CART</button>
-                            <button style={{fontSize:'18px', margin: '20px 0',width:'250px',height:'50px',backgroundColor:'white',color:'#fe5502', border: '1px solid #adabac'}}><i className="fa thin fa-heart"></i> ADD TO WISHLIST</button>
                         </div>
                     </div>
                     <div style={{ paddingTop: '70px', display: 'flex', alignItems: 'center' }}>

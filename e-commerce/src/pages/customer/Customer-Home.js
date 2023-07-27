@@ -1,4 +1,4 @@
-import {Link, useLocation} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import {FaPhoneAlt, FaStar} from 'react-icons/fa';
 import "./customerHome.css"
 import {CustomerFooter} from "../../components/customer/footer";
@@ -11,6 +11,14 @@ export function CustomerHome() {
     console.log(user)
     const [bestSellerList, setBestSellerList] = useState([])
     const [categories, setCategories] = useState([])
+    const [search,setSearch] = useState([])
+    const navigate = useNavigate();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // Điều hướng sang trang kết quả tìm kiếm và đưa dữ liệu sang trang mới
+        navigate(`/product/search/${search}`);
+    };
     useEffect(() => {
         axios.get("http://localhost:8888/api/v1/products/list-product-discount").then((res) => {
             setBestSellerList(res.data)
@@ -61,9 +69,9 @@ export function CustomerHome() {
                         <img src="/image/logo.png" alt="" style={{width: "200px", height: "70px"}}/>
                     </div>
                     <div className="col">
-                        <form className="d-flex">
+                        <form className="d-flex" onSubmit={handleSubmit}>
                             <input className="form-control me-4 h-100 mt-3" type="search" placeholder="Search"
-                                   aria-label="Search"/>
+                                   aria-label="Search" value={search} onChange={(e) => setSearch(e.target.value)}/>
                             <button className="btn btn-outline-success mt-3" type="submit">Search</button>
                         </form>
                     </div>

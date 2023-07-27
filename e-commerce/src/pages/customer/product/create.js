@@ -67,7 +67,7 @@ export const CreateProduct = () =>{
             shop : {
                 id : -1
             },
-            discount: 0,
+            discountPercent: 0,
             brand : {
                 id : -1,
 
@@ -156,7 +156,7 @@ export const CreateProduct = () =>{
                                 </tr>
                                 <tr>
                                     <td>Discount:</td>
-                                    <td><Field name={'discount'}/></td>
+                                    <td><Field name={'discountPercent'}/></td>
                                 </tr>
                             </table>
                         </div>

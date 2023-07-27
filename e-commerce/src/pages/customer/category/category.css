@@ -172,3 +172,7 @@
 #category-main input:first-child{
     margin: 0;
 }
+.alias{
+    font-size: 14px;
+    color: #adabac;
+}
