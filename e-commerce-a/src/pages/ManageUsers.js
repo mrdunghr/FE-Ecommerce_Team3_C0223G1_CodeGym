@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {Link} from "react-router-dom";
+import DoneIcon from '@mui/icons-material/Done';
 
 export default function ManageUsers() {
     const [listUser, setListUser] = useState([]);
@@ -50,6 +51,24 @@ export default function ManageUsers() {
         console.log(page)
 
     };
+
+    const handleToggleUserStatus = (userId, currentStatus) => {
+        // Tính toán trạng thái mới (nghịch đảo của trạng thái hiện tại)
+        const newStatus = !currentStatus;
+        console.log(newStatus)
+
+        axios
+            .put(`http://localhost:8080/api/v1/users/${userId}/enabled/${newStatus}`)
+            .then((response) => {
+                console.log("Thay đổi trạng thái người dùng thành công:", response.data);
+                // Sau khi thay đổi thành công, cập nhật danh sách người dùng bằng cách gọi fetchListS
+                fetchListS();
+            })
+            .catch((error) => {
+                console.error("Lỗi khi thay đổi trạng thái người dùng:", error);
+            });
+    };
+
 
     return (
         <>
@@ -136,7 +155,14 @@ export default function ManageUsers() {
                                         <td className="hideable-column">{user.firstName}</td>
                                         <td className="hideable-column">{user.lastName}</td>
                                         <td className="hideable-column">{user.roles[0].name}</td>
-                                        <td className="hideable-column">{user.enabled ? 'Enabled' : 'Disabled'}</td>
+                                        <td>
+                                            <a
+                                                className={`fas ${user.enabled ? "fa-check-circle icon-green" : "fa-times-circle icon-red"}`}
+                                                title={user.enabled ? "Disable this user" : "Enable this user"}
+                                                onClick={() => handleToggleUserStatus(user.id, user.enabled)}
+                                                style={{ color: user.enabled ? "green" : "red" }}
+                                            ></a>
+                                        </td>
                                         <td>
                                             <Link to={`/users/edit-user/${user.id}`} className="fas fa-edit icon-green" title="Chỉnh sửa người dùng"></Link>
                                             &nbsp;&nbsp;
