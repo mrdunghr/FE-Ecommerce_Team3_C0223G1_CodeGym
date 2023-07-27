@@ -33,7 +33,7 @@ export function DetailProduct() {
     };
 
     useEffect(() => {
-        axios.get(`http://localhost:8888/api/v1/products/detail/${id}`).then((response) => {
+        axios.get(`http://localhost:8080/api/v1/products/detail/${id}`).then((response) => {
             setProduct({id: response.data.id, name: response.data.name,discountPercent: response.data.discountPercent,price: response.data.price,inStock: response.data.inStock,shop: response.data.shop,brand: response.data.brand,averageRating: response.data.averageRating})
         });
     }, []);

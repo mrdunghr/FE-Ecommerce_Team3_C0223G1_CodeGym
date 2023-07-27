@@ -20,12 +20,12 @@ export function CustomerHome() {
         navigate(`/product/search/${search}`);
     };
     useEffect(() => {
-        axios.get("http://localhost:8888/api/v1/products/list-product-discount").then((res) => {
+        axios.get("http://localhost:8080/api/v1/products/list-product-discount").then((res) => {
             setBestSellerList(res.data)
         })
     }, [])
     useEffect(() => {
-        axios.get("http://localhost:8888/api/v1/category/all").then((res) => {
+        axios.get("http://localhost:8080/api/v1/category/all").then((res) => {
             setCategories(res.data)
         })
     }, [])

@@ -30,14 +30,14 @@ export const CreateProduct = () =>{
                 all_content[index].classList.add('active');
             })
         })
-        axios.get('http://localhost:8888/api/v1/shop/' + user.id + "?list=true").then((res) => {
+        axios.get('http://localhost:8080/api/v1/shop/' + user.id + "?list=true").then((res) => {
             setShop(res.data.filter(shop => shop.enabled))
         })
-        axios.get('http://localhost:8888/api/v1/category/all').then((res) =>{
+        axios.get('http://localhost:8080/api/v1/category/all').then((res) =>{
             setCategory(res.data.filter(cate => cate.enabled === true))
         })
         }
-        axios.get('http://localhost:8888/api/v1/brand/all?list=true').then((res) => {
+        axios.get('http://localhost:8080/api/v1/brand/all?list=true').then((res) => {
             setBrand(res.data)
         })
     }, [isUpdated])
@@ -79,7 +79,7 @@ export const CreateProduct = () =>{
             enableReinitialize={true}
         onSubmit={(values) =>{
             console.log(values)
-            axios.post('http://localhost:8888/api/v1/products/add', values).then(res =>
+            axios.post('http://localhost:8080/api/v1/products/add', values).then(res =>
                 {
                     console.log(res)
                     Swal.fire("Create success!")

@@ -34,7 +34,7 @@ export const CustomerRegister = () =>{
         name : "",
         code : ""}])
     useEffect(() => {
-        axios.get("http://localhost:8888/api/v1/customers/list-country").then(res => {
+        axios.get("http://localhost:8080/api/v1/customers/list-country").then(res => {
             console.log(res.data)
             setCountry(res.data)
         }).catch(err => {
@@ -51,7 +51,7 @@ export const CustomerRegister = () =>{
                 enableReinitialize={true}
                 onSubmit={(values) => {
                     console.log(values)
-                    axios.post("http://localhost:8888/api/v1/customers/register", values).then(() =>{
+                    axios.post("http://localhost:8080/api/v1/customers/register", values).then(() =>{
                         navigate('/')
                     }).catch(err => {
                         console.log(err)
