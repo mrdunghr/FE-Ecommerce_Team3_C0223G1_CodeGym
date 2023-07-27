@@ -11,28 +11,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <Provider store={store}>
       <BrowserRouter>
-<<<<<<< HEAD
-            {/*<CustomerHome></CustomerHome>*/}
-          {/*<CustomerProfile></CustomerProfile>*/}
-          {/*<CustomerFooter></CustomerFooter>*/}
-          {/*<ProductManager></ProductManager>*/}
           <RouterHome></RouterHome>
-          {/*<Category></Category>*/}
-          {/*<CreateProduct></CreateProduct>*/}
-=======
-
-          {/*  /!*<CustomerHome></CustomerHome>*!/*/}
-          {/*/!*<CustomerProfile></CustomerProfile>*!/*/}
-          {/*/!*<CustomerFooter></CustomerFooter>*!/*/}
-          {/*/!*<ProductManager></ProductManager>*!/*/}
-          <RouterHome></RouterHome>
-          {/*/!*<Category></Category>*!/*/}
-          {/*<CreateProduct></CreateProduct>*/}
-          {/*<DetailProduct></DetailProduct>*/}
-          {/*<EditProduct></EditProduct>*/}
-
-
->>>>>>> 5af3b3f20f15899023fd73fe96fa21ea525cddb7
       </BrowserRouter>
     </Provider>
 );

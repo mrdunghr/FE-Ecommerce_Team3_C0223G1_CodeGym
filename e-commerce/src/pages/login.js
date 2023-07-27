@@ -29,7 +29,7 @@ import {createAction} from "@reduxjs/toolkit";
                         validationSchema={validationSchema}
                         onSubmit={(values) => {
                             console.log(values)
-                            axios.post("http://localhost:8080/api/v1/customers/login", values).then((res) => {
+                            axios.post("http://localhost:8888/api/v1/customers/login", values).then((res) => {
                                 dispatch(updateUser(res.data))
                                 sessionStorage.setItem('user', JSON.stringify(res.data))
                                 Swal.fire("Sign in successful!")

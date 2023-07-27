@@ -16,7 +16,7 @@ import KeyIcon from '@mui/icons-material/Key';
          if(user === null){
               navigate('/login')
          }else{
-         axios.get("http://localhost:8080/api/v1/shop/" + user.id + "?page=" +page).then((res) => {
+         axios.get("http://localhost:8888/api/v1/shop/" + user.id + "?page=" +page).then((res) => {
              console.log(res.data.content)
              setShops(res.data.content)
 
@@ -86,7 +86,7 @@ export const CreateShop = () =>{
             }}
             onSubmit={(values) =>{
                 console.log(values)
-                axios.post('http://localhost:8080/api/v1/shop/create', values).then((res) => {
+                axios.post('http://localhost:8888/api/v1/shop/create', values).then((res) => {
                     console.log(res)
                     Swal.fire("Create success!")
                 }).catch((errors) => {
