@@ -15,7 +15,7 @@ export default function CustomerHeader(){
                     <div id={'second-header'}>
                         <Link>Recommendation</Link>
                         <Link>Question & Answer</Link>
-                        <Link>Hi, <b>{user === null ? <></> : user.firstName}</b></Link>
+                        {user === null ? <></> : <Link><span>Hi, {user.firstName}</span></Link>}
                     </div>
                 </div>
                 <div id={'navbar'}>
