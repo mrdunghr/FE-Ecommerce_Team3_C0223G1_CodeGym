@@ -43,5 +43,12 @@
 
 .product-items{
     padding: 0;
-
+}
+#cart{
+    margin-right: 20px;
+    color: white;
+    font-size: 25px;
+}
+#cart:hover{
+    color: darkorange;
 }

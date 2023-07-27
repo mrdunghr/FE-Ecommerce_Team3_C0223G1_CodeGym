@@ -5,6 +5,9 @@ import axios from "axios";
 import {Field, Form, Formik} from "formik";
 import {Link, useNavigate} from "react-router-dom";
 import Swal from "sweetalert2";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import app from "../../../firebase";
+
 
 export const CreateProduct = () =>{
     const [shops, setShop] = useState([])
@@ -14,12 +17,19 @@ export const CreateProduct = () =>{
     const user = JSON.parse(sessionStorage.getItem('user'))
     const [brands, setBrand] = useState([])
     const [isUpdated, setIsUpdated] = useState(false)
+    const [selectedImage, setSelectedImage] = useState(null)
+    const [urlImage, setUrlImage ] = useState("")
+    console.log(urlImage)
     useEffect(() => {
         if(user === null){
             navigate('/login')
         }else{
         const tabs = document.querySelectorAll('.tab-btn');
         const all_content = document.querySelectorAll('.content');
+        const firstTab = tabs[0];
+        const firstContent = all_content[0];
+        firstTab.classList.add('active');
+        firstContent.classList.add('active');
         tabs.forEach((tab, index) => {
             tab.addEventListener('click', (e) => {
                 // console.log(e)
@@ -53,6 +63,33 @@ export const CreateProduct = () =>{
             setIsUpdated(true)
         }
     }
+    const handleImageChange = (event) => {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+
+        reader.onloadend = () => {
+            setSelectedImage(reader.result);
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+            uploadImageToFirebaseStorage(file).then(r => {
+                console.log(r)
+            }); // Thêm dòng này để tải hình ảnh lên Firebase Storage
+        }
+    };
+    const uploadImageToFirebaseStorage = async (file) => {
+        try {
+            const storage = getStorage(app);
+            const storageRef = ref(storage, "images/" + file.name);
+            await uploadBytes(storageRef, file);
+            const imageURL = await getDownloadURL(storageRef);
+            console.log(imageURL)
+            setUrlImage(imageURL);
+        } catch (error) {
+            console.error("Lỗi khi tải hình ảnh lên Firebase Storage:", error);
+        }
+    };
 
     return(
         <Formik
@@ -67,14 +104,15 @@ export const CreateProduct = () =>{
             shop : {
                 id : -1
             },
-            discount: 0,
+            discountPercent : 0,
             brand : {
                 id : -1,
 
             },
             category : {
                 id : -1
-            }
+            },
+                mainImage : urlImage
         }}
             enableReinitialize={true}
         onSubmit={(values) =>{
@@ -173,8 +211,8 @@ export const CreateProduct = () =>{
                             <div id={'add-product-image'}>
                                 <div className={'image-box-product'}>
                                     <p>Main image: </p>
-                                    <img src="/image/image-thumbnail.png" alt=""/><br/>
-                                    <input type="file"/>
+                                    {selectedImage ? <img src={selectedImage}></img> : <img src={'/image/image-thumbnail.png'}></img>}
+                                    <input type={'file'} onChange={handleImageChange}/>
                                 </div>
                             </div>
                         </div>

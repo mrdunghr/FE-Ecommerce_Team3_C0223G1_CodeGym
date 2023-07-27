@@ -10,6 +10,7 @@ import {Category} from "./pages/customer/category/category";
 import {CreateProduct} from "./pages/customer/product/create";
 import {DetailProduct} from "./pages/customer/product/DetailProduct";
 import {EditProduct} from "./pages/customer/product/edit";
+import {CustomerCart} from "./pages/customer/cart/cart";
 
 
 
@@ -30,6 +31,7 @@ export default function RouterHome(){
                 <Route path={'/product/:id'} element={<DetailProduct></DetailProduct>}></Route>
                 <Route path={'/product/edit/:id'} element={<EditProduct></EditProduct>}></Route>
                 <Route path={'/product/search/:name'}></Route>
+                <Route path={'/customer/cart'} element={<CustomerCart></CustomerCart>}></Route>
             </Routes>
         </>
     )

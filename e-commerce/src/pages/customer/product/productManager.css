@@ -90,3 +90,7 @@
 .key-icon{
     color: green;
 }
+#product-table img{
+    width: 120px;
+    height: 100px;
+}

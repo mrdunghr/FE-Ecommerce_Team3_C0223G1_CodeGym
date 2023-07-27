@@ -12,6 +12,7 @@ import KeyIcon from '@mui/icons-material/Key';
      const user = JSON.parse(sessionStorage.getItem('user'))
      const navigate = useNavigate()
      const [page, setPage] = useState(0)
+     const [update, setUpdate] = useState(false)
      useEffect(() => {
          if(user === null){
               navigate('/login')
@@ -21,7 +22,47 @@ import KeyIcon from '@mui/icons-material/Key';
              setShops(res.data.content)
 
          })}
-     }, [page])
+     }, [page, update])
+     const disableStatusShop = (id) => {
+        Swal.fire({
+            title : "Are you sure you want to disable this shop!",
+            showCancelButton : true
+        }).then(res => {
+           if(res.isConfirmed){
+               axios.put('http://localhost:8080/api/v1/shop/' + id +'/close').then((res) =>{
+                   if(update){
+                       setUpdate(false)
+                   }else{
+                       setUpdate(true)
+                   }
+                   Swal.fire("Disable success!")
+               }).catch(erros => {
+                   Swal.fire("Something went wrong!")
+               })
+           }else{
+
+           }
+        })
+     }
+     const enabledStatusShop = (id) =>{
+         Swal.fire({
+             title : "Active this shop !?",
+             showCancelButton : true
+         }).then(res => {
+             if(res.isConfirmed){
+                 axios.put('http://localhost:8080/api/v1/shop/' + id +'/open').then((res) =>{
+                     if(update){
+                         setUpdate(false)
+                     }else{
+                         setUpdate(true)
+                     }
+                     Swal.fire("Active success!")
+                 }).catch(erros => {
+                     Swal.fire("Something went wrong!")
+                 })
+             }
+         })
+     }
      const handlePrevPage = () => {
          if (page > 0) {
              setPage((prevPage) => prevPage - 1);
@@ -59,7 +100,7 @@ import KeyIcon from '@mui/icons-material/Key';
                                     <td>{shop.deliveryAddress}</td>
                                     <td>{shop.createdTime}</td>
                                     <td>{shop.enabled ? <p className={'active-shop'} style={{fontSize : "15px"}}>Active</p> : <p className={'inactive-shop'} style={{fontSize : "15px"}}>Inactive</p>}</td>
-                                    <td>{shop.enabled ? <BlockIcon className={'block-icon product-icon'}></BlockIcon> : <KeyIcon className={'key-icon product-icon'}></KeyIcon>} <EditIcon></EditIcon></td>
+                                    <td>{shop.enabled ? <BlockIcon className={'block-icon product-icon'} onClick={() => disableStatusShop(shop.id)}></BlockIcon> : <KeyIcon className={'key-icon product-icon'} onClick={() => enabledStatusShop(shop.id)}></KeyIcon>} <EditIcon></EditIcon></td>
                                 </tr>
                             )
                         })}
@@ -91,7 +132,7 @@ export const CreateShop = () =>{
                     Swal.fire("Create success!")
                 }).catch((errors) => {
                     console.log(errors)
-                    Swal.fire("Khong ok")
+                    Swal.fire("Something went wrong!")
                 })
             }}
         >

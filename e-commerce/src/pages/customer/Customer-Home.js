@@ -1,9 +1,10 @@
-import {Link, useLocation} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import {FaPhoneAlt, FaStar} from 'react-icons/fa';
 import "./customerHome.css"
 import {CustomerFooter} from "../../components/customer/footer";
 import {useEffect, useState} from "react";
 import axios from "axios";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 const StarIcon = () => <FaStar style={{ marginRight: '10px', color: 'yellow' }} />;
 
 export function CustomerHome() {
@@ -48,6 +49,7 @@ export function CustomerHome() {
                             </div>
                             <div className="form-inline my-2 my-lg-0">
                                 {user === null ? null : <>
+                                    <Link to={'/customer/cart'}><ShoppingCartIcon id={'cart'}/></Link>
                                     <img src="/image/avatar/avatar-s-2.png" alt="" style={{width : "35px", borderRadius : "50%", marginRight : "20px"}}/>
                                     <span style={{color : "white"}}>Hi, </span><h2 style={{color : "white", marginLeft : "10px", fontSize : "20px", textTransform : "capitalize"}}> {user.fullName}</h2>
                                 </>}

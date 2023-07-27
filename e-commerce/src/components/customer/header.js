@@ -1,6 +1,8 @@
 import {Link} from "react-router-dom";
 import "./header.css"
-import {useState} from "react";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import KeyIcon from '@mui/icons-material/Key';
+
 export default function CustomerHeader(){
     const user = JSON.parse(sessionStorage.getItem('user'))
     return(
@@ -16,6 +18,7 @@ export default function CustomerHeader(){
                         <Link>Recommendation</Link>
                         <Link>Question & Answer</Link>
                         {user === null ? <></> : <Link><span>Hi, {user.firstName}</span></Link>}
+                        {user === null ? <></> : <Link to={'/customer/cart'}><ShoppingCartIcon></ShoppingCartIcon></Link>}
                     </div>
                 </div>
                 <div id={'navbar'}>

@@ -100,7 +100,7 @@ export const ProductManager= () =>{
                                 {products.map(p => (
                                     <tr>
                                         <td>{p.id}</td>
-                                        <td><img src="/image/image-thumbnail.png" alt=""/></td>
+                                        <td>{p.mainImage === ".png" ? <img src={'/image/image-thumbnail.png'}></img> : <img src={p.mainImage}></img>}</td>
                                         <td>{p.name}</td>
                                         <td>{p.brand === null ? "None" : p.brand.logo}</td>
                                         <td>{p.category.name}</td>
