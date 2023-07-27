@@ -31,10 +31,10 @@ export const CreateProduct = () =>{
             })
         })
         axios.get('http://localhost:8080/api/v1/shop/' + user.id + "?list=true").then((res) => {
-            setShop(res.data)
+            setShop(res.data.filter(shop => shop.enabled))
         })
         axios.get('http://localhost:8080/api/v1/category/all').then((res) =>{
-            setCategory(res.data)
+            setCategory(res.data.filter(cate => cate.enabled === true))
         })
         }
         axios.get('http://localhost:8080/api/v1/brand/all?list=true').then((res) => {

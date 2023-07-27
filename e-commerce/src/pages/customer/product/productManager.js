@@ -106,7 +106,7 @@ export const ProductManager= () =>{
                                         <td>{p.category.name}</td>
                                         <td>{p.shop.name}</td>
                                         <td>{p.enabled ? <p className={'active-product'} style={{fontSize : "15px"}}>Active</p> : <p className={'inactive-product'} style={{fontSize : "15px"}}>Inactive</p>}</td>
-                                        <td>{p.enabled ? <BlockIcon onClick={() => inActiveProduct(p.id)} className={'block-icon product-icon'}/> : <KeyIcon className={'product-icon key-icon'} onClick={() => ActiveProduct(p.id)}></KeyIcon>} <EditIcon className={'product-icon'}/></td>
+                                        <td>{p.enabled ? <BlockIcon onClick={() => inActiveProduct(p.id)} className={'block-icon product-icon'}/> : <KeyIcon className={'product-icon key-icon'} onClick={() => ActiveProduct(p.id)}></KeyIcon>} <Link to={'/product/edit/'+p.id}><EditIcon className={'product-icon'}/></Link></td>
                                     </tr>
                                 ))}
                             </table>
