@@ -80,7 +80,7 @@ export const SearchProduct = () =>{
                         <input type="number" placeholder={'Discount'} onChange={(e) => setDiscount(+e.target.value)}/>
                         <hr/>
                         <div id={'category-main-product'}>
-                            {products === null ? <h2>This category doesn't have any products yet!</h2> : products.filter(prod => {
+                            {products === null ? <h2>Sorry, we can't found any products!</h2> : products.filter(prod => {
                                 if(name && !prod.name.toLowerCase().includes(name.toLowerCase())){
                                     return false
                                 }
@@ -97,7 +97,7 @@ export const SearchProduct = () =>{
                                         {prod.discountPercent}%
                                     </div>
                                     <div className={'product-image'}>
-                                        <img src="/image/modern-teaching-concept-P7BTJU7.jpg" alt=""/>
+                                        {prod.mainImage === ".png" ? <img src={'/image/modern-teaching-concept-P7BTJU7.jpg'}></img> : <img src={prod.mainImage}></img>}
                                     </div>
                                     <div className={'product-name'}>
                                         <span>{prod.name}</span>

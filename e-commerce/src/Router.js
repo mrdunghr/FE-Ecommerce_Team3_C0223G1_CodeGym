@@ -31,8 +31,6 @@ export default function RouterHome(){
                 <Route path={'/category/:id'} element={<Category></Category>}></Route>
                 <Route path={'/product/:id'} element={<DetailProduct></DetailProduct>}></Route>
                 <Route path={'/product/edit/:id'} element={<EditProduct></EditProduct>}></Route>
-
-                <Route path={'/product/search/:name'}></Route>
                 <Route path={'/customer/cart'} element={<CustomerCart></CustomerCart>}></Route>
                 <Route path={'/product/search/:search'} element={<SearchProduct></SearchProduct>}></Route>
             </Routes>

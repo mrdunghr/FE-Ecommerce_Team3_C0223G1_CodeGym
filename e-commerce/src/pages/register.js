@@ -61,35 +61,54 @@ export const CustomerRegister = () =>{
             >
                 <Form id={'form-register'}>
                     <h2>SIGN UP HERE</h2>
-                    <label htmlFor="">Enter your first name: </label>
-                    <Field name={'firstName'}></Field>
-                    <ErrorMessage name={'firstName'}></ErrorMessage><br/>
-                    <label htmlFor="">Enter your last name: </label>
-                    <Field name={'lastName'}></Field>
-                    <ErrorMessage name={'lastName'}></ErrorMessage><br/>
-                    <label htmlFor="">Enter your state: </label>
-                    <Field name={'state'}></Field>
-                    <ErrorMessage name={'state'}></ErrorMessage><br/>
-                    <label htmlFor="">Choose your country: </label>
-                    <Field name={'country.id'} component={'select'}>
-                        {country.map(country => {
-                            return (
-                                <>
-                                    <option value={country.id} >{country.code}</option>
-                                </>
-                            )
-                        })}
-                    </Field><br/>
-                    <label htmlFor="{'phoneNumber'}">Enter your phone number: </label>
-                    <Field name={'phoneNumber'}></Field>
-                    <ErrorMessage name={'phoneNumber'}></ErrorMessage><br/>
-                    <label htmlFor="{'email'}">Enter your username: </label>
-                    <Field name={'email'}></Field>
-                    <ErrorMessage name={'email'}></ErrorMessage><br/>
-                    <label htmlFor="{'password'}">Enter your password: </label>
-                    <Field name={'password'}></Field>
-                    <ErrorMessage name={'password'}></ErrorMessage><br/>
-                    <button type={'submit'} id={'submit'}>Submit</button>
+                   <table>
+                       <tr>
+                           <td>Enter your first name: </td>
+                           <td><Field name={'firstName'}></Field><ErrorMessage name={'firstName'} className={'err-msg'}></ErrorMessage></td>
+                       </tr>
+                       <tr>
+                           <td>Enter your last name: </td>
+                           <td><Field name={'lastName'}></Field> <ErrorMessage name={'lastName'} className={'err-msg'}></ErrorMessage></td>
+                       </tr>
+                       <tr>
+                           <td>Choose your country: </td>
+                           <td><Field name={'country.id'} component={'select'}>
+                               {country.map(country => {
+                                   return (
+                                       <>
+                                           <option value={country.id} >{country.code}</option>
+                                       </>
+                                   )
+                               })}
+                           </Field>
+                           </td>
+                       </tr>
+                       <tr>
+                           <td>Enter your state:</td>
+                           <td><Field name={'state'}></Field>
+                               <ErrorMessage name={'state'} className={'err-msg'}></ErrorMessage>
+                           </td>
+                       </tr>
+                       <tr>
+                           <td>Enter your phone number: </td>
+                           <td><Field name={'phoneNumber'}></Field>
+                               <ErrorMessage name={'phoneNumber'} className={'err-msg'}></ErrorMessage>
+                           </td>
+                       </tr>
+                       <tr>
+                           <td>Enter your email: </td>
+                           <td><Field name={'email'}></Field>
+                               <ErrorMessage name={'email'} className="err-msg"></ErrorMessage></td>
+                       </tr>
+                       <tr>
+                           <td>Enter your password: </td>
+                           <td><Field name={'password'}></Field>
+                               <ErrorMessage name={'password'} className={'err-msg'}></ErrorMessage></td>
+                       </tr>
+                       <tr>
+                           <td colSpan={2}><button id={'submit'}>Submit</button></td>
+                       </tr>
+                   </table>
                 </Form>
             </Formik>
         </div>

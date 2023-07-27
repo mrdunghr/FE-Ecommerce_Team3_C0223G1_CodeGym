@@ -13,8 +13,6 @@
     border-radius: 5px;
     background: #ececec;
     font-weight: bold;
-    padding-left: 30px;
-    padding-right: 30px;
     flex-direction: column;
 }
 #form-register h2{
@@ -24,7 +22,7 @@
 }
 #form-register input{
     height: 30px;
-    width: 360px;
+    width: 260px;
     border-radius: 5px;
     border: none;
     margin-left: 20px;
@@ -62,4 +60,11 @@ label {
     color: darkorange;
     border: 1px solid #888888;
     cursor: pointer;
+}
+#form-register table td ,th{
+    text-align: left;
+}
+.err-msg{
+    margin-left: 5px;
+    color: red;
 }
