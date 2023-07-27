@@ -115,7 +115,7 @@ export const ProductManager= () =>{
                     </div>
 
                 </div>
-                <div id={'customer-footer'}>
+                <div id={'footer-product-manager'}>
                     <CustomerFooter></CustomerFooter>
                 </div>
             </div>

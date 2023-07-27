@@ -25,9 +25,10 @@ export default function RouterHome(){
                 <Route path={'/product/add'} element={<CreateProduct></CreateProduct>}></Route>
                 <Route path={'/product-manager'} element={<ProductManager></ProductManager>}></Route>
                 <Route path={'/category'} element={<Category></Category>}></Route>
-                <Route path={'/product/:id'} element={<DetailProduct/>}></Route>
+                <Route path={'/category/:id'} element={<Category></Category>}></Route>
                 <Route path={'/product/:id'} element={<DetailProduct></DetailProduct>}></Route>
                 <Route path={'/product/edit/:id'} element={<EditProduct></EditProduct>}></Route>
+                <Route path={'/product/search/:name'}></Route>
             </Routes>
         </>
     )
