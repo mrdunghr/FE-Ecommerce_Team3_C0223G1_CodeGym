@@ -22,6 +22,7 @@ import Menu from "./pages/Menu";
 import AddUser from "./pages/user/AddUser";
 import EditUser from "./pages/user/EditUser";
 import AddCategory from "./pages/category/AddCategory";
+import EditCategory from "./pages/category/EditCategory";
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -63,6 +64,7 @@ function App() {
 
                             <Route path={"/categories"} element={<Categories/>}></Route>
                             <Route path={"/category/add-category"} element={<AddCategory/>}></Route>
+                            <Route path={"/category/edit-category/:categoryId"} element={<EditCategory/>}></Route>
 
                             <Route path={"/brands"} element={<Brands/>}></Route>
                             <Route path={"/contacts"} element={<Contact />}></Route>

@@ -38,6 +38,19 @@ export default function Categories() {
             });
     };
 
+    const handleDeleteCategory = (categoryId) => {
+        axios
+            .delete(`http://localhost:8080/api/v1/category/${categoryId}`)
+            .then((response) => {
+                console.log("Xóa category thành công:", response.data);
+                // Sau khi xóa thành công, cập nhật danh sách category bằng cách gọi fetchListS
+                fetchListS();
+            })
+            .catch((error) => {
+                console.error("Lỗi khi xóa category:", error);
+            });
+    };
+
     return (
         <>
             <div className="main-content container-fluid">
@@ -113,7 +126,11 @@ export default function Categories() {
                                                     style={{ color: category.enabled ? "green" : "red" }}
                                                 ></a>
                                             </td>
-                                            <td>action</td>
+                                            <td>
+                                                <Link to={`/category/edit-category/${category.id}`} className="fas fa-edit icon-green" title="Chỉnh sửa category"></Link>
+                                                &nbsp;&nbsp;
+                                                <button className="fas fa-trash icon-red link-delete" onClick={() => handleDeleteCategory(category.id)} title="Delete this category"></button>
+                                            </td>
                                         </tr>
                                     ))}
                                 </tbody>
