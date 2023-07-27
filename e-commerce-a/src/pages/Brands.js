@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 export default function Brands(){
     const [listBrands, setListBrands] = useState([]);
@@ -50,7 +51,7 @@ export default function Brands(){
                     <div className="card">
                         <div className="card-header">
                             <h3>Manage Brands </h3> <br/>
-                            <a href="/Admin/brands/new">Add New Brand</a>
+                            <Link to="/brands/add-brands">Add New Brand</Link>
                         </div>
                         <div className="card-body">
                             <div>
@@ -98,9 +99,7 @@ export default function Brands(){
                                         <td>{brand.name}</td>
                                         <td>
                                             {brand.categories.map((category) => (
-                                                <span key={category.id} className="badge bg-warning text-dark mr-1">
-                                    {category.name}
-                                </span>
+                                                <span key={category.id} className="badge bg-warning text-dark mr-1">{category.name}</span>
                                             ))}
                                         </td>
                                         <td>action</td>

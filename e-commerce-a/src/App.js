@@ -24,6 +24,7 @@ import EditUser from "./pages/user/EditUser";
 import AddCategory from "./pages/category/AddCategory";
 import EditCategory from "./pages/category/EditCategory";
 import NotFound from "./components/NotFound";
+import AddBrand from "./pages/brands/AddBrands";
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -68,6 +69,8 @@ function App() {
                             <Route path={"/category/edit-category/:categoryId"} element={<EditCategory/>}></Route>
 
                             <Route path={"/brands"} element={<Brands/>}></Route>
+                            <Route path={"/brands/add-brands"} element={<AddBrand/>}></Route>
+
                             <Route path={"/contacts"} element={<Contact />}></Route>
                             <Route path={"/products"} element={<ManageProducts/>}></Route>
                             <Route path={"/reviews"} element={<Reviews/>}></Route>
