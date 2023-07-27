@@ -97,15 +97,13 @@ export const Category = () =>{
                                         {prod.discountPercent}%
                                     </div>
                                     <div className={'product-image'}>
-                                        <img src="/image/modern-teaching-concept-P7BTJU7.jpg" alt=""/>
+                                        {prod.mainImage === ".png" ? <img src={'/image/modern-teaching-concept-P7BTJU7.jpg'}></img> : <img src={prod.mainImage}></img>}
                                     </div>
                                     <div className={'product-name'}>
-                                        <p>{prod.name}</p>
-                                        {prod.discountPercent === 0 ? <span className={'new-price'}>${prod.price}</span> :
-                                        <>
-                                            <span className={'old-price'}>${prod.price}</span>
-                                            <span className={'new-price'}>${prod.price - (prod.price * prod.discountPercent/100)}</span>
-                                        </>}
+                                        <span>{prod.name}</span>
+                                        <span className={'alias'}>( {prod.alias} )</span>
+                                        <span className={'old-price'}>${prod.price}</span>
+                                        <span className={'new-price'}>${prod.price - (prod.price * prod.discountPercent/100)}</span>
                                     </div>
                                 </div>
                             ))}
