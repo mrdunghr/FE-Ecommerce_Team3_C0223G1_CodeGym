@@ -21,6 +21,23 @@ export default function Categories() {
             });
     }; // hàm hiển thị danh sách
 
+    const handleToggleCategoryStatus = (categoryId, currentStatus) => {
+        // Tính toán trạng thái mới (nghịch đảo của trạng thái hiện tại)
+        const newStatus = !currentStatus;
+        console.log(newStatus)
+
+        axios
+            .put(`http://localhost:8080/api/v1/category/${categoryId}/enabled/${newStatus}`)
+            .then((response) => {
+                console.log("Thay đổi trạng thái category thành công:", response.data);
+                // Sau khi thay đổi thành công, cập nhật danh sách category bằng cách gọi fetchListS
+                fetchListS();
+            })
+            .catch((error) => {
+                console.error("Lỗi khi thay đổi trạng thái category:", error);
+            });
+    };
+
     return (
         <>
             <div className="main-content container-fluid">
@@ -88,7 +105,14 @@ export default function Categories() {
                                             </td>
                                             <td className="hideable-column">{category.name}</td>
                                             <td className="hideable-column">{category.alias}</td>
-                                            <td>status</td>
+                                            <td>
+                                                <a
+                                                    className={`fas ${category.enabled ? "fa-check-circle icon-green" : "fa-times-circle icon-red"}`}
+                                                    title={category.enabled ? "Disable this Category" : "Enable this Category"}
+                                                    onClick={() => handleToggleCategoryStatus(category.id, category.enabled)}
+                                                    style={{ color: category.enabled ? "green" : "red" }}
+                                                ></a>
+                                            </td>
                                             <td>action</td>
                                         </tr>
                                     ))}
