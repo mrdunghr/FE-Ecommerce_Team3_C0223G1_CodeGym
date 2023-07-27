@@ -10,6 +10,9 @@ export const Category = () =>{
     console.log(id)
     const user = JSON.parse(sessionStorage.getItem('user'))
     const [products, setProducts] = useState([])
+    const [name, setName] = useState()
+    const [price, setPrice] = useState()
+    const [discount, setDiscount] = useState()
     useEffect(() =>{
         axios.get(`http://localhost:8080/api/v1/products/show-by-category/${id}?list=true`).then((res) => {
             console.log(res)
@@ -18,7 +21,8 @@ export const Category = () =>{
             console.log(errors)
             setProducts(null)
         })
-    }, [])
+    }, [name, price, discount])
+
     return(
         <>
             <div id={'display'}>
@@ -71,16 +75,29 @@ export const Category = () =>{
                         </div>
                     </div>
                     <div id={'category-main'}>
-                        <b>Shop Grid</b>
+                        <input type="text" placeholder={'Enter name'} onChange={(e) => setName(e.target.value)}/>
+                        <input type="number" placeholder={'Enter price'} onChange={(e) => setPrice(+e.target.value)}/>
+                        <input type="number" placeholder={'Discount'} onChange={(e) => setDiscount(+e.target.value)}/>
                         <hr/>
                         <div id={'category-main-product'}>
-                            {products === null ? <h2>This category doesn't have any products yet!</h2> : products.map(prod => (
+                            {products === null ? <h2>This category doesn't have any products yet!</h2> : products.filter(prod => {
+                                if(name && !prod.name.toLowerCase().includes(name.toLowerCase())){
+                                    return false
+                                }
+                                if(price && prod.price- (prod.price * prod.discountPercent/100) > price){
+                                    return false
+                                }
+                                if(discount && prod.discountPercent < discount){
+                                    return false
+                                }
+                                return true
+                            }).map(prod => (
                                 <div className={'product'}>
                                     <div className={'product-cost'}>
                                         {prod.discountPercent}%
                                     </div>
                                     <div className={'product-image'}>
-                                        <img src="/image/image-thumbnail.png" alt=""/>
+                                        <img src="/image/modern-teaching-concept-P7BTJU7.jpg" alt=""/>
                                     </div>
                                     <div className={'product-name'}>
                                         <p>{prod.name}</p>

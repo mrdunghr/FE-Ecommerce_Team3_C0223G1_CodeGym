@@ -24,7 +24,7 @@ export default function CustomerHeader(){
                     </div>
                     <div id={'main-navbar'}>
                         <Link to={'/'}>HOME</Link>
-                        <Link>CUSTOMER SERVICE</Link>
+                        {user === null ?  <></> : <Link>CUSTOMER SERVICE</Link>}
                         <Link>REGISTRY & GIFTING</Link>
                         <Link>GIFT CARDS</Link>
                         <Link>SELL PRODUCT ONLINE</Link>
