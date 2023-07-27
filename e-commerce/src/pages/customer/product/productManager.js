@@ -15,7 +15,7 @@ export const ProductManager= () =>{
         if(user === null){
             navigate('/login')
         }else{
-        axios.get('http://localhost:8888/api/v1/products/customer-list/' + user.id +"?page="+ page).then((res) =>{
+        axios.get('http://localhost:8080/api/v1/products/customer-list/' + user.id +"?page="+ page).then((res) =>{
             console.log(res)
             setProducts(res.data.content)
         })}

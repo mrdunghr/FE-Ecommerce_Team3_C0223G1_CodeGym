@@ -34,7 +34,7 @@ export const CustomerRegister = () =>{
         name : "",
         code : ""}])
    useEffect(() => {
-       axios.get("http://localhost:8888/api/v1/customers/list-country").then(res => {
+       axios.get("http://localhost:8080/api/v1/customers/list-country").then(res => {
            console.log(res.data)
            setCountry(res.data)
        }).catch(err => {
@@ -42,57 +42,84 @@ export const CustomerRegister = () =>{
        })
    }, [])
     return(
-        <><div id={'container'}>
-            <Formik
-                initialValues={{
-                    email : "",
-                    password : ""
-                }}
-                enableReinitialize={true}
-                onSubmit={(values) => {
-                    console.log(values)
-                    axios.post("http://localhost:8888/api/v1/customers/register", values).then(() =>{
-                        navigate('/')
-                    }).catch(err => {
-                        console.log(err)
-                    })
-                }}
-                validationSchema={validationSchema}
-            >
-                <Form id={'form-register'}>
-                    <h2>SIGN UP HERE</h2>
-                    <label htmlFor="">Enter your first name: </label>
-                    <Field name={'firstName'}></Field>
-                    <ErrorMessage name={'firstName'}></ErrorMessage><br/>
-                    <label htmlFor="">Enter your last name: </label>
-                    <Field name={'lastName'}></Field>
-                    <ErrorMessage name={'lastName'}></ErrorMessage><br/>
-                    <label htmlFor="">Enter your state: </label>
-                    <Field name={'state'}></Field>
-                    <ErrorMessage name={'state'}></ErrorMessage><br/>
-                    <label htmlFor="">Choose your country: </label>
-                    <Field name={'country.id'} component={'select'}>
-                        {country.map(country => {
-                            return (
-                                <>
-                                    <option value={country.id} >{country.code}</option>
-                                </>
-                            )
-                        })}
-                    </Field><br/>
-                    <label htmlFor="{'phoneNumber'}">Enter your phone number: </label>
-                    <Field name={'phoneNumber'}></Field>
-                    <ErrorMessage name={'phoneNumber'}></ErrorMessage><br/>
-                    <label htmlFor="{'email'}">Enter your username: </label>
-                    <Field name={'email'}></Field>
-                    <ErrorMessage name={'email'}></ErrorMessage><br/>
-                    <label htmlFor="{'password'}">Enter your password: </label>
-                    <Field name={'password'}></Field>
-                    <ErrorMessage name={'password'}></ErrorMessage><br/>
-                    <button type={'submit'} id={'submit'}>Submit</button>
-                </Form>
-            </Formik>
-         </div>
+        <>
+            <div id={'container'}>
+                <Formik
+                    initialValues={{
+                        email: "",
+                        password: "",
+                        firstName: "",
+                        lastName: "",
+                        state: "",
+                        country: {id: ""},
+                        phoneNumber: ""
+                    }}
+                    enableReinitialize={true}
+                    onSubmit={(values) => {
+                        console.log(values)
+                        axios.post("http://localhost:8080/api/v1/customers/register", values)
+                            .then(() => {
+                                navigate('/')
+                            })
+                            .catch(err => {
+                                console.log(err)
+                            })
+                    }}
+                    validationSchema={validationSchema}
+                >
+                    <Form id={'form-register'}>
+                        <div className="form-column">
+                            <h2>Register Form</h2><hr/>
+                            <div style={{paddingBottom: '10px'}}>
+                                <label htmlFor=""style={{paddingRight: '32px'}}>Enter your first name: </label>
+                                <Field name={'firstName'}></Field>
+                                <ErrorMessage name={'firstName'}></ErrorMessage><br/>
+                            </div>
+                            <div style={{paddingBottom: '10px'}}>
+                                <label htmlFor=""style={{paddingRight: '36px'}}>Enter your last name: </label>
+                                <Field name={'lastName'}></Field>
+                                <ErrorMessage name={'lastName'}></ErrorMessage><br/>
+                            </div>
+                            <div>
+                                <label htmlFor=""style={{paddingRight: '69px'}}>Enter your state: </label>
+                                <Field name={'state'}></Field>
+                                <ErrorMessage name={'state'}></ErrorMessage><br/>
+                            </div>
+                        </div>
+                        <div className="form-column">
+                            <div style={{paddingBottom: '10px'}}>
+                                <label htmlFor=""style={{paddingRight: '33px'}}>Choose your country: </label>
+                                <Field name={'country.id'} component={'select'}>
+                                    {country.map(country => {
+                                        return (
+                                            <>
+                                                <option value={country.id}>{country.code}</option>
+                                            </>
+                                        )
+                                    })}
+                                </Field><br/>
+                            </div>
+                            <div style={{paddingBottom: '10px'}}>
+                                <label htmlFor="{'phoneNumber'}">Enter your phone number: </label>
+                                <Field name={'phoneNumber'}></Field>
+                                <ErrorMessage name={'phoneNumber'}></ErrorMessage><br/>
+                            </div>
+                            <div style={{paddingBottom: '10px'}}>
+                                <label htmlFor="{'email'}"style={{paddingRight: '35px'}}>Enter your username: </label>
+                                <Field name={'email'}></Field>
+                                <ErrorMessage name={'email'}></ErrorMessage><br/>
+                            </div>
+                            <div>
+                                <label htmlFor="{'password'}"style={{paddingRight: '37px'}}>Enter your password: </label>
+                                <Field name={'password'}></Field>
+                                <ErrorMessage name={'password'}></ErrorMessage><br/>
+                            </div>
+                            <button type={'submit'} id={'register'}>Register</button>
+                        </div>
+                    </Form>
+                </Formik>
+            </div>
+
         </>
     )
 }
