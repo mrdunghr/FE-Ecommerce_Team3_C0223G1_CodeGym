@@ -42,6 +42,7 @@ export const CustomerRegister = () =>{
        })
    }, [])
     return(
+<<<<<<< HEAD
         <>
             <div id={'container'}>
                 <Formik
@@ -120,6 +121,59 @@ export const CustomerRegister = () =>{
                 </Formik>
             </div>
 
+=======
+        <><div id={'container'}>
+            <Formik
+                initialValues={{
+                    email : "",
+                    password : ""
+                }}
+                enableReinitialize={true}
+                onSubmit={(values) => {
+                    console.log(values)
+                    axios.post("http://localhost:8080/api/v1/customers/register", values).then(() =>{
+                        navigate('/')
+                    }).catch(err => {
+                        console.log(err)
+                    })
+                }}
+                validationSchema={validationSchema}
+            >
+                <Form id={'form-register'}>
+                    <h2>SIGN UP HERE</h2>
+                    <label htmlFor="">Enter your first name: </label>
+                    <Field name={'firstName'}></Field>
+                    <ErrorMessage name={'firstName'}></ErrorMessage><br/>
+                    <label htmlFor="">Enter your last name: </label>
+                    <Field name={'lastName'}></Field>
+                    <ErrorMessage name={'lastName'}></ErrorMessage><br/>
+                    <label htmlFor="">Enter your state: </label>
+                    <Field name={'state'}></Field>
+                    <ErrorMessage name={'state'}></ErrorMessage><br/>
+                    <label htmlFor="">Choose your country: </label>
+                    <Field name={'country.id'} component={'select'}>
+                        {country.map(country => {
+                            return (
+                                <>
+                                    <option value={country.id} >{country.code}</option>
+                                </>
+                            )
+                        })}
+                    </Field><br/>
+                    <label htmlFor="{'phoneNumber'}">Enter your phone number: </label>
+                    <Field name={'phoneNumber'}></Field>
+                    <ErrorMessage name={'phoneNumber'}></ErrorMessage><br/>
+                    <label htmlFor="{'email'}">Enter your username: </label>
+                    <Field name={'email'}></Field>
+                    <ErrorMessage name={'email'}></ErrorMessage><br/>
+                    <label htmlFor="{'password'}">Enter your password: </label>
+                    <Field name={'password'}></Field>
+                    <ErrorMessage name={'password'}></ErrorMessage><br/>
+                    <button type={'submit'} id={'submit'}>Submit</button>
+                </Form>
+            </Formik>
+         </div>
+>>>>>>> dev
         </>
     )
 }

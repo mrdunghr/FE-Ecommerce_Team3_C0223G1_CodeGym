@@ -7,9 +7,11 @@ import CustomerProfile from "./pages/customer/customerProfile";
 import {ProductManager} from "./pages/customer/product/productManager";
 import {CustomerHome} from "./pages/customer/Customer-Home";
 import {Category} from "./pages/customer/category/category";
+import {CreateProduct} from "./pages/customer/product/create";
 
 import {CreateProduct} from "./pages/customer/product/create";
 import {DetailProduct} from "./pages/customer/product/DetailProduct";
+import {EditProduct} from "./pages/customer/product/edit";
 
 export default function RouterHome(){
     return(
@@ -25,7 +27,12 @@ export default function RouterHome(){
                 <Route path={'/product/add'} element={<CreateProduct></CreateProduct>}></Route>
                 <Route path={'/product-manager'} element={<ProductManager></ProductManager>}></Route>
                 <Route path={'/category'} element={<Category></Category>}></Route>
+<<<<<<< HEAD
                 <Route path={'/product/:id'} element={<DetailProduct/>}></Route>
+=======
+                <Route path={'/product/:id'} element={<DetailProduct></DetailProduct>}></Route>
+                <Route path={'/product/edit/:id'} element={<EditProduct></EditProduct>}></Route>
+>>>>>>> dev
             </Routes>
         </>
     )

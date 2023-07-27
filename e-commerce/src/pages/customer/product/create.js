@@ -1,18 +1,25 @@
 import CustomerHeader from "../../../components/customer/header";
 import "./create.css"
-import {CustomerFooter} from "../../../components/customer/footer";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import {Form, Formik} from "formik";
-import {useNavigate} from "react-router-dom";
+import {Field, Form, Formik} from "formik";
+import {Link, useNavigate} from "react-router-dom";
+import Swal from "sweetalert2";
 
 export const CreateProduct = () =>{
     const [shops, setShop] = useState([])
+    const [categories, setCategory] = useState([])
+    const navigate = useNavigate()
+    const [categoryVal, setCategoryVal] = useState(-1)
     const user = JSON.parse(sessionStorage.getItem('user'))
+    const [brands, setBrand] = useState([])
+    const [isUpdated, setIsUpdated] = useState(false)
     useEffect(() => {
+        if(user === null){
+            navigate('/login')
+        }else{
         const tabs = document.querySelectorAll('.tab-btn');
         const all_content = document.querySelectorAll('.content');
-
         tabs.forEach((tab, index) => {
             tab.addEventListener('click', (e) => {
                 // console.log(e)
@@ -23,21 +30,63 @@ export const CreateProduct = () =>{
                 all_content[index].classList.add('active');
             })
         })
-    }, [])
+        axios.get('http://localhost:8080/api/v1/shop/' + user.id + "?list=true").then((res) => {
+            setShop(res.data.filter(shop => shop.enabled))
+        })
+        axios.get('http://localhost:8080/api/v1/category/all').then((res) =>{
+            setCategory(res.data.filter(cate => cate.enabled === true))
+        })
+        }
+        axios.get('http://localhost:8080/api/v1/brand/all?list=true').then((res) => {
+            setBrand(res.data)
+        })
+    }, [isUpdated])
+    const handleChangeSelect = (e) =>{
+        console.log(e.target.value)
+        setCategoryVal(e.target.value)
+        console.log(brands)
+        setBrand(brands.filter(brand => brand.categories.map(cate => cate.id === categoryVal)))
+        console.log(brands)
+        if(isUpdated){
+            setIsUpdated(false)
+        }else{
+            setIsUpdated(true)
+        }
+    }
 
-    useEffect(() => {
-        axios.get('http://localhost:8080/api/v1/shop/' + user.id)
-    })
     return(
-        <Formik initialValues={{
+        <Formik
+            initialValues={{
             name : "",
             alias : "",
             shortDescription : "",
             fullDescription : "",
-            customer : {
+            customer : user,
+            cost : 0,
+            price : 0,
+            shop : {
+                id : -1
+            },
+            discount: 0,
+            brand : {
+                id : -1,
 
+            },
+            category : {
+                id : -1
             }
-        }}>
+        }}
+            enableReinitialize={true}
+        onSubmit={(values) =>{
+            console.log(values)
+            axios.post('http://localhost:8080/api/v1/products/add', values).then(res =>
+                {
+                    console.log(res)
+                    Swal.fire("Create success!")
+                }
+            )
+        }}
+        >
             <Form>
             <div id={'display'}>
                 <div id={'customer-header'}>
@@ -47,9 +96,9 @@ export const CreateProduct = () =>{
                     <h2>Manage Product | Create New Product</h2>
                     <div id={'container-create'}>
                     <div id={'tab-box'}>
-                        <button className={'tab-btn'}>Overview</button>
-                        <button className={'tab-btn'}>Description</button>
-                        <button className={'tab-btn'}>Images</button>
+                        <button className={'tab-btn'} type={'button'}>Overview</button>
+                        <button className={'tab-btn'} type={'button'}>Description</button>
+                        <button className={'tab-btn'} type={'button'}>Images</button>
                     </div>
                     <div id={'content-box'}>
                         <div className={'content'}>
@@ -57,43 +106,57 @@ export const CreateProduct = () =>{
                             <table>
                                 <tr>
                                     <td>Product Name:</td>
-                                    <td><input type="text"/></td>
+                                    <td><Field name={'name'}/></td>
                                 </tr>
                                 <tr>
                                     <td>Alias:</td>
-                                    <td><input type="text"/></td>
+                                    <td><Field name={'alias'}/></td>
                                 </tr>
                                 <tr>
                                     <td>Shop:</td>
-                                    <td><input type="text"/></td>
-                                </tr>
-                                <tr>
-                                    <td>Brand:</td>
-                                    <td><input type="text"/></td>
+                                    <td><Field component={'select'} name={'shop.id'} >
+                                        <option value=""></option>
+                                        {shops.map((item) => {
+                                           return(
+                                               <option value={item.id}>{item.name}</option>
+                                           ) 
+                                        })}
+                                    </Field></td>
                                 </tr>
                                 <tr>
                                     <td>Category:</td>
-                                    <td><input type="text"/></td>
+                                    <td><Field component={'select'} name={'category.id'} onClick={e => handleChangeSelect(e)}>
+                                        <option value=""></option>
+                                        {categories.map((item) => {
+                                        return(
+                                            <option value={item.id}>{item.name}</option>
+                                        )
+                                    })}
+                                    </Field></td>
                                 </tr>
                                 <tr>
-                                    <td>Status:</td>
-                                    <td><input type="checkbox"/></td>
-                                </tr>
-                                <tr>
-                                    <td>In-stock:</td>
-                                    <td><input type="checkbox"/></td>
+                                    <td>Brand:</td>
+                                    <td><Field name={'brand.id'} component={'select'}>
+                                        <option value=""></option>
+                                        {brands.map((item) => {
+                                            return(
+                                                <option value={item.id}>{item.logo === null ? "None" : item.logo}</option>
+                                            )
+                                        })}
+                                    </Field>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Cost:</td>
-                                    <td><input type="text"/></td>
+                                    <td><Field name={'cost'}/></td>
                                 </tr>
                                 <tr>
                                     <td>Price:</td>
-                                    <td><input type="text"/></td>
+                                    <td><Field name={'price'}/></td>
                                 </tr>
                                 <tr>
                                     <td>Discount:</td>
-                                    <td><input type="text"/></td>
+                                    <td><Field name={'discount'}/></td>
                                 </tr>
                             </table>
                         </div>
@@ -101,9 +164,9 @@ export const CreateProduct = () =>{
                         <div className={'content'}>
                             <div id={'add-description-product'}>
                                 <p>Short Description: </p>
-                                <textarea name="" id="" cols="30" rows="10"></textarea>
+                                <Field name={'shortDescription'} component={'textarea'}></Field>
                                 <p>Full Description:</p>
-                                <textarea name="" id="" cols="30" rows="10"></textarea>
+                                <Field name={'fullDescription'} component={'textarea'}></Field>
                             </div>
                         </div>
                         <div className={'content'}>
@@ -118,7 +181,7 @@ export const CreateProduct = () =>{
                     </div>
                 </div>
                     <div id={'btn-submit'}>
-                        <span><button id={'create-product'}>Create</button> <button id={'cancel-product'}>Cancel</button></span>
+                        <span><button id={'create-product'} type={'submit'}>Create</button> <Link to={'/product-manager'}><button id={'cancel-product'} type={'button'}>Cancel</button></Link></span>
                     </div>
             </div>
 

@@ -4,21 +4,36 @@ import axios from "axios";
 import {Field, Form, Formik} from "formik";
 import Swal from "sweetalert2";
 import {useNavigate} from "react-router-dom";
-
+import BlockIcon from '@mui/icons-material/Block';
+import EditIcon from '@mui/icons-material/Edit';
+import KeyIcon from '@mui/icons-material/Key';
  export const Shop = () =>{
     const [shops, setShops] = useState([])
      const user = JSON.parse(sessionStorage.getItem('user'))
      const navigate = useNavigate()
+     const [page, setPage] = useState(0)
      useEffect(() => {
          if(user === null){
               navigate('/login')
          }else{
-         axios.get("http://localhost:8080/api/v1/shop/" + user.id).then((res) => {
+         axios.get("http://localhost:8080/api/v1/shop/" + user.id + "?page=" +page).then((res) => {
              console.log(res.data.content)
              setShops(res.data.content)
 
          })}
-     }, [])
+     }, [page])
+     const handlePrevPage = () => {
+         if (page > 0) {
+             setPage((prevPage) => prevPage - 1);
+         }
+         console.log(page)
+     };
+
+     const handleNextPage = () => {
+         if (shops.length > 1) { // điều kiện list có length > 1 thì không được next nữa, nhỏ hơn mới được tăng giá trị page
+             setPage((prevPage) => prevPage + 1);
+         }
+     };
     return(
         <>
             <div id={'shop-container'}>
@@ -43,12 +58,16 @@ import {useNavigate} from "react-router-dom";
                                     <td><img src="/image/image-thumbnail.png" alt=""/></td>
                                     <td>{shop.deliveryAddress}</td>
                                     <td>{shop.createdTime}</td>
-                                    <td>{shop.enabled ? "Active" : "Inactive"}</td>
-                                    <td>OK</td>
+                                    <td>{shop.enabled ? <p className={'active-shop'} style={{fontSize : "15px"}}>Active</p> : <p className={'inactive-shop'} style={{fontSize : "15px"}}>Inactive</p>}</td>
+                                    <td>{shop.enabled ? <BlockIcon className={'block-icon product-icon'}></BlockIcon> : <KeyIcon className={'key-icon product-icon'}></KeyIcon>} <EditIcon></EditIcon></td>
                                 </tr>
                             )
                         })}
                     </table>
+                </div>
+                <div>
+                    <button onClick={handlePrevPage}>Previous</button>
+                    <button onClick={handleNextPage}>Next</button>
                 </div>
             </div>
         </>
