@@ -124,7 +124,7 @@ export function CustomerHome() {
                             return (
                                 <div style={{marginBottom: '10px'}}>
                                     {cate.enabled ? (<>
-                                        <StarIcon></StarIcon><Link to={{pathname: "/category", state : {id : cate.id}}}>{cate.name}</Link>
+                                        <StarIcon></StarIcon><Link to={"/category/" + cate.id}>{cate.name}</Link>
                                     </>) : null}
                                 </div>
                             )
