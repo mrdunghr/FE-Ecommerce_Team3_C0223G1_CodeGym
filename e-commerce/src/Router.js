@@ -7,6 +7,7 @@ import CustomerProfile from "./pages/customer/customerProfile";
 import {ProductManager} from "./pages/customer/product/productManager";
 import {CustomerHome} from "./pages/customer/Customer-Home";
 import {Category} from "./pages/customer/category/category";
+import {CreateProduct} from "./pages/customer/product/create";
 
 import {CreateProduct} from "./pages/customer/product/create";
 import {DetailProduct} from "./pages/customer/product/DetailProduct";

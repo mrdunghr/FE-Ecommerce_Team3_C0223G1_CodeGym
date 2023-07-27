@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {Link} from "react-router-dom";
 
@@ -116,18 +116,18 @@ export default function ManageUsers() {
                                 {listUser.map((user, i) => (
                                     <tr key={listUser.id}>
                                         <td className="hideable-column">{user.id}</td>
-                                        <td className="hideable-column">{user.photos}</td>
+                                        <td>
+                                            <img src={user.photos} style={{width : "100px"}}/>
+                                        </td>
                                         <td className="hideable-column">{user.email}</td>
                                         <td className="hideable-column">{user.firstName}</td>
                                         <td className="hideable-column">{user.lastName}</td>
                                         <td className="hideable-column">{user.roles[0].name}</td>
                                         <td className="hideable-column">{user.enabled ? 'Enabled' : 'Disabled'}</td>
                                         <td>
-                                            <a className="fas fa-edit icon-green" href="/Admin/users/edit/6"
-                                               title="Edit this user"></a>
+                                            <Link to={`/users/edit-user/${user.id}`} className="fas fa-edit icon-green" title="Chỉnh sửa người dùng"></Link>
                                             &nbsp;&nbsp;
-                                            <a className="fas fa-trash icon-red link-delete"
-                                               href="/Admin/users/delete/6" entityid="6" title="Delete this user"></a>
+                                            <a className="fas fa-trash icon-red link-delete" href="/Admin/users/delete/6" entityid="6" title="Delete this user"></a>
                                         </td>
                                     </tr>
                                 ))}
