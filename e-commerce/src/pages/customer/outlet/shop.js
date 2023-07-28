@@ -122,6 +122,7 @@ export const CreateShop = () =>{
     const user = JSON.parse(sessionStorage.getItem('user'))
     const [selectedImage, setSelectedImage] = useState(null)
     const [urlImage, setUrlImage ] = useState("")
+    const [shop, setShop] = useState()
 
     const handleImageChange = (event) => {
         const file = event.target.files[0];
@@ -156,19 +157,19 @@ export const CreateShop = () =>{
                 deliveryAddress : "",
                 customer : user,
                 alias : "",
-                image : urlImage
             }}
             onSubmit={(values) =>{
                 console.log(values)
-                axios.post('http://localhost:8080/api/v1/shop/create', values).then((res) => {
-                    console.log(res)
+                setShop({...values, image : urlImage})
+                console.log(shop)
+                axios.post('http://localhost:8080/api/v1/shop/create', shop).then((res) => {
                     Swal.fire("Create success!")
                 }).catch((errors) => {
                     console.log(errors)
                     Swal.fire("Something went wrong!")
                 })
             }}
-            enableReinitialize={true}
+
         >
             <Form>
             <div id={'shop-container-create'}   >

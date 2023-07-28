@@ -124,12 +124,13 @@ export const EditProduct = () =>{
                 category : {
                     id : product.category.id
                 },
-                mainImage : urlImage,
                 inStock : product.inStock,
                 enabled : product.enabled,
             }}
             enableReinitialize={true}
             onSubmit={(values) =>{
+                values = {...values, mainImage : urlImage}
+                console.log(values)
                 axios.put('http://localhost:8080/api/v1/products/edit/' + id, values).then((res) => {
                     Swal.fire("Edit success!")
                     navigate('/product-manager')
