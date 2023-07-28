@@ -96,7 +96,9 @@ export default function Brands(){
                                     <tr key={brand.id}>
                                         <td>{brand.id}</td>
                                         <td>{brand.logo}</td>
-                                        <td>{brand.name}</td>
+                                        <td>
+                                            <img src={brand.name} style={{width : "100px"}}/>
+                                        </td>
                                         <td>
                                             {brand.categories.map((category) => (
                                                 <span key={category.id} className="badge bg-warning text-dark mr-1">{category.name}</span>
