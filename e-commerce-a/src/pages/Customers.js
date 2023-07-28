@@ -67,6 +67,19 @@ export default function Customers(){
             });
     };
 
+    const handleDeleteUser = (customerId) => {
+        axios
+            .delete(`http://localhost:8080/api/v1/customers/${customerId}`)
+            .then((response) => {
+                console.log("Xóa khách hàng thành công:", response.data);
+                // Sau khi xóa thành công, cập nhật danh sách khách hàng bằng cách gọi fetchListS
+                fetchListS();
+            })
+            .catch((error) => {
+                console.error("Lỗi khi xóa khách hàng:", error);
+            });
+    };
+
     return (
         <>
             <div className="main-content container-fluid">
@@ -211,16 +224,16 @@ export default function Customers(){
                                             ></a>
                                             &nbsp;
                                             <a
-                                                href={`/Admin/customers/edit/#`}
+                                                href="#"
                                                 className="fas fa-edit icon-green"
                                                 title="Edit this customer"
                                             ></a>
                                             &nbsp;
                                             <a
-                                                href={`/Admin/customers/delete/#`}
+                                                href="#"
                                                 className="fas fa-trash icon-red link-delete"
                                                 title="Delete this customer"
-                                                // onClick={handleDelete}
+                                                onClick={() => handleDeleteUser(customers.id)}
                                             ></a>
                                         </td>
                                     </tr>
