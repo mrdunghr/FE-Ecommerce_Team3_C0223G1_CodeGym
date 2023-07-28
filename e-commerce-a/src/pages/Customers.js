@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
 
 export default function Customers(){
@@ -35,6 +35,23 @@ export default function Customers(){
         }
         console.log(page)
 
+    };
+
+    const handleToggleCustomerStatus = (customerId, currentStatus) => {
+        // Tính toán trạng thái mới (nghịch đảo của trạng thái hiện tại)
+        const newStatus = !currentStatus;
+        console.log(newStatus)
+
+        axios
+            .put(`http://localhost:8080/api/v1/customers/${customerId}/enabled/${newStatus}`)
+            .then((response) => {
+                console.log("Thay đổi trạng thái người dùng thành công:", response.data);
+                // Sau khi thay đổi thành công, cập nhật danh sách người dùng bằng cách gọi fetchListS
+                fetchListS();
+            })
+            .catch((error) => {
+                console.error("Lỗi khi thay đổi trạng thái người dùng:", error);
+            });
     };
 
     return (
@@ -164,7 +181,14 @@ export default function Customers(){
                                         <td className="hideable-column">{customers.city}</td>
                                         <td className="hideable-column">{customers.state}</td>
                                         <td className="hideable-column">{customers.country.name}</td>
-                                        <td className="hideable-column">{customers.enabled ? 'Enabled' : 'Disabled'}</td>
+                                        <td>
+                                            <a
+                                                className={`fas ${customers.enabled ? "fa-check-circle icon-green" : "fa-times-circle icon-red"}`}
+                                                title={customers.enabled ? "Disable this customer" : "Enable this customer"}
+                                                onClick={() => handleToggleCustomerStatus(customers.id, customers.enabled)}
+                                                style={{ color: customers.enabled ? "green" : "red" }}
+                                            ></a>
+                                        </td>
                                         <td>
                                             <a
                                                 href={`/Admin/customers/detail/#`}

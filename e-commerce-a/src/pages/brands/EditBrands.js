@@ -117,7 +117,7 @@ export default function EditBrands(){
             <section className="section">
                 <div className="card">
                     <div className="card-header">
-                        <h3>Manage Brands | Edit Brand (ID: 15)</h3>
+                        <h3>Manage Brands | Edit Brand (ID: {brandId})</h3>
                     </div>
 
                     <form onSubmit={handleSubmit} action="#" method="post">

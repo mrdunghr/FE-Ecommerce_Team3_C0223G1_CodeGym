@@ -3,6 +3,7 @@ import axios from "axios";
 import {getDownloadURL, getStorage, ref, uploadBytes} from "firebase/storage";
 import app from "../firebase";
 import {set} from "../../style-all/js/feather-icons/feather";
+import {Link} from "react-router-dom";
 
 export default function AddBrand(){
     const [name, setName] = useState('');
@@ -151,7 +152,7 @@ export default function AddBrand(){
                                 <div class="clearfix">
                                     <div class="text-center">
                                         <input type="submit" value="Submit" class="btn btn-primary m-3"/>
-                                            <input type="button" value="Cancel" class="btn btn-danger" id="buttonCancel"/>
+                                        <Link to={"/users"}><input type="button" value="Cancel" className="btn btn-danger" id="buttonCancel" /></Link>
                                     </div>
                                 </div>
                             </div>

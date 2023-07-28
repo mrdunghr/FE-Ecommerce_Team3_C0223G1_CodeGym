@@ -121,7 +121,7 @@ export default function EditUser() {
             <section className="section">
                 <div className="card">
                     <div className="card-header">
-                        <h3>Manage Users | Edit User (ID: )</h3>
+                        <h3>Manage Users | Edit User (ID: {userId})</h3>
                     </div>
                     <form onSubmit={handleSubmit} action="#" method="post">
                         <input type="hidden" name="_csrf" value="415739da-d6db-488f-a571-104da8f70309" />
