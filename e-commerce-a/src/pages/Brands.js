@@ -118,9 +118,9 @@ export default function Brands(){
                                             ))}
                                         </td>
                                         <td>
-                                            <a className="fas fa-edit icon-green" href="/Admin/brands/edit/15" title="Edit this brand"></a>
+                                            <Link className="fas fa-edit icon-green" to={`/brands/edit-brands/${brand.id}`}  title="Edit this brand"></Link>
                                             &nbsp;
-                                            <a className="fas fa-trash icon-red link-delete" onClick={() => handleBrand(brand.id)} title="Delete this brand"></a>
+                                            <Link className="fas fa-trash icon-red link-delete" onClick={() => handleBrand(brand.id)} title="Delete this brand"></Link>
                                         </td>
                                     </tr>
                                 ))}
