@@ -36,6 +36,19 @@ export default function Brands(){
 
     };
 
+    const handleBrand = (brandId) => {
+        axios
+            .delete(`http://localhost:8080/api/v1/brand/${brandId}`)
+            .then((response) => {
+                console.log("Xóa người dùng thành công:", response.data);
+                // Sau khi xóa thành công, cập nhật danh sách người dùng bằng cách gọi fetchListS
+                fetchListS();
+            })
+            .catch((error) => {
+                console.error("Lỗi khi xóa người dùng:", error);
+            });
+    };
+
     return(
         <>
             <div className="main-content container-fluid">
@@ -104,7 +117,11 @@ export default function Brands(){
                                                 <span key={category.id} className="badge bg-warning text-dark mr-1">{category.name}</span>
                                             ))}
                                         </td>
-                                        <td>action</td>
+                                        <td>
+                                            <a className="fas fa-edit icon-green" href="/Admin/brands/edit/15" title="Edit this brand"></a>
+                                            &nbsp;
+                                            <a className="fas fa-trash icon-red link-delete" onClick={() => handleBrand(brand.id)} title="Delete this brand"></a>
+                                        </td>
                                     </tr>
                                 ))}
                                 </tbody>
