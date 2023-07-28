@@ -79,8 +79,9 @@ export const SearchProduct = () =>{
                         <input type="number" placeholder={'Enter price'} onChange={(e) => setPrice(+e.target.value)}/>
                         <input type="number" placeholder={'Discount'} onChange={(e) => setDiscount(+e.target.value)}/>
                         <hr/>
+                        <h2>Result for {search}</h2>
                         <div id={'category-main-product'}>
-                            {products === null ? <h2>Sorry, we can't found any products!</h2> : products.filter(prod => {
+                            {products === null ? null : products.filter(prod => {
                                 if(name && !prod.name.toLowerCase().includes(name.toLowerCase())){
                                     return false
                                 }
@@ -92,6 +93,7 @@ export const SearchProduct = () =>{
                                 }
                                 return true
                             }).map(prod => (
+                                <>
                                 <div className={'product'}>
                                     <div className={'product-cost'}>
                                         {prod.discountPercent}%
@@ -117,6 +119,7 @@ export const SearchProduct = () =>{
                                     </div>
 
                                 </div>
+                                </>
                             ))}
                         </div>
                     </div>

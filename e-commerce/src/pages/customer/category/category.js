@@ -1,7 +1,7 @@
 import CustomerHeader from "../../../components/customer/header";
 import "./category.css"
 import {CustomerFooter} from "../../../components/customer/footer";
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
 
@@ -70,7 +70,7 @@ export const Category = () =>{
                             </div>
                         </div>
                         <div id={'category-second-sidebar'}>
-                            <button>SHOP NOW</button>
+                            <Link to={'/customer/cart'}><button>SHOP NOW</button></Link>
                             <img src="/image/6228c8689d1fe414adeb300a_1646839912310.jpg" alt=""/>
                         </div>
                     </div>
@@ -97,10 +97,12 @@ export const Category = () =>{
                                         {prod.discountPercent}%
                                     </div>
                                     <div className={'product-image'}>
-                                        {prod.mainImage === ".png" ? <img src={'/image/modern-teaching-concept-P7BTJU7.jpg'}></img> : <img src={prod.mainImage}></img>}
+                                        <Link to={'/product/' + prod.id}>{prod.mainImage === ".png" ? <img src={'/image/modern-teaching-concept-P7BTJU7.jpg'}></img> : <img src={prod.mainImage}></img>}</Link>
                                     </div>
                                     <div className={'product-name'}>
+                                        <Link to={'/product/' + prod.id}>
                                         <span>{prod.name}</span>
+                                        </Link>
                                         <span className={'alias'}>( {prod.alias} )</span>
                                         <span className={'old-price'}>${prod.price}</span>
                                         <span className={'new-price'}>${prod.price - (prod.price * prod.discountPercent/100)}</span>

@@ -1,10 +1,16 @@
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import "./header.css"
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import KeyIcon from '@mui/icons-material/Key';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 export default function CustomerHeader(){
     const user = JSON.parse(sessionStorage.getItem('user'))
+    const navigate = useNavigate()
+    const logout = () =>{
+        sessionStorage.setItem('user', null)
+        navigate('/')
+    }
     return(
         <>
             <div id={'cus-header'}>
@@ -19,11 +25,12 @@ export default function CustomerHeader(){
                         <Link>Question & Answer</Link>
                         {user === null ? <></> : <Link><span>Hi, {user.firstName}</span></Link>}
                         {user === null ? <></> : <Link to={'/customer/cart'}><ShoppingCartIcon></ShoppingCartIcon></Link>}
+                        {user === null ? <></> : <LogoutIcon onClick={logout}></LogoutIcon>}
                     </div>
                 </div>
                 <div id={'navbar'}>
                     <div id={'logo'}>
-                        <img src="/image/logo.png" alt=""/>
+                        <Link to={'/'}><img src="/image/logo.png" alt=""/></Link>
                     </div>
                     <div id={'main-navbar'}>
                         <Link to={'/'}>HOME</Link>

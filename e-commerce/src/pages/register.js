@@ -4,6 +4,7 @@ import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import * as Yup from "yup"
 import "./register.css"
+import Swal from "sweetalert2";
 
 const validationSchema = Yup.object().shape({
     email : Yup.string()
@@ -52,6 +53,7 @@ export const CustomerRegister = () =>{
                 onSubmit={(values) => {
                     console.log(values)
                     axios.post("http://localhost:8080/api/v1/customers/register", values).then(() =>{
+                        Swal.fire("Register success!")
                         navigate('/')
                     }).catch(err => {
                         console.log(err)

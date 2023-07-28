@@ -5,6 +5,8 @@ import {CustomerFooter} from "../../components/customer/footer";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import LogoutIcon from '@mui/icons-material/Logout';
+
 const StarIcon = () => <FaStar style={{ marginRight: '10px', color: 'yellow' }} />;
 
 export function CustomerHome() {
@@ -14,7 +16,11 @@ export function CustomerHome() {
     const [categories, setCategories] = useState([])
     const [search,setSearch] = useState([])
     const navigate = useNavigate();
-
+    const [discountProds, setDiscountProds] = useState([])
+    const logout = () =>{
+        sessionStorage.setItem('user', null)
+        navigate('/')
+    }
     const handleSubmit = (e) => {
         e.preventDefault();
         // Điều hướng sang trang kết quả tìm kiếm và đưa dữ liệu sang trang mới
@@ -24,10 +30,11 @@ export function CustomerHome() {
         axios.get("http://localhost:8080/api/v1/products/list-product-discount").then((res) => {
             setBestSellerList(res.data)
         })
-    }, [])
-    useEffect(() => {
         axios.get("http://localhost:8080/api/v1/category/all").then((res) => {
             setCategories(res.data)
+        })
+        axios.get("http://localhost:8080/api/v1/products/list-product-discount-sale").then(res =>{
+            setDiscountProds(res.data)
         })
     }, [])
     return (
@@ -60,6 +67,7 @@ export function CustomerHome() {
                                     <Link to={'/customer/cart'}><ShoppingCartIcon id={'cart'}/></Link>
                                     <img src="/image/avatar/avatar-s-2.png" alt="" style={{width : "35px", borderRadius : "50%", marginRight : "20px"}}/>
                                     <span style={{color : "white"}}>Hi, </span><h2 style={{color : "white", marginLeft : "10px", fontSize : "20px", textTransform : "capitalize"}}> {user.fullName}</h2>
+                                    <LogoutIcon onClick={logout} style={{marginLeft : "10px", color : "white", cursor : "pointer"}}></LogoutIcon>
                                 </>}
                             </div>
                         </nav>
@@ -169,6 +177,24 @@ export function CustomerHome() {
                                 <span className="sr-only">Next</span>
                             </button>
                         </div>
+                        <div id={'list-product-discount'}>
+                            <h2>Suggest product: </h2>
+                            {discountProds.map(prod => (
+                                <div className={'discount-product'} >
+                                    <div className={'product-image'}>
+                                        <Link to={'/product/'+ prod.id}>{prod.mainImage === ".png" ? <img src="/image/modern-teaching-concept-P7BTJU7.jpg" alt=""/> : <img src={prod.mainImage}></img>}</Link>
+                                    </div>
+                                    <div className={'product-name'}>
+                                        <Link to={'/product/'+ prod.id}><b>{prod.name.length > 15 ? prod.name.substring(0, 15) + "..." : prod.name}</b></Link>
+                                        <span>
+                                            <span className={'old-price'}>${prod.price}</span>
+                                            <span className={'new-price'}>${(prod.price - (prod.price * prod.discountPercent/100)).toFixed(2)}</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
                     </div>
                     <div className="col-3"style={{paddingBlock:"20px"}}>
                         <div className={'col-12'}>
@@ -186,7 +212,7 @@ export function CustomerHome() {
                                             <div className={'best-seller-items-description'}>
                                                 <Link to={'/product/' + item.id}>{item.name}</Link><br/>
                                                 <Link className={'old-price'}>${item.price}</Link>
-                                                <Link className={'new-price'}>${item.price - (item.discountPercent * item.price/100)}</Link>
+                                                <Link className={'new-price'}>${(item.price - (item.discountPercent * item.price/100)).toFixed(2)}</Link>
                                             </div>
                                         </div>
                                     )

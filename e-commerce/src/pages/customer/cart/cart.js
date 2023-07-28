@@ -1,14 +1,16 @@
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import CustomerHeader from "../../../components/customer/header";
 import "./cart.css"
 export const CustomerCart = () =>{
-    const user = JSON.parse(sessionStorage.getItem('user'))
+    const [user, setUser] = useState({})
     console.log(user)
     const navigate = useNavigate()
     useEffect(() => {
-        if (user === null){
+        if (JSON.parse(sessionStorage.getItem('user')) === null){
             navigate('/login')
+        }else{
+            setUser(JSON.parse(sessionStorage.getItem('user')))
         }
     }, [])
     return(

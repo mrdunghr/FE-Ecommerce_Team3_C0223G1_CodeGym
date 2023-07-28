@@ -88,6 +88,12 @@
     margin-left: 10px;
     margin-top: 10px;
 }
+.product a{
+    text-decoration: none;
+    font-size: 14px;
+    color: #282c34;
+    font-weight: bold;
+}
 .product-name{
     display: flex;
     flex-direction: column;

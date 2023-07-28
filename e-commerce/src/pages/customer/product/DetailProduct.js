@@ -17,9 +17,10 @@ export function DetailProduct() {
         inStock:'',
         shop:'',
         brand:'',
-        averageRating:''
+        averageRating:'',
+        mainImage : ''
     });
-
+    console.log(product)
     let [count, setCount] = useState(0)
     const increaseClick = () => {
         const newValue = count + 1;
@@ -34,7 +35,7 @@ export function DetailProduct() {
 
     useEffect(() => {
         axios.get(`http://localhost:8080/api/v1/products/detail/${id}`).then((response) => {
-            setProduct({id: response.data.id, name: response.data.name,discountPercent: response.data.discountPercent,price: response.data.price,inStock: response.data.inStock,shop: response.data.shop,brand: response.data.brand,averageRating: response.data.averageRating})
+            setProduct(response.data)
         });
     }, []);
 
@@ -47,7 +48,8 @@ export function DetailProduct() {
                 <div className="container" style={{paddingTop:"50px"}}>
                     <div className="row">
                         <div className="col-6" style={{textAlign: "center"}}>
-                            <img src="/image/2.jpg" alt=""style={{width:"550px",height:"415px"}}/>
+                            {product.mainImage === ".png" ? <img src={'/image/modern-teaching-concept-P7BTJU7.jpg'} width={'380px'} height={"420px"}></img> :
+                                <img src={product.mainImage} alt="" width={'380px'} height={"420px"}/>}
                         </div>
                         <div className="col-6">
                             <h4>{product.name}</h4>
@@ -84,7 +86,7 @@ export function DetailProduct() {
                                 <span style={{height: '32px', border: '1px solid #adabac', width: '70px', display: 'inline-block', textAlign: "center", lineHeight: '30px'}}>{count}</span>
                                 <button onClick={decreaseClick} style={{border: 'none',width: '32px', height: '32px'}}>-</button>
                             </div>
-                            <button style={{marginRight:'20px',border: 'none',fontSize:'18px',width:'250px',height:'50px',backgroundColor:'#fe5502',color:'white'}}><i className="fa fa-shopping-cart" style={{color:'white'}} ></i> ADD TO CART</button>
+                            <button style={{marginRight:'20px',border: 'none',fontSize:'18px',width:'250px',height:'50px',backgroundColor:'#fe5502',color:'white', marginTop : "80px"}}><i className="fa fa-shopping-cart" style={{color:'white'}} ></i> ADD TO CART</button>
                         </div>
                     </div>
                     <div style={{ paddingTop: '70px', display: 'flex', alignItems: 'center' }}>

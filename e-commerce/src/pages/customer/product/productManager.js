@@ -8,6 +8,8 @@ import BlockIcon from '@mui/icons-material/Block';
 import EditIcon from '@mui/icons-material/Edit';
 import KeyIcon from '@mui/icons-material/Key';
 import Swal from "sweetalert2";
+import AddIcon from '@mui/icons-material/Add';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 export const ProductManager= () =>{
     const [products, setProducts] = useState([])
@@ -15,6 +17,7 @@ export const ProductManager= () =>{
     const navigate = useNavigate()
     const [isUpdated, setIsUpdated] = useState(false);
     const [page, setPage] = useState(0)
+    const [search, setSearch] = useState('')
     useEffect(() =>{
         if(user === null){
             navigate('/login')
@@ -23,7 +26,7 @@ export const ProductManager= () =>{
             console.log(res)
             setProducts(res.data.content)
         })}
-    },[page, isUpdated])
+    },[page, isUpdated, search])
     const handlePrevPage = () => {
         if (page > 0) {
             setPage((prevPage) => prevPage - 1);
@@ -83,9 +86,9 @@ export const ProductManager= () =>{
                 </div>
                 <div id={'product-main'}>
                     <p>Manage Products</p>
-                    <Link to={'/product/add'}>Add new Product</Link>
+                    <Link to={'/product/add'}><AddCircleOutlineIcon></AddCircleOutlineIcon> Add new Product</Link>
                     <div id={'product-container'}>
-                         <input type="text" placeholder={'Search'}/>
+                         <input type="text" placeholder={'Search'} onChange={(e) => setSearch(e.target.value)}/>
                             <table id={'product-table'}>
                                 <tr>
                                     <th>ID</th>
@@ -97,7 +100,9 @@ export const ProductManager= () =>{
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
-                                {products.map(p => (
+                                {products.filter(item => item.name.toLowerCase().includes(search) || item.shop.name.toLowerCase().includes(search) ||
+                                    item.category.name.toLowerCase().includes(search)
+                                ).map(p => (
                                     <tr>
                                         <td>{p.id}</td>
                                         <td>{p.mainImage === ".png" ? <img src={'/image/image-thumbnail.png'}></img> : <img src={p.mainImage}></img>}</td>
