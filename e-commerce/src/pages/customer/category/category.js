@@ -93,8 +93,10 @@ export const Category = () =>{
                                 return true
                             }).map(prod => (
                                 <div className={'product'}>
-                                    <div className={'product-cost'}>
-                                        {prod.discountPercent}%
+                                    <div className={'lock-discount'}>
+                                        <div className={'product-cost'}>
+                                            {prod.discountPercent}%
+                                        </div>
                                     </div>
                                     <div className={'product-image'}>
                                         <Link to={'/product/' + prod.id}>{prod.mainImage === ".png" ? <img src={'/image/modern-teaching-concept-P7BTJU7.jpg'}></img> : <img src={prod.mainImage}></img>}</Link>

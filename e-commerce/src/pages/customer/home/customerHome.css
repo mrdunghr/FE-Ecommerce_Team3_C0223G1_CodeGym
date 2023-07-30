@@ -1,0 +1,204 @@
+#home-header{
+    height: 160px;
+    width: 100%;
+}
+#display{
+    width: 100%;
+    height: 1690px;
+    display: block;
+}
+/*Main*/
+#main-home{
+    width: 80%;
+    /*height: 800px;*/
+    margin: auto;
+}
+/*Categories*/
+#categories-box{
+    width: 100%;
+    height: 360px;
+    padding-bottom: 10px;
+    margin-top: 30px;
+    overflow-x: auto;
+    background: white;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    padding-top: 10px;
+    padding-left: 15px;
+}
+#categories-box h5{
+    margin-left: 10px;
+}
+.categories{
+    float: left;
+    width: 119px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    border: .01px solid grey;
+}
+.categories-image{
+    width: 100%;
+    height: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.categories-image img{
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+}
+.categories-name{
+    width: 100%;
+    height: 40%;
+    font-size: 15px;
+    font-family: Raleway, sans-serif;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/*Scrollbar*/
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+/*Best-seller*/
+#best-seller{
+    width: 100%;
+    height: 350px;
+    padding-bottom: 10px;
+    margin-top: 30px;
+    overflow-x: auto;
+    background: #e5e5e5;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    padding-top: 10px;
+    padding-left: 15px;
+}
+#best-seller-text{
+    text-transform: uppercase;
+    color: darkorange;
+    font-weight: bold;
+    letter-spacing: .5px;
+    font-size: 25px;
+}
+.best-seller-product{
+    width: 190px;
+    height: 80%;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: 5px;
+    float: left;
+    margin-left: 10px;
+}
+.best-seller-product:first-child{
+    margin: 0;
+}
+.best-seller-product-image{
+    width: 100%;
+    height: 60%;
+}
+.best-seller-product-image img{
+    height: 100%;
+    width: 100%;
+}
+.best-seller-product-info{
+    width: 100%;
+    height: 40%;
+    font-size: 16px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+}
+.best-seller-product-name{
+    width: 100%;
+    height: 50%;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+.best-seller-product-price{
+    width: 100%;
+    height: 50%;
+    padding-left: 5px;
+    display: flex;
+    align-items: end;
+    padding-bottom: 5px;
+}
+.best-seller-product-price .new-price{
+    font-size: 17px;
+    margin-left: 5px;
+}
+/*Discount product*/
+#discount-product{
+    width: 100%;
+    height: 600px;
+    padding-bottom: 10px;
+    margin-top: 30px;
+    overflow-x: auto;
+    background: #e5e5e5;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    padding-top: 10px;
+    padding-left: 15px;
+
+}
+.discount-product{
+    width: 180px;
+    height: 230px;
+    margin-left: 10px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: 5px;
+    float: left;
+}
+.discount-product-image{
+    width: 100%;
+    height: 60%;
+}
+.discount-product-image img{
+    height: 100%;
+    width: 100%;
+}
+.discount-product-info{
+    width: 100%;
+    height: 40%;
+    font-size: 16px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+}
+.discount-product-name{
+    width: 100%;
+    height: 50%;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+.discount-product-price{
+    width: 100%;
+    height: 50%;
+    padding-left: 5px;
+    display: flex;
+    align-items: end;
+    padding-bottom: 5px;
+}
+.discount-product-price .new-price{
+    font-size: 17px;
+    margin-left: 5px;
+}

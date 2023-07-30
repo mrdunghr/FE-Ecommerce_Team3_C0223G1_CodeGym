@@ -159,10 +159,9 @@ export const CreateShop = () =>{
                 alias : "",
             }}
             onSubmit={(values) =>{
+                values = {...values, image : urlImage}
                 console.log(values)
-                setShop({...values, image : urlImage})
-                console.log(shop)
-                axios.post('http://localhost:8080/api/v1/shop/create', shop).then((res) => {
+                axios.post('http://localhost:8080/api/v1/shop/create', values).then((res) => {
                     Swal.fire("Create success!")
                 }).catch((errors) => {
                     console.log(errors)

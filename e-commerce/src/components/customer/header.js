@@ -3,6 +3,7 @@ import "./header.css"
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import KeyIcon from '@mui/icons-material/Key';
 import LogoutIcon from '@mui/icons-material/Logout';
+import SearchIcon from '@mui/icons-material/Search';
 
 export default function CustomerHeader(){
     const user = JSON.parse(sessionStorage.getItem('user'))
@@ -33,12 +34,8 @@ export default function CustomerHeader(){
                         <Link to={'/'}><img src="/image/logo.png" alt=""/></Link>
                     </div>
                     <div id={'main-navbar'}>
-                        <Link to={'/'}>HOME</Link>
-                        {user === null ?  <></> : <Link>CUSTOMER SERVICE</Link>}
-                        <Link>REGISTRY & GIFTING</Link>
-                        <Link>GIFT CARDS</Link>
-                        <Link>SELL PRODUCT ONLINE</Link>
-                        <Link>CONTACT</Link>
+                        <input type="text" />
+                        <button><SearchIcon></SearchIcon></button>
                     </div>
                 </div>
             </div>
