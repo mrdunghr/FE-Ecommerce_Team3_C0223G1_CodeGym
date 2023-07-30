@@ -1,13 +1,13 @@
 import CustomerHeader from "../../../components/customer/header";
 import "./DetailProduct.css"
-import {Link, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {CustomerFooter} from "../../../components/customer/footer";
 import Rating from '@mui/material/Rating';
 export function DetailProduct() {
     const [value, setValue] = useState(2);
-
+    const navigate = useNavigate()
     const { id } = useParams();
     const [product, setProduct] = useState({
         id: '',
@@ -39,9 +39,29 @@ export function DetailProduct() {
         });
     }, []);
 
+    const addItem = () =>{
+        const user = JSON.parse(sessionStorage.getItem('user'))
+        if(user === null ){
+            navigate('/login')
+        }else {
+            const cartItem = {
+                product: product,
+                customer : user,
+                quantity : count
+            }
+            addItemToCart(cartItem)
+        }
+    }
+    const addItemToCart = (item) =>{
+        axios.post('http://localhost:8080/api/v1/cart/add/' + item.customer.id, item).then(res => {
+            console.log(res)
+            alert('Adding successful!')
+        })
+    }
+
     return (
         <>
-            <div id={"display"} style={{paddingBottom:'100px'}}>
+            <div id={"display-detail"} style={{paddingBottom:'100px'}}>
                 <div id={"customer-header"}>
                     <CustomerHeader/>
                 </div>
@@ -86,7 +106,7 @@ export function DetailProduct() {
                                 <span style={{height: '32px', border: '1px solid #adabac', width: '70px', display: 'inline-block', textAlign: "center", lineHeight: '30px'}}>{count}</span>
                                 <button onClick={decreaseClick} style={{border: 'none',width: '32px', height: '32px'}}>-</button>
                             </div>
-                            <Link to={'/customer/cart'}><button style={{marginRight:'20px',border: 'none',fontSize:'18px',width:'250px',height:'50px',backgroundColor:'#fe5502',color:'white', marginTop : "80px"}}><i className="fa fa-shopping-cart" style={{color:'white'}} ></i> ADD TO CART</button></Link>
+                            <button onClick={addItem} style={{marginRight:'20px',border: 'none',fontSize:'18px',width:'250px',height:'50px',backgroundColor:'#fe5502',color:'white', marginTop : "80px"}}><i className="fa fa-shopping-cart" style={{color:'white'}} ></i> ADD TO CART</button>
                         </div>
                     </div>
                     <div style={{ paddingTop: '70px', display: 'flex', alignItems: 'center' }}>

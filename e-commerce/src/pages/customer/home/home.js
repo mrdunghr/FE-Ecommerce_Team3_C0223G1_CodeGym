@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -15,14 +15,7 @@ export const HomePortal = () =>{
     const navigate = useNavigate();
     const [discountProds, setDiscountProds] = useState([])
     console.log(categories)
-    const logout = () =>{
-        sessionStorage.setItem('user', null)
-        navigate('/')
-    }
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        navigate(`/product/search/${search}`);
-    };
+
     useEffect(() => {
         axios.get("http://localhost:8080/api/v1/products/list-product-discount").then((res) => {
             setBestSellerList(res.data)
@@ -47,10 +40,10 @@ export const HomePortal = () =>{
                         {categories.map((item, index) => (index <= 19 ?
                             <div className={'categories'}>
                                 <div className={'categories-image'}>
-                                    <img src="/image/modern-teaching-concept-P7BTJU7.jpg" alt=""/>
+                                    <Link to={'/category/' +item.id}><img src={item.image === ".png" ? "/image/modern-teaching-concept-P7BTJU7.jpg" :"/image/categories/"+item.image} alt=""/></Link>
                                 </div>
                                 <div className={'categories-name'}>
-                                    {item.name.length > 15 ? item.name.substring(0, 15) + "..." : item.name }
+                                    <Link to={'/category/' +item.id}>{item.name.length > 15 ? item.name.substring(0, 10) + "..." : item.name }</Link>
                                 </div>
                             </div>
                                 : null
@@ -61,11 +54,11 @@ export const HomePortal = () =>{
                         {bestSellerList.filter(item => item.enabled).map(prod => (
                             <div className={'best-seller-product'}>
                                 <div className={'best-seller-product-image'}>
-                                    <img src={prod.mainImage === ".png" ? "/image/modern-teaching-concept-P7BTJU7.jpg" : prod.mainImage} alt=""/>
+                                    <Link to={'/product/' + prod.id}><img src={prod.mainImage === ".png" ? "/image/modern-teaching-concept-P7BTJU7.jpg" : prod.mainImage} alt=""/></Link>
                                 </div>
                                 <div className={'best-seller-product-info'}>
                                     <div className={'best-seller-product-name'}>
-                                        <span>{prod.name.length > 15 ? prod.name.substring(0, 15) + "..." : prod.name}</span>
+                                        <Link to={'/product/' + prod.id}>{prod.name.length > 15 ? prod.name.substring(0, 15) + "..." : prod.name}</Link>
                                     </div>
                                     <div className={'best-seller-product-price'}>
                                         <div className={'old-price'}>${prod.price}</div>
@@ -81,17 +74,20 @@ export const HomePortal = () =>{
                         {discountProds.map(item => (
                             <div className={'discount-product'}>
                                 <div className={'discount-product-image'}>
-                                    <img src={item.mainImage === ".png" ? "/image/modern-teaching-concept-P7BTJU7.jpg" : item.mainImage} alt=""/>
+                                    <Link to={'/product/' + item.id}><img src={item.mainImage === ".png" ? "/image/modern-teaching-concept-P7BTJU7.jpg" : item.mainImage} alt=""/></Link>
                                 </div>
                                 <div className={'discount-product-info'}>
                                     <div className={'discount-product-name'}>
-                                        <span>{item.name.length > 15 ? item.name.substring(0,15) + "..." : item.name}</span>
+                                        <Link to={'/product/' + item.id}>{item.name.length > 15 ? item.name.substring(0,15) + "..." : item.name}</Link>
                                     </div>
                                     <div className={'discount-product-price'}>
                                         <div className={'old-price'}>${item.price}</div>
                                         <div className={'new-price'}>${(item.price - (item.price * item.discountPercent/100)).toFixed(2)}</div>
                                     </div>
                                 </div>
+                                <Link to={'/product/' + item.id}><div className={'click-me'}>
+                                    See the detail
+                                </div></Link>
                             </div>
                         ))}
                     </div>
