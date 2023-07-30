@@ -26,6 +26,7 @@ import EditCategory from "./pages/category/EditCategory";
 import NotFound from "./components/NotFound";
 import AddBrand from "./pages/brands/AddBrands";
 import EditBrands from "./pages/brands/EditBrands";
+import EditCustomer from "./pages/customer/EditCustomer";
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -77,7 +78,10 @@ function App() {
                             <Route path={"/products"} element={<ManageProducts/>}></Route>
                             <Route path={"/reviews"} element={<Reviews/>}></Route>
                             <Route path={"/questions"} element={<Questions/>}></Route>
+
                             <Route path={"/customers"} element={<Customers/>}></Route>
+                            <Route path={"/customers/edit-customer/:customerId"} element={<EditCustomer/>}></Route>
+
                             <Route path={"/shops"} element={<Shops/>}></Route>
                             <Route path={"/shipping_rates"} element={<ShippingRates/>}></Route>
                             <Route path={"/orders"} element={<Orders/>}></Route>

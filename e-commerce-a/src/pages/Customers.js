@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import { Modal, Tab, Nav } from "react-bootstrap";
+import {Link} from "react-router-dom";
 
 export default function Customers(){
     const [listCustomer, setListCustomer] = useState([]);
@@ -223,11 +224,11 @@ export default function Customers(){
                                                 onClick={() => handleOpenModal(customers)}
                                             ></a>
                                             &nbsp;
-                                            <a
-                                                href="#"
+                                            <Link
+                                                to={`/customers/edit-customer/${customers.id}`}
                                                 className="fas fa-edit icon-green"
                                                 title="Edit this customer"
-                                            ></a>
+                                            ></Link>
                                             &nbsp;
                                             <a
                                                 href="#"
