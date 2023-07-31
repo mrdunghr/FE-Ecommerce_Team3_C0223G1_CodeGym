@@ -67,6 +67,7 @@ export default function AddUser() {
         console.log(data)
 
         try {
+            await uploadImageToFirebaseStorage(selectedImage); // xử lý bất đồng bộ upload ảnh
             const response = await axios.post("http://localhost:8080/api/v1/users/create-user", data);
             // Xử lý phản hồi theo cần thiết
             console.log("Tạo người dùng thành công:", response.data);
