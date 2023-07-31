@@ -1,10 +1,13 @@
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import {FaPhoneAlt, FaStar} from 'react-icons/fa';
-import "./customerHome.css"
+import "./home/customerHome.css"
 import {CustomerFooter} from "../../components/customer/footer";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import LogoutIcon from '@mui/icons-material/Logout';
+
+
 const StarIcon = () => <FaStar style={{ marginRight: '10px', color: 'yellow' }} />;
 
 export function CustomerHome() {
@@ -14,7 +17,12 @@ export function CustomerHome() {
     const [categories, setCategories] = useState([])
     const [search,setSearch] = useState([])
     const navigate = useNavigate();
-
+    const [discountProds, setDiscountProds] = useState([])
+    console.log(categories)
+    const logout = () =>{
+        sessionStorage.setItem('user', null)
+        navigate('/')
+    }
     const handleSubmit = (e) => {
         e.preventDefault();
         // Điều hướng sang trang kết quả tìm kiếm và đưa dữ liệu sang trang mới
@@ -24,10 +32,11 @@ export function CustomerHome() {
         axios.get("http://localhost:8080/api/v1/products/list-product-discount").then((res) => {
             setBestSellerList(res.data)
         })
-    }, [])
-    useEffect(() => {
         axios.get("http://localhost:8080/api/v1/category/all").then((res) => {
             setCategories(res.data)
+        })
+        axios.get("http://localhost:8080/api/v1/products/list-product-discount-sale").then(res =>{
+            setDiscountProds(res.data)
         })
     }, [])
     return (
@@ -35,7 +44,7 @@ export function CustomerHome() {
             <div className="col-12" >
                 <div className="row">
                     <div className="col-12">
-                        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+                        <nav className="navbar navbar-expand-lg navbar-dark " style={{background : "darkorange"}}>
                             <Link className="navbar-brand" to="/" style={{marginLeft: 0,fontSize:"17px"}}>
                                 SHOP EVENT & SAVE UP TO 65% OFF!
                             </Link>
@@ -60,6 +69,7 @@ export function CustomerHome() {
                                     <Link to={'/customer/cart'}><ShoppingCartIcon id={'cart'}/></Link>
                                     <img src="/image/avatar/avatar-s-2.png" alt="" style={{width : "35px", borderRadius : "50%", marginRight : "20px"}}/>
                                     <span style={{color : "white"}}>Hi, </span><h2 style={{color : "white", marginLeft : "10px", fontSize : "20px", textTransform : "capitalize"}}> {user.fullName}</h2>
+                                    <LogoutIcon onClick={logout} style={{marginLeft : "10px", color : "white", cursor : "pointer"}}></LogoutIcon>
                                 </>}
                             </div>
                         </nav>
@@ -130,15 +140,87 @@ export function CustomerHome() {
                 </div>
                 <div className="row">
                     <div className="col-3 sidebarHome" style={{padding: '30px',backgroundColor:"white",boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px'}}>
-                        {categories.map(cate => {
-                            return (
-                                <div style={{marginBottom: '10px'}}>
-                                    {cate.enabled ? (<>
-                                        <StarIcon></StarIcon><Link to={"/category/" + cate.id}>{cate.name}</Link>
-                                    </>) : null}
-                                </div>
-                            )
-                        })}
+                        <div className={'drop-down'}>
+                            <StarIcon></StarIcon>
+                            <h4>Electric</h4>
+                            <ul className={'drop-down-content'}>
+                                {categories.filter(item => item.allParentIDs === "-1-").map(cate => (
+                                    <Link to={'/category/'+cate.id} ><li>{cate.name}</li></Link>
+                                ))}
+                            </ul>
+                        </div>
+                        <div className={'drop-down'}>
+                            <StarIcon></StarIcon>
+                            <h4>Clothes</h4>
+                            <ul className={'drop-down-content'}>
+                                {categories.filter(item => item.allParentIDs === "-2-").map(cate => (
+                                    <Link to={'/category/'+cate.id} ><li>{cate.name}</li></Link>
+                                ))}
+                            </ul>
+                        </div>
+                        <div className={'drop-down'}>
+                            <StarIcon></StarIcon>
+                            <h4>House</h4>
+                            <ul className={'drop-down-content'}>
+                                {categories.filter(item => item.allParentIDs === "-3-").map(cate => (
+                                    <Link to={'/category/'+cate.id} ><li>{cate.name}</li></Link>
+                                ))}
+                            </ul>
+                        </div>
+                        <div className={'drop-down'}>
+                            <StarIcon></StarIcon>
+                            <h4>Sport</h4>
+                                <ul className={'drop-down-content'}>
+                                    {categories.filter(item => item.allParentIDs === "-4-").map(cate => (
+                                        <Link to={'/category/'+cate.id} ><li>{cate.name}</li></Link>
+                                ))}
+                                </ul>
+                        </div>
+                        <div className={'drop-down'}>
+                            <StarIcon></StarIcon>
+                            <h4>Beauty</h4>
+                            <ul className={'drop-down-content'}>
+                                {categories.filter(item => item.allParentIDs === "-5-").map(cate => (
+                                    <Link to={'/category/'+cate.id} ><li>{cate.name}</li></Link>
+                                ))}
+                            </ul>
+                        </div>
+                        <div className={'drop-down'}>
+                            <StarIcon></StarIcon>
+                            <h4>Watches</h4>
+                            <ul className={'drop-down-content'}>
+                                {categories.filter(item => item.allParentIDs === "-7-").map(cate => (
+                                    <Link to={'/category/'+cate.id} ><li>{cate.name}</li></Link>
+                                ))}
+                            </ul>
+                        </div>
+                        <div className={'drop-down'}>
+                            <StarIcon></StarIcon>
+                            <h4>Watches</h4>
+                            <ul className={'drop-down-content'}>
+                                {categories.filter(item => item.allParentIDs === "-7-").map(cate => (
+                                    <Link to={'/category/'+cate.id} ><li>{cate.name}</li></Link>
+                                ))}
+                            </ul>
+                        </div>
+                        <div className={'drop-down'}>
+                            <StarIcon></StarIcon>
+                            <h4>Healths</h4>
+                            <ul className={'drop-down-content'}>
+                                {categories.filter(item => item.allParentIDs === "-7-").map(cate => (
+                                    <Link to={'/category/'+cate.id} ><li>{cate.name}</li></Link>
+                                ))}
+                            </ul>
+                        </div>
+                        <div className={'drop-down'}>
+                            <StarIcon></StarIcon>
+                            <h4>Shoes</h4>
+                            <ul className={'drop-down-content'}>
+                                {categories.filter(item => item.allParentIDs === "-7-").map(cate => (
+                                    <Link to={'/category/'+cate.id} ><li>{cate.name}</li></Link>
+                                ))}
+                            </ul>
+                        </div>
                     </div>
                     <div className="col-6" style={{backgroundColor: "#F0FFFF"}}>
                         <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
@@ -169,6 +251,28 @@ export function CustomerHome() {
                                 <span className="sr-only">Next</span>
                             </button>
                         </div>
+                        <div id={'list-product-discount'}>
+                            <h2>Most discount product </h2>
+                            {discountProds.map(prod => (
+                                <div className={'discount-product'} >
+                                    <div className={'product-cost'}>
+                                        {prod.discountPercent}%
+                                    </div>
+                                    <div className={'product-image'}>
+                                        <Link to={'/product/'+ prod.id}>{prod.mainImage === ".png" ? <img src="/image/modern-teaching-concept-P7BTJU7.jpg" alt=""/> : <img src={prod.mainImage}></img>}</Link>
+                                    </div>
+                                    <div className={'product-name'}>
+                                        <Link to={'/product/'+ prod.id}><b>{prod.name.length > 15 ? prod.name.substring(0, 15) + "..." : prod.name}</b></Link>
+                                        <span>
+                                            <span className={'old-price'}>${prod.price}</span>
+                                            <span className={'new-price'}>${(prod.price - (prod.price * prod.discountPercent/100)).toFixed(2)}</span>
+                                        </span>
+                                    </div>
+
+                                </div>
+                            ))}
+                        </div>
+
                     </div>
                     <div className="col-3"style={{paddingBlock:"20px"}}>
                         <div className={'col-12'}>
@@ -186,7 +290,7 @@ export function CustomerHome() {
                                             <div className={'best-seller-items-description'}>
                                                 <Link to={'/product/' + item.id}>{item.name}</Link><br/>
                                                 <Link className={'old-price'}>${item.price}</Link>
-                                                <Link className={'new-price'}>${item.price - (item.discountPercent * item.price/100)}</Link>
+                                                <Link className={'new-price'}>${(item.price - (item.discountPercent * item.price/100)).toFixed(2)}</Link>
                                             </div>
                                         </div>
                                     )

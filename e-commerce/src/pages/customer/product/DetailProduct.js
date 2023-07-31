@@ -1,13 +1,13 @@
 import CustomerHeader from "../../../components/customer/header";
 import "./DetailProduct.css"
-import {Link, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {CustomerFooter} from "../../../components/customer/footer";
 import Rating from '@mui/material/Rating';
 export function DetailProduct() {
     const [value, setValue] = useState(2);
-
+    const navigate = useNavigate()
     const { id } = useParams();
     const [product, setProduct] = useState({
         id: '',
@@ -17,9 +17,10 @@ export function DetailProduct() {
         inStock:'',
         shop:'',
         brand:'',
-        averageRating:''
+        averageRating:'',
+        mainImage : ''
     });
-
+    console.log(product)
     let [count, setCount] = useState(0)
     const increaseClick = () => {
         const newValue = count + 1;
@@ -34,20 +35,41 @@ export function DetailProduct() {
 
     useEffect(() => {
         axios.get(`http://localhost:8080/api/v1/products/detail/${id}`).then((response) => {
-            setProduct({id: response.data.id, name: response.data.name,discountPercent: response.data.discountPercent,price: response.data.price,inStock: response.data.inStock,shop: response.data.shop,brand: response.data.brand,averageRating: response.data.averageRating})
+            setProduct(response.data)
         });
     }, []);
 
+    const addItem = () =>{
+        const user = JSON.parse(sessionStorage.getItem('user'))
+        if(user === null ){
+            navigate('/login')
+        }else {
+            const cartItem = {
+                product: product,
+                customer : user,
+                quantity : count
+            }
+            addItemToCart(cartItem)
+        }
+    }
+    const addItemToCart = (item) =>{
+        axios.post('http://localhost:8080/api/v1/cart/add/' + item.customer.id, item).then(res => {
+            console.log(res)
+            alert('Adding successful!')
+        })
+    }
+
     return (
         <>
-            <div id={"display"} style={{paddingBottom:'100px'}}>
+            <div id={"display-detail"} style={{paddingBottom:'100px'}}>
                 <div id={"customer-header"}>
                     <CustomerHeader/>
                 </div>
                 <div className="container" style={{paddingTop:"50px"}}>
                     <div className="row">
                         <div className="col-6" style={{textAlign: "center"}}>
-                            <img src="/image/2.jpg" alt=""style={{width:"550px",height:"415px"}}/>
+                            {product.mainImage === ".png" ? <img src={'/image/modern-teaching-concept-P7BTJU7.jpg'} width={'380px'} height={"420px"}></img> :
+                                <img src={product.mainImage} alt="" width={'380px'} height={"420px"}/>}
                         </div>
                         <div className="col-6">
                             <h4>{product.name}</h4>
@@ -84,7 +106,7 @@ export function DetailProduct() {
                                 <span style={{height: '32px', border: '1px solid #adabac', width: '70px', display: 'inline-block', textAlign: "center", lineHeight: '30px'}}>{count}</span>
                                 <button onClick={decreaseClick} style={{border: 'none',width: '32px', height: '32px'}}>-</button>
                             </div>
-                            <button style={{marginRight:'20px',border: 'none',fontSize:'18px',width:'250px',height:'50px',backgroundColor:'#fe5502',color:'white'}}><i className="fa fa-shopping-cart" style={{color:'white'}} ></i> ADD TO CART</button>
+                            <button onClick={addItem} style={{marginRight:'20px',border: 'none',fontSize:'18px',width:'250px',height:'50px',backgroundColor:'#fe5502',color:'white', marginTop : "80px"}}><i className="fa fa-shopping-cart" style={{color:'white'}} ></i> ADD TO CART</button>
                         </div>
                     </div>
                     <div style={{ paddingTop: '70px', display: 'flex', alignItems: 'center' }}>

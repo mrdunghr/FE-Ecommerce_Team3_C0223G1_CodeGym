@@ -24,6 +24,9 @@
     text-transform: uppercase;
     margin-left: 0;
 }
+#product-main a:hover{
+    color: darkorange;
+}
 #product-main input{
     height: 40px;
     width: 260px;

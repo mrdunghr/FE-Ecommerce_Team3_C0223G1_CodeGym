@@ -1,10 +1,25 @@
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import "./header.css"
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import KeyIcon from '@mui/icons-material/Key';
+import LogoutIcon from '@mui/icons-material/Logout';
+import SearchIcon from '@mui/icons-material/Search';
+import LoginIcon from '@mui/icons-material/Login';
+import {useState} from "react";
 
 export default function CustomerHeader(){
     const user = JSON.parse(sessionStorage.getItem('user'))
+    const navigate = useNavigate()
+    const logout = () =>{
+        sessionStorage.setItem('user', null)
+        navigate('/')
+    }
+    const [search, setSearch] = useState()
+    console.log(search)
+    const searchSomething = () =>{
+        navigate('/product/search/' + search)
+    }
+
     return(
         <>
             <div id={'cus-header'}>
@@ -15,23 +30,20 @@ export default function CustomerHeader(){
                         {user === null ? <></> : <Link to={'/customer/profile'}>Seller Centre</Link>}
                     </div>
                     <div id={'second-header'}>
-                        <Link>Recommendation</Link>
+                        <Link to={'/'}>Home</Link>
                         <Link>Question & Answer</Link>
                         {user === null ? <></> : <Link><span>Hi, {user.firstName}</span></Link>}
                         {user === null ? <></> : <Link to={'/customer/cart'}><ShoppingCartIcon></ShoppingCartIcon></Link>}
+                        {user === null ? <Link to={'/login'}><LoginIcon></LoginIcon></Link> : <LogoutIcon onClick={logout}></LogoutIcon>}
                     </div>
                 </div>
                 <div id={'navbar'}>
                     <div id={'logo'}>
-                        <img src="/image/logo.png" alt=""/>
+                        <Link to={'/'}><img src="/image/logo.png" alt=""/></Link>
                     </div>
                     <div id={'main-navbar'}>
-                        <Link to={'/'}>HOME</Link>
-                        {user === null ?  <></> : <Link>CUSTOMER SERVICE</Link>}
-                        <Link>REGISTRY & GIFTING</Link>
-                        <Link>GIFT CARDS</Link>
-                        <Link>SELL PRODUCT ONLINE</Link>
-                        <Link>CONTACT</Link>
+                        <input type="text" style={{paddingLeft : "10px"}} onChange={(e) => setSearch(e.target.value)}/>
+                        <button onClick={searchSomething}><SearchIcon></SearchIcon></button>
                     </div>
                 </div>
             </div>

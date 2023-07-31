@@ -19,6 +19,7 @@ export const CreateProduct = () =>{
     const [isUpdated, setIsUpdated] = useState(false)
     const [selectedImage, setSelectedImage] = useState(null)
     const [urlImage, setUrlImage ] = useState("")
+    const [product, setProduct] = useState()
     console.log(urlImage)
     useEffect(() => {
         if(user === null){
@@ -28,6 +29,7 @@ export const CreateProduct = () =>{
         const all_content = document.querySelectorAll('.content');
         const firstTab = tabs[0];
         const firstContent = all_content[0];
+
         firstTab.classList.add('active');
         firstContent.classList.add('active');
         tabs.forEach((tab, index) => {
@@ -112,13 +114,13 @@ export const CreateProduct = () =>{
             },
             category : {
                 id : -1
-            },
-                mainImage : urlImage
+            }
         }}
             enableReinitialize={true}
-        onSubmit={(values) =>{
+        onSubmit={async (values) =>{
+            values ={...values, mainImage : urlImage}
             console.log(values)
-            axios.post('http://localhost:8080/api/v1/products/add', values).then(res =>
+            await axios.post('http://localhost:8080/api/v1/products/add', values).then(res =>
                 {
                     console.log(res)
                     Swal.fire("Create success!")
