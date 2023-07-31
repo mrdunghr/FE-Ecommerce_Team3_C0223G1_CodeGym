@@ -5,6 +5,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import {CustomerFooter} from "../../../components/customer/footer";
 import Rating from '@mui/material/Rating';
+import Swal from "sweetalert2";
 export function DetailProduct() {
     const [value, setValue] = useState(2);
     const navigate = useNavigate()
@@ -58,6 +59,11 @@ export function DetailProduct() {
             alert('Adding successful!')
         })
     }
+    const viewImage = (src) =>{
+        Swal.fire({
+            html : "<img src='https://hongngochospital.vn/wp-content/uploads/2020/02/tra-da-2.jpg'></img>"
+        })
+    }
 
     return (
         <>
@@ -68,8 +74,8 @@ export function DetailProduct() {
                 <div className="container" style={{paddingTop:"50px"}}>
                     <div className="row">
                         <div className="col-6" style={{textAlign: "center"}}>
-                            {product.mainImage === ".png" ? <img src={'/image/modern-teaching-concept-P7BTJU7.jpg'} width={'380px'} height={"420px"}></img> :
-                                <img src={product.mainImage} alt="" width={'380px'} height={"420px"}/>}
+                            {product.mainImage === ".png" ? <img  src={'/image/modern-teaching-concept-P7BTJU7.jpg'} width={'380px'} height={"420px"} onClick={e => viewImage("/image/modern-teaching-concept-P7BTJU7.jpg")}></img> :
+                                <img onClick={(e) => viewImage(product.mainImage)} src={product.mainImage} alt="" width={'380px'} height={"420px"}/>}
                         </div>
                         <div className="col-6">
                             <h4>{product.name}</h4>

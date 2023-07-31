@@ -52,7 +52,7 @@ export const HomePortal = () =>{
                     <div id={'best-seller'}>
                         <h5 id={'best-seller-text'}>Best seller</h5>
                         {bestSellerList.filter(prod => prod.enabled).map(item => (
-                            <div className={'discount-product'}>
+                            <Link to={'/product/' + item.id}><div className={'discount-product'}>
                                 <div className={'discount-product-image'}>
                                     <Link to={'/product/' + item.id}><img src={item.mainImage === ".png" ? "/image/modern-teaching-concept-P7BTJU7.jpg" : item.mainImage} alt=""/></Link>
                                 </div>
@@ -68,14 +68,14 @@ export const HomePortal = () =>{
                                 <Link to={'/product/' + item.id}><div className={'click-me'}>
                                     See the detail
                                 </div></Link>
-                            </div>
+                            </div></Link>
                         ))}
 
                     </div>
                     <div id={'discount-product'}>
                         <h4 style={{textIndent : "10px"}}>Most discount products</h4>
                         {discountProds.map(item => (
-                            <div className={'discount-product'}>
+                            <Link to={'/product/' + item.id}><div className={'discount-product'}>
                                 <div className={'discount-product-image'}>
                                     <Link to={'/product/' + item.id}><img src={item.mainImage === ".png" ? "/image/modern-teaching-concept-P7BTJU7.jpg" : item.mainImage} alt=""/></Link>
                                 </div>
@@ -91,7 +91,7 @@ export const HomePortal = () =>{
                                 <Link to={'/product/' + item.id}><div className={'click-me'}>
                                     See the detail
                                 </div></Link>
-                            </div>
+                            </div></Link>
                         ))}
                     </div>
                 </div>

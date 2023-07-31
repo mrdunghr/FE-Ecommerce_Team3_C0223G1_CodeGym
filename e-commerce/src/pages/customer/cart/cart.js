@@ -4,6 +4,7 @@ import CustomerHeader from "../../../components/customer/header";
 import "./cart.css"
 import axios from "axios";
 import {forEach} from "react-bootstrap/ElementChildren";
+import Swal from "sweetalert2";
 export const CustomerCart = () =>{
 
     const user = (JSON.parse(sessionStorage.getItem('user')))
@@ -49,6 +50,7 @@ export const Cart = () =>{
     const navigate = useNavigate()
     const [cartItems, setCartItems] = useState([])
     const [updated, setUpdated] = useState(false)
+    const [checked, setChecked] = useState("unchecked")
     useEffect(() => {
         if(user === null){
             navigate('/login')
@@ -127,7 +129,27 @@ export const Cart = () =>{
         })
     }
     }
-
+    function payment(){
+        if (cartItems.filter(item => item.checked).length !== 0){
+            Swal.fire({
+                title : "Confirm paying " + cartItems.filter(item => item.checked).length + " product?",
+                showCancelButton : true
+            }).then(res => {
+                if(res.isConfirmed){
+                    axios.post('http://localhost:8080/payment/create-order/' + user.id).then(res => {
+                        Swal.fire("Confirm success! The order will now in shop's orders queue")
+                        if(updated){
+                            setUpdated(false)
+                        }else{
+                            setUpdated(true)
+                        }
+                    })
+                }
+            })
+        }else{
+            alert('There is no product in your cart. Please add more in your cart list!')
+        }
+    }
     
     function totalPrice(){
         let total = 0
@@ -138,6 +160,23 @@ export const Cart = () =>{
         }
         return total
     }
+    const handleAllcheckboxes = async () =>{
+        if(checked === "unchecked"){
+            setChecked("checked")
+        }else{
+            setChecked("unchecked")
+        }
+        await callforchecked(checked)
+    }
+    const callforchecked = (checked) =>{
+        axios.put('http://localhost:8080/api/v1/cart/checked-all-item/' + checked  + "/" + user.id ).then((res) => {
+            if(updated){
+                setUpdated(false)
+            }else{
+                setUpdated(true)
+            }
+        })
+    }
 
     return(
         <div id={'cart-container'}>
@@ -145,7 +184,8 @@ export const Cart = () =>{
                 <div id={'cart-list'}>
                     <div id={'cart-header'}>
                         <div id={'first-cart-header'}>
-                            <span>Product</span>
+                            <input type="checkbox" onChange={handleAllcheckboxes}/>
+                             <span>Product</span>
                         </div>
                         <div id={'second-cart-header'}>
                             <div className={'second-cart-header-items'}>
@@ -205,7 +245,7 @@ export const Cart = () =>{
                 </div>
                 <div id={'second-section-buying'}>
                     <span>Total paying ({cartItems.filter(item => item.checked).length} products): ${totalPrice()}</span>
-                    <button id={'btn-pay'} >Pay</button>
+                    <button onClick={payment} id={'btn-pay'}>Pay</button>
                 </div>
             </div>
         </div>
