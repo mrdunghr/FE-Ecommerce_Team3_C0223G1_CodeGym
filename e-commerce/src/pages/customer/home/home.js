@@ -51,20 +51,23 @@ export const HomePortal = () =>{
                     </div>
                     <div id={'best-seller'}>
                         <h5 id={'best-seller-text'}>Best seller</h5>
-                        {bestSellerList.filter(item => item.enabled).map(prod => (
-                            <div className={'best-seller-product'}>
-                                <div className={'best-seller-product-image'}>
-                                    <Link to={'/product/' + prod.id}><img src={prod.mainImage === ".png" ? "/image/modern-teaching-concept-P7BTJU7.jpg" : prod.mainImage} alt=""/></Link>
+                        {bestSellerList.filter(prod => prod.enabled).map(item => (
+                            <div className={'discount-product'}>
+                                <div className={'discount-product-image'}>
+                                    <Link to={'/product/' + item.id}><img src={item.mainImage === ".png" ? "/image/modern-teaching-concept-P7BTJU7.jpg" : item.mainImage} alt=""/></Link>
                                 </div>
-                                <div className={'best-seller-product-info'}>
-                                    <div className={'best-seller-product-name'}>
-                                        <Link to={'/product/' + prod.id}>{prod.name.length > 15 ? prod.name.substring(0, 15) + "..." : prod.name}</Link>
+                                <div className={'discount-product-info'}>
+                                    <div className={'discount-product-name'}>
+                                        <Link to={'/product/' + item.id}>{item.name.length > 15 ? item.name.substring(0,15) + "..." : item.name}</Link>
                                     </div>
-                                    <div className={'best-seller-product-price'}>
-                                        <div className={'old-price'}>${prod.price}</div>
-                                        <div className={'new-price'}>${(prod.price - (prod.price * prod.discountPercent/100)).toFixed(2)}</div>
+                                    <div className={'discount-product-price'}>
+                                        <div className={'old-price'}>${item.price}</div>
+                                        <div className={'new-price'}>${(item.price - (item.price * item.discountPercent/100)).toFixed(2)}</div>
                                     </div>
                                 </div>
+                                <Link to={'/product/' + item.id}><div className={'click-me'}>
+                                    See the detail
+                                </div></Link>
                             </div>
                         ))}
 

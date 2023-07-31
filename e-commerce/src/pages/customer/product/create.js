@@ -129,7 +129,7 @@ export const CreateProduct = () =>{
         }}
         >
             <Form>
-            <div id={'display'}>
+            <div id={'display-create'}>
                 <div id={'customer-header'}>
                     <CustomerHeader></CustomerHeader>
                 </div>

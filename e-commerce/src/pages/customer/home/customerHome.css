@@ -223,3 +223,6 @@
 .discount-product:hover{
     border: .5px solid darkorange;
 }
+.best-seller-product:hover .click-me{
+    display: block;
+}

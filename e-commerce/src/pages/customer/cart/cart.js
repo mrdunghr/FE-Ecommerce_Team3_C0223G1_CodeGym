@@ -55,6 +55,7 @@ export const Cart = () =>{
         }else{
             axios.get('http://localhost:8080/api/v1/cart/view/' + user.id).then((res) =>{
                 setCartItems(res.data)
+
             })
         }
     }, [updated])
@@ -67,7 +68,8 @@ export const Cart = () =>{
             product : {
                 id : item.product.id
             },
-            quantity : item.quantity
+            quantity : item.quantity,
+            checked : item.checked
         }
         switch (action){
             case "+" :
@@ -77,6 +79,29 @@ export const Cart = () =>{
                 decreaseButton(rolling)
                 break;
         }
+    }
+    function handleCheckboxChange(item) {
+        const rolling = {
+            id : item.id,
+            customer : {
+                id : item.customer.id
+            },
+            product : {
+                id : item.product.id
+            },
+            quantity : item.quantity,
+            checked : item.checked
+        }
+        changeStatusInCart(rolling)
+    }
+    const changeStatusInCart = (item) =>{
+        axios.put('http://localhost:8080/api/v1/cart/checked-item', item).then((res) => {
+            if (updated){
+                setUpdated(false)
+            }else{
+                setUpdated(true)
+            }
+        })
     }
     const increaseButton = (item) =>{
         console.log(item)
@@ -90,6 +115,9 @@ export const Cart = () =>{
     }
     const decreaseButton = (item) =>{
         console.log(item)
+        if(item.quantity === 0){
+            alert("Can't decrease anymore!")
+        }else{
         axios.put('http://localhost:8080/api/v1/cart/update-quantities/decrease', item).then((res) =>{
             if(updated){
                 setUpdated(false)
@@ -98,10 +126,15 @@ export const Cart = () =>{
             }
         })
     }
+    }
+
+    
     function totalPrice(){
         let total = 0
         for (const item of cartItems){
-            total += (item.product.price - (item.product.price * item.product.discountPercent/100)).toFixed(2) * item.quantity
+            if(item.checked){
+                total += (item.product.price - (item.product.price * item.product.discountPercent/100)).toFixed(2) * item.quantity
+            }
         }
         return total
     }
@@ -132,6 +165,7 @@ export const Cart = () =>{
                     {cartItems.map(item => (
                         <div className={'cart-product'}>
                             <div className={'cart-product-name-image'}>
+                                <input type="checkbox" checked={item.checked} onChange={() => handleCheckboxChange(item)}/>
                                 <img src={item.product.mainImage === ".png" ? "/image/modern-teaching-concept-P7BTJU7.jpg" : item.product.mainImage} alt=""/>
                                 <b>{item.product.name}</b>
                             </div>
@@ -170,8 +204,8 @@ export const Cart = () =>{
                     <span>Remove inactive product</span>
                 </div>
                 <div id={'second-section-buying'}>
-                    <span>Total paying ({cartItems.length} products): ${totalPrice()}</span>
-                    <button id={'btn-pay'}>Pay</button>
+                    <span>Total paying ({cartItems.filter(item => item.checked).length} products): ${totalPrice()}</span>
+                    <button id={'btn-pay'} >Pay</button>
                 </div>
             </div>
         </div>

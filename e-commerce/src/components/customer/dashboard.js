@@ -2,6 +2,7 @@ import "./dashboard.css"
 import {Link} from "react-router-dom";
 export default function Dashboard(){
     const user = JSON.parse(sessionStorage.getItem('user'))
+    console.log(user)
     return(
         <>
             <div id={'dashboard-sidebar'}>
@@ -13,7 +14,7 @@ export default function Dashboard(){
                     <div id={'second-nav'}>
                         <Link to={'/customer/profile'}>Dashboard</Link>
                         <Link to={'add-shop'}>Add New Shop</Link>
-                        <Link to={'/product-manager'}>Manage Products</Link>
+                        <Link to={'product-manager'}>Manage Products</Link>
                     </div>
                 </div>
             </div>

@@ -81,9 +81,6 @@ export const ProductManager= () =>{
     return(
         <>
             <div id={'product-display'}>
-                <div id={'customer-header'}>
-                    <CustomerHeader></CustomerHeader>
-                </div>
                 <div id={'product-main'}>
                     <p>Manage Products</p>
                     <Link to={'/product/add'}><AddCircleOutlineIcon></AddCircleOutlineIcon> Add new Product</Link>

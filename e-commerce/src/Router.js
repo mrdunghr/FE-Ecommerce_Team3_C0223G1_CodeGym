@@ -26,9 +26,9 @@ export default function RouterHome(){
                 <Route path={'/customer/profile'} element={<CustomerProfile></CustomerProfile>}>
                     <Route path={''} element={<Shop></Shop>}></Route>
                     <Route path={'add-shop'} element={<CreateShop></CreateShop>}></Route>
+                    <Route path={'product-manager'} element={<ProductManager></ProductManager>}></Route>
                 </Route>
                 <Route path={'/product/add'} element={<CreateProduct></CreateProduct>}></Route>
-                <Route path={'/product-manager'} element={<ProductManager></ProductManager>}></Route>
                 <Route path={'/category/:id'} element={<Category></Category>}></Route>
                 <Route path={'/product/:id'} element={<DetailProduct></DetailProduct>}></Route>
                 <Route path={'/product/edit/:id'} element={<EditProduct></EditProduct>}></Route>

@@ -106,7 +106,7 @@ export function DetailProduct() {
                                 <span style={{height: '32px', border: '1px solid #adabac', width: '70px', display: 'inline-block', textAlign: "center", lineHeight: '30px'}}>{count}</span>
                                 <button onClick={decreaseClick} style={{border: 'none',width: '32px', height: '32px'}}>-</button>
                             </div>
-                            <button onClick={addItem} style={{marginRight:'20px',border: 'none',fontSize:'18px',width:'250px',height:'50px',backgroundColor:'#fe5502',color:'white', marginTop : "80px"}}><i className="fa fa-shopping-cart" style={{color:'white'}} ></i> ADD TO CART</button>
+                            <button disabled={product.enabled ? false : true} onClick={addItem} style={{marginRight:'20px',border: 'none',fontSize:'18px',width:'250px',height:'50px',backgroundColor:'#fe5502',color:'white', marginTop : "80px"}}><i className="fa fa-shopping-cart" style={{color:'white'}} ></i> ADD TO CART</button>
                         </div>
                     </div>
                     <div style={{ paddingTop: '70px', display: 'flex', alignItems: 'center' }}>
