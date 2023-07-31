@@ -90,9 +90,10 @@ export default function EditUser() {
 
         console.log(data)
         try {
+            await uploadImageToFirebaseStorage(selectedImage); // xử lý bất đồng bộ upload ảnh
             const response = await axios.put(`http://localhost:8080/api/v1/users/${userId}`, data);
             // Xử lý phản hồi theo cần thiết
-            console.log("Tạo người dùng thành công:", response.data);
+            console.log("Sửa người dùng thành công:", response.data);
             alert("Sửa người dùng thành công")
 
         } catch (error) {
