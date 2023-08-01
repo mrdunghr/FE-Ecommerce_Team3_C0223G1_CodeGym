@@ -82,7 +82,6 @@ export const ProductManager= () =>{
         <>
             <div id={'product-display'}>
                 <div id={'product-main'}>
-                    <p>Manage Products</p>
                     <Link to={'/product/add'}><AddCircleOutlineIcon></AddCircleOutlineIcon> Add new Product</Link>
                     <div id={'product-container'}>
                          <input type="text" placeholder={'Search'} onChange={(e) => setSearch(e.target.value)}/>
@@ -116,9 +115,6 @@ export const ProductManager= () =>{
                         <button onClick={handleNextPage}>Next</button>
                     </div>
 
-                </div>
-                <div id={'footer-product-manager'}>
-                    <CustomerFooter></CustomerFooter>
                 </div>
             </div>
         </>

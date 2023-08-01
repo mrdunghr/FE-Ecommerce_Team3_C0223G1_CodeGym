@@ -75,12 +75,17 @@ export function DetailProduct() {
         if(user === null ){
             navigate('/login')
         }else {
-            const cartItem = {
-                product: product,
-                customer : user,
-                quantity : count
+            if(user.id === product.customer.id){
+                alert("You can't buy your product!")
+            }else{
+                const cartItem = {
+                    product: product,
+                    customer : user,
+                    quantity : count
+                }
+                addItemToCart(cartItem)
             }
-            addItemToCart(cartItem)
+
         }
     }
     const addItemToCart = (item) =>{

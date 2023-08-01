@@ -46,10 +46,10 @@ body{
     height: 100%;
     align-items: center;
     justify-content: right;
+    font-size: 17px;
 }
 #second-header a{
     margin-right: 20px;
-    font-size: 17px;
     text-decoration: none;
     color: white;
 }
