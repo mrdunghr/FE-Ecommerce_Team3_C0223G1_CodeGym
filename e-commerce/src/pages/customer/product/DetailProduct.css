@@ -95,4 +95,8 @@ label.star:before {
     display: none;
 }
 
+.hidden-description {
+    display: none;
+}
+
 
