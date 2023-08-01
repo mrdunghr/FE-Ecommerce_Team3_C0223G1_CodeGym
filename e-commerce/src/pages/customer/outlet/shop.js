@@ -20,7 +20,7 @@ import app from "../../../firebase";
          if(user === null){
               navigate('/login')
          }else{
-         axios.get("http://localhost:8080/api/v1/shop/" + user.id + "?page=" +page).then((res) => {
+         axios.get("http://localhost:8888/api/v1/shop/" + user.id + "?page=" +page).then((res) => {
              console.log(res.data.content)
              setShops(res.data.content)
 
@@ -33,7 +33,7 @@ import app from "../../../firebase";
             showCancelButton : true
         }).then(res => {
            if(res.isConfirmed){
-               axios.put('http://localhost:8080/api/v1/shop/' + id +'/close').then((res) =>{
+               axios.put('http://localhost:8888/api/v1/shop/' + id +'/close').then((res) =>{
                    if(update){
                        setUpdate(false)
                    }else{
@@ -54,7 +54,7 @@ import app from "../../../firebase";
              showCancelButton : true
          }).then(res => {
              if(res.isConfirmed){
-                 axios.put('http://localhost:8080/api/v1/shop/' + id +'/open').then((res) =>{
+                 axios.put('http://localhost:8888/api/v1/shop/' + id +'/open').then((res) =>{
                      if(update){
                          setUpdate(false)
                      }else{
@@ -161,7 +161,7 @@ export const CreateShop = () =>{
             onSubmit={(values) =>{
                 values = {...values, image : urlImage}
                 console.log(values)
-                axios.post('http://localhost:8080/api/v1/shop/create', values).then((res) => {
+                axios.post('http://localhost:8888/api/v1/shop/create', values).then((res) => {
                     Swal.fire("Create success!")
                 }).catch((errors) => {
                     console.log(errors)

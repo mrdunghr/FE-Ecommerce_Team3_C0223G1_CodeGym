@@ -5,14 +5,12 @@ import {CustomerRegister} from "./pages/register";
 import {CreateShop, Shop} from "./pages/customer/outlet/shop";
 import CustomerProfile from "./pages/customer/customerProfile";
 import {ProductManager} from "./pages/customer/outlet/productManager";
-import {CustomerHome} from "./pages/customer/Customer-Home";
 import {Category} from "./pages/customer/category/category";
 import {CreateProduct} from "./pages/customer/product/create";
 import {DetailProduct} from "./pages/customer/product/DetailProduct";
 import {EditProduct} from "./pages/customer/product/edit";
 import {SearchProduct} from "./pages/customer/product/Search";
 import {Cart, CustomerCart} from "./pages/customer/cart/cart";
-import {Home} from "@mui/icons-material";
 import {HomePortal} from "./pages/customer/home/home";
 import {OrdersManage} from "./pages/customer/outlet/orders";
 
