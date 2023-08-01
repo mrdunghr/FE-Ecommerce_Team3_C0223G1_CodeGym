@@ -8,7 +8,7 @@ import {CustomerFooter} from "../../components/customer/footer";
 export default function CustomerProfile(){
     return(
         <>
-            <div id={'display'}>
+            <div id={'shop-display'}>
                 <div id={'customer-header'}>
                     <CustomerHeader></CustomerHeader>
                 </div>

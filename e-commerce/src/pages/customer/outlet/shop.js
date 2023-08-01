@@ -23,7 +23,7 @@ import app from "../../../firebase";
          axios.get("http://localhost:8080/api/v1/shop/" + user.id + "?page=" +page).then((res) => {
              console.log(res.data.content)
              setShops(res.data.content)
-
+             sessionStorage.setItem('shop', JSON.stringify(res.data.content))
          })}
      }, [page, update, search])
 

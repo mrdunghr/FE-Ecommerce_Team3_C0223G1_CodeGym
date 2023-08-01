@@ -44,25 +44,30 @@
     justify-content: center;
     align-items: center;
 }
-/*Main-order-main*/
-.shop-name{
-    font-size: 17px;
-    position: absolute;
-    top: 0;
-    width: 60%;
-    height: 35px;
+.order-action button{
+    margin-left: 5px;
     color: white;
-    background: darkorange;
-    border-radius: 2px;
+    border: none;
+    font-weight: bold;
     padding: 5px;
-    text-align: left;
+    border-radius: 2px;
 }
+.confirm-btn{
+    background: #3586ff;
+}
+.cancel-btn{
+    background: red;
+}
+/*Main-order-main*/
 #main-order-main .order-item-info b{
     margin-left: 10px;
 }
 .orders{
+    margin-top: 30px;
     height: 160px;
     width: 100%;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 18px 24px;
+
 }
 #main-order-main{
     width: 100%;
@@ -74,5 +79,4 @@
     color: white;
     font-weight: bold;
     padding: 6px;
-    background: #FFDD44;
 }

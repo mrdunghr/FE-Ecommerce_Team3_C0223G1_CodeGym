@@ -6,10 +6,13 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import SearchIcon from '@mui/icons-material/Search';
 import LoginIcon from '@mui/icons-material/Login';
 import {useState} from "react";
+import HomeIcon from '@mui/icons-material/Home';
 
 export default function CustomerHeader(){
     const user = JSON.parse(sessionStorage.getItem('user'))
     const navigate = useNavigate()
+    // const orders = JSON.parse(sessionStorage.getItem('orders'))
+    // console.log(orders)
     const logout = () =>{
         sessionStorage.setItem('user', null)
         navigate('/')
@@ -19,7 +22,15 @@ export default function CustomerHeader(){
     const searchSomething = () =>{
         navigate('/product/search/' + search)
     }
-
+    // const getAllPaidOrder = () =>{
+    //     let paidOrders = 0
+    //     for(const od of orders){
+    //         if(od.status === "PROCESSING"){
+    //             paidOrders += 1
+    //         }
+    //     }
+    //     return paidOrders;
+    // }
     return(
         <>
             <div id={'cus-header'}>
@@ -30,11 +41,10 @@ export default function CustomerHeader(){
                         {user === null ? <></> : <Link to={'/customer/profile'}>Seller Centre</Link>}
                     </div>
                     <div id={'second-header'}>
-                        <Link to={'/'}>Home</Link>
-                        <Link>Question & Answer</Link>
+                        <Link to={'/'}><HomeIcon></HomeIcon></Link>
                         {user === null ? <></> : <Link><span>Hi, {user.firstName}</span></Link>}
                         {user === null ? <></> : <Link to={'/customer/cart'}><ShoppingCartIcon></ShoppingCartIcon></Link>}
-                        {user === null ? <Link to={'/login'}><LoginIcon></LoginIcon></Link> : <LogoutIcon onClick={logout}></LogoutIcon>}
+                        {user === null ? <Link to={'/login'}><LoginIcon></LoginIcon></Link> : <Link><LogoutIcon onClick={logout}></LogoutIcon></Link>}
                     </div>
                 </div>
                 <div id={'navbar'}>

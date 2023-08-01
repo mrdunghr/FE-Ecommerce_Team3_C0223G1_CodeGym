@@ -15,6 +15,7 @@ import {Cart, CustomerCart} from "./pages/customer/cart/cart";
 import {Home} from "@mui/icons-material";
 import {HomePortal} from "./pages/customer/home/home";
 import {OrdersManage} from "./pages/customer/outlet/orders";
+import {CustomerOrders} from "./pages/customer/cart/orders";
 
 
 export default function RouterHome(){
@@ -36,6 +37,7 @@ export default function RouterHome(){
                 <Route path={'/product/edit/:id'} element={<EditProduct></EditProduct>}></Route>
                 <Route path={'/customer/cart'} element={<CustomerCart></CustomerCart>}>
                     <Route path={''} element={<Cart></Cart>}></Route>
+                    <Route path={'orders'} element={<CustomerOrders></CustomerOrders>}></Route>
                 </Route>
                 <Route path={'/product/search/:search'} element={<SearchProduct></SearchProduct>}></Route>
             </Routes>

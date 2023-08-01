@@ -133,7 +133,7 @@ export const EditProduct = () =>{
                 console.log(values)
                 axios.put('http://localhost:8080/api/v1/products/edit/' + id, values).then((res) => {
                     Swal.fire("Edit success!")
-                    navigate('/product-manager')
+                    navigate('/customer/profile/product-manager')
                 }).catch(errors =>{
                     Swal.fire("Something went wrong!")
                 })
