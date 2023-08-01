@@ -53,10 +53,9 @@ export function DetailProduct() {
 
     useEffect(() => {
         axios.get(`http://localhost:8080/api/v1/products/detail/${id}`).then((response) => {
-
             setProduct(response.data)
         });
-    }, []);
+    },[]);
 
     useEffect(() => {
         axios.get(`http://localhost:8080/api/v1/reviews/${id}`).then((resp) =>{
@@ -163,7 +162,6 @@ export function DetailProduct() {
                                     </div>
                                     <div>
                                         <span style={{ opacity: '0.7' }}> {review.reviewTime}</span>
-
                                     </div>
                                     <div style={{ marginTop: '5px' }}>
                                         <span> {review.comment}</span> <br/>
@@ -174,9 +172,9 @@ export function DetailProduct() {
                         ))}
                     </div>
                 </div>
-
             </div>
             <CustomerFooter/>
         </>
     )
 }
+

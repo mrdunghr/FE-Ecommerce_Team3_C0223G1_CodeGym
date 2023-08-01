@@ -1,4 +1,4 @@
-import {Link, useLocation, useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {FaPhoneAlt, FaStar} from 'react-icons/fa';
 import "./home/customerHome.css"
 import {CustomerFooter} from "../../components/customer/footer";
@@ -29,13 +29,13 @@ export function CustomerHome() {
         navigate(`/product/search/${search}`);
     };
     useEffect(() => {
-        axios.get("http://localhost:8080/api/v1/products/list-product-discount").then((res) => {
+        axios.get("http://localhost:8888/api/v1/products/list-product-discount").then((res) => {
             setBestSellerList(res.data)
         })
-        axios.get("http://localhost:8080/api/v1/category/all").then((res) => {
+        axios.get("http://localhost:8888/api/v1/category/all").then((res) => {
             setCategories(res.data)
         })
-        axios.get("http://localhost:8080/api/v1/products/list-product-discount-sale").then(res =>{
+        axios.get("http://localhost:8888/api/v1/products/list-product-discount-sale").then(res =>{
             setDiscountProds(res.data)
         })
     }, [])

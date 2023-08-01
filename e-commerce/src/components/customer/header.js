@@ -1,7 +1,6 @@
 import {Link, useNavigate} from "react-router-dom";
 import "./header.css"
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import KeyIcon from '@mui/icons-material/Key';
 import LogoutIcon from '@mui/icons-material/Logout';
 import SearchIcon from '@mui/icons-material/Search';
 import LoginIcon from '@mui/icons-material/Login';
