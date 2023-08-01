@@ -14,7 +14,7 @@ export const SearchProduct = () =>{
     const [price, setPrice] = useState()
     const [discount, setDiscount] = useState()
     useEffect(() =>{
-        axios.get(`http://localhost:8888/api/v1/products/search/?name=${search}&list=true`).then((res) => {
+        axios.get(`http://localhost:8080/api/v1/products/search/?name=${search}&list=true`).then((res) => {
             console.log(res)
             setProducts(res.data)
         }).catch(errors =>{
