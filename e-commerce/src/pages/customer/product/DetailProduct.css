@@ -57,3 +57,25 @@ label.star:before {
     color: #888888;
 }
 
+.review-product{
+    width: 100%;
+    height: 100%;
+}
+
+.avatar-customer {
+    width: 10%;
+    height: 100%;
+    float: left;
+}
+
+.content-customer {
+    width: 90%;
+    float: left;
+    height: 100%;
+}
+
+.hidden {
+    display: none;
+}
+
+

@@ -18,7 +18,7 @@ export const Category = () =>{
     console.log(maxRange)
 
     useEffect(() =>{
-        axios.get(`http://localhost:8888/api/v1/products/show-by-category/${id}?list=true`).then((res) => {
+        axios.get(`http://localhost:8080/api/v1/products/show-by-category/${id}?list=true`).then((res) => {
             console.log(res)
             setProducts(res.data)
         }).catch(errors =>{

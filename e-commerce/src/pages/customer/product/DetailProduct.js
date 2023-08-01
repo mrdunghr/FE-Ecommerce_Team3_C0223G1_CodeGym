@@ -7,6 +7,13 @@ import {CustomerFooter} from "../../../components/customer/footer";
 import Rating from '@mui/material/Rating';
 import Swal from "sweetalert2";
 export function DetailProduct() {
+
+    const [showReview, setShowReview] = useState(false);
+
+    const handleLinkClick = () => {
+        setShowReview(!showReview);
+    };
+
     const [value, setValue] = useState(2);
     const navigate = useNavigate()
     const { id } = useParams();
@@ -35,7 +42,7 @@ export function DetailProduct() {
     };
 
     useEffect(() => {
-        axios.get(`http://localhost:8888/api/v1/products/detail/${id}`).then((response) => {
+        axios.get(`http://localhost:8080/api/v1/products/detail/${id}`).then((response) => {
             setProduct(response.data)
         });
     }, []);
@@ -54,7 +61,7 @@ export function DetailProduct() {
         }
     }
     const addItemToCart = (item) =>{
-        axios.post('http://localhost:8888/api/v1/cart/add/' + item.customer.id, item).then(res => {
+        axios.post('http://localhost:8080/api/v1/cart/add/' + item.customer.id, item).then(res => {
             console.log(res)
             alert('Adding successful!')
         })
@@ -74,7 +81,7 @@ export function DetailProduct() {
                 <div className="container" style={{paddingTop:"50px"}}>
                     <div className="row">
                         <div className="col-6" style={{textAlign: "center"}}>
-                            {product.mainImage === ".png" ? <img  src={'/image/modern-teaching-concept-P7BTJU7.jpg'} width={'500px'} height={"420px"} onClick={e => viewImage("/image/modern-teaching-concept-P7BTJU7.jpg")}></img> :
+                            {product.mainImage === ".png" ? <img src={'/image/modern-teaching-concept-P7BTJU7.jpg'} width={'500px'} height={"420px"} onClick={e => viewImage("/image/modern-teaching-concept-P7BTJU7.jpg")}></img> :
                                 <img onClick={(e) => viewImage(product.mainImage)} src={product.mainImage} alt="" width={'500px'} height={"420px"}/>}
                         </div>
                         <div className="col-6">
@@ -118,7 +125,7 @@ export function DetailProduct() {
                     <div style={{ paddingLeft:'100px',paddingTop: '70px', display: 'flex', alignItems: 'center' }}>
                         <Link to={'/'} style={{ color: 'black', marginRight: '20px', paddingRight: '20px', borderRight: '2px solid black' }}><h5>Description</h5></Link>
                         <Link to={'/'} style={{ color: 'black', marginRight: '20px', paddingRight: '20px', borderRight: '2px solid black' }}><h5>Information</h5></Link>
-                        <Link to={'/'} style={{ color: 'black' }}><h5>Reviews</h5></Link>
+                        <Link to={''} style={{ color: 'black' }} onClick={handleLinkClick}><h5>Reviews</h5></Link>
                     </div>
                 </div>
                 <CustomerFooter/>
