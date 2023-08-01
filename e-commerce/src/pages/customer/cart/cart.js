@@ -3,14 +3,13 @@ import {Link, Outlet, useNavigate} from "react-router-dom";
 import CustomerHeader from "../../../components/customer/header";
 import "./cart.css"
 import axios from "axios";
-import {forEach} from "react-bootstrap/ElementChildren";
 import Swal from "sweetalert2";
 import {CustomerFooter} from "../../../components/customer/footer";
 export const CustomerCart = () =>{
 
     const user = (JSON.parse(sessionStorage.getItem('user')))
     const navigate = useNavigate()
-    const [cartItems, setCartItems] = useState()
+    // const [cartItems, setCartItems] = useState()
     useEffect( () => {
         const all_tabs = document.querySelectorAll('.profile-tab')
         const firstTab = all_tabs[0]
