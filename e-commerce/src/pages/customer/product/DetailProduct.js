@@ -157,7 +157,7 @@ export function DetailProduct() {
                             <div className={'row'}>
                                 <div className="avatar-customer" style={{ paddingLeft: "20px" }}>
                                     <img
-                                        src={'https://static.antoree.com/avatar.png'}
+                                        src='/image/avatar/avatar-s-1.png'
                                         alt=""
                                         style={{ height: "50px", width: "50px", borderRadius: "50px", marginRight: '10px' }}
                                     />
