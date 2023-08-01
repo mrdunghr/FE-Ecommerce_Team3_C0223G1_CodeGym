@@ -7,9 +7,26 @@ import {CustomerFooter} from "../../../components/customer/footer";
 import Rating from '@mui/material/Rating';
 import Swal from "sweetalert2";
 export function DetailProduct() {
+    const [showReview, setShowReview] = useState(false);
+
+    const handleLinkClick = () => {
+        setShowReview(!showReview);
+    };
     const [value, setValue] = useState(2);
     const navigate = useNavigate()
     const { id } = useParams();
+    const [reviews,setReviews]= useState([{
+        id:'',
+        headline:'',
+        comment:'',
+        rating:'',
+        votes:'',
+        reviewTime:'',
+        product:'',
+        customer:'',
+        upvotedByCurrentCustomer:'',
+        downvotedByCurrentCustomer:''
+    }]);
     const [product, setProduct] = useState({
         id: '',
         name: '',
@@ -29,8 +46,8 @@ export function DetailProduct() {
     };
     const decreaseClick = () => {
         if (count>0){
-        const newValue = count - 1;
-        setCount(newValue);
+            const newValue = count - 1;
+            setCount(newValue);
         }
     };
 
@@ -38,7 +55,14 @@ export function DetailProduct() {
         axios.get(`http://localhost:8080/api/v1/products/detail/${id}`).then((response) => {
             setProduct(response.data)
         });
-    }, []);
+    },[]);
+
+    useEffect(() => {
+        axios.get(`http://localhost:8080/api/v1/reviews/${id}`).then((resp) =>{
+            console.log("reviews: " + resp)
+            setReviews(resp.data)
+        })
+    },[]);
 
     const addItem = () =>{
         const user = JSON.parse(sessionStorage.getItem('user'))
@@ -118,11 +142,39 @@ export function DetailProduct() {
                     <div style={{ paddingLeft:'100px',paddingTop: '70px', display: 'flex', alignItems: 'center' }}>
                         <Link to={'/'} style={{ color: 'black', marginRight: '20px', paddingRight: '20px', borderRight: '2px solid black' }}><h5>Description</h5></Link>
                         <Link to={'/'} style={{ color: 'black', marginRight: '20px', paddingRight: '20px', borderRight: '2px solid black' }}><h5>Information</h5></Link>
-                        <Link to={'/'} style={{ color: 'black' }}><h5>Reviews</h5></Link>
+                        <Link to={''} style={{ color: 'black' }} onClick={handleLinkClick}><h5>Reviews</h5></Link>
+                    </div>
+                    <div style={{ marginTop:'50px' }} className={showReview ? "review-product" : "review-product hidden"}>
+                        <h2 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '20px',paddingLeft:'20px' }}>Product Reviews</h2>
+                        {reviews.map((review) => (
+                            <div className={'row'}>
+                                <div className="avatar-customer" style={{ paddingLeft: "20px" }}>
+                                    <img
+                                        src={'https://static.antoree.com/avatar.png'}
+                                        alt=""
+                                        style={{ height: "50px", width: "50px", borderRadius: "50px", marginRight: '10px' }}
+                                    />
+                                </div>
+                                <div className="content-customer">
+                                    <span style={{ fontWeight: 'bold' }}>{review.customer.lastName}</span>
+                                    <div>
+                                        <Rating name="read-only" value={review.rating} readOnly />
+                                    </div>
+                                    <div>
+                                        <span style={{ opacity: '0.7' }}> {review.reviewTime}</span>
+                                    </div>
+                                    <div style={{ marginTop: '5px' }}>
+                                        <span> {review.comment}</span> <br/>
+                                        <hr/>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
-                <CustomerFooter/>
             </div>
+            <CustomerFooter/>
         </>
     )
 }
+
