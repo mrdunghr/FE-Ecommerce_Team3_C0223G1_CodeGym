@@ -3,9 +3,9 @@ import "./DetailProduct.css"
 import {Link, useNavigate, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import {CustomerFooter} from "../../../components/customer/footer";
 import Rating from '@mui/material/Rating';
 import Swal from "sweetalert2";
+import {Footer} from "../../../components/admin/footer";
 export function DetailProduct() {
 
 
@@ -162,34 +162,38 @@ export function DetailProduct() {
                         <Link to={''} style={{ color: 'black' }} onClick={handleLinkClick}><h5>Reviews</h5></Link>
 
                     </div>
-                    <div style={{ marginTop:'50px',padding:'20px'}} className={showReview ? "review-product" : "review-product hidden"}>
-                        <div style={{fontSize:'18px',fontWeight:'bold',padding:'20px', backgroundColor:"rgba(0,0,0,.02)",borderRadius:'10px'}}>
+                    <div style={{ marginTop: '50px', padding: '20px' }} className={showReview ? "review-product" : "review-product hidden"}>
+                        <div style={{ fontSize: '18px', fontWeight: 'bold', padding: '20px', backgroundColor: "rgba(0,0,0,.02)", borderRadius: '10px' }}>
                             PRODUCT REVIEWS
                         </div>
-                        {reviews.map((review) => (
-                            <div className={'row'}>
-                                <div className="avatar-customer" style={{ padding: "20px" }}>
-                                    <img
-                                        src='/image/avatar/avatar-s-1.png'
-                                        alt=""
-                                        style={{ height: "50px", width: "50px", borderRadius: "50px", marginRight: '10px' }}
-                                    />
+                        {reviews.length === 0 ? (
+                            <span style={{ fontSize:'18px',padding: "40px", textAlign: "center", display: "block" }}>There are no reviews for this product!</span>
+                        ) : (
+                            reviews.map((review) => (
+                                <div className={'row'} key={review.id}> {/* Thêm key cho mỗi đánh giá */}
+                                    <div className="avatar-customer" style={{ padding: "20px" }}>
+                                        <img
+                                            src='/image/avatar/avatar-s-1.png'
+                                            alt=""
+                                            style={{ height: "50px", width: "50px", borderRadius: "50px", marginRight: '10px' }}
+                                        />
+                                    </div>
+                                    <div className="content-customer" style={{ padding: "20px" }}>
+                                        <span style={{ fontWeight: 'bold' }}>{review.customer.lastName}</span>
+                                        <div>
+                                            <Rating name="read-only" value={review.rating} readOnly />
+                                        </div>
+                                        <div>
+                                            <span style={{ opacity: '0.7' }}> {review.reviewTime.substring(11, 19)} {review.reviewTime.substring(0, 10)}</span>
+                                        </div>
+                                        <div style={{ marginTop: '5px' }}>
+                                            <span> {review.comment}</span> <br />
+                                            <hr />
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="content-customer"  style={{ padding: "20px" }}>
-                                    <span style={{ fontWeight: 'bold' }}>{review.customer.lastName}</span>
-                                    <div>
-                                        <Rating name="read-only" value={review.rating} readOnly />
-                                    </div>
-                                    <div>
-                                        <span style={{ opacity: '0.7' }}> {review.reviewTime.substring(11,19)} {review.reviewTime.substring(0,10)}</span>
-                                    </div>
-                                    <div style={{ marginTop: '5px' }}>
-                                        <span> {review.comment}</span> <br/>
-                                        <hr/>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
+                            ))
+                        )}
                     </div>
                     <div className={showDescription ? "review-description" : "review-description hidden-description"} style={{padding:'20px',marginTop:'50px'}}>
                         <div style={{fontSize:'18px',fontWeight:'bold',padding:'20px', backgroundColor:"rgba(0,0,0,.02)",borderRadius:'10px'}}>
@@ -201,7 +205,7 @@ export function DetailProduct() {
                     </div>
                 </div>
             </div>
-            <CustomerFooter/>
+            <Footer/>
         </>
     )
 }

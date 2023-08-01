@@ -1,9 +1,9 @@
 import CustomerHeader from "../../../components/customer/header";
 import "./category.css"
-import {CustomerFooter} from "../../../components/customer/footer";
 import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
+import {Footer} from "../../../components/admin/footer";
 
 export const Category = () =>{
     const {id} = useParams()
@@ -140,7 +140,7 @@ export const Category = () =>{
                     </div>
                 </div>
                 <div id={'customer-footer'}>
-                    <CustomerFooter></CustomerFooter>
+                    <Footer></Footer>
                 </div>
             </div>
         </>

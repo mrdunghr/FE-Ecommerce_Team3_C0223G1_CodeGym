@@ -1,7 +1,6 @@
 import CustomerHeader from "../../../components/customer/header";
 import "./productManager.css"
 import {Link, useNavigate} from "react-router-dom";
-import {CustomerFooter} from "../../../components/customer/footer";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import BlockIcon from '@mui/icons-material/Block';

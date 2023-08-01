@@ -4,7 +4,8 @@ import CustomerHeader from "../../../components/customer/header";
 import "./cart.css"
 import axios from "axios";
 import Swal from "sweetalert2";
-import {CustomerFooter} from "../../../components/customer/footer";
+import {Footer} from "../../../components/admin/footer";
+
 export const CustomerCart = () =>{
 
     const user = (JSON.parse(sessionStorage.getItem('user')))
@@ -50,7 +51,7 @@ export const CustomerCart = () =>{
                     <Outlet></Outlet>
                 </div>
                 <div id={'cart-footer'}>
-                    <CustomerFooter></CustomerFooter>
+                    <Footer></Footer>
                 </div>
             </div>
         </>
