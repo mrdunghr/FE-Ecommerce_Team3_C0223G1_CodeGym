@@ -57,12 +57,12 @@ export function DetailProduct() {
         });
     },[]);
 
-    useEffect(() => {
-        axios.get(`http://localhost:8080/api/v1/reviews/${id}`).then((resp) =>{
-            console.log("reviews: " + resp)
-            setReviews(resp.data)
-        })
-    },[]);
+    // useEffect(() => {
+    //     axios.get(`http://localhost:8080/api/v1/reviews/${id}`).then((resp) =>{
+    //         console.log("reviews: " + resp)
+    //         setReviews(resp.data)
+    //     })
+    // },[]);
 
     const addItem = () =>{
         const user = JSON.parse(sessionStorage.getItem('user'))
@@ -88,12 +88,15 @@ export function DetailProduct() {
             alert('Adding successful!')
         })
     }
-    const viewImage = (src) =>{
-        Swal.fire({
-            html : "<img src='https://hongngochospital.vn/wp-content/uploads/2020/02/tra-da-2.jpg'></img>"
-        })
+    function MySweetAlert(ok) {
+        return (
+            <Swal
+                title="Ảnh của tôi"
+                html={<img src={ok} alt="Ảnh của tôi" />}
+                confirmButtonText="Đóng"
+            />
+        );
     }
-
     return (
         <>
             <div id={"display-detail"} style={{paddingBottom:'100px'}}>
@@ -103,8 +106,8 @@ export function DetailProduct() {
                 <div className="container" style={{paddingTop:"50px"}}>
                     <div className="row">
                         <div className="col-6" style={{textAlign: "center"}}>
-                            {product.mainImage === ".png" ? <img  src={'/image/modern-teaching-concept-P7BTJU7.jpg'} width={'500px'} height={"420px"} onClick={e => viewImage("/image/modern-teaching-concept-P7BTJU7.jpg")}></img> :
-                                <img onClick={(e) => viewImage(product.mainImage)} src={product.mainImage} alt="" width={'500px'} height={"420px"}/>}
+                            {product.mainImage === ".png" ? <img  src={'/image/modern-teaching-concept-P7BTJU7.jpg'} width={'500px'} height={"420px"} onClick={e => MySweetAlert("/image/modern-teaching-concept-P7BTJU7.jpg")}></img> :
+                                <img onClick={(e) => MySweetAlert(product.mainImage)} src={product.mainImage} alt="" width={'500px'} height={"420px"}/>}
                         </div>
                         <div className="col-6">
                             <h4 style={{paddingBottom:'10px'}}>{product.name}</h4>
@@ -141,13 +144,13 @@ export function DetailProduct() {
                                 <span style={{height: '32px', border: '1px solid #adabac', width: '70px', display: 'inline-block', textAlign: "center", lineHeight: '30px'}}>{count}</span>
                                 <button onClick={increaseClick} style={{border: 'none',width: '32px', height: '32px'}}>+</button>
                             </div>
-                            <button disabled={product.enabled ? false : true} onClick={addItem} style={{marginRight:'20px',border: 'none',fontSize:'18px',width:'250px',height:'50px',backgroundColor:'#fe5502',color:'white', marginTop : "45px"}}><i className="fa fa-shopping-cart" style={{color:'white'}} ></i> ADD TO CART</button>
+                            <button disabled={!product.enabled} onClick={addItem} style={{marginRight:'20px',border: 'none',fontSize:'18px',width:'250px',height:'50px',backgroundColor:'#fe5502',color:'white', marginTop : "45px"}}><i className="fa fa-shopping-cart" style={{color:'white'}} ></i> ADD TO CART</button>
                         </div>
                     </div>
                     <div style={{ paddingLeft:'100px',paddingTop: '70px', display: 'flex', alignItems: 'center' }}>
                         <Link to={'/'} style={{ color: 'black', marginRight: '20px', paddingRight: '20px', borderRight: '2px solid black' }}><h5>Description</h5></Link>
                         <Link to={'/'} style={{ color: 'black', marginRight: '20px', paddingRight: '20px', borderRight: '2px solid black' }}><h5>Information</h5></Link>
-                        <Link to={''} style={{ color: 'black' }} onClick={handleLinkClick}><h5>Reviews</h5></Link>
+                        <Link style={{ color: 'black' }} onClick={handleLinkClick}><h5>Reviews</h5></Link>
                     </div>
                     <div style={{ marginTop:'50px' }} className={showReview ? "review-product" : "review-product hidden"}>
                         <h2 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '20px',paddingLeft:'20px' }}>Product Reviews</h2>

@@ -1,8 +1,6 @@
 import {useEffect, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import LogoutIcon from '@mui/icons-material/Logout';
 import "./customerHome.css"
 import CustomerHeader from "../../../components/customer/header";
 
@@ -46,6 +44,9 @@ export const HomePortal = () =>{
                     <CustomerHeader></CustomerHeader>
                 </div>
                 <div id={'main-home'}>
+                    <div id={'banner'}>
+                        <img src="/image/Thiet_ke_chua_co_ten.png" alt=""/>
+                    </div>
                     <div id={'categories-box'}>
                         <h4 style={{textIndent : "10px"}}>Categories</h4>
                         {categories.map((item, index) => (index <= 19 ?
