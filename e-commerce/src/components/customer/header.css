@@ -101,7 +101,7 @@ body{
     background: white;
     border: 0.5px solid black;
 }
-#main-navbar button{
+#search-btn1{
     height: 30px;
     background: darkorange;
     color: white;

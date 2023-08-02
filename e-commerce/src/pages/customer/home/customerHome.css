@@ -53,6 +53,7 @@
     height: 150px;
     display: flex;
     flex-direction: column;
+
 }
 .categories:hover img{
     width: 90%;
