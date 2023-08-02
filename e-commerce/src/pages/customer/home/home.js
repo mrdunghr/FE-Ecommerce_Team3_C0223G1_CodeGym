@@ -29,7 +29,7 @@ export const HomePortal = () =>{
             setProducts(res.data)
         })
         if(user !== null){
-            axios.get('http://localhost:8080/api/v1/customer-order/' + user.id).then((res) => {
+            axios.get('http://localhost:8080/api/v1/order-details/' + user.id).then((res) => {
                 console.log(res.data)
                 setOrders(res.data)
                 sessionStorage.setItem('orders', JSON.stringify(res.data))
@@ -50,14 +50,14 @@ export const HomePortal = () =>{
                     <div id={'categories-box'}>
                         <h4 style={{textIndent : "10px"}}>Categories</h4>
                         {categories.map((item, index) => (index <= 19 ?
-                            <div className={'categories'}>
+                            <Link to={'/category/' + item.id}><div className={'categories'}>
                                 <div className={'categories-image'}>
                                     <Link to={'/category/' +item.id}><img src={item.image === ".png" ? "/image/modern-teaching-concept-P7BTJU7.jpg" :"/image/categories/"+item.image} alt=""/></Link>
                                 </div>
                                 <div className={'categories-name'}>
                                     <Link to={'/category/' +item.id}>{item.name.length > 15 ? item.name.substring(0, 10) + "..." : item.name }</Link>
                                 </div>
-                            </div>
+                            </div></Link>
                                 : null
                         ))}
                     </div>

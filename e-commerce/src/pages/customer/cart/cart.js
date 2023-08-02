@@ -15,7 +15,7 @@ export const CustomerCart = () =>{
         if (JSON.parse(sessionStorage.getItem('user')) === null){
             navigate('/login')
         }else {
-            axios.get('http://localhost:8080/api/v1/cart/view/' + user.id).then((res) =>{
+            axios.get('http://localhost:8080/api/v1/cart-item/view/' + user.id).then((res) =>{
             })
         }
     }, [status])
@@ -34,7 +34,7 @@ export const CustomerCart = () =>{
                         <div id={'customer-info'}>
                             <Link to={''} className={'profile-tab'}>Your cart</Link>
                             <Link to={'orders'} className={'profile-tab'}>Your orders</Link>
-                            <Link className={'profile-tab'}>Payment history</Link>
+                            <Link to={'payment'} className={'profile-tab'}>Payment history</Link>
                         </div>
                     </div>
                 </div>
@@ -55,16 +55,17 @@ export const Cart = () =>{
     const [cartItems, setCartItems] = useState([])
     const [updated, setUpdated] = useState(false)
     const [checked, setChecked] = useState("unchecked")
+    const status = useSelector(state => state.update)
     useEffect(() => {
         if(user === null){
             navigate('/login')
         }else{
-            axios.get('http://localhost:8080/api/v1/cart/view/' + user.id).then((res) =>{
+            axios.get('http://localhost:8080/api/v1/cart-item/view/' + user.id).then((res) =>{
                 setCartItems(res.data)
 
             })
         }
-    }, [updated])
+    }, [updated, status])
     const buildUp = (item, action) =>{
         const rolling = {
             id : item.id,
@@ -101,7 +102,7 @@ export const Cart = () =>{
         changeStatusInCart(rolling)
     }
     const changeStatusInCart = (item) =>{
-        axios.put('http://localhost:8080/api/v1/cart/checked-item', item).then((res) => {
+        axios.put('http://localhost:8080/api/v1/cart-item/checked-item', item).then((res) => {
             if (updated){
                 setUpdated(false)
             }else{
@@ -111,7 +112,7 @@ export const Cart = () =>{
     }
     const increaseButton = (item) =>{
         console.log(item)
-        axios.put('http://localhost:8080/api/v1/cart/update-quantities/increase', item).then((res) =>{
+        axios.put('http://localhost:8080/api/v1/cart-item/update-quantities/increase', item).then((res) =>{
             if(updated){
                 setUpdated(false)
             }else{
@@ -124,7 +125,7 @@ export const Cart = () =>{
         if(item.quantity === 0){
             alert("Can't decrease anymore!")
         }else{
-        axios.put('http://localhost:8080/api/v1/cart/update-quantities/decrease', item).then((res) =>{
+        axios.put('http://localhost:8080/api/v1/cart-item/update-quantities/decrease', item).then((res) =>{
             if(updated){
                 setUpdated(false)
             }else{
@@ -140,7 +141,7 @@ export const Cart = () =>{
                 showCancelButton : true
             }).then(res => {
                 if(res.isConfirmed){
-                    axios.post('http://localhost:8080/payment/create-order/' + user.id).then(res => {
+                    axios.post('http://localhost:8080/api/v1/payment/create-order/' + user.id).then(res => {
                         Swal.fire("Confirm success! The order will now in shop's orders queue")
                         if(updated){
                             setUpdated(false)
@@ -176,7 +177,7 @@ export const Cart = () =>{
         await callforchecked(checked)
     }
     const callforchecked = (checked) =>{
-        axios.put('http://localhost:8080/api/v1/cart/checked-all-item/' + checked  + "/" + user.id ).then((res) => {
+        axios.put('http://localhost:8080/api/v1/cart-item/checked-all-item/' + checked  + "/" + user.id ).then((res) => {
             if(updated){
                 setUpdated(false)
             }else{
@@ -190,7 +191,7 @@ export const Cart = () =>{
             title : "Are you sure you want to remove this product?"
         }).then(res =>{
             if(res.isConfirmed){
-                axios.delete('http://localhost:8080/api/v1/cart/remove-item/' + id).then(res =>{
+                axios.delete('http://localhost:8080/api/v1/cart-item/remove-item/' + id).then(res =>{
                     Swal.fire("Remove success!")
                     if(updated){
                         setUpdated(false)
@@ -209,20 +210,20 @@ export const Cart = () =>{
                     <div id={'cart-header'}>
                         <div id={'first-cart-header'}>
                             <input type="checkbox" onChange={handleAllcheckboxes}/>
-                             <span>Product</span>
+                             <b>Product</b>
                         </div>
                         <div id={'second-cart-header'}>
                             <div className={'second-cart-header-items'}>
-                                <span>Price</span>
+                                <b>Price</b>
                             </div>
                             <div className={'second-cart-header-items'}>
-                                <span>Quantity</span>
+                                <b>Quantity</b>
                             </div>
                             <div className={'second-cart-header-items'}>
-                                <span>Total</span>
+                                <b>Total</b>
                             </div>
                             <div className={'second-cart-header-items'}>
-                                <span>Action</span>
+                                <b>Action</b>
                             </div>
                         </div>
                     </div>

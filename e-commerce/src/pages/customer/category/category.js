@@ -4,6 +4,7 @@ import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {Footer} from "../../../components/admin/footer";
+import {useSelector} from "react-redux";
 
 export const Category = () =>{
     const {id} = useParams()
@@ -15,17 +16,14 @@ export const Category = () =>{
     const [discount, setDiscount] = useState()
     const [maxRange, setMaxRange]  = useState(0)
     const [minRange, setMinRange] = useState(0)
-    console.log(maxRange)
-
+    const status = useSelector(state => state.update)
     useEffect(() =>{
         axios.get(`http://localhost:8080/api/v1/products/show-by-category/${id}?list=true`).then((res) => {
-            console.log(res)
             setProducts(res.data)
         }).catch(errors =>{
-            console.log(errors)
             setProducts(null)
         })
-    }, [name, maxRange, discount])
+    }, [name, maxRange, discount, status])
     const getBiggestPrice = () =>{
         let biggestPrice = 0;
         if (products !== null){
@@ -117,7 +115,7 @@ export const Category = () =>{
                                 }
                                 return true
                             }).map(prod => (
-                                <div className={'product'}>
+                                <Link to={'/product/' + prod.id}><div className={'product'}>
                                     <div className={'lock-discount'}>
                                         <div className={'product-cost'}>
                                             {prod.discountPercent}%
@@ -134,7 +132,7 @@ export const Category = () =>{
                                         <span className={'old-price'}>${prod.price}</span>
                                         <span className={'new-price'}>${prod.price - (prod.price * prod.discountPercent/100)}</span>
                                     </div>
-                                </div>
+                                </div></Link>
                             ))}
                         </div>
                     </div>

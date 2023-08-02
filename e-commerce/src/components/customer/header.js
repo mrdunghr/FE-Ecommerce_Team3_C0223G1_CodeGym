@@ -11,7 +11,7 @@ import {useDispatch} from "react-redux";
 
 
 
-const updateStatus = createAction('update')
+const updateStatus = createAction("update")
 export default function CustomerHeader(){
     const user = JSON.parse(sessionStorage.getItem('user'))
     const navigate = useNavigate()
@@ -22,8 +22,8 @@ export default function CustomerHeader(){
         navigate('/')
     }
     const [search, setSearch] = useState()
-    console.log(search)
     const searchSomething = () =>{
+        dispatch(updateStatus())
         navigate('/product/search/' + search)
     }
 
