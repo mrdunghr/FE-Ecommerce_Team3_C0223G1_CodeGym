@@ -34,7 +34,7 @@ export const CustomerCart = () =>{
                         <div id={'customer-info'}>
                             <Link to={''} className={'profile-tab'}>Your cart</Link>
                             <Link to={'orders'} className={'profile-tab'}>Your orders</Link>
-                            <Link className={'profile-tab'}>Payment history</Link>
+                            <Link to={'payment'} className={'profile-tab'}>Payment history</Link>
                         </div>
                     </div>
                 </div>
@@ -210,20 +210,20 @@ export const Cart = () =>{
                     <div id={'cart-header'}>
                         <div id={'first-cart-header'}>
                             <input type="checkbox" onChange={handleAllcheckboxes}/>
-                             <span>Product</span>
+                             <b>Product</b>
                         </div>
                         <div id={'second-cart-header'}>
                             <div className={'second-cart-header-items'}>
-                                <span>Price</span>
+                                <b>Price</b>
                             </div>
                             <div className={'second-cart-header-items'}>
-                                <span>Quantity</span>
+                                <b>Quantity</b>
                             </div>
                             <div className={'second-cart-header-items'}>
-                                <span>Total</span>
+                                <b>Total</b>
                             </div>
                             <div className={'second-cart-header-items'}>
-                                <span>Action</span>
+                                <b>Action</b>
                             </div>
                         </div>
                     </div>

@@ -115,7 +115,7 @@ export const Category = () =>{
                                 }
                                 return true
                             }).map(prod => (
-                                <div className={'product'}>
+                                <Link to={'/product/' + prod.id}><div className={'product'}>
                                     <div className={'lock-discount'}>
                                         <div className={'product-cost'}>
                                             {prod.discountPercent}%
@@ -132,7 +132,7 @@ export const Category = () =>{
                                         <span className={'old-price'}>${prod.price}</span>
                                         <span className={'new-price'}>${prod.price - (prod.price * prod.discountPercent/100)}</span>
                                     </div>
-                                </div>
+                                </div></Link>
                             ))}
                         </div>
                     </div>

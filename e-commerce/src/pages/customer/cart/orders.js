@@ -56,6 +56,7 @@ export const CustomerOrders = () => {
     }
     return(
         <div id={'order-display'}>
+            <h4 style={{textAlign : "left", textIndent : "20px"}}>Your Order</h4>
             <div id={'main-order-header'}>
                 <div className={'product-name-image'}>
                     <b>Product</b>
@@ -87,7 +88,7 @@ export const CustomerOrders = () => {
                             </div>
                             <div className={'main-order-header-items'}>
                                 {odDetails.status === "NEW" ?
-                                    <div className={'order-status'} style={{background : odDetails.status === "NEW" ? "green" : "blue"}}>{odDetails.status === "NEW" ? "Waiting" : "Paid"}</div>
+                                    <div className={'order-status'} style={{background : odDetails.status === "NEW" ? "salmon" : "blue"}}>{odDetails.status === "NEW" ? "Waiting" : "Paid"}</div>
                                     : <>
                                         <button onClick={() => paidOrder(odDetails)} className={'confirm-btn'}>Paid</button>
                                         <button onClick={() => returnOrder(odDetails)} className={'cancel-btn'}>Return</button>
