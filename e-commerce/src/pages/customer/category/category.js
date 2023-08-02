@@ -23,7 +23,7 @@ export const Category = () =>{
         }).catch(errors =>{
             setProducts(null)
         })
-    }, [name, maxRange, discount, status])
+    }, [name, maxRange, discount])
     const getBiggestPrice = () =>{
         let biggestPrice = 0;
         if (products !== null){

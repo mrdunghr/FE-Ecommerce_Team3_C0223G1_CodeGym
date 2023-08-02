@@ -3,8 +3,28 @@ import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
 import "./customerHome.css"
 import CustomerHeader from "../../../components/customer/header";
+import {Footer} from "../../../components/admin/footer";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 export const HomePortal = () =>{
+    const responsive = {
+        desktop: {
+            breakpoint: { max: 3000, min: 1024 },
+            items: 7,
+            slidesToSlide: 5 // optional, default to 1.
+        },
+        tablet: {
+            breakpoint: { max: 1024, min: 464 },
+            items: 2,
+            slidesToSlide: 2 // optional, default to 1.
+        },
+        mobile: {
+            breakpoint: { max: 464, min: 0 },
+            items: 1,
+            slidesToSlide: 1 // optional, default to 1.
+        }
+    };
     const user = JSON.parse(sessionStorage.getItem('user'))
     console.log(user)
     const [bestSellerList, setBestSellerList] = useState([])
@@ -86,6 +106,12 @@ export const HomePortal = () =>{
                     </div>
                     <div id={'discount-product'}>
                         <h4 style={{textIndent : "10px"}}>Most discount products</h4>
+                        <Carousel
+                            arrows={true}
+                            infinite={true}
+                            autoPlay={true}
+                            autoPlaySpeed={2000}
+                            responsive={responsive}>
                         {discountProds.map(item => (
                             <Link to={'/product/' + item.id}><div className={'discount-product'}>
                                 <div className={'discount-product-image'}>
@@ -105,6 +131,7 @@ export const HomePortal = () =>{
                                 </div></Link>
                             </div></Link>
                         ))}
+                        </Carousel>
                     </div>
                     <div id={'all-product'}>
                         <h4>Suggest product</h4>
@@ -129,6 +156,7 @@ export const HomePortal = () =>{
                         ))}
                     </div>
                 </div>
+                <Footer/>
             </div>
         </>
     )
