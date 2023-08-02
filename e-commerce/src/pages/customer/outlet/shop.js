@@ -9,6 +9,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import KeyIcon from '@mui/icons-material/Key';
 import {getDownloadURL, getStorage, ref, uploadBytes} from "firebase/storage";
 import app from "../../../firebase";
+import {useDispatch, useSelector} from "react-redux";
  export const Shop = () =>{
     const [shops, setShops] = useState([])
      const user = JSON.parse(sessionStorage.getItem('user'))
@@ -16,6 +17,7 @@ import app from "../../../firebase";
      const [page, setPage] = useState(0)
      const [update, setUpdate] = useState(false)
      const [search, setSearch] = useState('')
+     const status = useSelector(state => state.update)
      useEffect(() => {
          if(user === null){
               navigate('/login')
@@ -23,9 +25,9 @@ import app from "../../../firebase";
          axios.get("http://localhost:8080/api/v1/shop/" + user.id + "?page=" +page).then((res) => {
              console.log(res.data.content)
              setShops(res.data.content)
-
+             sessionStorage.setItem('shop', JSON.stringify(res.data.content))
          })}
-     }, [page, update, search])
+     }, [page, update, search, status])
 
      const disableStatusShop = (id) => {
         Swal.fire({

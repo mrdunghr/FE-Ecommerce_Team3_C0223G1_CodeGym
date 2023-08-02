@@ -1,7 +1,6 @@
 import CustomerHeader from "../../../components/customer/header";
 import "./productManager.css"
 import {Link, useNavigate} from "react-router-dom";
-import {CustomerFooter} from "../../../components/customer/footer";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import BlockIcon from '@mui/icons-material/Block';
@@ -82,7 +81,6 @@ export const ProductManager= () =>{
         <>
             <div id={'product-display'}>
                 <div id={'product-main'}>
-                    <p>Manage Products</p>
                     <Link to={'/product/add'}><AddCircleOutlineIcon></AddCircleOutlineIcon> Add new Product</Link>
                     <div id={'product-container'}>
                          <input type="text" placeholder={'Search'} onChange={(e) => setSearch(e.target.value)}/>
@@ -92,13 +90,13 @@ export const ProductManager= () =>{
                                     <th>Image</th>
                                     <th>Name</th>
                                     <th>Brand</th>
-                                     <th>Category</th>
+                                    <th>Category</th>
                                     <th>Shop</th>
+                                    <th>Quantity</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
-                                {products.filter(item => item.name.toLowerCase().includes(search) || item.shop.name.toLowerCase().includes(search) ||
-                                    item.category.name.toLowerCase().includes(search)
+                                {products.filter(item => item.name.toLowerCase().includes(search) || item.shop.name.toLowerCase().includes(search)
                                 ).map(p => (
                                     <tr>
                                         <td>{p.id}</td>
@@ -107,6 +105,7 @@ export const ProductManager= () =>{
                                         <td>{p.brand === null ? "None" : p.brand.logo}</td>
                                         <td>{p.category.name}</td>
                                         <td>{p.shop.name}</td>
+                                        <td>{p.quantity}</td>
                                         <td>{p.enabled ? <p className={'active-product'} style={{fontSize : "15px"}}>Active</p> : <p className={'inactive-product'} style={{fontSize : "15px"}}>Inactive</p>}</td>
                                         <td>{p.enabled ? <BlockIcon onClick={() => inActiveProduct(p.id)} className={'block-icon product-icon'}/> : <KeyIcon className={'product-icon key-icon'} onClick={() => ActiveProduct(p.id)}></KeyIcon>} <Link to={'/product/edit/'+p.id}><EditIcon className={'product-icon'}/></Link></td>
                                     </tr>
@@ -116,9 +115,6 @@ export const ProductManager= () =>{
                         <button onClick={handleNextPage}>Next</button>
                     </div>
 
-                </div>
-                <div id={'footer-product-manager'}>
-                    <CustomerFooter></CustomerFooter>
                 </div>
             </div>
         </>

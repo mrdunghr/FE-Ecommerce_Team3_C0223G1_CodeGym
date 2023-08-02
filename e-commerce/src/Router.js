@@ -1,6 +1,6 @@
 import {Route, Routes} from "react-router-dom";
 import React from "react";
-import Login from "./pages/login";
+import Login from "./pages/Login";
 import {CustomerRegister} from "./pages/register";
 import {CreateShop, Shop} from "./pages/customer/outlet/shop";
 import CustomerProfile from "./pages/customer/customerProfile";
@@ -13,6 +13,7 @@ import {SearchProduct} from "./pages/customer/product/Search";
 import {Cart, CustomerCart} from "./pages/customer/cart/cart";
 import {HomePortal} from "./pages/customer/home/home";
 import {OrdersManage} from "./pages/customer/outlet/orders";
+import {CustomerOrders} from "./pages/customer/cart/orders";
 
 
 export default function RouterHome(){
@@ -34,6 +35,7 @@ export default function RouterHome(){
                 <Route path={'/product/edit/:id'} element={<EditProduct></EditProduct>}></Route>
                 <Route path={'/customer/cart'} element={<CustomerCart></CustomerCart>}>
                     <Route path={''} element={<Cart></Cart>}></Route>
+                    <Route path={'orders'} element={<CustomerOrders></CustomerOrders>}></Route>
                 </Route>
                 <Route path={'/product/search/:search'} element={<SearchProduct></SearchProduct>}></Route>
             </Routes>

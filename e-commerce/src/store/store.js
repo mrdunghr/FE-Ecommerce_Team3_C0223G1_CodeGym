@@ -12,10 +12,19 @@ const userReducer = (state = initialState, action) => {
             return state;
     }
 };
+const updateReducer = (state  = false, action) => {
+    switch(action.type){
+        case "update" :
+            return !state.update
+        default:
+            return state
+    }
+}
 
 export const store = configureStore({
     reducer: {
         user: userReducer,
+        update : updateReducer
     },
 });
 

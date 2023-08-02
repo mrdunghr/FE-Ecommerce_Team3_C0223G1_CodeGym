@@ -1,11 +1,11 @@
 import {Link, useNavigate} from "react-router-dom";
 import {FaPhoneAlt, FaStar} from 'react-icons/fa';
 import "./home/customerHome.css"
-import {CustomerFooter} from "../../components/customer/footer";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import LogoutIcon from '@mui/icons-material/Logout';
+import {Footer} from "../../components/admin/footer";
 
 
 const StarIcon = () => <FaStar style={{ marginRight: '10px', color: 'yellow' }} />;
@@ -300,7 +300,7 @@ export function CustomerHome() {
                     </div>
                 </div>
                 <div id={'customer-footer'}>
-                    <CustomerFooter></CustomerFooter>
+                    <Footer/>
                 </div>
             </div>
         </>

@@ -1,8 +1,48 @@
 import "./orders.css"
+import {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
+import axios from "axios";
 
 export const OrdersManage = () =>{
+    const shop = JSON.parse(sessionStorage.getItem('shop'))
+    const user = JSON.parse(sessionStorage.getItem('user'))
+    const navigate = useNavigate()
+    const [page, setPage] = useState(0)
+    const [update, setUpdate] = useState(false)
+    const [orderDetails, setOrderDetail] = useState([])
+    useEffect(() => {
+        if(user === null && shop === null){
+            navigate('/login')
+        }else {
+            axios.get('http://localhost:8080/api/v1/order-details/' + shop[0].id).then(res =>{
+                console.log(res)
+                setOrderDetail(res.data)
+            })
+        }
 
-
+    }, [update])
+    const confirmOrder = (id) =>{
+        axios.put('http://localhost:8080/api/v1/customer-order/confirm-order/confirm/' + id).then(res =>{
+            if(update){
+                setUpdate(false)
+            }else{
+                setUpdate(true)
+            }
+        }).catch(res => {
+            alert("The product quantity is not enough, please update more!")
+        })
+    }
+    const cancelOrder = (id) =>{
+        axios.put('http://localhost:8080/api/v1/customer-order/confirm-order/cancel/' + id).then(res =>{
+            if(update){
+                setUpdate(false)
+            }else{
+                setUpdate(true)
+            }
+        }).catch(res => {
+            alert("The product quantity is not enough, please update more!")
+        })
+    }
     return(
         <div id={'order-display'}>
             <div id={'main-order'}>
@@ -19,31 +59,44 @@ export const OrdersManage = () =>{
                     <div className={'order-item'}>
                         <b>Customer</b>
                     </div>
+
                     <div className={'order-action'}>
                         <b>Action</b>
                     </div>
                 </div>
                 <div id={'main-order-main'}>
-                    <div className={'orders'}>
-                        <div className={'order-item-info'}>
-                            <img src="/image/modern-teaching-concept-P7BTJU7.jpg" alt=""/>
-                            <b>This product name</b>
+                    {orderDetails.map(item => (
+                        <div className={'orders'}>
+                            <div className={'order-item-info'}>
+                                <img src={item.product.mainImage === ".png" ? "/image/modern-teaching-concept-P7BTJU7.jpg" : item.product.mainImage} alt=""/>
+                                <b>{item.product.name}</b>
+                            </div>
+                            <div className={'order-item'}>
+                                <b>{item.quantity}</b>
+                            </div>
+                            <div className={'order-item'}>
+                                {/*{item.status === "PAID" ? <div className={'order-status'} style={{background : "green"}}>SUCCESS</div> : <div className={'order-status'} style={{background : item.status === "NEW" ? "salmon" : "blue"}}>{item.status}</div>}*/}
+                                {item.status === "NEW" ? <div className={'order-status'} style={{background : "salmon"}}>{item.status}</div> : null}
+                                {item.status === "PAID" ? <div className={'order-status'} style={{background : "green"}}>SUCCESS</div> : null}
+                                {item.status === "PROCESSING" ? <div className={'order-status'} style={{background : "blue"}}>{item.status}</div> : null}
+                                {item.status === "RETURNED" ? <div className={'order-status'} style={{background : "grey"}}>{item.status}</div> : null}
+                                {item.status === "CANCELLED" ? <div className={'order-status'} style={{background : "red"}}>{item.status}</div> : null}
+                            </div>
+                            <div className={'order-item'}>
+                                <b>{item.customer.firstName}</b>
+                            </div>
+                            <div className={'order-action'}>
+                                {item.status === "NEW" ?
+                                    <>
+                                        <button className={'confirm-btn'} onClick={e => confirmOrder(item.id)}>Confirm</button>
+                                        <button className={'cancel-btn'} onClick={e => cancelOrder(item.id)}>Cancel</button>
+                                    </>
+                                     : null}
+                            </div>
                         </div>
-                        <div className={'order-item'}>
-                            <span>33</span>
-                        </div>
-                        <div className={'order-item'}>
-                            <div className={'order-status'}>New</div>
-                        </div>
-                        <div className={'order-item'}>
-                            <b>Ten tao la</b>
-                        </div>
-                        <div className={'order-action'}>
-                            <button>Confirm</button>
-                            <button>Cancel</button>
-                        </div>
-                    </div>
+                    ))}
                 </div>
+
             </div>
 
         </div>

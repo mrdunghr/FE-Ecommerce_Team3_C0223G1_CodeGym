@@ -3,12 +3,12 @@ import "./customerProfile.css"
 import CustomerHeader from "../../components/customer/header";
 import Dashboard from "../../components/customer/dashboard";
 import {Outlet} from "react-router-dom";
-import {CustomerFooter} from "../../components/customer/footer";
+import {Footer} from "../../components/admin/footer";
 
 export default function CustomerProfile(){
     return(
         <>
-            <div id={'display'}>
+            <div id={'shop-display'}>
                 <div id={'customer-header'}>
                     <CustomerHeader></CustomerHeader>
                 </div>
@@ -19,7 +19,7 @@ export default function CustomerProfile(){
                         <Outlet></Outlet>
                 </div>
                 <div id={'customer-footer'} >
-                    <CustomerFooter></CustomerFooter>
+                    <Footer></Footer>
                 </div>
             </div>
         </>

@@ -4,11 +4,13 @@ import CustomerHeader from "../../../components/customer/header";
 import "./cart.css"
 import axios from "axios";
 import Swal from "sweetalert2";
-export const CustomerCart = () =>{
+import {useSelector} from "react-redux";
+import {Footer} from "../../../components/admin/footer";
 
+export const CustomerCart = () =>{
     const user = (JSON.parse(sessionStorage.getItem('user')))
     const navigate = useNavigate()
-    // const [cartItems, setCartItems] = useState()
+    const status = useSelector(state => state.update)
     useEffect( () => {
         if (JSON.parse(sessionStorage.getItem('user')) === null){
             navigate('/login')
@@ -16,10 +18,10 @@ export const CustomerCart = () =>{
             axios.get('http://localhost:8080/api/v1/cart/view/' + user.id).then((res) =>{
             })
         }
-    }, [])
+    }, [status])
     return(
         <>
-            <div id={'display'}>
+            <div id={'display-cart'}>
                 <div id={'customer-header'}>
                     <CustomerHeader></CustomerHeader>
                 </div>
@@ -27,17 +29,20 @@ export const CustomerCart = () =>{
                     <div id={'profile-box'}>
                         <div id={'profile-image'}>
                             <img src="/image/avatar/avatar-s-2.png" alt=""/>
-                            <h2>{user.firstName}</h2>
+                            <h2>{user === null ? null : user.firstName}</h2>
                         </div>
                         <div id={'customer-info'}>
-                            <Link>Histories</Link>
-                            <Link>Histories</Link>
-                            <Link>Histories</Link>
+                            <Link to={''} className={'profile-tab'}>Your cart</Link>
+                            <Link to={'orders'} className={'profile-tab'}>Your orders</Link>
+                            <Link className={'profile-tab'}>Payment history</Link>
                         </div>
                     </div>
                 </div>
                 <div id={'main-outlet-cart'}>
                     <Outlet></Outlet>
+                </div>
+                <div id={'cart-footer'}>
+                    <Footer></Footer>
                 </div>
             </div>
         </>
@@ -142,6 +147,9 @@ export const Cart = () =>{
                         }else{
                             setUpdated(true)
                         }
+                    }).catch(err => {
+                        Swal.fire("You are paying " + err.response.data.length + " products that have been disabled!")
+                        console.log(err)
                     })
                 }
             })
@@ -173,6 +181,23 @@ export const Cart = () =>{
                 setUpdated(false)
             }else{
                 setUpdated(true)
+            }
+        })
+    }
+    const removeFromCart = (id) =>{
+        Swal.fire({
+            showCancelButton : true,
+            title : "Are you sure you want to remove this product?"
+        }).then(res =>{
+            if(res.isConfirmed){
+                axios.delete('http://localhost:8080/api/v1/cart/remove-item/' + id).then(res =>{
+                    Swal.fire("Remove success!")
+                    if(updated){
+                        setUpdated(false)
+                    }else{
+                        setUpdated(true)
+                    }
+                })
             }
         })
     }
@@ -229,7 +254,7 @@ export const Cart = () =>{
                                     <span>${(item.product.price - (item.product.price * item.product.discountPercent/100)).toFixed(2) * item.quantity}</span>
                                 </div>
                                 <div className={'info-items'}>
-                                    <button>Delete</button>
+                                    <button onClick={() => removeFromCart(item.id)}>Delete</button>
                                 </div>
                             </div>
                         </div>
