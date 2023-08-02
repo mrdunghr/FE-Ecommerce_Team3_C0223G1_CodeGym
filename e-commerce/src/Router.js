@@ -14,6 +14,8 @@ import {Cart, CustomerCart} from "./pages/customer/cart/cart";
 import {HomePortal} from "./pages/customer/home/home";
 import {OrdersManage} from "./pages/customer/outlet/orders";
 import {CustomerOrders} from "./pages/customer/cart/orders";
+import ChangePassword from "./pages/customer/ChangePassword";
+import EditCustomer from "./pages/customer/EditCustomer";
 
 
 export default function RouterHome(){
@@ -28,6 +30,8 @@ export default function RouterHome(){
                     <Route path={'add-shop'} element={<CreateShop></CreateShop>}></Route>
                     <Route path={'product-manager'} element={<ProductManager></ProductManager>}></Route>
                     <Route path={'order-manager'} element={<OrdersManage></OrdersManage>}></Route>
+                    <Route path={'update-customer'} element={<EditCustomer></EditCustomer>}></Route>
+                    <Route path={'change-password'} element={<ChangePassword></ChangePassword>}></Route>
                 </Route>
                 <Route path={'/product/add'} element={<CreateProduct></CreateProduct>}></Route>
                 <Route path={'/category/:id'} element={<Category></Category>}></Route>
