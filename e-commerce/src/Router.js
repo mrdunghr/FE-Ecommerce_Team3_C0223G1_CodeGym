@@ -14,12 +14,10 @@ import {Cart, CustomerCart} from "./pages/customer/cart/cart";
 import {HomePortal} from "./pages/customer/home/home";
 import {OrdersManage} from "./pages/customer/outlet/orders";
 import {CustomerOrders} from "./pages/customer/cart/orders";
-<<<<<<< HEAD
+
 import ChangePassword from "./pages/customer/ChangePassword";
 import EditCustomer from "./pages/customer/EditCustomer";
-=======
 import {PaymentHistory} from "./pages/customer/cart/paymentHistory";
->>>>>>> 3392e5f536e87d7434bec86222dd39e84a09eca1
 
 
 export default function RouterHome(){
