@@ -1,7 +1,5 @@
 import {Route, Routes} from "react-router-dom";
 import React from "react";
-import Login from "./pages/Login";
-import {CustomerRegister} from "./pages/register";
 import {CreateShop, Shop} from "./pages/customer/outlet/shop";
 import CustomerProfile from "./pages/customer/customerProfile";
 import {ProductManager} from "./pages/customer/outlet/productManager";
@@ -14,6 +12,7 @@ import {Cart, CustomerCart} from "./pages/customer/cart/cart";
 import {HomePortal} from "./pages/customer/home/home";
 import {OrdersManage} from "./pages/customer/outlet/orders";
 import {CustomerOrders} from "./pages/customer/cart/orders";
+import {LoginRegister} from "./pages/LoginRegister";
 
 
 export default function RouterHome(){
@@ -21,8 +20,7 @@ export default function RouterHome(){
         <>
             <Routes>
                 <Route path={'/'} element={<HomePortal></HomePortal>}></Route>
-                <Route path={'/login'} element={<Login></Login>}></Route>
-                <Route path={'/register'} element={<CustomerRegister></CustomerRegister>}></Route>
+                <Route path={'/login'} element={<LoginRegister></LoginRegister>}></Route>
                 <Route path={'/customer/profile'} element={<CustomerProfile></CustomerProfile>}>
                     <Route path={''} element={<Shop></Shop>}></Route>
                     <Route path={'add-shop'} element={<CreateShop></CreateShop>}></Route>

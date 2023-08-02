@@ -92,9 +92,9 @@ export const Category = () =>{
                     </div>
                     <div id={'category-main'}>
                         <input type="text" placeholder={'Enter name'} onChange={(e) => setName(e.target.value)}/>
-                        <select name="" id="" onChange={e => {setMaxRange(e.target.value)
+                        <select style={{padding:'6px',marginLeft:'50px'}} name="" id="" onChange={e => {setMaxRange(e.target.value)
                         setMinRange(e.target.value - 25)}}>
-                            <option value=""></option>
+                            <option value="">Enter Price</option>
                             <option value={25}>From 0 to ${(getBiggestPrice() *25/100).toFixed(2)}</option>
                             <option value={50}>From ${(getBiggestPrice() *25/100).toFixed(2)} to ${(getBiggestPrice() *50/100).toFixed(2)}</option>
                             <option value={75}>From ${(getBiggestPrice() *50/100).toFixed(2)} to ${(getBiggestPrice() *75/100).toFixed(2)}</option>
@@ -140,9 +140,7 @@ export const Category = () =>{
                     </div>
                 </div>
             </div>
-            <div id={'customer-footer'}>
                 <Footer/>
-            </div>
         </>
     )
 

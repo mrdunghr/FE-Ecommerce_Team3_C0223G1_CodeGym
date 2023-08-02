@@ -113,7 +113,7 @@ export function DetailProduct() {
                 <div id={"customer-header"}>
                     <CustomerHeader/>
                 </div>
-                <div className="container" style={{paddingTop:"50px"}}>
+                <div className="container-content" style={{paddingTop:"50px"}}>
                     <div className="row">
                         <div className="col-6" style={{textAlign: "center"}}>
                             {product.mainImage === ".png" ? <img src={'/image/modern-teaching-concept-P7BTJU7.jpg'} width={'500px'} height={"420px"} onClick={e => viewImage("/image/modern-teaching-concept-P7BTJU7.jpg")}></img> :
