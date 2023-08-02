@@ -119,8 +119,8 @@ export function DetailProduct() {
                 <div className="container" style={{paddingTop:"50px"}}>
                     <div className="row">
                         <div className="col-6" style={{textAlign: "center"}}>
-                            {product.mainImage === ".png" ? <img src={'/image/modern-teaching-concept-P7BTJU7.jpg'} width={'500px'} height={"420px"} onClick={e => viewImage("/image/modern-teaching-concept-P7BTJU7.jpg")}></img> :
-                                <img onClick={(e) => viewImage(product.mainImage)} src={product.mainImage} alt="" width={'500px'} height={"420px"}/>}
+                            {product.mainImage === ".png" ? <img src={'/image/modern-teaching-concept-P7BTJU7.jpg'} width={'500px'} height={"420px"}></img> :
+                                <img src={product.mainImage} alt="" width={'500px'} height={"420px"}/>}
                         </div>
                         <div className="col-6">
                             <h4 style={{paddingBottom:'10px'}}>{product.name}</h4>
