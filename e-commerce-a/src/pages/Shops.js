@@ -114,7 +114,10 @@ export default function Shops(){
                                 {listShop.map((shops, i) => (
                                     <tr key={shops.id}>
                                         <td className="hideable-column">{shops.id}</td>
-                                        <td className="hideable-column">{shops.image}</td>
+                                        <td className="hideable-column">
+                                            {/*{shops.image}*/}
+                                            <img src={shops.image} style={{width : "100px"}}/>
+                                        </td>
                                         <td className="hideable-column">{shops.name}</td>
                                         <td className="hideable-column">{shops.alias}</td>
                                         <td className="hideable-column">{shops.deliveryAddress}</td>
