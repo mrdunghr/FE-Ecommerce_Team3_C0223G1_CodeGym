@@ -16,7 +16,7 @@ export const Category = () =>{
     const [discount, setDiscount] = useState()
     const [maxRange, setMaxRange]  = useState(0)
     const [minRange, setMinRange] = useState(0)
-
+    const status = useSelector(state => state.update)
     useEffect(() =>{
         axios.get(`http://localhost:8080/api/v1/products/show-by-category/${id}?list=true`).then((res) => {
             setProducts(res.data)
