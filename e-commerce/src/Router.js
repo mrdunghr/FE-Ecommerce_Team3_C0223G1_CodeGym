@@ -14,6 +14,7 @@ import {Cart, CustomerCart} from "./pages/customer/cart/cart";
 import {HomePortal} from "./pages/customer/home/home";
 import {OrdersManage} from "./pages/customer/outlet/orders";
 import {CustomerOrders} from "./pages/customer/cart/orders";
+import {PaymentHistory} from "./pages/customer/cart/paymentHistory";
 
 
 export default function RouterHome(){
@@ -36,6 +37,7 @@ export default function RouterHome(){
                 <Route path={'/customer/cart'} element={<CustomerCart></CustomerCart>}>
                     <Route path={''} element={<Cart></Cart>}></Route>
                     <Route path={'orders'} element={<CustomerOrders></CustomerOrders>}></Route>
+                    <Route path={'payment'} element={<PaymentHistory></PaymentHistory>}></Route>
                 </Route>
                 <Route path={'/product/search/:search'} element={<SearchProduct></SearchProduct>}></Route>
             </Routes>

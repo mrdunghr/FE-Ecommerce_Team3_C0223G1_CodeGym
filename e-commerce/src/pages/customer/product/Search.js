@@ -1,6 +1,6 @@
 import CustomerHeader from "../../../components/customer/header";
 import "../category/category.css"
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {Footer} from "../../../components/admin/footer";
@@ -120,7 +120,7 @@ export const SearchProduct = () =>{
                                     return true
                                 }).map(prod => (
                                     <>
-                                        <div className={'product'}>
+                                        <Link to={'/product/' + prod.id}    ><div className={'product'}>
                                             <div className={'product-cost'}>
                                                 {prod.discountPercent}%
                                             </div>
@@ -146,7 +146,7 @@ export const SearchProduct = () =>{
                                                 )}
                                             </div>
 
-                                        </div>
+                                        </div></Link>
                                     </>
                                 ))}
                             </div>
