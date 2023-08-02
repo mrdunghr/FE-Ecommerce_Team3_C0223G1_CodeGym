@@ -22,7 +22,6 @@ export default function RouterHome(){
             <Routes>
                 <Route path={'/'} element={<HomePortal></HomePortal>}></Route>
                 <Route path={'/login'} element={<LoginRegister></LoginRegister>}></Route>
-                <Route path={'/register'} element={<CustomerRegister></CustomerRegister>}></Route>
                 <Route path={'/customer/profile'} element={<CustomerProfile></CustomerProfile>}>
                     <Route path={''} element={<Shop></Shop>}></Route>
                     <Route path={'add-shop'} element={<CreateShop></CreateShop>}></Route>
