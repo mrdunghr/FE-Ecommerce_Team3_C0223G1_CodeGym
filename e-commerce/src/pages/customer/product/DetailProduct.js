@@ -35,7 +35,7 @@ export function DetailProduct() {
     };
 
     useEffect(() => {
-        axios.get(`http://localhost:8888/api/v1/products/detail/${id}`).then((response) => {
+        axios.get(`http://localhost:8080/api/v1/products/detail/${id}`).then((response) => {
             setProduct(response.data)
         });
     }, []);
@@ -54,7 +54,7 @@ export function DetailProduct() {
         }
     }
     const addItemToCart = (item) =>{
-        axios.post('http://localhost:8888/api/v1/cart/add/' + item.customer.id, item).then(res => {
+        axios.post('http://localhost:8080/api/v1/cart/add/' + item.customer.id, item).then(res => {
             console.log(res)
             alert('Adding successful!')
         })

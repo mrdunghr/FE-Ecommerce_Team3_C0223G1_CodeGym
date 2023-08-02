@@ -60,16 +60,16 @@ export const EditProduct = () =>{
             })
     }, [])
     useEffect(() =>{
-        axios.get('http://localhost:8888/api/v1/shop/' + user.id + "?list=true").then((res) => {
+        axios.get('http://localhost:8080/api/v1/shop/' + user.id + "?list=true").then((res) => {
             setShop(res.data.filter(shop => shop.enabled))
         })
-        axios.get('http://localhost:8888/api/v1/category/all').then((res) =>{
+        axios.get('http://localhost:8080/api/v1/category/all').then((res) =>{
             setCategory(res.data.filter(cate => cate.enabled === true))
         })
-        axios.get('http://localhost:8888/api/v1/brand/all?list=true').then((res) => {
+        axios.get('http://localhost:8080/api/v1/brand/all?list=true').then((res) => {
             setBrand(res.data)
         })
-        axios.get('http://localhost:8888/api/v1/products/detail/' + id).then((res) => {
+        axios.get('http://localhost:8080/api/v1/products/detail/' + id).then((res) => {
             setProduct(res.data)
             setSelectedImage(res.data.mainImage)
         })
@@ -131,7 +131,7 @@ export const EditProduct = () =>{
             onSubmit={(values) =>{
                 values = {...values, mainImage : urlImage}
                 console.log(values)
-                axios.put('http://localhost:8888/api/v1/products/edit/' + id, values).then((res) => {
+                axios.put('http://localhost:8080/api/v1/products/edit/' + id, values).then((res) => {
                     Swal.fire("Edit success!")
                     navigate('/product-manager')
                 }).catch(errors =>{

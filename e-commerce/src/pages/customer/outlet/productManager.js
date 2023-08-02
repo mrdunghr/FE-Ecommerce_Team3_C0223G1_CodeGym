@@ -22,7 +22,7 @@ export const ProductManager= () =>{
         if(user === null){
             navigate('/login')
         }else{
-        axios.get('http://localhost:8888/api/v1/products/customer-list/' + user.id +"?page="+ page).then((res) =>{
+        axios.get('http://localhost:8080/api/v1/products/customer-list/' + user.id +"?page="+ page).then((res) =>{
             console.log(res)
             setProducts(res.data.content)
         })}
@@ -46,7 +46,7 @@ export const ProductManager= () =>{
             showCancelButton : true,
         }).then((res) => {
             if(res.isConfirmed){
-                axios.put('http://localhost:8888/api/v1/products/' + id + "/stop-product-shop").then(res =>{
+                axios.put('http://localhost:8080/api/v1/products/' + id + "/stop-product-shop").then(res =>{
                     if(isUpdated){
                         setIsUpdated(false)
                     }else{
@@ -65,7 +65,7 @@ export const ProductManager= () =>{
             showCancelButton : true,
         }).then((res) => {
             if(res.isConfirmed){
-                axios.put('http://localhost:8888/api/v1/products/' + id + "/open-product-shop").then(res =>{
+                axios.put('http://localhost:8080/api/v1/products/' + id + "/open-product-shop").then(res =>{
                     if(isUpdated){
                         setIsUpdated(false)
                     }else{
