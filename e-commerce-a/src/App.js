@@ -27,6 +27,8 @@ import NotFound from "./components/NotFound";
 import AddBrand from "./pages/brands/AddBrands";
 import EditBrands from "./pages/brands/EditBrands";
 import EditCustomer from "./pages/customer/EditCustomer";
+import MultipleUploadFireBase from "./pages/user/MultipleUploadFireBase";
+import MultipleUploadFireBaseSubmit from "./pages/user/MultipleUploadFireBaseSubmit";
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -86,6 +88,8 @@ function App() {
                             <Route path={"/shipping_rates"} element={<ShippingRates/>}></Route>
                             <Route path={"/orders"} element={<Orders/>}></Route>
                             <Route path={"/reports"} element={<Report/>}></Route>
+
+                            <Route path={"/123"} element={<MultipleUploadFireBaseSubmit/>}></Route>
                         </Route>
                     </Routes>
                     {/*<button onClick={handleLogout}>Logout</button>*/}
