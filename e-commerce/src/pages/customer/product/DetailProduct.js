@@ -119,7 +119,7 @@ export function DetailProduct() {
                 <div className="container" style={{paddingTop:"50px"}}>
                     <div className="row">
                         <div className="col-6" style={{textAlign: "center"}}>
-                            {product.mainImage === ".png" ? <img src={'/image/modern-teaching-concept-P7BTJU7.jpg'} width={'500px'} height={"420px"} ></img> :
+                            {product.mainImage === ".png" ? <img src={'/image/modern-teaching-concept-P7BTJU7.jpg'} width={'500px'} height={"420px"}></img> :
                                 <img src={product.mainImage} alt="" width={'500px'} height={"420px"}/>}
                         </div>
                         <div className="col-6">
