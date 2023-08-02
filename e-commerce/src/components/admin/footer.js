@@ -1,71 +1,32 @@
 import React from 'react';
-import { IonIcon } from '@ionic/react';
 import '@ionic/react/css/core.css';
-import { logoFacebook, logoTwitter, logoLinkedin, logoInstagram } from 'ionicons/icons';
-
 import './footer.css';
 
-const Footer = () => {
+export const Footer = () => {
     return (
-        <footer className="footer">
-            <div className="waves">
-                <div className="wave" id="wave1"></div>
-                <div className="wave" id="wave2"></div>
-                <div className="wave" id="wave3"></div>
-                <div className="wave" id="wave4"></div>
+        <div className="footer">
+            <div className="row social-icons">
+                <a href="#"><i className="fa fa-facebook"></i></a>
+                <a href="#"><i className="fa fa-instagram"></i></a>
+                <a href="#"><i className="fa fa-youtube"></i></a>
+                <a href="#"><i className="fa fa-twitter"></i></a>
             </div>
-            <ul className="social-icon">
-                <li className="social-icon__item">
-                    <a className="social-icon__link" href="#">
-                        <IonIcon icon={logoFacebook} />
-                    </a>
-                </li>
-                <li className="social-icon__item">
-                    <a className="social-icon__link" href="#">
-                        <IonIcon icon={logoTwitter} />
-                    </a>
-                </li>
-                <li className="social-icon__item">
-                    <a className="social-icon__link" href="#">
-                        <IonIcon icon={logoLinkedin} />
-                    </a>
-                </li>
-                <li className="social-icon__item">
-                    <a className="social-icon__link" href="#">
-                        <IonIcon icon={logoInstagram} />
-                    </a>
-                </li>
-            </ul>
-            <ul className="menu">
-                <li className="menu__item">
-                    <a className="menu__link" href="#">
-                        Home
-                    </a>
-                </li>
-                <li className="menu__item">
-                    <a className="menu__link" href="#">
-                        About
-                    </a>
-                </li>
-                <li className="menu__item">
-                    <a className="menu__link" href="#">
-                        Services
-                    </a>
-                </li>
-                <li className="menu__item">
-                    <a className="menu__link" href="#">
-                        Team
-                    </a>
-                </li>
-                <li className="menu__item">
-                    <a className="menu__link" href="#">
-                        Contact
-                    </a>
-                </li>
-            </ul>
-            <p>&copy;{new Date().getFullYear()} Doãn Đại Hiệp - Team | All Rights Reserved</p>
-        </footer>
+
+            <div className="row">
+                <ul>
+                    <li><a href="#">Contact us</a></li>
+                    <li><a href="#">Our Services</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Career</a></li>
+                </ul>
+            </div>
+
+            <div className="row center-text">
+                INFERNO Copyright © 2021 Inferno - All rights reserved || Designed By: Mahesh
+            </div>
+        </div>
     );
 };
 
-export default Footer;
+

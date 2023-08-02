@@ -1,9 +1,9 @@
 import CustomerHeader from "../../../components/customer/header";
 import "../category/category.css"
-import {CustomerFooter} from "../../../components/customer/footer";
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
+import {Footer} from "../../../components/admin/footer";
 
 export const SearchProduct = () =>{
     const {search} = useParams()
@@ -156,7 +156,7 @@ export const SearchProduct = () =>{
                         </div>
                     </div>
                     <div id={'customer-footer'}>
-                        <CustomerFooter></CustomerFooter>
+                        <Footer></Footer>
                     </div>
                 </div>
             </>
