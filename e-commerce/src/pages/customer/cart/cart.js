@@ -55,6 +55,7 @@ export const Cart = () =>{
     const [cartItems, setCartItems] = useState([])
     const [updated, setUpdated] = useState(false)
     const [checked, setChecked] = useState("unchecked")
+    const status = useSelector(state => state.update)
     useEffect(() => {
         if(user === null){
             navigate('/login')
@@ -64,7 +65,7 @@ export const Cart = () =>{
 
             })
         }
-    }, [updated])
+    }, [updated, status])
     const buildUp = (item, action) =>{
         const rolling = {
             id : item.id,

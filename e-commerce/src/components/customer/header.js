@@ -23,7 +23,7 @@ export default function CustomerHeader(){
     }
     const [search, setSearch] = useState()
     const searchSomething = () =>{
-        dispatch(updateStatus)
+        dispatch(updateStatus())
         navigate('/product/search/' + search)
     }
 

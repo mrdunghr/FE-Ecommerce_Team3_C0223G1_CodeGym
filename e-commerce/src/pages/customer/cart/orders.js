@@ -3,11 +3,13 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import {useNavigate} from "react-router-dom";
+import {useSelector} from "react-redux";
 export const CustomerOrders = () => {
     const user = JSON.parse(sessionStorage.getItem('user'))
     const [orders, setOrders] = useState([])
     const [update, setUpdate] = useState(false)
     const navigate = useNavigate()
+    const status = useSelector(state => state.update)
     useEffect(() =>{
         if(user === null){
             navigate('/login')
@@ -17,7 +19,7 @@ export const CustomerOrders = () => {
                 setOrders(res.data)
             })
         }
-    },[update])
+    },[update, status])
     const paidOrder = (od) =>{
         Swal.fire({
             title : "Confirm payment " + od.product.name + "?",

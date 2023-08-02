@@ -15,8 +15,10 @@ const userReducer = (state = initialState, action) => {
 const updateReducer = (state  = false, action) => {
     switch(action.type){
         case "update" :
+            console.log(1)
             return !state
         default:
+            console.log(2)
             return state
     }
 }
