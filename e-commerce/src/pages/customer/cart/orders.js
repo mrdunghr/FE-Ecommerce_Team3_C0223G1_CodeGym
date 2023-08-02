@@ -12,7 +12,7 @@ export const CustomerOrders = () => {
         if(user === null){
             navigate('/login')
         }else {
-            axios.get('http://localhost:8080/api/v1/customer-order/' + user.id).then((res) => {
+            axios.get('http://localhost:8080/api/v1/order-details/' + user.id).then((res) => {
                 console.log(res.data)
                 setOrders(res.data)
             })
@@ -24,7 +24,7 @@ export const CustomerOrders = () => {
             showCancelButton : true
         }).then(res =>{
             if(res.isConfirmed){
-                axios.put('http://localhost:8080/api/v1/customer-order/confirm-order/paid/' + od.id).then(res =>{
+                axios.put('http://localhost:8080/api/v1/order-details/confirm-order/paid/' + od.id).then(res =>{
                     if(update){
                         setUpdate(false)
                     }else{
@@ -41,7 +41,7 @@ export const CustomerOrders = () => {
             showCancelButton : true
         }).then(res =>{
             if(res.isConfirmed){
-                axios.put('http://localhost:8080/api/v1/customer-order/confirm-order/return/' + od.id).then(res =>{
+                axios.put('http://localhost:8080/api/v1/order-details/confirm-order/return/' + od.id).then(res =>{
                     if(update){
                         setUpdate(false)
                     }else{

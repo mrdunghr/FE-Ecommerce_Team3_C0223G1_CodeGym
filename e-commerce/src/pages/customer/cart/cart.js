@@ -15,7 +15,7 @@ export const CustomerCart = () =>{
         if (JSON.parse(sessionStorage.getItem('user')) === null){
             navigate('/login')
         }else {
-            axios.get('http://localhost:8080/api/v1/cart/view/' + user.id).then((res) =>{
+            axios.get('http://localhost:8080/api/v1/cart-item/view/' + user.id).then((res) =>{
             })
         }
     }, [status])
@@ -59,7 +59,7 @@ export const Cart = () =>{
         if(user === null){
             navigate('/login')
         }else{
-            axios.get('http://localhost:8080/api/v1/cart/view/' + user.id).then((res) =>{
+            axios.get('http://localhost:8080/api/v1/cart-item/view/' + user.id).then((res) =>{
                 setCartItems(res.data)
 
             })
@@ -101,7 +101,7 @@ export const Cart = () =>{
         changeStatusInCart(rolling)
     }
     const changeStatusInCart = (item) =>{
-        axios.put('http://localhost:8080/api/v1/cart/checked-item', item).then((res) => {
+        axios.put('http://localhost:8080/api/v1/cart-item/checked-item', item).then((res) => {
             if (updated){
                 setUpdated(false)
             }else{
@@ -111,7 +111,7 @@ export const Cart = () =>{
     }
     const increaseButton = (item) =>{
         console.log(item)
-        axios.put('http://localhost:8080/api/v1/cart/update-quantities/increase', item).then((res) =>{
+        axios.put('http://localhost:8080/api/v1/cart-item/update-quantities/increase', item).then((res) =>{
             if(updated){
                 setUpdated(false)
             }else{
@@ -124,7 +124,7 @@ export const Cart = () =>{
         if(item.quantity === 0){
             alert("Can't decrease anymore!")
         }else{
-        axios.put('http://localhost:8080/api/v1/cart/update-quantities/decrease', item).then((res) =>{
+        axios.put('http://localhost:8080/api/v1/cart-item/update-quantities/decrease', item).then((res) =>{
             if(updated){
                 setUpdated(false)
             }else{
@@ -140,7 +140,7 @@ export const Cart = () =>{
                 showCancelButton : true
             }).then(res => {
                 if(res.isConfirmed){
-                    axios.post('http://localhost:8080/payment/create-order/' + user.id).then(res => {
+                    axios.post('http://localhost:8080/api/v1/payment/create-order/' + user.id).then(res => {
                         Swal.fire("Confirm success! The order will now in shop's orders queue")
                         if(updated){
                             setUpdated(false)
@@ -176,7 +176,7 @@ export const Cart = () =>{
         await callforchecked(checked)
     }
     const callforchecked = (checked) =>{
-        axios.put('http://localhost:8080/api/v1/cart/checked-all-item/' + checked  + "/" + user.id ).then((res) => {
+        axios.put('http://localhost:8080/api/v1/cart-item/checked-all-item/' + checked  + "/" + user.id ).then((res) => {
             if(updated){
                 setUpdated(false)
             }else{
@@ -190,7 +190,7 @@ export const Cart = () =>{
             title : "Are you sure you want to remove this product?"
         }).then(res =>{
             if(res.isConfirmed){
-                axios.delete('http://localhost:8080/api/v1/cart/remove-item/' + id).then(res =>{
+                axios.delete('http://localhost:8080/api/v1/cart-item/remove-item/' + id).then(res =>{
                     Swal.fire("Remove success!")
                     if(updated){
                         setUpdated(false)

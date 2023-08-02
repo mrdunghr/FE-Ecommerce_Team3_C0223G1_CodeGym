@@ -14,7 +14,7 @@ export const OrdersManage = () =>{
         if(user === null && shop === null){
             navigate('/login')
         }else {
-            axios.get('http://localhost:8080/api/v1/order-details/' + shop[0].id).then(res =>{
+            axios.get('http://localhost:8080/api/v1/order-details/shop/' + shop[0].id).then(res =>{
                 console.log(res)
                 setOrderDetail(res.data)
             })

@@ -4,6 +4,7 @@ import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {Footer} from "../../../components/admin/footer";
+import {useSelector} from "react-redux";
 
 export const Category = () =>{
     const {id} = useParams()
@@ -15,17 +16,14 @@ export const Category = () =>{
     const [discount, setDiscount] = useState()
     const [maxRange, setMaxRange]  = useState(0)
     const [minRange, setMinRange] = useState(0)
-    console.log(maxRange)
 
     useEffect(() =>{
         axios.get(`http://localhost:8080/api/v1/products/show-by-category/${id}?list=true`).then((res) => {
-            console.log(res)
             setProducts(res.data)
         }).catch(errors =>{
-            console.log(errors)
             setProducts(null)
         })
-    }, [name, maxRange, discount])
+    }, [name, maxRange, discount, status])
     const getBiggestPrice = () =>{
         let biggestPrice = 0;
         if (products !== null){

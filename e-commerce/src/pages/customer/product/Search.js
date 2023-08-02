@@ -4,10 +4,10 @@ import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {Footer} from "../../../components/admin/footer";
+import {useSelector} from "react-redux";
 
 export const SearchProduct = () =>{
     const {search} = useParams()
-    console.log(search)
     const user = JSON.parse(sessionStorage.getItem('user'))
     const [products, setProducts] = useState([])
     const [name, setName] = useState()
@@ -15,22 +15,21 @@ export const SearchProduct = () =>{
     const [discount, setDiscount] = useState()
     const [maxRange, setMaxRange]  = useState(0)
     const [minRange, setMinRange] = useState(0)
+    const status = useSelector(state => state.update)
+    console.log(status)
     useEffect(() =>{
         axios.get(`http://localhost:8080/api/v1/products/search/?name=${search}&list=true`).then((res) => {
-            console.log(res)
             setProducts(res.data)
         }).catch(errors =>{
-            console.log(errors)
             setProducts(null)
         })
-    }, [name, price, discount])
+    }, [name, price, discount, status])
     const getBiggestPrice = () => {
         let biggestPrice = 0;
         if (products !== null) {
             for (let i = 0; i < products.length; i++) {
                 if ((products[i].price - (products[i].price * products[i].discountPercent / 100)) > biggestPrice) {
                     biggestPrice = products[i].price - (products[i].price * products[i].discountPercent / 100)
-                    console.log(products[i].price)
                 }
             }
         }
@@ -112,8 +111,6 @@ export const SearchProduct = () =>{
                                     if (name && !prod.name.toLowerCase().includes(name.toLowerCase())) {
                                         return false
                                     }
-                                    console.log(prod.price - (prod.price * prod.discountPercent / 100) < getBiggestPrice() * maxRange / 100 + 1)
-                                    console.log(getBiggestPrice())
                                     if (maxRange > 0 && (prod.price - (prod.price * prod.discountPercent / 100) > getBiggestPrice() * maxRange / 100) || prod.price - (prod.price * prod.discountPercent / 100) < getBiggestPrice() * minRange / 100) {
                                         return false
                                     }
