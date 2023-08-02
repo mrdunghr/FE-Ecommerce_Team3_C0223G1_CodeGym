@@ -2,15 +2,21 @@ import "./orders.css"
 import {useEffect, useState} from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
+import {useNavigate} from "react-router-dom";
 export const CustomerOrders = () => {
     const user = JSON.parse(sessionStorage.getItem('user'))
     const [orders, setOrders] = useState([])
     const [update, setUpdate] = useState(false)
+    const navigate = useNavigate()
     useEffect(() =>{
-        axios.get('http://localhost:8080/api/v1/customer-order/' + user.id).then((res) => {
-            console.log(res.data)
-            setOrders(res.data)
-        })
+        if(user === null){
+            navigate('/login')
+        }else {
+            axios.get('http://localhost:8080/api/v1/customer-order/' + user.id).then((res) => {
+                console.log(res.data)
+                setOrders(res.data)
+            })
+        }
     },[update])
     const paidOrder = (od) =>{
         Swal.fire({

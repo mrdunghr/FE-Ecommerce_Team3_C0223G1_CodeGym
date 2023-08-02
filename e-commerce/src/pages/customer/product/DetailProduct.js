@@ -128,7 +128,7 @@ export function DetailProduct() {
                                 </div>
                                 <div style={{display: 'flex', alignItems: 'center', margin: '10px 0'}}>
                                     <span style={{fontSize:'18px'}}>Availability: </span>
-                                    <span style={{color: "#75a92b",fontSize:'18px',paddingLeft:'5px'}}>{product.inStock ? "inStock" : "true"}</span>
+                                    <span style={product.enabled ? {color: "#75a92b",fontSize:'18px',paddingLeft:'5px'} : {color : "grey" ,fontSize:'18px',paddingLeft:'5px'}}>{product.enabled ? "In stock" : "Out stock"}</span>
                                 </div>
                                 <div style={{display: 'flex', alignItems: 'center', margin: '15px 0'}}>
                                     <span style={{fontSize:'18px'}}>Shop: </span>
@@ -144,7 +144,7 @@ export function DetailProduct() {
                                 <span style={{height: '32px', border: '1px solid #adabac', width: '70px', display: 'inline-block', textAlign: "center", lineHeight: '30px'}}>{count}</span>
                                 <button onClick={increaseClick} style={{border: 'none',width: '32px', height: '32px'}}>+</button>
                             </div>
-                            <button disabled={!product.enabled} onClick={addItem} style={{marginRight:'20px',border: 'none',fontSize:'18px',width:'250px',height:'50px',backgroundColor:'#fe5502',color:'white', marginTop : "45px"}}><i className="fa fa-shopping-cart" style={{color:'white'}} ></i> ADD TO CART</button>
+                            <button disabled={!product.enabled} onClick={addItem} style={{marginRight:'20px',border: 'none',fontSize:'18px',width:'250px',height:'50px',backgroundColor:'#fe5502',color:'white', marginTop : "45px", cursor : product.enabled ? "pointer" : "not-allowed"}}><i className="fa fa-shopping-cart" style={{color:'white'}} ></i> ADD TO CART</button>
                         </div>
                     </div>
                     <div style={{ paddingLeft:'100px',paddingTop: '70px', display: 'flex', alignItems: 'center' }}>

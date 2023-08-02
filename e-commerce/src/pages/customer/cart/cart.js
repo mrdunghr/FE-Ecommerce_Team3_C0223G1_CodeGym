@@ -5,28 +5,19 @@ import "./cart.css"
 import axios from "axios";
 import Swal from "sweetalert2";
 import {CustomerFooter} from "../../../components/customer/footer";
+import {useSelector} from "react-redux";
 export const CustomerCart = () =>{
-
     const user = (JSON.parse(sessionStorage.getItem('user')))
     const navigate = useNavigate()
-    // const [cartItems, setCartItems] = useState()
+    const status = useSelector(state => state.update)
     useEffect( () => {
-        const all_tabs = document.querySelectorAll('.profile-tab')
-        const firstTab = all_tabs[0]
-        firstTab.classList.add('active')
-        all_tabs.forEach(tab => {
-            tab.addEventListener('click', (e) =>{
-                all_tabs.forEach(tab => tab.classList.remove('active'))
-                tab.classList.add('active')
-            })
-        })
         if (JSON.parse(sessionStorage.getItem('user')) === null){
             navigate('/login')
         }else {
             axios.get('http://localhost:8080/api/v1/cart/view/' + user.id).then((res) =>{
             })
         }
-    }, [])
+    }, [status])
     return(
         <>
             <div id={'display-cart'}>
@@ -37,7 +28,7 @@ export const CustomerCart = () =>{
                     <div id={'profile-box'}>
                         <div id={'profile-image'}>
                             <img src="/image/avatar/avatar-s-2.png" alt=""/>
-                            <h2>{user.firstName}</h2>
+                            <h2>{user === null ? null : user.firstName}</h2>
                         </div>
                         <div id={'customer-info'}>
                             <Link to={''} className={'profile-tab'}>Your cart</Link>
@@ -155,6 +146,9 @@ export const Cart = () =>{
                         }else{
                             setUpdated(true)
                         }
+                    }).catch(err => {
+                        Swal.fire("You are paying " + err.response.data.length + " products that have been disabled!")
+                        console.log(err)
                     })
                 }
             })

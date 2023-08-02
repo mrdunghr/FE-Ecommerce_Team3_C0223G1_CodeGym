@@ -6,14 +6,19 @@ import SearchIcon from '@mui/icons-material/Search';
 import LoginIcon from '@mui/icons-material/Login';
 import {useState} from "react";
 import HomeIcon from '@mui/icons-material/Home';
+import {createAction} from "@reduxjs/toolkit";
+import {useDispatch} from "react-redux";
 
+
+
+const updateStatus = createAction('update')
 export default function CustomerHeader(){
     const user = JSON.parse(sessionStorage.getItem('user'))
     const navigate = useNavigate()
-    // const orders = JSON.parse(sessionStorage.getItem('orders'))
-    // console.log(orders)
+    const dispatch = useDispatch()
     const logout = () =>{
         sessionStorage.setItem('user', null)
+        dispatch(updateStatus())
         navigate('/')
     }
     const [search, setSearch] = useState()
@@ -21,15 +26,7 @@ export default function CustomerHeader(){
     const searchSomething = () =>{
         navigate('/product/search/' + search)
     }
-    // const getAllPaidOrder = () =>{
-    //     let paidOrders = 0
-    //     for(const od of orders){
-    //         if(od.status === "PROCESSING"){
-    //             paidOrders += 1
-    //         }
-    //     }
-    //     return paidOrders;
-    // }
+
     return(
         <>
             <div id={'cus-header'}>
