@@ -3,6 +3,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import './LoginRegister.css'
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import Swal from "sweetalert2";
 
 export function LoginRegister() {
     const [country, setCountry] = useState([{
@@ -74,9 +75,13 @@ export function LoginRegister() {
                 navigate('/')
             })
             .catch(err => {
-                // Xử lý lỗi đăng nhập từ API (nếu cần)
-                console.log("Đăng nhập thất bại!");
-                console.log("Lỗi:", err);
+                Swal.fire({
+                    position: 'center',
+                    icon: 'warning',
+                    title: err.response.data,
+                    showConfirmButton: false,
+                    timer: 10000
+                })
             });
     };
 
@@ -87,13 +92,23 @@ export function LoginRegister() {
             .then(res => {
                 // Xử lý kết quả đăng ký từ API (nếu cần)
                 console.log("Đăng ký thành công!");
-                console.log("Thông tin đăng ký:", res.data);
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: res.data + " " + "Please enter your Email to activate your account",
+                    showConfirmButton: false,
+                    timer: 10000
+                })
                 sessionStorage.setItem('user', JSON.stringify(res.data))
             })
             .catch(err => {
-                // Xử lý lỗi đăng ký từ API (nếu cần)
-                console.log("Đăng ký thất bại!");
-                console.log("Lỗi:", err);
+                Swal.fire({
+                    position: 'center',
+                    icon: 'warning',
+                    title: err.response.data,
+                    showConfirmButton: false,
+                    timer: 10000
+                })
             });
     };
 
