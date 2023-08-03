@@ -50,63 +50,57 @@ export default function EditCustomer(){
 
     return(
         <>
-            <h1>Edit Customer</h1>
+            <div className={'content-edit'}>
+            <h1 className={'h1-edit'}>Edit Customer</h1>
             <Formik initialValues={customer} onSubmit={handleFormSubmit} enableReinitialize={true}>
                 <Form>
                     <table>
                         <tbody>
                         <tr>
-                            <td> Email:</td>
-                            <td><Field type={'text'} name={'email'}></Field></td>
+                            <td style={{textAlign:'left'}}> Email:</td>
+                            <td><Field style={{textAlign:'left',width:'250px',marginLeft:'5px'}} type={'text'} name={'email'}></Field></td>
+                            <td style={{textAlign:'left'}}> First Name:</td>
+                            <td ><Field style={{textAlign:'left',width:'250px'}} type={'text'} name={'firstName'}></Field></td>
                         </tr>
                         <tr>
-                            <td> First Name:</td>
-                            <td><Field type={'text'} name={'firstName'}></Field></td>
+                            <td style={{textAlign:'left'}}> Last Name:</td>
+                            <td><Field style={{textAlign:'left',width:'250px',marginLeft:'5px'}} type={'text'} name={'lastName'}></Field></td>
+                            <td style={{textAlign:'left'}}> Address Line1:</td>
+                            <td><Field style={{textAlign:'left',width:'250px'}} type={'text'} name={'addressLine1'}></Field></td>
                         </tr>
                         <tr>
-                            <td> Last Name:</td>
-                            <td><Field type={'text'} name={'lastName'}></Field></td>
+                            <td style={{textAlign:'left'}}> Address Line2:</td>
+                            <td><Field style={{textAlign:'left',width:'250px',marginLeft:'5px'}} type={'text'} name={'addressLine2'}></Field></td>
+                            <td style={{textAlign:'left'}}> Phone Number:</td>
+                            <td><Field style={{textAlign:'left',width:'250px'}} type={'text'} name={'phoneNumber'}></Field></td>
                         </tr>
                         <tr>
-                            <td> Address Line1:</td>
-                            <td><Field type={'text'} name={'addressLine1'}></Field></td>
+                            <td style={{textAlign:'left'}}>City:</td>
+                            <td><Field style={{textAlign:'left',width:'250px',marginLeft:'5px'}} type={'text'} name={'city'}></Field></td>
+                            <td style={{textAlign:'left'}}>State:</td>
+                            <td><Field style={{textAlign:'left',width:'250px'}} type={'text'} name={'state'}></Field></td>
                         </tr>
                         <tr>
-                            <td> Address Line2:</td>
-                            <td><Field type={'text'} name={'addressLine2'}></Field></td>
-                        </tr>
-                        <tr>
-                            <td> Phone Number:</td>
-                            <td><Field type={'text'} name={'phoneNumber'}></Field></td>
-                        </tr>
-                        <tr>
-                            <td>City:</td>
-                            <td><Field type={'text'} name={'city'}></Field></td>
-                        </tr>
-                        <tr>
-                            <td>State:</td>
-                            <td><Field type={'text'} name={'state'}></Field></td>
-                        </tr>
-                        <tr>
-                            <td>Country:</td>
-                            <td>
-                                <Field as={'select'} name={'country.id'}>
+                            <td style={{textAlign:'left'}}>Country:</td>
+                            <td style={{textAlign: 'left', padding:'0px'}}>
+                                <Field as="select" name="country.id" style={{width:'250px'}}>
                                     <option>-- Country --</option>
-                                    {country.map((item) =>(
-                                        <option key={item.id} value={item.id}> {item.code} </option>
+                                    {country.map((item) => (
+                                        <option key={item.id} value={item.id}>
+                                            {item.code}
+                                        </option>
                                     ))}
                                 </Field>
                             </td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <button>Update</button>
+                            <button className={'bnt-edit'} style={{margin:'30px'}}>Update</button>
                         </tr>
                         </tbody>
                     </table>
                 </Form>
-
             </Formik>
+            </div>
         </>
     )
 
