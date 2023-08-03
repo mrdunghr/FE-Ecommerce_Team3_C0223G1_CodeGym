@@ -24,6 +24,8 @@ export default function Dashboard(){
                         <Link to={'/customer/profile'}>Dashboard</Link>
                         {shops.length > 0 ?  <Link to={'order-manager'}>Manage Orders</Link> : <Link to={'add-shop'}>Add New Shop</Link>}
                         <Link to={'product-manager'}>Manage Products</Link>
+                        <Link to={'update-customer'}>Edit Customer</Link>
+                        <Link to ={'change-password'}>Change Password</Link>
                     </div>
                 </div>
             </div>

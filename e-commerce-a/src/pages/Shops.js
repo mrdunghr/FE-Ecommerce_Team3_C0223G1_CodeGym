@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
 
 export default function Shops(){
@@ -35,6 +35,23 @@ export default function Shops(){
         }
         console.log(page)
 
+    };
+
+    const handleToggleShopStatus = (shopId, currentStatus) => {
+        // Tính toán trạng thái mới (nghịch đảo của trạng thái hiện tại)
+        const newStatus = !currentStatus;
+        console.log(newStatus)
+
+        axios
+            .put(`http://localhost:8080/api/v1/shop/${shopId}/enabled/${newStatus}`)
+            .then((response) => {
+                console.log("Thay đổi trạng thái shop thành công:", response.data);
+                // Sau khi thay đổi thành công, cập nhật danh sách shop bằng cách gọi fetchListS
+                fetchListS();
+            })
+            .catch((error) => {
+                console.error("Lỗi khi thay đổi trạng thái shop:", error);
+            });
     };
     return(
         <>
@@ -97,12 +114,22 @@ export default function Shops(){
                                 {listShop.map((shops, i) => (
                                     <tr key={shops.id}>
                                         <td className="hideable-column">{shops.id}</td>
-                                        <td className="hideable-column">{shops.image}</td>
+                                        <td className="hideable-column">
+                                            {/*{shops.image}*/}
+                                            <img src={shops.image} style={{width : "100px"}}/>
+                                        </td>
                                         <td className="hideable-column">{shops.name}</td>
                                         <td className="hideable-column">{shops.alias}</td>
                                         <td className="hideable-column">{shops.deliveryAddress}</td>
                                         <td className="hideable-column">{shops.customer.email}</td>
-                                        <td className="hideable-column">{shops.enabled ? 'Enabled' : 'Disabled'}</td>
+                                        <td>
+                                            <a
+                                                className={`fas ${shops.enabled ? "fa-check-circle icon-green" : "fa-times-circle icon-red"}`}
+                                                title={shops.enabled ? "Disable this shop" : "Enable this shop"}
+                                                onClick={() => handleToggleShopStatus(shops.id, shops.enabled)}
+                                                style={{ color: shops.enabled ? "green" : "red" }}
+                                            ></a>
+                                        </td>
                                         <td>
                                             <a className="fas fa-file-alt icon-green link-detail"
                                                href="/Admin/shops/detail/1" title="View details of this shop"></a>
