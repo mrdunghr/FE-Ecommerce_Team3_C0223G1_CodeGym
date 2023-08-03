@@ -41,9 +41,6 @@ export const CustomerCart = () =>{
                 <div id={'main-outlet-cart'}>
                     <Outlet></Outlet>
                 </div>
-                <div id={'cart-footer'}>
-                    <Footer></Footer>
-                </div>
             </div>
         </>
     )

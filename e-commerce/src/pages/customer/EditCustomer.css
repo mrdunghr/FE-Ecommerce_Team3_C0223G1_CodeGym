@@ -1,0 +1,19 @@
+.content-edit{
+    margin: 40px;
+    padding: 40px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+.bnt-edit {
+    margin-left: 10px;
+    height: 35px;
+    border-radius: 5px;
+    border: none;
+    width: 80px;
+    color: white;
+    background: darkorange;
+}
+
+.h1-edit{
+    padding-bottom: 20px;
+    margin-left: 10px;
+}
