@@ -2,7 +2,7 @@ import "./orders.css"
 import {useEffect, useState} from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 export const CustomerOrders = () => {
     const user = JSON.parse(sessionStorage.getItem('user'))
@@ -79,7 +79,7 @@ export const CustomerOrders = () => {
                     return item.orderDetails.filter(item => item.status !== "PAID" && item.status !== "RETURNED").map(odDetails => (
                         <div className={'orders-item'}>
                             <div className={'product-name-image'}>
-                                <div className={'shop-name'}>{odDetails.product.shop.name.length > 10 ? odDetails.product.shop.name.substring(0, 10) : odDetails.product.shop.name} SHOP</div>
+                                <Link to={'/shop/' + odDetails.product.shop.id}><div className={'shop-name'}>{odDetails.product.shop.name.length > 10 ? odDetails.product.shop.name.substring(0, 10) : odDetails.product.shop.name} SHOP</div></Link>
                                 <img src={odDetails.product.mainImage === ".png" ?  "/image/modern-teaching-concept-P7BTJU7.jpg" : odDetails.product.mainImage} alt=""/>
                                 <b>{odDetails.product.name}</b>
                             </div>
