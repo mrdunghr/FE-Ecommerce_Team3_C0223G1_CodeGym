@@ -48,8 +48,8 @@ export default function CustomerHeader(){
                         <Link to={'/'}><img src="/image/logo.png" alt=""/></Link>
                     </div>
                     <div id={'main-navbar'}>
-                        <input type="text" style={{paddingLeft : "10px"}} id={'search-btn1'} onChange={(e) => setSearch(e.target.value)}/>
-                        <button onClick={searchSomething}><SearchIcon></SearchIcon></button>
+                        <input type="text" style={{paddingLeft : "10px"}}  onChange={(e) => setSearch(e.target.value)}/>
+                        <button onClick={searchSomething} id={'search-btn'}><SearchIcon></SearchIcon></button>
                     </div>
                 </div>
             </div>
