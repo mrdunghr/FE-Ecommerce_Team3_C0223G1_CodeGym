@@ -1,9 +1,10 @@
 import {useEffect, useState} from 'react';
-import '@fortawesome/fontawesome-free/css/all.min.css';
 import './LoginRegister.css'
+import FacebookIcon from '@mui/icons-material/Facebook';
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import Swal from "sweetalert2";
+import {Instagram, Twitter} from "@mui/icons-material";
 
 export function LoginRegister() {
     const [country, setCountry] = useState([{
@@ -120,9 +121,9 @@ export function LoginRegister() {
                     <div id={'form-signUp'}>
                         <h1 className={'h1'}>Create Account</h1>
                         <div className="social-container">
-                            <a id={'a'} href="#" className="social"><i className="fab fa-facebook"></i></a>
-                            <a id={'a'} href="#" className="social"><i className="fab fa-google-plus-g"></i></a>
-                            <a id={'a'} href="#" className="social"><i className="fab fa-linkedin-in"></i></a>
+                            <a id={'a'} href="#" className="social"><FacebookIcon></FacebookIcon></a>
+                            <a id={'a'} href="#" className="social"><Instagram></Instagram></a>
+                            <a id={'a'} href="#" className="social"><Twitter></Twitter></a>
                         </div>
                         <span className={'span'}>or use your email for registration</span>
                         <input
@@ -168,9 +169,11 @@ export function LoginRegister() {
                     <div id={'form-signUp'}>
                         <h1 className={'h1'}>Sign in</h1>
                         <div className="social-container">
-                            <a id={'a'} href="#" className="social"><i className="fab fa-facebook"></i></a>
-                            <a id={'a'} href="#" className="social"><i className="fab fa-google-plus-g"></i></a>
-                            <a id={'a'} href="#" className="social"><i className="fab fa-linkedin-in"></i></a>
+                            <div className="social-container">
+                                <a id={'a'} href="#" className="social"><FacebookIcon></FacebookIcon></a>
+                                <a id={'a'} href="#" className="social"><Instagram></Instagram></a>
+                                <a id={'a'} href="#" className="social"><Twitter></Twitter></a>
+                            </div>
                         </div>
                         <span className={'span'}>or use your account</span>
                         <input
