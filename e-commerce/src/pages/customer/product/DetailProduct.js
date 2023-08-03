@@ -8,8 +8,6 @@ import Swal from "sweetalert2";
 import {Footer} from "../../../components/admin/footer";
 export function DetailProduct() {
 
-
-
     const [showReview, setShowReview] = useState(false);
     const [showDescription, setShowDescription] = useState(false);
 
@@ -151,6 +149,10 @@ export function DetailProduct() {
                                 <div style={{display: 'flex', alignItems: 'center', margin: '15px 0'}}>
                                     <span style={{fontSize:'18px'}}>Brands: </span>
                                     <span style={{fontSize:'18px',color: "#fe5502",paddingLeft:'5px'}}>{product.brand.logo}</span>
+                                </div>
+                                <div style={{display: 'flex', alignItems: 'center', margin: '15px 0'}}>
+                                    <span style={{fontSize:'18px'}}>Reviews count: </span>
+                                    <span style={{fontSize:'18px',color: "#fe5502",paddingLeft:'5px'}}>{product.reviewCount}</span>
                                 </div>
                             </div>
                             <div style={{marginTop: '20px'}}>

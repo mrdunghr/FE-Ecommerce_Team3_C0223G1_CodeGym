@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
 import "./paymentHistory.css"
 
@@ -47,7 +47,7 @@ export const PaymentHistory = () =>{
                                 <>
                                     <div className={'orders-item'}>
                                         <div className={'product-name-image'}>
-                                            <div className={'shop-name'}>{odDetails.product.shop.name.length > 10 ? odDetails.product.shop.name.substring(0, 10) : odDetails.product.shop.name} SHOP</div>
+                                            <Link to={'/shop/' + odDetails.product.shop.id}><div className={'shop-name'}>{odDetails.product.shop.name.length > 10 ? odDetails.product.shop.name.substring(0, 10) : odDetails.product.shop.name} SHOP</div></Link>
                                             <img src={odDetails.product.mainImage === ".png" ?  "/image/modern-teaching-concept-P7BTJU7.jpg" : odDetails.product.mainImage} alt=""/>
                                             <b>{odDetails.product.name}</b>
                                         </div>
@@ -62,6 +62,7 @@ export const PaymentHistory = () =>{
                                         </div>
                                         <div className={'main-order-header-action order-time'}>
                                             <div className={'order-status'} style={{background : "green"}}>SUCCESS</div>
+                                            <Link to={'/review/' + odDetails.product.id}><button>Review</button></Link>
                                         </div>
                                     </div>
                                 </>

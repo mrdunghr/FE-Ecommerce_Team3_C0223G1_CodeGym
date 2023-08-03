@@ -1,0 +1,74 @@
+#review-display{
+    width: 100%;
+    height: 1000px;
+}
+#cus-header-review{
+    height: 160px;
+    float: left;
+    width: 100%;
+}
+#main-review-display{
+    width: 100%;
+    height: 650px;
+    float: left;
+    clear: both;
+
+}
+#product-sidebar-review{
+    width: 30%;
+    float: left;
+    height: 100%;
+    box-shadow: rgba(149, 157, 165, 0.2) 10px 8px 24px;
+    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+}
+#product-review-sidebar-image{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#product-review-sidebar-image img{
+    width: 80%;
+    height: 80%;
+}
+#product-review-sidebar-info{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    padding-left: 40px;
+}
+#product-review-sidebar-info p{
+    margin-top: 10px;
+    font-size: 18px;
+}
+#product-review-comment{
+    height: 100%;
+    width: 60%;
+    float: left;
+    margin-left: 80px;
+    padding-top: 30px;
+}
+#product-review-comment input{
+    width: 90%;
+    height: 45px;
+    padding-left: 10px;
+    border: .5px solid grey;
+}
+#product-review-comment textarea{
+    margin-top: 10px;
+    width: 90%;
+    resize: none;
+    height: 300px;
+    padding-left: 10px;
+}
+#product-review-comment button{
+    border: none;
+    padding: 8px;
+    color: white;
+    background: darkorange;
+    border-radius: 2px;
+}
