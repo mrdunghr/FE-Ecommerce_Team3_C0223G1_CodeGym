@@ -226,9 +226,10 @@ export const Cart = () =>{
                     </div>
                     {cartItems.map(item => (
                         <div className={'cart-product'}>
-                            <div className={'cart-product-name-image'}>
+                           <div className={'cart-product-name-image'}>
+                               <Link to={'/shop/' + item.product.shop.id}><div className={'shop-name'}>{item.product.shop.name.length > 10 ? item.product.shop.name.substring(0, 10) : item.product.shop.name} SHOP</div></Link>
                                 <input type="checkbox" checked={item.checked} onChange={() => handleCheckboxChange(item)}/>
-                                <img src={item.product.mainImage === ".png" ? "/image/modern-teaching-concept-P7BTJU7.jpg" : item.product.mainImage} alt=""/>
+                               <Link to={'/product/' + item.product.id}><img src={item.product.mainImage === ".png" ? "/image/modern-teaching-concept-P7BTJU7.jpg" : item.product.mainImage} alt=""/></Link>
                                 <b>{item.product.name}</b>
                             </div>
                             <div className={'cart-product-info'}>

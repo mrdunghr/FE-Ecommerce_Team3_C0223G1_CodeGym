@@ -75,7 +75,6 @@ export const OrdersManage = () =>{
                                 <b>{item.quantity}</b>
                             </div>
                             <div className={'order-item'}>
-                                {/*{item.status === "PAID" ? <div className={'order-status'} style={{background : "green"}}>SUCCESS</div> : <div className={'order-status'} style={{background : item.status === "NEW" ? "salmon" : "blue"}}>{item.status}</div>}*/}
                                 {item.status === "NEW" ? <div className={'order-status'} style={{background : "salmon"}}>{item.status}</div> : null}
                                 {item.status === "PAID" ? <div className={'order-status'} style={{background : "green"}}>SUCCESS</div> : null}
                                 {item.status === "PROCESSING" ? <div className={'order-status'} style={{background : "blue"}}>{item.status}</div> : null}

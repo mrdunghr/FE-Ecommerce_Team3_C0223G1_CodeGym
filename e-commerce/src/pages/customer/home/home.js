@@ -36,7 +36,6 @@ export const HomePortal = () =>{
             })
         }
     }, [])
-
     return(
         <>
             <div id={'display'}>
@@ -91,7 +90,7 @@ export const HomePortal = () =>{
                                 <div className={'discount-product-image'}>
                                     <Link to={'/product/' + item.id}><img src={item.mainImage === ".png" ? "/image/modern-teaching-concept-P7BTJU7.jpg" : item.mainImage} alt=""/></Link>
                                 </div>
-                                <div className={'discount-product-info'}>
+                                <div className={'discount-prodguct-info'}>
                                     <div className={'discount-product-name'}>
                                         <Link to={'/product/' + item.id}>{item.name.length > 15 ? item.name.substring(0,15) + "..." : item.name}</Link>
                                     </div>

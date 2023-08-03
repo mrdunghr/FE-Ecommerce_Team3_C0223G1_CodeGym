@@ -18,6 +18,7 @@ import {LoginRegister} from "./pages/LoginRegister";
 import ChangePassword from "./pages/customer/ChangePassword";
 import EditCustomer from "./pages/customer/EditCustomer";
 import {PaymentHistory} from "./pages/customer/cart/paymentHistory";
+import {ChoosenShop} from "./pages/customer/shop/shop";
 
 
 export default function RouterHome(){
@@ -44,6 +45,7 @@ export default function RouterHome(){
                     <Route path={'payment'} element={<PaymentHistory></PaymentHistory>}></Route>
                 </Route>
                 <Route path={'/product/search/:search'} element={<SearchProduct></SearchProduct>}></Route>
+                <Route path={'/shop/:id'} element={<ChoosenShop></ChoosenShop>}></Route>
             </Routes>
         </>
     )
