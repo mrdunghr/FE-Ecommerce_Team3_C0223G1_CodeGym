@@ -41,9 +41,10 @@
     text-align: center;
 }
 #product-container {
+    padding: 50px;
     margin-top: 20px;
     width: 100%;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 
 }
 #product-container button:nth-child(odd){
