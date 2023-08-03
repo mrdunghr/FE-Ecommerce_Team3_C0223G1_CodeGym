@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import {Field, Form, Formik} from "formik";
  import './EditCustomer.css'
+import Swal from "sweetalert2";
 
 export default function EditCustomer(){
     const user = JSON.parse(sessionStorage.getItem('user'));
@@ -44,6 +45,14 @@ export default function EditCustomer(){
     const handleFormSubmit = (value) =>{
         axios.put('http://localhost:8080/api/v1/customers/update/'+user.id,value).then(() =>{
                 console.log("OK")
+                console.log(value)
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: "Successfully updated personal information",
+                showConfirmButton: false,
+                timer: 10000
+            })
             }
         )
     }
@@ -58,7 +67,16 @@ export default function EditCustomer(){
                         <tbody>
                         <tr>
                             <td style={{textAlign:'left'}}> Email:</td>
-                            <td><Field style={{textAlign:'left',width:'250px',marginLeft:'5px'}} type={'text'} name={'email'}></Field></td>
+                            <td><Field
+                                style={{
+                                    textAlign: 'left',
+                                    width: '250px',
+                                    marginLeft: '5px',
+                                    background: '#e8e2e2',  // Màu tối cho trường chìm xuống
+                                    // padding: '5px',  // Tùy chỉnh padding nếu cần
+                                    borderRadius: '5px'  // Tùy chỉnh border radius nếu cần
+                                }} type={'text'} name={'email'} readOnly/>
+                            </td>
                             <td style={{textAlign:'left'}}> First Name:</td>
                             <td ><Field style={{textAlign:'left',width:'250px'}} type={'text'} name={'firstName'}></Field></td>
                         </tr>

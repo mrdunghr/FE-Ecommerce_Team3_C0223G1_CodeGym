@@ -3,8 +3,28 @@ import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
 import "./customerHome.css"
 import CustomerHeader from "../../../components/customer/header";
+import {Footer} from "../../../components/admin/footer";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 export const HomePortal = () =>{
+    const responsive = {
+        desktop: {
+            breakpoint: { max: 3000, min: 1024 },
+            items: 7,
+            slidesToSlide: 5 // optional, default to 1.
+        },
+        tablet: {
+            breakpoint: { max: 1024, min: 464 },
+            items: 2,
+            slidesToSlide: 2 // optional, default to 1.
+        },
+        mobile: {
+            breakpoint: { max: 464, min: 0 },
+            items: 1,
+            slidesToSlide: 1 // optional, default to 1.
+        }
+    };
     const user = JSON.parse(sessionStorage.getItem('user'))
     console.log(user)
     const [bestSellerList, setBestSellerList] = useState([])
@@ -28,13 +48,13 @@ export const HomePortal = () =>{
         axios.get('http://localhost:8080/api/v1/products/all').then(res =>{
             setProducts(res.data)
         })
-        if(user !== null){
-            axios.get('http://localhost:8080/api/v1/order-details/' + user.id).then((res) => {
-                console.log(res.data)
-                setOrders(res.data)
-                sessionStorage.setItem('orders', JSON.stringify(res.data))
-            })
-        }
+        // if(user !== null){
+        //     axios.get('http://localhost:8080/api/v1/order-details/' + user.id).then((res) => {
+        //         console.log(res.data)
+        //         setOrders(res.data)
+        //         sessionStorage.setItem('orders', JSON.stringify(res.data))
+        //     })
+        // }
     }, [])
     return(
         <>
@@ -49,14 +69,14 @@ export const HomePortal = () =>{
                     <div id={'categories-box'}>
                         <h4 style={{textIndent : "10px"}}>Categories</h4>
                         {categories.map((item, index) => (index <= 19 ?
-                            <Link to={'/category/' + item.id}><div className={'categories'}>
-                                <div className={'categories-image'}>
-                                    <Link to={'/category/' +item.id}><img src={item.image === ".png" ? "/image/modern-teaching-concept-P7BTJU7.jpg" :"/image/categories/"+item.image} alt=""/></Link>
-                                </div>
-                                <div className={'categories-name'}>
-                                    <Link to={'/category/' +item.id}>{item.name.length > 15 ? item.name.substring(0, 10) + "..." : item.name }</Link>
-                                </div>
-                            </div></Link>
+                                <Link to={'/category/' + item.id}><div className={'categories'}>
+                                    <div className={'categories-image'}>
+                                        <Link to={'/category/' +item.id}><img src={item.image === ".png" ? "/image/modern-teaching-concept-P7BTJU7.jpg" :"/image/categories/"+item.image} alt=""/></Link>
+                                    </div>
+                                    <div className={'categories-name'}>
+                                        <Link to={'/category/' +item.id}>{item.name.length > 15 ? item.name.substring(0, 10) + "..." : item.name }</Link>
+                                    </div>
+                                </div></Link>
                                 : null
                         ))}
                     </div>
@@ -85,25 +105,32 @@ export const HomePortal = () =>{
                     </div>
                     <div id={'discount-product'}>
                         <h4 style={{textIndent : "10px"}}>Most discount products</h4>
-                        {discountProds.map(item => (
-                            <Link to={'/product/' + item.id}><div className={'discount-product'}>
-                                <div className={'discount-product-image'}>
-                                    <Link to={'/product/' + item.id}><img src={item.mainImage === ".png" ? "/image/modern-teaching-concept-P7BTJU7.jpg" : item.mainImage} alt=""/></Link>
-                                </div>
-                                <div className={'discount-prodguct-info'}>
-                                    <div className={'discount-product-name'}>
-                                        <Link to={'/product/' + item.id}>{item.name.length > 15 ? item.name.substring(0,15) + "..." : item.name}</Link>
+                        <Carousel
+                            arrows={true}
+                            infinite={true}
+                            autoPlay={true}
+                            autoPlaySpeed={2000}
+                            responsive={responsive}>
+                            {discountProds.map(item => (
+                                <Link to={'/product/' + item.id}><div className={'discount-product'}>
+                                    <div className={'discount-product-image'}>
+                                        <Link to={'/product/' + item.id}><img src={item.mainImage === ".png" ? "/image/modern-teaching-concept-P7BTJU7.jpg" : item.mainImage} alt=""/></Link>
                                     </div>
-                                    <div className={'discount-product-price'}>
-                                        <div className={'old-price'}>${item.price}</div>
-                                        <div className={'new-price'}>${(item.price - (item.price * item.discountPercent/100)).toFixed(2)}</div>
+                                    <div className={'discount-prodguct-info'}>
+                                        <div className={'discount-product-name'}>
+                                            <Link to={'/product/' + item.id}>{item.name.length > 15 ? item.name.substring(0,15) + "..." : item.name}</Link>
+                                        </div>
+                                        <div className={'discount-product-price'}>
+                                            <div className={'old-price'}>${item.price}</div>
+                                            <div className={'new-price'}>${(item.price - (item.price * item.discountPercent/100)).toFixed(2)}</div>
+                                        </div>
                                     </div>
-                                </div>
-                                <Link to={'/product/' + item.id}><div className={'click-me'}>
-                                    See the detail
+                                    <Link to={'/product/' + item.id}><div className={'click-me'}>
+                                        See the detail
+                                    </div></Link>
                                 </div></Link>
-                            </div></Link>
-                        ))}
+                            ))}
+                        </Carousel>
                     </div>
                     <div id={'all-product'}>
                         <h4>Suggest product</h4>
@@ -128,6 +155,7 @@ export const HomePortal = () =>{
                         ))}
                     </div>
                 </div>
+                <Footer/>
             </div>
         </>
     )

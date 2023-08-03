@@ -107,8 +107,10 @@
     padding-bottom: 10px;
     margin-top: 30px;
     overflow-x: auto;
-    background: #e5e5e5;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
+    min-height: 200px;
+    background: white;
+    border-radius: 5px;
     padding-top: 10px;
     padding-left: 15px;
 }
@@ -170,12 +172,14 @@
 /*Discount product*/
 #discount-product{
     width: 100%;
-    height: 600px;
+    height: 350px;
     padding-bottom: 10px;
     margin-top: 30px;
     overflow-x: auto;
-    background: #e5e5e5;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
+    min-height: 200px;
+    background: white;
+    border-radius: 5px;
     padding-top: 10px;
     padding-left: 15px;
 
@@ -234,7 +238,7 @@
     color: white;
     display: none;
     position: absolute;
-    bottom: -32px;
+    bottom: 0px;
     z-index: 3;
     border: 1px solid darkorange;
     cursor: pointer;
@@ -251,13 +255,37 @@
 }
 /*All-product*/
 #all-product{
-    background: #e5e5e5;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    margin-top: 80px;
     width: 100%;
     height: 900px;
+    margin-top: 30px;
+    overflow-x: auto;
+    box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
+    min-height: 200px;
+    background: white;
+    border-radius: 5px;
     padding-top: 10px;
+    margin-bottom: 50px;
     padding-left: 15px;
-    overflow-y: auto;
     /*text-align: center;*/
+}
+/* CSS cho mũi tên trước (prev arrow) */
+.react-multiple-carousel__arrow.react-multiple-carousel__arrow--left {
+    /* Tùy chỉnh các thuộc tính CSS ở đây */
+    left: -0px;
+    border-radius: 50%;
+    color: #333;
+    font-size: 20px;
+    padding: 5px;
+    z-index: 0;
+}
+
+/* CSS cho mũi tên sau (next arrow) */
+.react-multiple-carousel__arrow.react-multiple-carousel__arrow--right {
+    /* Tùy chỉnh các thuộc tính CSS ở đây */
+    right: 10px;
+    border-radius: 50%;
+    color: #333;
+    font-size: 20px;
+    padding: 5px;
+    z-index: 0;
 }
