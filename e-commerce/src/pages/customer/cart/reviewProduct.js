@@ -25,7 +25,7 @@ export const ReviewProduct = () =>{
         inStock:'',
         shop:'',
         brand:'',
-        averageRating:'',
+        averageRating: 0,
         mainImage : '',
         fullDescription : ''
     });
@@ -72,7 +72,7 @@ export const ReviewProduct = () =>{
                             enableReinitialize={true}
                             onSubmit={(values) =>{
                                 console.log(values)
-                                axios.post('http://localhost:8080/api/v1/reviews/' +product.id + "/" + user.id + "/create", values).then(res =>{
+                                axios.post('http://localhost:8080/api/v1/reviews/comment', values).then(res =>{
                                     console.log(res)
                                     Swal.fire("Comment success!")
                                     navigate('/')
