@@ -145,7 +145,7 @@ export function DetailProduct() {
                                 </div>
                                 <div style={{display: 'flex', alignItems: 'center', margin: '15px 0'}}>
                                     <span style={{fontSize:'18px'}}>Shop: </span>
-                                    <span style={{fontSize:'18px',color: "#fe5502",paddingLeft:'5px'}}>{product.shop.name}</span>
+                                    <Link to={'/shop/' + product.shop.id} style={{fontSize:'18px',color: "#fe5502",paddingLeft:'5px'}}>{product.shop.name}</Link>
                                 </div>
                                 <div style={{display: 'flex', alignItems: 'center', margin: '15px 0'}}>
                                     <span style={{fontSize:'18px'}}>Brands: </span>

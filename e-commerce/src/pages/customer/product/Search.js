@@ -42,7 +42,7 @@ export const SearchProduct = () =>{
                     <div id={'customer-header'}>
                         <CustomerHeader></CustomerHeader>
                     </div>
-                    <div id={'banner'}>
+                    <div id={'category-banner'}>
                         <h2>Shop Details</h2>
                         <p><i className={'fa fa-home'} style={{fontSize: "26px"}}></i> / <span>Shop Details</span></p>
                     </div>

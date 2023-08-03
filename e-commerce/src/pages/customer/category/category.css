@@ -1,4 +1,4 @@
-#banner{
+#category-banner{
     height: 200px;
     width: 100%;
     background: #ffe5cc;
@@ -8,7 +8,7 @@
     padding-left: 40px;
     color: black;
 }
-#banner h2{
+#category-banner h2{
     font-weight: 700;
 }
 #category-display{
