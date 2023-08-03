@@ -132,6 +132,10 @@ export const Cart = () =>{
     }
     }
     function payment(){
+        if(user.phoneNumber === null || user.addressLine1 === null || user.addressLine2 === null || user.city === null
+        || user.state === null || user.postalCode === null){
+                navigate('/customer/profile/update-customer')
+        }
         if (cartItems.filter(item => item.checked).length !== 0){
             Swal.fire({
                 title : "Confirm paying " + cartItems.filter(item => item.checked).length + " product?",
