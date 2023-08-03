@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import {Field, Form, Formik} from "formik";
  import './EditCustomer.css'
+import Swal from "sweetalert2";
 
 export default function EditCustomer(){
     const user = JSON.parse(sessionStorage.getItem('user'));
@@ -43,7 +44,15 @@ export default function EditCustomer(){
 
     const handleFormSubmit = (value) =>{
         axios.put('http://localhost:8080/api/v1/customers/update/'+user.id,value).then(() =>{
-                console.log("OK")
+                console.log(OK)
+                console.log(value)
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: "Successfully updated personal information",
+                showConfirmButton: false,
+                timer: 10000
+            })
             }
         )
     }
