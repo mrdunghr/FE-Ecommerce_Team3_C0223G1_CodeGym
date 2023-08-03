@@ -20,6 +20,7 @@ export const CreateProduct = () =>{
     const [selectedImage, setSelectedImage] = useState(null)
     const [urlImage, setUrlImage ] = useState("")
     const [product, setProduct] = useState()
+    const [file, setFile ] = useState()
     console.log(urlImage)
     useEffect(() => {
         if(user === null){
@@ -56,8 +57,7 @@ export const CreateProduct = () =>{
     const handleChangeSelect = (e) =>{
         console.log(e.target.value)
         setCategoryVal(e.target.value)
-        console.log(brands)
-        setBrand(brands.filter(brand => brand.categories.map(cate => cate.id === categoryVal)))
+        setBrand(brands.filter(brand => brand.categories.filter(cate => cate.id === e.target.value)))
         console.log(brands)
         if(isUpdated){
             setIsUpdated(false)
@@ -114,10 +114,12 @@ export const CreateProduct = () =>{
             },
             category : {
                 id : -1
-            }
+            },
+                quantity : 0
         }}
             enableReinitialize={true}
         onSubmit={async (values) =>{
+
             values ={...values, mainImage : urlImage}
             console.log(values)
             await axios.post('http://localhost:8080/api/v1/products/add', values).then(res =>
@@ -199,6 +201,10 @@ export const CreateProduct = () =>{
                                     <td>Discount:</td>
                                     <td><Field name={'discountPercent'}/></td>
                                 </tr>
+                                <tr>
+                                    <td>Quantity: </td>
+                                    <td><Field name={'quantity'}></Field></td>
+                                </tr>
                             </table>
                         </div>
                     </div>
@@ -215,7 +221,7 @@ export const CreateProduct = () =>{
                                 <div className={'image-box-product'}>
                                     <p>Main image: </p>
                                     {selectedImage ? <img src={selectedImage}></img> : <img src={'/image/image-thumbnail.png'}></img>}
-                                    <input type={'file'} onChange={handleImageChange}/>
+                                    <input type={'file'} />
                                 </div>
                             </div>
                         </div>

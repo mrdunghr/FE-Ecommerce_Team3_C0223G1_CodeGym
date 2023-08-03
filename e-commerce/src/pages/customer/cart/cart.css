@@ -238,3 +238,10 @@ input[type=checkbox]{
     cursor: pointer;
     color: white;
 }
+.info-items button{
+    color: white;
+    background: darkorange;
+    border: none;
+    padding: 6px;
+    border-radius: 2px;
+}

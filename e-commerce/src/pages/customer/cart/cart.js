@@ -132,6 +132,10 @@ export const Cart = () =>{
     }
     }
     function payment(){
+        if(user.phoneNumber === null || user.addressLine1 === null || user.addressLine2 === null || user.city === null
+        || user.state === null || user.postalCode === null){
+                navigate('/customer/profile/update-customer')
+        }
         if (cartItems.filter(item => item.checked).length !== 0){
             Swal.fire({
                 title : "Confirm paying " + cartItems.filter(item => item.checked).length + " product?",
@@ -253,7 +257,7 @@ export const Cart = () =>{
                                     <span>${(item.product.price - (item.product.price * item.product.discountPercent/100)).toFixed(2) * item.quantity}</span>
                                 </div>
                                 <div className={'info-items'}>
-                                    <button onClick={() => removeFromCart(item.id)}>Delete</button>
+                                    <button onClick={() => removeFromCart(item.id)}>Remove</button>
                                 </div>
                             </div>
                         </div>
