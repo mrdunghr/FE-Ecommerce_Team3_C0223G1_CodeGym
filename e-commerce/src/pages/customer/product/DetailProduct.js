@@ -70,12 +70,12 @@ export function DetailProduct() {
         });
     },[]);
 
-    // useEffect(() => {
-    //     axios.get(`http://localhost:8080/api/v1/reviews/${id}`).then((resp) =>{
-    //         console.log("reviews: " + resp)
-    //         setReviews(resp.data)
-    //     })
-    // },[]);
+    useEffect(() => {
+        axios.get(`http://localhost:8080/api/v1/reviews/${id}`).then((resp) =>{
+            console.log("reviews: " + resp)
+            setReviews(resp.data)
+        })
+    },[]);
 
     const addItem = () =>{
         const user = JSON.parse(sessionStorage.getItem('user'))
