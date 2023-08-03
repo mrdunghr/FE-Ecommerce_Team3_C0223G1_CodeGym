@@ -44,7 +44,7 @@ export default function EditCustomer(){
 
     const handleFormSubmit = (value) =>{
         axios.put('http://localhost:8080/api/v1/customers/update/'+user.id,value).then(() =>{
-                console.log(OK)
+                console.log("OK")
                 console.log(value)
             Swal.fire({
                 position: 'center',
