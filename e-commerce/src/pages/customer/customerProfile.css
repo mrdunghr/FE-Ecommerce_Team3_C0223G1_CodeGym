@@ -11,15 +11,14 @@
 }
 #shop-display{
     width: 100%;
-    height: 1200px;
+    height: 1000px;
 }
 #main-outlet{
     float: left;
     width: 69%;
-    height: 900px;
+    height: 700px;
 }
 #customer-footer{
     width: 100%;
-    height: 300px;
     clear: both;
 }
