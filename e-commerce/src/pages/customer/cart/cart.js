@@ -253,7 +253,7 @@ export const Cart = () =>{
                                     <span>${(item.product.price - (item.product.price * item.product.discountPercent/100)).toFixed(2) * item.quantity}</span>
                                 </div>
                                 <div className={'info-items'}>
-                                    <button onClick={() => removeFromCart(item.id)}>Delete</button>
+                                    <button onClick={() => removeFromCart(item.id)}>Remove</button>
                                 </div>
                             </div>
                         </div>

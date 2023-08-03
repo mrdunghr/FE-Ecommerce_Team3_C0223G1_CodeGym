@@ -22,7 +22,7 @@ export const OrdersManage = () =>{
 
     }, [update])
     const confirmOrder = (id) =>{
-        axios.put('http://localhost:8080/api/v1/customer-order/confirm-order/confirm/' + id).then(res =>{
+        axios.put('http://localhost:8080/api/v1/order-details/confirm-order/confirm/' + id).then(res =>{
             if(update){
                 setUpdate(false)
             }else{
@@ -33,7 +33,7 @@ export const OrdersManage = () =>{
         })
     }
     const cancelOrder = (id) =>{
-        axios.put('http://localhost:8080/api/v1/customer-order/confirm-order/cancel/' + id).then(res =>{
+        axios.put('http://localhost:8080/api/v1/order-details/confirm-order/cancel/' + id).then(res =>{
             if(update){
                 setUpdate(false)
             }else{
