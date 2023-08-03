@@ -67,7 +67,16 @@ export default function EditCustomer(){
                         <tbody>
                         <tr>
                             <td style={{textAlign:'left'}}> Email:</td>
-                            <td><Field style={{textAlign:'left',width:'250px',marginLeft:'5px'}} type={'text'} name={'email'}></Field></td>
+                            <td><Field
+                                style={{
+                                    textAlign: 'left',
+                                    width: '250px',
+                                    marginLeft: '5px',
+                                    background: '#e8e2e2',  // Màu tối cho trường chìm xuống
+                                    // padding: '5px',  // Tùy chỉnh padding nếu cần
+                                    borderRadius: '5px'  // Tùy chỉnh border radius nếu cần
+                                }} type={'text'} name={'email'} readOnly/>
+                            </td>
                             <td style={{textAlign:'left'}}> First Name:</td>
                             <td ><Field style={{textAlign:'left',width:'250px'}} type={'text'} name={'firstName'}></Field></td>
                         </tr>
