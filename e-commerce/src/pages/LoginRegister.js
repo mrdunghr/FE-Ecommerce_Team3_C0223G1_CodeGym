@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import '@fortawesome/fontawesome-free/css/all.min.css';
+// import '@fortawesome/fontawesome-free/css/all.min.css';
 import './LoginRegister.css'
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
@@ -38,7 +38,7 @@ export function LoginRegister() {
     })
     console.log(signUp);
     useEffect(() => {
-        axios.get("http://localhost:8080/api/v1/customers/login").then(res => {
+        axios.post("http://localhost:8080/api/v1/customers/login").then(res => {
             console.log(res.data)
             setSignIn(res.data)
         }).catch(err => {

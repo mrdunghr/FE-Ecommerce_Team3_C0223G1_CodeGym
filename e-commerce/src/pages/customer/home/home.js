@@ -1,8 +1,6 @@
 import {useEffect, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import LogoutIcon from '@mui/icons-material/Logout';
 import "./customerHome.css"
 import CustomerHeader from "../../../components/customer/header";
 
@@ -16,7 +14,6 @@ export const HomePortal = () =>{
     const [products, setProducts] = useState([])
     const [discountProds, setDiscountProds] = useState([])
     console.log(categories)
-    const [orders, setOrders] = useState([])
     useEffect(() => {
         axios.get("http://localhost:8080/api/v1/products/list-product-discount").then((res) => {
             setBestSellerList(res.data)
@@ -30,13 +27,6 @@ export const HomePortal = () =>{
         axios.get('http://localhost:8080/api/v1/products/all').then(res =>{
             setProducts(res.data)
         })
-        if(user !== null){
-            axios.get('http://localhost:8080/api/v1/customer-order/' + user.id).then((res) => {
-                console.log(res.data)
-                setOrders(res.data)
-                sessionStorage.setItem('orders', JSON.stringify(res.data))
-            })
-        }
     }, [])
 
     return(
