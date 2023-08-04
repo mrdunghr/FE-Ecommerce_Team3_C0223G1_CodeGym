@@ -63,12 +63,15 @@ label.star:before {
     width: 10%;
     height: auto;
     float: left;
+    margin-top: 50px;
 }
 
 .content-customer {
+    /*border-left: 1px solid black;*/
     width: 90%;
     float: left;
     height: auto;
+    margin-top: 30px;
 }
 .hidden {
     display: none;
@@ -99,4 +102,14 @@ label.star:before {
     display: none;
 }
 
+#btn-cart{
+    margin: 5px;
+    height: 35px;
+    border-radius: 5px;
+    border: none;
+    width: 80px;
+    color: white;
+    background: #fe5502;
+    cursor: pointer;
+}
 
