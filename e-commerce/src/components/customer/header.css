@@ -99,18 +99,19 @@ body{
     height: 40px;
     width: 600px;
     background: white;
-    border: 0.5px solid black;
+    border: 0.5px solid #fe5502;
+    border-radius: 10px;
 }
 #search-btn{
     height: 30px;
-    background: darkorange;
+    background: #fe5502;
     color: white;
     border: none;
-    border-radius: 1px;
+    border-radius: 10px;
     position: relative;
     right: 40px;
 }
 #main-navbar #search-btn:hover{
-    color: darkorange;
+    color: #fe5502;
     background: white;
 }
