@@ -1,4 +1,3 @@
-import CustomerHeader from "../../../components/customer/header";
 import "./productManager.css"
 import {Link, useNavigate} from "react-router-dom";
 import React, {useEffect, useState} from "react";
@@ -7,7 +6,6 @@ import BlockIcon from '@mui/icons-material/Block';
 import EditIcon from '@mui/icons-material/Edit';
 import KeyIcon from '@mui/icons-material/Key';
 import Swal from "sweetalert2";
-import AddIcon from '@mui/icons-material/Add';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 export const ProductManager= () =>{

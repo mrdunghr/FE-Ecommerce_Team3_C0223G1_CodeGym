@@ -121,9 +121,9 @@ export function DetailProduct() {
                     <div className="row">
                         <div className="col-6" style={{textAlign: "center"}}>
                             {product.mainImage === ".png" ?
-                                <img src={'/image/modern-teaching-concept-P7BTJU7.jpg'} width={'500px'}
-                                     height={"420px"}></img> :
-                                <img src={product.mainImage} alt="" width={'500px'} height={"420px"}/>}
+                                <img src={'/image/modern-teaching-concept-P7BTJU7.jpg'} width={'auto'}
+                                     height={"auto"}></img> :
+                                <img src={product.mainImage} alt="" width={'auto'} height={"auto"}/>}
 
                         </div>
                         <div className="col-6">
@@ -136,14 +136,14 @@ export function DetailProduct() {
                             />
                             <div>
                                 <div style={{display: 'flex', alignItems: 'center'}}>
-                                    <h5 style={{color: '#fe5502', paddingTop: '10px'}}>Digital List Price:</h5>
+                                    <h5 style={{color: 'black', paddingTop: '10px'}}>Digital List Price:</h5>
                                     <span style={{paddingTop: '10px', paddingLeft: '5px'}}
                                           className={'h5'}>${product.price}</span>
                                 </div>
                                 <div style={{display: 'flex', alignItems: 'center', margin: '10px 0'}}>
-                                    <h5 style={{color: '#ce5b5e'}}>Kindle Price:</h5>
+                                    <h5 style={{color: 'black'}}>Kindle Price:</h5>
                                     <h5 style={{
-                                        color: '#88010f',
+                                        color: 'red',
                                         paddingLeft: '5px'
                                     }}>${product.price - (product.discountPercent * product.price / 100)}</h5>
                                 </div>

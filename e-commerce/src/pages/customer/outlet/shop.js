@@ -102,7 +102,7 @@ import {useDispatch, useSelector} from "react-redux";
                                 <tr>
                                     <td>{shop.id}</td>
                                     <td>{shop.name}</td>
-                                    <td>{shop.image === ".png" ? <img src={'/image/image-thumbnail.png'}></img> : <img src={shop.image} width={"120px"} height={'100px'}></img>}</td>
+                                    <td>{shop.image === ".png" ? <img src={'/image/image-thumbnail.png'}></img> : <img src={shop.image}></img>}</td>
                                     <td>{shop.deliveryAddress}</td>
                                     <td>{shop.createdTime}</td>
                                     <td>{shop.enabled ? <span className={'active-shop'} style={{fontSize : "15px"}}>Active</span> : <p className={'inactive-shop'} style={{fontSize : "15px"}}>Inactive</p>}</td>

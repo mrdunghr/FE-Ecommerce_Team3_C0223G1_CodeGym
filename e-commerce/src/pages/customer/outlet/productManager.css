@@ -6,9 +6,9 @@
     align-items: center;
 }
 #product-main{
-    margin-top: 60px;
+    margin-top: 1vh;
     width: 100%;
-    height: 500px;
+    height: 100%;
     display: flex;
     flex-direction: column;
 }

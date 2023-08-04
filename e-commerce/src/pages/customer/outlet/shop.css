@@ -2,11 +2,9 @@
     width: 100%;
     height: 100%;
     display: flex;
-    /*justify-content: center;*/
-    /*align-items: center;*/
+    align-items: center;
     color: black;
     flex-direction: column;
-    padding-top: 80px;
 
 }
 #shop-container p{
@@ -17,8 +15,10 @@
 #main-shop{
     width: 100%;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    padding: 20px;
 
 }
+
 #first-main-shop{
     width: 45%;
     height: 100%;
@@ -77,10 +77,6 @@
     margin-top: 30px;
     width: 100%;
 }
-#table-shop tr{
-    border: 1px solid grey;
-
-}
 #table-shop  th, td{
     border-collapse: collapse;
     padding: 20px;
@@ -106,7 +102,6 @@
     background: white;
 }
 #shop-container button:nth-child(odd){
-    margin-left: 400px;
     margin-top: 20px;
 }
 #shop-container button{
