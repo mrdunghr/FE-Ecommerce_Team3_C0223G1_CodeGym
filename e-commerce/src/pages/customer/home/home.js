@@ -109,7 +109,7 @@ export const HomePortal = () =>{
                             arrows={true}
                             infinite={true}
                             autoPlay={true}
-                            autoPlaySpeed={2000}
+                            autoPlaySpeed={5000}
                             responsive={responsive}>
                             {discountProds.map(item => (
                                 <Link to={'/product/' + item.id}><div className={'discount-product'}>
