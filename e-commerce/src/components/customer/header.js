@@ -4,10 +4,10 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import LogoutIcon from '@mui/icons-material/Logout';
 import SearchIcon from '@mui/icons-material/Search';
 import LoginIcon from '@mui/icons-material/Login';
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import HomeIcon from '@mui/icons-material/Home';
 import {createAction} from "@reduxjs/toolkit";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 
 
@@ -16,6 +16,7 @@ export default function CustomerHeader(){
     const user = JSON.parse(sessionStorage.getItem('user'))
     const navigate = useNavigate()
     const dispatch = useDispatch()
+    const status = useSelector(state => state.update)
     const logout = () =>{
         sessionStorage.setItem('user', null)
         dispatch(updateStatus())
@@ -26,7 +27,9 @@ export default function CustomerHeader(){
         dispatch(updateStatus())
         navigate('/product/search/' + search)
     }
+    useEffect(() => {
 
+    }, [status])
     return(
         <>
             <div id={'cus-header'}>

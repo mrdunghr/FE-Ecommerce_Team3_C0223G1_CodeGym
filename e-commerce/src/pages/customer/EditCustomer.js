@@ -3,9 +3,15 @@ import axios from "axios";
 import {Field, Form, Formik} from "formik";
  import './EditCustomer.css'
 import Swal from "sweetalert2";
+import {useDispatch, useSelector} from "react-redux";
+import {createAction} from "@reduxjs/toolkit";
+const updateStatus = createAction("update")
 
 export default function EditCustomer(){
     const user = JSON.parse(sessionStorage.getItem('user'));
+    const [updated, setUpdated] = useState(false)
+    const status = useSelector(state => state.update)
+    const dispatch = useDispatch()
    const [customer,setCustomer] = useState({
        email : "",
        firstName : "",
@@ -31,9 +37,6 @@ export default function EditCustomer(){
         }).catch(err => {
             console.log(err)
         })
-    }, [])
-
-    useEffect(() => {
         axios.get("http://localhost:8080/api/v1/customers/"+ user.id).then(res => {
             console.log(res.data)
             setCustomer(res.data)
@@ -43,9 +46,12 @@ export default function EditCustomer(){
     }, [])
 
     const handleFormSubmit = (value) =>{
-        axios.put('http://localhost:8080/api/v1/customers/update/'+user.id,value).then(() =>{
+        console.log(value)
+        axios.put('http://localhost:8080/api/v1/customers/update/'+user.id,value).then((res) =>{
                 console.log("OK")
                 console.log(value)
+            sessionStorage.setItem('user', JSON.stringify(res.data))
+            dispatch(updateStatus())
             Swal.fire({
                 position: 'center',
                 icon: 'success',
