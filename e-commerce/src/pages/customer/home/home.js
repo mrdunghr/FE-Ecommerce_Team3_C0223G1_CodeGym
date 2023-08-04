@@ -8,6 +8,11 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
 export const HomePortal = () =>{
+    // Phân trang phần danh sách product
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 12;
+    const [products, setProducts] = useState([]);
+    const [totalPages, setTotalPages] = useState(1); // Thêm trạng thái cho tổng số trang
     const responsive = {
         desktop: {
             breakpoint: { max: 3000, min: 1024 },
@@ -31,7 +36,6 @@ export const HomePortal = () =>{
     const [categories, setCategories] = useState([])
     const [search,setSearch] = useState([])
     const navigate = useNavigate();
-    const [products, setProducts] = useState([])
     const [discountProds, setDiscountProds] = useState([])
     console.log(categories)
     const [orders, setOrders] = useState([])
@@ -47,6 +51,7 @@ export const HomePortal = () =>{
         })
         axios.get('http://localhost:8080/api/v1/products/all').then(res =>{
             setProducts(res.data)
+            setTotalPages(Math.ceil(res.data.length / itemsPerPage));
         })
         // if(user !== null){
         //     axios.get('http://localhost:8080/api/v1/order-details/' + user.id).then((res) => {
@@ -56,6 +61,22 @@ export const HomePortal = () =>{
         //     })
         // }
     }, [])
+    const getCurrentPageItems = () => {
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        return products.slice(startIndex, endIndex);
+    };
+    const handleNextPage = () => {
+        if (currentPage < totalPages) {
+            setCurrentPage(currentPage + 1);
+        }
+    };
+
+    const handlePrevPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+        }
+    };
     return(
         <>
             <div id={'display'}>
@@ -67,9 +88,10 @@ export const HomePortal = () =>{
                         <img src="/image/Thiet_ke_chua_co_ten.png" alt=""/>
                     </div>
                     <div id={'categories-box'}>
-                        <h4 style={{textIndent : "10px"}}>Categories</h4>
-                        {categories.map((item, index) => (index <= 19 ?
-                                <Link to={'/category/' + item.id}><div className={'categories'}>
+                        <h4 id={'category-text'} style={{textIndent : "10px"}}>Categories</h4>
+                        {categories.map((item, index) => (index <= 17 ?
+                                <Link to={'/category/' + item.id}>
+                                    <div className={'categories'}>
                                     <div className={'categories-image'}>
                                         <Link to={'/category/' +item.id}><img src={item.image === ".png" ? "/image/modern-teaching-concept-P7BTJU7.jpg" :"/image/categories/"+item.image} alt=""/></Link>
                                     </div>
@@ -104,7 +126,7 @@ export const HomePortal = () =>{
 
                     </div>
                     <div id={'discount-product'}>
-                        <h4 style={{textIndent : "10px"}}>Most discount products</h4>
+                        <h4 id={'most-discount-product-text'} style={{textIndent : "10px"}}>Most discount products</h4>
                         <Carousel
                             arrows={true}
                             infinite={true}
@@ -132,28 +154,39 @@ export const HomePortal = () =>{
                             ))}
                         </Carousel>
                     </div>
-                    <div id={'all-product'}>
-                        <h4>Suggest product</h4>
-                        {products.map(item => (
-                            <Link to={'/product/' + item.id}><div className={'discount-product'}>
-                                <div className={'discount-product-image'}>
-                                    <Link to={'/product/' + item.id}><img src={item.mainImage === ".png" ? "/image/modern-teaching-concept-P7BTJU7.jpg" : item.mainImage} alt=""/></Link>
-                                </div>
-                                <div className={'discount-product-info'}>
-                                    <div className={'discount-product-name'}>
-                                        <Link to={'/product/' + item.id}>{item.name.length > 15 ? item.name.substring(0,15) + "..." : item.name}</Link>
+                    <div id='all-product'>
+                        <h4 id={'suggest-product-text'}>Suggest product</h4>
+                        <div className='row'>
+                            {getCurrentPageItems().map(item => (
+                                <Link to={'/product/' + item.id}><div className={'discount-product'}>
+                                    <div className={'discount-product-image'}>
+                                        <Link to={'/product/' + item.id}><img src={item.mainImage === ".png" ? "/image/modern-teaching-concept-P7BTJU7.jpg" : item.mainImage} alt=""/></Link>
                                     </div>
-                                    <div className={'discount-product-price'}>
-                                        <div className={'old-price'}>${item.price}</div>
-                                        <div className={'new-price'}>${(item.price - (item.price * item.discountPercent/100)).toFixed(2)}</div>
+                                    <div className={'discount-product-info'}>
+                                        <div className={'discount-product-name'}>
+                                            <Link to={'/product/' + item.id}>{item.name.length > 15 ? item.name.substring(0,15) + "..." : item.name}</Link>
+                                        </div>
+                                        <div className={'discount-product-price'}>
+                                            <div className={'old-price'}>${item.price}</div>
+                                            <div className={'new-price'}>${(item.price - (item.price * item.discountPercent/100)).toFixed(2)}</div>
+                                        </div>
                                     </div>
-                                </div>
-                                <Link to={'/product/' + item.id}><div className={'click-me'}>
-                                    See the detail
+                                    <Link to={'/product/' + item.id}><div className={'click-me'}>
+                                        See the detail
+                                    </div></Link>
                                 </div></Link>
-                            </div></Link>
-                        ))}
+                            ))}
+                        </div>
+                        <div id={'bnt-pagination'}>
+                            <button onClick={handlePrevPage} disabled={currentPage === 1 || totalPages === 1}>
+                                Previous
+                            </button>
+                            <button onClick={handleNextPage} disabled={currentPage === totalPages || totalPages === 1}>
+                                Next
+                            </button>
+                        </div>
                     </div>
+
                 </div>
                 <Footer/>
             </div>

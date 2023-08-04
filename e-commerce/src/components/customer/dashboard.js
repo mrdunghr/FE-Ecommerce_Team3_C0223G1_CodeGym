@@ -2,16 +2,18 @@ import "./dashboard.css"
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
+import {useSelector} from "react-redux";
 export default function Dashboard(){
     const user = JSON.parse(sessionStorage.getItem('user'))
     console.log(user)
     const [shops, setShops] = useState([])
+    const status = useSelector(state => state.update)
     useEffect(() => {
         axios.get("http://localhost:8080/api/v1/shop/" + user.id + "?list=true").then((res) => {
             console.log(res.data)
             setShops(res.data)
         })
-    }, [])
+    }, [status])
     return(
         <>
             <div id={'dashboard-sidebar'}>

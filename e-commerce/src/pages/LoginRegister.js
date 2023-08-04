@@ -6,6 +6,7 @@ import {useNavigate} from "react-router-dom";
 import Swal from "sweetalert2";
 import {Instagram, Twitter} from "@mui/icons-material";
 
+
 export function LoginRegister() {
     const [country, setCountry] = useState([{
         id : 0,
@@ -106,7 +107,7 @@ export function LoginRegister() {
                 Swal.fire({
                     position: 'center',
                     icon: 'warning',
-                    title: err.response.data,
+                    title:"Enter enough information!",
                     showConfirmButton: false,
                     timer: 10000
                 })

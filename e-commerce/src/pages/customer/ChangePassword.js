@@ -18,7 +18,7 @@ export default function ChangePassword(){
                                 <td><Field style={{textAlign:'left',width:'250px',marginLeft:'5px'}} type={'password'}></Field></td>
                             </tr>
                             <tr>
-                                <td>Confirm new password:</td>
+                                <td>Confirm new password :</td>
                                 <td><Field style={{textAlign:'left',width:'250px',marginLeft:'5px'}} type={'password'}></Field></td>
                             </tr>
                             <tr>
