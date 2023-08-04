@@ -48,7 +48,8 @@ export function DetailProduct() {
         brand: '',
         averageRating: '',
         mainImage: '',
-        fullDescription: ''
+        fullDescription: '',
+        quantity:''
     });
     console.log(product)
     let [count, setCount] = useState(0)
@@ -104,26 +105,53 @@ export function DetailProduct() {
     function MySweetAlert(ok) {
         return (
             <Swal
-                title="Ảnh của tôi"
-                html={<img src={ok} alt="Ảnh của tôi"/>}
-                confirmButtonText="Đóng"
+                title="My picture"
+                html={<img src={ok} alt="My picture"/>}
+                confirmButtonText="Close"
             />
         );
-    }
 
+    }
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 2; // Số đánh giá trên mỗi trang
+    const totalPages = Math.ceil(reviews.length / itemsPerPage); // Tính tổng số trang
+
+    // Hàm lấy danh sách đánh giá cho trang hiện tại
+    const getCurrentPageReviews = () => {
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        return reviews.slice(startIndex, endIndex);
+    };
+
+    const handleNextPage = () => {
+        if (currentPage < totalPages) {
+            setCurrentPage(currentPage + 1);
+        }
+    };
+
+    const handlePrevPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+        }
+    };
     return (
         <>
-            <div id={"customer-header"}>
-                <CustomerHeader/>
-            </div>
             <div id={"display-detail"} style={{paddingBottom: '100px'}}>
+                <div id={"customer-header"}>
+                    <CustomerHeader/>
+                </div>
                 <div className="container-detail" style={{paddingTop: "50px"}}>
-                    <div className="row">
+                    <div className="row" style={{
+                        margin: '50px',
+                        paddingTop: '50px',
+                        paddingBottom: '50px',
+                        boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.8)'
+                    }}>
                         <div className="col-6" style={{textAlign: "center"}}>
                             {product.mainImage === ".png" ?
-                                <img src={'/image/modern-teaching-concept-P7BTJU7.jpg'} width={'auto'}
-                                     height={"auto"}></img> :
-                                <img src={product.mainImage} alt="" width={'auto'} height={"auto"}/>}
+                                <img src={'/image/modern-teaching-concept-P7BTJU7.jpg'} width={'600px'}
+                                     height={"420px"}></img> :
+                                <img src={product.mainImage} alt="" width={'600px'} height={"420px"}/>}
 
                         </div>
                         <div className="col-6">
@@ -136,52 +164,30 @@ export function DetailProduct() {
                             />
                             <div>
                                 <div style={{display: 'flex', alignItems: 'center'}}>
-                                    <h5 style={{color: 'black', paddingTop: '10px'}}>Digital List Price:</h5>
+                                    <h5 style={{paddingTop: '10px'}}>Digital List Price:</h5>
                                     <span style={{paddingTop: '10px', paddingLeft: '5px'}}
                                           className={'h5'}>${product.price}</span>
                                 </div>
                                 <div style={{display: 'flex', alignItems: 'center', margin: '10px 0'}}>
-                                    <h5 style={{color: 'black'}}>Kindle Price:</h5>
+                                    <h5>Kindle Price:</h5>
                                     <h5 style={{
-                                        color: 'red',
+                                        color: '#fe5502',
                                         paddingLeft: '5px'
                                     }}>${product.price - (product.discountPercent * product.price / 100)}</h5>
                                 </div>
-                                <div style={{display: 'flex', alignItems: 'center', margin: '10px 0'}}>
-                                    <span style={{fontSize: '18px'}}>Availability: </span>
-                                    <span style={product.enabled ? {
-                                        color: "#75a92b",
-                                        fontSize: '18px',
-                                        paddingLeft: '5px'
-                                    } : {
-                                        color: "grey",
-                                        fontSize: '18px',
-                                        paddingLeft: '5px'
-                                    }}>{product.enabled ? "In stock" : "Out stock"}</span>
+                                <div style={{display: 'flex', alignItems: 'center', margin: '15px 0'}}>
+                                    <h5 style={{fontSize: '18px'}}>Shop: </h5>
+                                    <Link to={'/shop/' + product.shop.id}
+                                          style={{fontSize: '18px', color: "black", paddingLeft: '5px'}}>
+                                        <h5>{product.shop.name}</h5></Link>
                                 </div>
                                 <div style={{display: 'flex', alignItems: 'center', margin: '15px 0'}}>
-                                    <span style={{fontSize: '18px'}}>Shop: </span>
-                                    <Link to={'/shop/' + product.shop.id} style={{
-                                        fontSize: '18px',
-                                        color: "#fe5502",
-                                        paddingLeft: '5px'
-                                    }}>{product.shop.name}</Link>
+                                    <h5 style={{fontSize: '18px'}}>Brands: </h5>
+                                    <h5 style={{fontSize: '18px', paddingLeft: '5px'}}>{product.brand.logo}</h5>
                                 </div>
                                 <div style={{display: 'flex', alignItems: 'center', margin: '15px 0'}}>
-                                    <span style={{fontSize: '18px'}}>Brands: </span>
-                                    <span style={{
-                                        fontSize: '18px',
-                                        color: "#fe5502",
-                                        paddingLeft: '5px'
-                                    }}>{product.brand.logo}</span>
-                                </div>
-                                <div style={{display: 'flex', alignItems: 'center', margin: '15px 0'}}>
-                                    <span style={{fontSize: '18px'}}>Reviews count: </span>
-                                    <span style={{
-                                        fontSize: '18px',
-                                        color: "#fe5502",
-                                        paddingLeft: '5px'
-                                    }}>{product.reviewCount}</span>
+                                    <h5 style={{fontSize: '18px'}}>Quantity in stock: </h5>
+                                    <h5 style={{fontSize: '18px', paddingLeft: '5px'}}>{product.quantity}</h5>
                                 </div>
                             </div>
                             <div style={{marginTop: '20px'}}>
@@ -200,7 +206,7 @@ export function DetailProduct() {
                                         style={{border: 'none', width: '32px', height: '32px'}}>+
                                 </button>
                             </div>
-                            <button disabled={!product.enabled} onClick={addItem} style={{
+                            <button id={"btn-cart"} disabled={!product.enabled} onClick={addItem} style={{
                                 marginRight: '20px',
                                 border: 'none',
                                 fontSize: '18px',
@@ -214,7 +220,7 @@ export function DetailProduct() {
                             </button>
                         </div>
                     </div>
-                    <div style={{paddingLeft: '160px', paddingTop: '70px', display: 'flex', alignItems: 'center'}}>
+                    <div style={{paddingLeft: '250px', paddingTop: '30px', display: 'flex', alignItems: 'center'}}>
                         <Link to={''} style={{
                             color: 'black',
                             marginRight: '20px',
@@ -223,23 +229,25 @@ export function DetailProduct() {
                         }} onClick={handleLinkClickDescription}><h5>Description</h5></Link>
                         <Link to={''} style={{color: 'black'}} onClick={handleLinkClick}><h5>Reviews</h5></Link>
                     </div>
-                    <div style={{marginTop: '50px', padding: '20px'}}
+
+                    <div style={{marginTop: '50px', paddingLeft: '70px', paddingRight: '70px'}}
                          className={showReview ? "review-product" : "review-product hidden"}>
                         <div style={{
                             fontSize: '18px',
                             fontWeight: 'bold',
                             padding: '20px',
                             backgroundColor: "rgba(0,0,0,.02)",
-                            borderRadius: '10px'
+                            borderRadius: '10px',
+                            boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.3)'
                         }}>
                             PRODUCT REVIEWS
                         </div>
                         {reviews.length === 0 ? (
-                            <span style={{fontSize: '18px', padding: "40px", textAlign: "center", display: "block"}}>There are no reviews for this product!</span>
+                            <span style={{fontSize: '18px', textAlign: "center", display: "block"}}>There are no reviews for this product!</span>
                         ) : (
-                            reviews.map((review) => (
-                                <div className={'row'} key={review.id}> {/* Thêm key cho mỗi đánh giá */}
-                                    <div className="avatar-customer" style={{padding: "20px"}}>
+                            getCurrentPageReviews().map((review) => (
+                                <div className={'row'} key={review.id} style={{paddingLeft:'50px',paddingRight:'50px'}}> {/* Thêm key cho mỗi đánh giá */}
+                                    <div className="avatar-customer">
                                         <img
                                             src='/image/avatar/avatar-s-1.png'
                                             alt=""
@@ -251,14 +259,14 @@ export function DetailProduct() {
                                             }}
                                         />
                                     </div>
-                                    <div className="content-customer" style={{padding: "20px"}}>
+                                    <div className="content-customer">
                                         <span style={{fontWeight: 'bold'}}>{review.customer.lastName}</span>
                                         <div>
                                             <Rating name="read-only" value={review.rating} readOnly/>
                                         </div>
                                         <div>
-                                            <span
-                                                style={{opacity: '0.7'}}> {review.reviewTime.substring(11, 19)} {review.reviewTime.substring(0, 10)}</span>
+                                                <span
+                                                    style={{opacity: '0.7'}}> {review.reviewTime.substring(11, 19)} {review.reviewTime.substring(0, 10)}</span>
                                         </div>
                                         <div style={{marginTop: '5px'}}>
                                             <span> {review.comment}</span> <br/>
@@ -268,15 +276,29 @@ export function DetailProduct() {
                                 </div>
                             ))
                         )}
+                        <div>
+                            {totalPages > 1 && (
+                                <div id="bnt-pagination">
+                                    <button onClick={handlePrevPage} disabled={currentPage === 1}>
+                                        Previous
+                                    </button>
+                                    <span>{currentPage}</span>
+                                    <button onClick={handleNextPage} disabled={currentPage === totalPages}>
+                                        Next
+                                    </button>
+                                </div>
+                            )}
+                        </div>
                     </div>
                     <div className={showDescription ? "review-description" : "review-description hidden-description"}
-                         style={{padding: '20px', marginTop: '50px'}}>
+                         style={{paddingLeft: '70px', paddingRight: '70px', marginTop: '50px'}}>
                         <div style={{
                             fontSize: '18px',
                             fontWeight: 'bold',
                             padding: '20px',
                             backgroundColor: "rgba(0,0,0,.02)",
-                            borderRadius: '10px'
+                            borderRadius: '10px',
+                            boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.3)'
                         }}>
                             DESCRIPTION PRODUCT
                         </div>
@@ -290,4 +312,3 @@ export function DetailProduct() {
         </>
     )
 }
-
