@@ -17,3 +17,7 @@
     padding-bottom: 20px;
     margin-left: 10px;
 }
+.error-message {
+    color: #fe5502;
+    margin-top: 16px;
+}
