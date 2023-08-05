@@ -155,7 +155,7 @@ export function DetailProduct() {
 
                         </div>
                         <div className="col-6">
-                            <h4 style={{paddingBottom: '10px'}}>{product.name}</h4>
+                            <h4 style={{paddingBottom: '10px'}}>{product.name.length > 100 ? product.name.substring(0,100) + "..." : product.name}</h4>
 
                             <Rating
                                 name="read-only"

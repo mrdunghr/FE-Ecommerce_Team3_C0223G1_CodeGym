@@ -126,9 +126,9 @@ export const Category = () =>{
                                     </div>
                                     <div className={'product-name'}>
                                         <Link to={'/product/' + prod.id}>
-                                        <span>{prod.name}</span>
+                                        <span>{prod.name.length > 15 ? prod.name.substring(0,15) + "..." : prod.name}</span>
                                         </Link>
-                                        <span className={'alias'}>( {prod.alias} )</span>
+                                        <span className={'alias'}>( {prod.alias.length > 15 ? prod.alias.substring(0,15) + "..." : prod.alias} )</span>
                                         <span className={'old-price'}>${prod.price}</span>
                                         <span className={'new-price'}>${prod.price - (prod.price * prod.discountPercent/100)}</span>
                                     </div>
