@@ -33,8 +33,27 @@
     font-size: 12px;
 }
 
-#a {
+#a, #a-fb, #a-in, #a-tw {
     color: #333;
+    font-size: 14px;
+    text-decoration: none;
+    margin: 15px 3px;
+}
+#a-in:hover,#a:hover {
+    color: #fe5502;
+    font-size: 14px;
+    text-decoration: none;
+    margin: 15px 3px;
+}
+#a-fb:hover {
+    color: #0d8af0;
+    font-size: 14px;
+    text-decoration: none;
+    margin: 15px 3px;
+}
+
+#a-tw:hover {
+    color: #33ccff;
     font-size: 14px;
     text-decoration: none;
     margin: 15px 3px;
@@ -46,7 +65,7 @@
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.2);
     position: relative;
     overflow: hidden;
-    width: 60%;
+    width:800px;
     max-width: 100%;
     min-height: 100%;
 }

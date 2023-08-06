@@ -122,9 +122,9 @@ export function LoginRegister() {
                     <div id={'form-signUp'}>
                         <h1 className={'h1'}>Create Account</h1>
                         <div className="social-container">
-                            <a id={'a'} href="#" className="social"><FacebookIcon></FacebookIcon></a>
-                            <a id={'a'} href="#" className="social"><Instagram></Instagram></a>
-                            <a id={'a'} href="#" className="social"><Twitter></Twitter></a>
+                            <a id={'a-fb'} href="#" className="social"><FacebookIcon></FacebookIcon></a>
+                            <a id={'a-in'} href="#" className="social"><Instagram></Instagram></a>
+                            <a id={'a-tw'} href="#" className="social"><Twitter></Twitter></a>
                         </div>
                         <span className={'span'}>or use your email for registration</span>
                         <input
@@ -171,9 +171,9 @@ export function LoginRegister() {
                         <h1 className={'h1'}>Sign in</h1>
                         <div className="social-container">
                             <div className="social-container">
-                                <a id={'a'} href="#" className="social"><FacebookIcon></FacebookIcon></a>
-                                <a id={'a'} href="#" className="social"><Instagram></Instagram></a>
-                                <a id={'a'} href="#" className="social"><Twitter></Twitter></a>
+                                <a id={'a-fb'} href="#" className="social"><FacebookIcon></FacebookIcon></a>
+                                <a id={'a-in'} href="#" className="social"><Instagram></Instagram></a>
+                                <a id={'a-tw'} href="#" className="social"><Twitter></Twitter></a>
                             </div>
                         </div>
                         <span className={'span'}>or use your account</span>
