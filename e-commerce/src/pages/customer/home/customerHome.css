@@ -202,7 +202,8 @@
     background: white;
     border-radius: 5px;
     padding-top: 50px;
-    padding-left: 15px;
+    padding-left: 35px;
+    padding-right: 45px;
 
 }
 .discount-product{
@@ -269,9 +270,7 @@
     display: block;
 
 }
-.discount-product:hover{
-    border: .5px solid darkorange;
-}
+
 .best-seller-product:hover .click-me{
     display: block;
 }
