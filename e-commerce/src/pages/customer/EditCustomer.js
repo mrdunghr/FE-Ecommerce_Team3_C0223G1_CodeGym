@@ -106,7 +106,7 @@ export default function EditCustomer(){
                         </tr>
                         <tr>
                             <td style={{textAlign:'left'}}>Country:</td>
-                            <td style={{textAlign: 'left', padding:'0px'}}>
+                            <td style={{textAlign: 'left', paddingLeft:'20px'}}>
                                 <Field as="select" name="country.id" style={{width:'250px'}}>
                                     <option>-- Country --</option>
                                     {country.map((item) => (
