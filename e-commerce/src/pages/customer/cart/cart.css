@@ -153,7 +153,7 @@ input[type=checkbox]{
 
 /*Section-buying*/
 #section-buying{
-    height: 180px;
+    height: 100px;
     width: 90%;
     position: fixed;
     bottom: 0;

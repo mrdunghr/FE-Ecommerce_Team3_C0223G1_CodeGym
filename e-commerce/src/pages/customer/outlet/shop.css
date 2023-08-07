@@ -174,3 +174,8 @@
     margin-top: 10px;
     text-align: center;
 }
+
+.shop-icon{
+    cursor: pointer;
+    margin-bottom: 10px;
+}
