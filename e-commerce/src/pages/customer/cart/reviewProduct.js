@@ -12,6 +12,7 @@ export const ReviewProduct = () =>{
     const {id} = useParams()
     const user = JSON.parse(sessionStorage.getItem('user'))
     const [rate, setRate] = useState(0)
+    const {odDetailID} = useParams()
     console.log(rate)
     const navigate = useNavigate()
     const handleRating = (value) =>{
@@ -72,7 +73,7 @@ export const ReviewProduct = () =>{
                             enableReinitialize={true}
                             onSubmit={(values) =>{
                                 console.log(values)
-                                axios.post('http://localhost:8080/api/v1/reviews/comment', values).then(res =>{
+                                axios.post('http://localhost:8080/api/v1/reviews/comment/' + odDetailID, values).then(res =>{
                                     console.log(res)
                                     Swal.fire("Comment success!")
                                     navigate('/')

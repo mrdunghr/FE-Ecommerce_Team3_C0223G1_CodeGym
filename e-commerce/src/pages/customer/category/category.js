@@ -137,8 +137,11 @@ export const Category = () =>{
                         </div>
                     </div>
                 </div>
+                <div id={'footer'}>
+                    <Footer></Footer>
+                </div>
             </div>
-                <Footer/>
+
         </>
     )
 

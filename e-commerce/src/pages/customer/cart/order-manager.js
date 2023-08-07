@@ -100,11 +100,11 @@ export const OrderManager = () =>{
                                     <>
                                         <div className={'odDetails-item'}>
                                             <div className={'item-name-image item-orderDetails'}>
-                                                <img src={odDetails.product.mainImage} alt=""/>
-                                                <b>{odDetails.product.name}</b>
+                                                <Link to={'/product/' + odDetails.product.id}><img src={odDetails.product.mainImage} alt=""/>
+                                                <b>{odDetails.product.name.substring(0, 10)}</b></Link>
                                             </div>
                                             <div className={'item-status item-orderDetails'}>
-                                                <b style={{color : "green"}}>{odDetails.status}</b>
+                                                <b>{odDetails.status}</b>
                                             </div>
                                             <div className={'item-orderDetails  item-quantity'}>
                                                 <b>{odDetails.quantity}</b>
@@ -202,7 +202,9 @@ export const OrderManager = () =>{
                                                 <b>{user.firstName}</b>
                                             </div>
                                             <div className={'item-orderDetails item-action'}>
-                                                <b>{item.orderTime.substring(0, 10)}</b>
+                                                {/*<b>{item.orderTime.substring(0, 10)}</b>*/}
+                                                {odDetails.hasReviewed ? null : <Link to={'/review/' + odDetails.product.id + '/' + odDetails.id}><button>Review</button></Link>}
+
                                             </div>
                                         </div>
                                     </>
@@ -232,7 +234,7 @@ export const OrderManager = () =>{
                                                 <b>{user.firstName}</b>
                                             </div>
                                             <div className={'item-orderDetails item-action'}>
-                                                <b>{item.orderTime.substring(0, 10)}</b>
+                                                <b>{item.orderTime}</b>
                                             </div>
                                         </div>
                                     </>
