@@ -48,7 +48,7 @@ export default function RouterHome(){
                 </Route>
                 <Route path={'/product/search/:search'} element={<SearchProduct></SearchProduct>}></Route>
                 <Route path={'/shop/:id'} element={<ChosenShop></ChosenShop>}></Route>
-                <Route path={'/review/:id'} element={<ReviewProduct></ReviewProduct>}></Route>
+                <Route path={'/review/:id/:odDetailID'} element={<ReviewProduct></ReviewProduct>}></Route>
             </Routes>
         </>
     )
