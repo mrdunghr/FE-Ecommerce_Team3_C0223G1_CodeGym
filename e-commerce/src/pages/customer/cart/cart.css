@@ -31,6 +31,13 @@
 }
 .profile-tab{
     font-family: Raleway, sans-serif;
+    color: black;
+}
+.profile-tab:hover{
+    color: black;
+}
+.profile-tab.active{
+    color: #fe5502;
 }
 #footer-cart{
     width: 100%;
@@ -65,7 +72,6 @@
 }
 #customer-info a{
     font-size: 18px;
-    color: #888888;
     margin-top: 10px;
     margin-left: 20px;
     text-decoration: none;

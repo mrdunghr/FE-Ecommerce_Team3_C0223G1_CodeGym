@@ -51,6 +51,13 @@
     height: 100%;
 
 }
+.item-name-image a{
+    color: black;
+    text-decoration: none;
+}
+.item-name-image a:hover{
+    color: #fe5502;
+}
 .item-name-image b{
     margin-left: 10px;
 }

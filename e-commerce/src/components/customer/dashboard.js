@@ -9,6 +9,15 @@ export default function Dashboard(){
     const [shops, setShops] = useState([])
     const status = useSelector(state => state.update)
     useEffect(() => {
+        const tabs = document.querySelectorAll('.tab-dashboard')
+        const tab = tabs[0]
+        tab.classList.add('active')
+        tabs.forEach((tab, index)=> {
+            tab.addEventListener('click', e => {
+                tabs.forEach(tab => tab.classList.remove('active'))
+                tab.classList.add('active')
+            })
+        })
         axios.get("http://localhost:8080/api/v1/shop/" + user.id + "?list=true").then((res) => {
             console.log(res.data)
             setShops(res.data)
@@ -23,11 +32,11 @@ export default function Dashboard(){
                         <h2>{user === null ? null : user.firstName}</h2>
                     </div>
                     <div id={'second-nav'}>
-                        <Link to={'/customer/profile'}>Dashboard</Link>
-                        {shops.length > 0 ?  <Link to={'order-manager'}>Manage Orders</Link> : <Link to={'add-shop'}>Add New Shop</Link>}
-                        <Link to={'product-manager'}>Manage Products</Link>
-                        <Link to={'update-customer'}>Edit Customer</Link>
-                        <Link to ={'change-password'}>Change Password</Link>
+                        <Link to={'/customer/profile'} className={'tab-dashboard'}>Dashboard</Link>
+                        {shops.length > 0 ?  <Link to={'order-manager'} className={'tab-dashboard'}>Manage Orders</Link> : <Link className={'tab-dashboard'} to={'add-shop'}>Add New Shop</Link>}
+                        <Link to={'product-manager'} className={'tab-dashboard'}>Manage Products</Link>
+                        <Link to={'update-customer'} className={'tab-dashboard'}>Edit Customer</Link>
+                        <Link to ={'change-password'} className={'tab-dashboard'}>Change Password</Link>
                     </div>
                 </div>
             </div>

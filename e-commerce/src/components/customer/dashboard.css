@@ -45,16 +45,25 @@
 }
 #second-nav a{
     margin-top: 20px;
-    text-decoration: none;
-    color: #888;
     margin-left: 20px;
 }
-#second-nav a:hover{
-    color: darkorange;
-    cursor: pointer;
-}
+/*#second-nav a:hover{*/
+/*    color: darkorange;*/
+/*    cursor: pointer;*/
+/*}*/
 #first-nav h2{
     text-transform: capitalize;
 }
-
+.tab-dashboard{
+    text-decoration: none;
+    color: black;
+}
+.tab-dashboard:hover{
+    text-decoration: none;
+    color: black;
+}
+a.tab-dashboard.active{
+    color: darkorange;
+    font-size: 17px;
+}
 /*MAIN*/

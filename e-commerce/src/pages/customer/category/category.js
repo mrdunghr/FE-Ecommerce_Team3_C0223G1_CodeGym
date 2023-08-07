@@ -79,9 +79,9 @@ const getBiggestPrice = () => {
                                                 <tbody>
                                                 <tr>
                                                     <td>
-                                                        <Link to={'/product/'+item.id}><img src={item.mainImage === ".png" ? "/image/modern-teaching-concept-P7BTJU7.jpg" : item.mainImage} alt="" style={{width:'100px',height:'60px', marginRight:'20px'}}/></Link>
+                                                        <Link to={'/product/'+item.id}><img src={item.mainImage === ".png" ? "/image/modern-teaching-concept-P7BTJU7.jpg" : item.mainImage} alt="" style={{width:'80px',height:'60px', marginRight:'20px'}}/></Link>
                                                     </td>
-                                                    <td><div className={'name-product'}>${item.name}</div>
+                                                    <td><div className={'name-product'}>${item.name.length > 8 ? item.name.substring(0, 8) + "..." : item.name}</div>
                                                     <span className={'old-price'}>${item.price}</span>
                                                     <span className={'new-price'}>${(item.price - (item.price * item.discountPercent/100)).toFixed(2)}</span>
                                                     </td>
@@ -151,7 +151,7 @@ const getBiggestPrice = () => {
                                                     <span>{prod.name.length > 15 ? prod.name.substring(0, 15) + "..." : prod.name}</span>
                                                 </Link>
                                                 <span
-                                                    className={'alias'}>( {prod.alias.length > 15 ? prod.alias.substring(0, 15) + "..." : prod.alias} )</span>
+                                                    className={'alias'}>( {prod.alias.length > 15 ? prod.alias.substring(0, 15) + "..." : prod.alias})</span>
                                                 <span className={'old-price'}>${prod.price}</span>
                                                 <span
                                                     className={'new-price'}>${prod.price - (prod.price * prod.discountPercent / 100)}</span>

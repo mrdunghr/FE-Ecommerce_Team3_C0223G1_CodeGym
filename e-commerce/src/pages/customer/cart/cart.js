@@ -12,6 +12,16 @@ export const CustomerCart = () =>{
     const navigate = useNavigate()
     const status = useSelector(state => state.update)
     useEffect( () => {
+        const tabs = document.querySelectorAll('.profile-tab')
+        const tab = tabs[0]
+        tab.classList.add('active')
+        tabs.forEach((tab, index) => {
+            tab.addEventListener('click', e =>{
+                tabs.forEach(tab => tab.classList.remove('active'))
+                tab.classList.add('active')
+            })
+        })
+        tab.classList.add('active')
         if (JSON.parse(sessionStorage.getItem('user')) === null){
             navigate('/login')
         }else {

@@ -176,6 +176,13 @@
 }
 
 .shop-icon{
+    color: black;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.shop-icon:hover{
+    color: #fe5502;
     cursor: pointer;
     margin-bottom: 10px;
 }
