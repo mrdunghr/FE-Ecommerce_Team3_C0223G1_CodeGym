@@ -14,6 +14,14 @@ export const OrderManager = () =>{
     const navigate = useNavigate()
     const status = useSelector(state => state.update)
     useEffect(() =>{
+        if(user === null){
+            navigate('/login')
+        }else {
+            axios.get('http://localhost:8080/api/v1/order-details/' + user.id).then((res) => {
+                console.log(res.data)
+                setOrders(res.data)
+            })
+        }
         const tabs = document.querySelectorAll('.ord-tab')
         const contents = document.querySelectorAll('.orders-content')
         const tab = tabs[0]
@@ -29,14 +37,6 @@ export const OrderManager = () =>{
                 contents[index].classList.add('active')
             })
         })
-        if(user === null){
-            navigate('/login')
-        }else {
-            axios.get('http://localhost:8080/api/v1/order-details/' + user.id).then((res) => {
-                console.log(res.data)
-                setOrders(res.data)
-            })
-        }
     },[update, status])
     const paidOrder = (od) =>{
         Swal.fire({
@@ -110,7 +110,7 @@ export const OrderManager = () =>{
                                                 <b>{odDetails.quantity}</b>
                                             </div>
                                             <div className={'item-orderDetails item-owner'}>
-                                                <b>{user.firstName}</b>
+                                                <b>{user === null ? null : user.firstName}</b>
                                             </div>
                                             <div className={'item-orderDetails item-action'}>
                                                 <b>{item.orderTime.substring(0, 10)}</b>
@@ -138,7 +138,8 @@ export const OrderManager = () =>{
                                                 <b>{odDetails.quantity}</b>
                                             </div>
                                             <div className={'item-orderDetails item-owner'}>
-                                                <b>{user.firstName}</b>
+                                                <b>{user === null ? null : user.firstName}</b>
+
                                             </div>
                                             <div className={'item-orderDetails item-action'}>
                                                 <button onClick={() => paidOrder(odDetails)}>Paid</button>
@@ -169,7 +170,8 @@ export const OrderManager = () =>{
                                                 <b>{odDetails.quantity}</b>
                                             </div>
                                             <div className={'item-orderDetails item-owner'}>
-                                                <b>{user.firstName}</b>
+                                                <b>{user === null ? null : user.firstName}</b>
+
                                             </div>
                                             <div className={'item-orderDetails item-action'}>
                                                 <b>{item.orderTime.substring(0, 10)}</b>
@@ -199,7 +201,8 @@ export const OrderManager = () =>{
                                                 <b>{odDetails.quantity}</b>
                                             </div>
                                             <div className={'item-orderDetails item-owner'}>
-                                                <b>{user.firstName}</b>
+                                                <b>{user === null ? null : user.firstName}</b>
+
                                             </div>
                                             <div className={'item-orderDetails item-action'}>
                                                 {/*<b>{item.orderTime.substring(0, 10)}</b>*/}
@@ -231,7 +234,8 @@ export const OrderManager = () =>{
                                                 <b>{odDetails.quantity}</b>
                                             </div>
                                             <div className={'item-orderDetails item-owner'}>
-                                                <b>{user.firstName}</b>
+                                                <b>{user === null ? null : user.firstName}</b>
+
                                             </div>
                                             <div className={'item-orderDetails item-action'}>
                                                 <b>{item.orderTime}</b>
