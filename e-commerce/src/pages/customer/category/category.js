@@ -91,8 +91,8 @@ export const Category = () =>{
                     <div id={'category-main'}>
                         <input type="text" placeholder={'Enter name'} onChange={(e) => setName(e.target.value)}/>
                         <select name="" id="" onChange={e => {setMaxRange(e.target.value)
-                        setMinRange(e.target.value - 25)}}>
-                            <option value=""></option>
+                        setMinRange(e.target.value - 25)}} style={{padding:'5px',marginLeft:'10px'}}>
+                            <option value="">Select price range</option>
                             <option value={25}>From 0 to ${(getBiggestPrice() *25/100).toFixed(2)}</option>
                             <option value={50}>From ${(getBiggestPrice() *25/100).toFixed(2)} to ${(getBiggestPrice() *50/100).toFixed(2)}</option>
                             <option value={75}>From ${(getBiggestPrice() *50/100).toFixed(2)} to ${(getBiggestPrice() *75/100).toFixed(2)}</option>
