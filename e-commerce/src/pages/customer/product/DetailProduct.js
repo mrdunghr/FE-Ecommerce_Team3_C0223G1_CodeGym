@@ -188,7 +188,7 @@ export function DetailProduct() {
                                 </div>
                                 <div style={{display: 'flex', alignItems: 'center', margin: '15px 0'}}>
                                     <h5 style={{fontSize: '18px'}}>Quantity in stock: </h5>
-                                    <h5 style={{fontSize: '18px', paddingLeft: '5px'}}>{product.quantity}</h5>
+                                    <h5 style={{fontSize: '18px', paddingLeft: '5px'}}>{product.quantity > 10 ? product.quantity : "Only " + product.quantity + " left."}</h5>
                                 </div>
                             </div>
                             <div style={{marginTop: '20px'}}>

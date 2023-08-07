@@ -21,7 +21,7 @@ export const ProductManager= () =>{
         if(user === null){
             navigate('/login')
         }else{
-        axios.get('http://localhost:8080/api/v1/products/customer-list/' + user.id +"?page="+ page).then((res) =>{
+        axios.get('http://localhost:8080/api/v1/products/customer-list/' + user.id +"?page="+ page + "&size=3").then((res) =>{
             console.log(res)
             setProducts(res.data.content)
         })}
@@ -101,7 +101,7 @@ export const ProductManager= () =>{
                                     <tr>
                                         <td>{p.id}</td>
                                         <td>{p.mainImage === ".png" ? <img src={'/image/image-thumbnail.png'}></img> : <img src={p.mainImage}></img>}</td>
-                                        <td>{p.name}</td>
+                                        <td>{p.name.length > 10 ? p.name.substring(0,10) + "..." : p.name}</td>
                                         <td>{p.brand === null ? "None" : p.brand.logo}</td>
                                         <td>{p.category.name}</td>
                                         <td>{p.shop.name}</td>
