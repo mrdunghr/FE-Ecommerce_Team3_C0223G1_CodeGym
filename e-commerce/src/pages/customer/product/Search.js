@@ -38,7 +38,7 @@ export const SearchProduct = () =>{
     }
         return (
             <>
-                <div id={'display'}>
+                <div id={'prod-display'}>
                     <div id={'customer-header'}>
                         <CustomerHeader></CustomerHeader>
                     </div>

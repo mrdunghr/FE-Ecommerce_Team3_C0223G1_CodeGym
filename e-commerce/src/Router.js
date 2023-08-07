@@ -19,6 +19,7 @@ import EditCustomer from "./pages/customer/EditCustomer";
 import {PaymentHistory} from "./pages/customer/cart/paymentHistory";
 import {ChosenShop} from "./pages/customer/shop/shop";
 import {ReviewProduct} from "./pages/customer/cart/reviewProduct";
+import {OrderManager} from "./pages/customer/cart/order-manager";
 
 
 export default function RouterHome(){
@@ -43,6 +44,7 @@ export default function RouterHome(){
                     <Route path={''} element={<Cart></Cart>}></Route>
                     <Route path={'orders'} element={<CustomerOrders></CustomerOrders>}></Route>
                     <Route path={'payment'} element={<PaymentHistory></PaymentHistory>}></Route>
+                    <Route path={'order-manager'} element={<OrderManager></OrderManager>}></Route>
                 </Route>
                 <Route path={'/product/search/:search'} element={<SearchProduct></SearchProduct>}></Route>
                 <Route path={'/shop/:id'} element={<ChosenShop></ChosenShop>}></Route>

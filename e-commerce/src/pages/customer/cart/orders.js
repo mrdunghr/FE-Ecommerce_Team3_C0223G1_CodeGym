@@ -107,6 +107,5 @@ export const CustomerOrders = () => {
                 })}
             </div>
         </div>
-
     )
 }

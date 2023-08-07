@@ -33,13 +33,17 @@ export const CustomerCart = () =>{
                         </div>
                         <div id={'customer-info'}>
                             <Link to={''} className={'profile-tab'}>Your cart</Link>
-                            <Link to={'orders'} className={'profile-tab'}>Your orders</Link>
-                            <Link to={'payment'} className={'profile-tab'}>Payment history</Link>
+                            {/*<Link to={'orders'} className={'profile-tab'}>Your orders</Link>*/}
+                            {/*<Link to={'payment'} className={'profile-tab'}>Payment history</Link>*/}
+                            <Link to={'order-manager'} className={'profile-tab'}>Your orders</Link>
                         </div>
                     </div>
                 </div>
                 <div id={'main-outlet-cart'}>
                     <Outlet></Outlet>
+                </div>
+                <div id={'footer-cart'}>
+                    <Footer></Footer>
                 </div>
             </div>
         </>

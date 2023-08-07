@@ -1,0 +1,97 @@
+#order-manager{
+    width:100%;
+    height: 100%;
+}
+#order-tab-header{
+    margin-top: 100px;
+    width: 100%;
+    height: 50px;
+    float: left;
+}
+.ord-tab{
+    width: 20%;
+    float: left;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.ord-tab:hover{
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+#orders-container-content{
+    width: 100%;
+    height: 500px;
+    clear: both;
+    padding-top: 20px;
+}
+.orders-content{
+    width: 100%;
+    height: 95%;
+    display: none;
+    overflow-x: auto;
+}
+.orders-content.active{
+    display: block;
+}
+.ord-tab.active{
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+
+}
+.odDetails-item{
+    width: 100%;
+    height: 200px;
+    margin-top: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+
+}
+.item-name-image{
+    width: 25%;
+    height: 100%;
+
+}
+.item-name-image b{
+    margin-left: 10px;
+}
+.item-name-image img{
+    width: 120px;
+    height: 120px;
+}
+.item-status{
+    width: 20%;
+    height: 100%;
+}
+.item-quantity{
+    width: 15%;
+    height: 100%;
+}
+.item-owner{
+    width: 20%;
+    height: 100%;
+}
+.item-action{
+    width: 20%;
+    height: 100%;
+}
+.item-orderDetails{
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.item-action button:first-child{
+    border: none;
+    padding: 8px;
+    color: white;
+    background: darkorange;
+    border-radius: 5px;
+}
+.item-action button:last-child{
+    margin-left: 10px;
+    border: none;
+    padding: 8px;
+    color: white;
+    background: red;
+    border-radius: 5px;
+}

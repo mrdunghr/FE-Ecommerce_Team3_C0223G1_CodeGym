@@ -8,12 +8,14 @@
     padding-left: 40px;
     color: black;
 }
+#prod-display{
+    width: 100%;
+}
 #category-banner h2{
     font-weight: 700;
 }
 #category-display{
     width: 100%;
-    height: 850px;
     margin-top: 50px;
 }
 #category-sidebar{
@@ -187,4 +189,9 @@
 .alias{
     font-size: 14px;
     color: #adabac;
+}
+#category-main select{
+    height: 35px;
+    width: 280px;
+    margin-left: 10px;
 }
