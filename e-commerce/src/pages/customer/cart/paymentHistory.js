@@ -2,11 +2,13 @@ import {useEffect, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
 import "./paymentHistory.css"
+import {useSelector} from "react-redux";
 
 export const PaymentHistory = () =>{
     const user = JSON.parse(sessionStorage.getItem('user'))
     const navigate = useNavigate()
     const [orders, setOrders] = useState([])
+    const status = useSelector(state =>  state.update)
     useEffect(() =>{
         if(user === null){
             navigate('/')
@@ -16,7 +18,7 @@ export const PaymentHistory = () =>{
                 setOrders(res.data)
             })
         }
-    },[])
+    },[status])
 
 
     return(

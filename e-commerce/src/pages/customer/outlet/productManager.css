@@ -48,7 +48,7 @@
 
 }
 #product-container button:nth-child(odd){
-    margin-left: 500px;
+    margin-left: 400px;
 }
 #product-container button{
     margin-left: 10px;
@@ -70,17 +70,19 @@
 .active-product{
     font-weight: bold;
     color: white;
-    padding: 2px;
+    padding: 5px;
+    width: 100px;
     background: green;
-    border-radius: 2px;
+    border-radius: 5px;
     margin-top: 10px;
 }
 .inactive-product{
     font-weight: bold;
     color: white;
-    padding: 2px;
+    padding: 5px;
+    width: 100px;
     background: grey;
-    border-radius: 2px;
+    border-radius: 5px;
     margin-top: 10px;
 
 }

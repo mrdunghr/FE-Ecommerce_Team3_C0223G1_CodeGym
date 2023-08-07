@@ -81,17 +81,28 @@
 }
 #btn-submit button{
     padding: 5px;
+    margin: 10px;
     width: 80px;
     border: none;
     color: white;
     font-size: 18px;
     border-radius: 2px;
 }
+#btn-submit{
+    padding-top: 20px;
+}
 #main-create #create-product{
-    background: #0d6efd;
+    background: #33adff;
+    border-radius: 5px;
+    width: 120px;
+    height: 35px
+
 }
 #main-create #cancel-product{
-    background: red;
+    background: #fe5502;
+    border-radius: 5px;
+    width: 120px;
+    height: 35px
 }
 #create-product-table select{
     margin: 0;
@@ -100,4 +111,12 @@
 .image-box-product img{
     width: 100px;
     height: 100px;
+}
+#back-list:hover{
+    color: #fe5502;
+    text-decoration: none;
+}
+
+#back-list{
+    color: black;
 }

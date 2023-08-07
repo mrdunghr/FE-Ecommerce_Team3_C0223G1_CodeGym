@@ -74,7 +74,12 @@ export function LoginRegister() {
                 console.log("Đăng nhập thành công!");
                 console.log("Thông tin đăng nhập:", res.data);
                 sessionStorage.setItem('user', JSON.stringify(res.data))
-                navigate('/')
+                const link = sessionStorage.getItem('link')
+                if(link === null){
+                    navigate('/')
+                }else{
+                    navigate(link)
+                }
             })
             .catch(err => {
                 Swal.fire({
@@ -102,6 +107,7 @@ export function LoginRegister() {
                     timer: 10000
                 })
                 sessionStorage.setItem('user', JSON.stringify(res.data))
+
             })
             .catch(err => {
                 Swal.fire({

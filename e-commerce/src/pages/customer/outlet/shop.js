@@ -1,9 +1,9 @@
 import "./shop.css"
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {Field, Form, Formik} from "formik";
 import Swal from "sweetalert2";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import BlockIcon from '@mui/icons-material/Block';
 import EditIcon from '@mui/icons-material/Edit';
 import KeyIcon from '@mui/icons-material/Key';
@@ -105,8 +105,8 @@ import {useDispatch, useSelector} from "react-redux";
                                     <td>{shop.image === ".png" ? <img src={'/image/image-thumbnail.png'}></img> : <img src={shop.image} width={"120px"} height={'100px'}></img>}</td>
                                     <td>{shop.deliveryAddress}</td>
                                     <td>{shop.createdTime}</td>
-                                    <td>{shop.enabled ? <span className={'active-shop'} style={{fontSize : "15px"}}>Active</span> : <p className={'inactive-shop'} style={{fontSize : "15px"}}>Inactive</p>}</td>
-                                    <td>{shop.enabled ? <BlockIcon className={'block-icon product-icon'} onClick={() => disableStatusShop(shop.id)}></BlockIcon> : <KeyIcon className={'key-icon product-icon'} onClick={() => enabledStatusShop(shop.id)}></KeyIcon>} <EditIcon></EditIcon></td>
+                                    <td>{shop.enabled ? <p className={'active-shop'} style={{fontSize : "15px"}}>Active</p> : <p className={'inactive-shop'} style={{fontSize : "15px"}}>Inactive</p>}</td>
+                                    <td>{shop.enabled ? <BlockIcon className={'block-icon product-icon'} onClick={() => disableStatusShop(shop.id)}></BlockIcon> : <KeyIcon className={'key-icon product-icon'} onClick={() => enabledStatusShop(shop.id)}></KeyIcon>}<Link to={'/shop/'+shop.id}><EditIcon className={'shop-icon'}/></Link></td>
                                 </tr>
                             )
                         })}

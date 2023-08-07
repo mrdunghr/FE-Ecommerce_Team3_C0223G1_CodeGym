@@ -33,7 +33,7 @@ import {createAction} from "@reduxjs/toolkit";
                                 dispatch(updateUser(res.data))
                                 sessionStorage.setItem('user', JSON.stringify(res.data))
                                 Swal.fire("Sign in successful!")
-                                navigate('/', {state : res.data})
+                                // navigate('/', {state : res.data})
                             }).catch((res) => {
                                 Swal.fire("Wrong email or password!")
                                 navigate("/login", res)

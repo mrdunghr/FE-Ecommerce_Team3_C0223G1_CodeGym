@@ -7,6 +7,7 @@ import {Link, useNavigate} from "react-router-dom";
 import Swal from "sweetalert2";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import app from "../../../firebase";
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
 
 export const CreateProduct = () =>{
@@ -142,6 +143,7 @@ export const CreateProduct = () =>{
                         <button className={'tab-btn'} type={'button'}>Overview</button>
                         <button className={'tab-btn'} type={'button'}>Description</button>
                         <button className={'tab-btn'} type={'button'}>Images</button>
+                        <Link to="/customer/profile/product-manager" style={{float:"right",paddingTop:'40px'}} id={'back-list'}><KeyboardBackspaceIcon></KeyboardBackspaceIcon> Back to List</Link>
                     </div>
                     <div id={'content-box'}>
                         <div className={'content'}>
@@ -149,16 +151,16 @@ export const CreateProduct = () =>{
                             <table>
                                 <tr>
                                     <td>Product Name:</td>
-                                    <td><Field name={'name'}/></td>
+                                    <td><Field name={'name'}placeholder={'Enter name product'}/></td>
                                 </tr>
                                 <tr>
                                     <td>Alias:</td>
-                                    <td><Field name={'alias'}/></td>
+                                    <td><Field name={'alias'}placeholder={'Enter name alias'}/></td>
                                 </tr>
                                 <tr>
                                     <td>Shop:</td>
                                     <td><Field component={'select'} name={'shop.id'} >
-                                        <option value=""></option>
+                                        <option value="">--Select--</option>
                                         {shops.map((item) => {
                                            return(
                                                <option value={item.id}>{item.name}</option>
@@ -169,7 +171,7 @@ export const CreateProduct = () =>{
                                 <tr>
                                     <td>Category:</td>
                                     <td><Field component={'select'} name={'category.id'} onClick={e => handleChangeSelect(e)}>
-                                        <option value=""></option>
+                                        <option value="">--Select--</option>
                                         {categories.map((item) => {
                                         return(
                                             <option value={item.id}>{item.name}</option>
@@ -180,7 +182,7 @@ export const CreateProduct = () =>{
                                 <tr>
                                     <td>Brand:</td>
                                     <td><Field name={'brand.id'} component={'select'}>
-                                        <option value=""></option>
+                                        <option value="">--Select--</option>
                                         {brands.map((item) => {
                                             return(
                                                 <option value={item.id}>{item.logo === null ? "None" : item.logo}</option>
@@ -211,9 +213,9 @@ export const CreateProduct = () =>{
                         <div className={'content'}>
                             <div id={'add-description-product'}>
                                 <p>Short Description: </p>
-                                <Field name={'shortDescription'} component={'textarea'}></Field>
+                                <Field name={'shortDescription'} component={'textarea'}placeholder={'Enter short description'}></Field>
                                 <p>Full Description:</p>
-                                <Field name={'fullDescription'} component={'textarea'}></Field>
+                                <Field name={'fullDescription'} component={'textarea'}placeholder={'Enter full description'}></Field>
                             </div>
                         </div>
                         <div className={'content'}>

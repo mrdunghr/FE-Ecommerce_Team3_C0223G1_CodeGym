@@ -16,7 +16,7 @@ export const HomePortal = () =>{
     const responsive = {
         desktop: {
             breakpoint: { max: 3000, min: 1024 },
-            items: 7,
+            items: 6,
             slidesToSlide: 5 // optional, default to 1.
         },
         tablet: {

@@ -39,7 +39,7 @@ export const Category = () =>{
     }
     return(
         <>
-            <div id={'display'}>
+            <div id={'display'} style={{height:"auto"}}>
                 <div id={'customer-header'}>
                     <CustomerHeader></CustomerHeader>
                 </div>

@@ -68,14 +68,15 @@ export function DetailProduct() {
         axios.get(`http://localhost:8080/api/v1/products/detail/${id}`).then((response) => {
             setProduct(response.data)
         });
-    }, []);
-
-    useEffect(() => {
         axios.get(`http://localhost:8080/api/v1/reviews/${id}`).then((resp) => {
             console.log("reviews: " + resp)
             setReviews(resp.data)
         })
+        const link = "/product/" + id
+        sessionStorage.setItem('link', link)
     }, []);
+
+
 
     const addItem = () => {
         const user = JSON.parse(sessionStorage.getItem('user'))

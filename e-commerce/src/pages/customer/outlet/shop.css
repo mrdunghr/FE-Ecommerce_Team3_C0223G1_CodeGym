@@ -153,3 +153,24 @@
 #table-shop td, th{
     text-align: left;
 }
+
+.active-shop{
+    font-weight: bold;
+    color: white;
+    padding: 10px;
+    width: 100px;
+    background: green;
+    border-radius: 5px;
+    margin-top: 10px;
+    text-align: center;
+}
+.inactive-shop{
+    font-weight: bold;
+    color: white;
+    padding: 10px;
+    width: 100px;
+    background: grey;
+    border-radius: 5px;
+    margin-top: 10px;
+    text-align: center;
+}

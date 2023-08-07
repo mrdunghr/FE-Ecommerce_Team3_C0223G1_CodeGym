@@ -4,7 +4,7 @@ import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
 
-export const ChoosenShop = () =>{
+export const ChosenShop = () =>{
     const {id} = useParams()
     const [shop, setShop] = useState({})
     const [products, setProducts] = useState([])
