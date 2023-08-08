@@ -106,7 +106,7 @@ import {useDispatch, useSelector} from "react-redux";
                                     <td>{shop.deliveryAddress}</td>
                                     <td>{shop.createdTime}</td>
                                     <td>{shop.enabled ? <p className={'active-shop'} style={{fontSize : "15px"}}>Active</p> : <p className={'inactive-shop'} style={{fontSize : "15px"}}>Inactive</p>}</td>
-                                    <td>{shop.enabled ? <BlockIcon className={'block-icon product-icon'} onClick={() => disableStatusShop(shop.id)}></BlockIcon> : <KeyIcon className={'key-icon product-icon'} onClick={() => enabledStatusShop(shop.id)}></KeyIcon>}<Link to={'/shop/'+shop.id}><EditIcon className={'shop-icon'}/></Link></td>
+                                    <td>{shop.enabled ? <BlockIcon className={'block-icon product-icon'} onClick={() => disableStatusShop(shop.id)}></BlockIcon> : <KeyIcon className={'key-icon product-icon'} onClick={() => enabledStatusShop(shop.id)}></KeyIcon>}</td>
                                 </tr>
                             )
                         })}
