@@ -18,10 +18,12 @@ export default function Dashboard(){
                 tab.classList.add('active')
             })
         })
-        axios.get("http://localhost:8080/api/v1/shop/" + user.id + "?list=true").then((res) => {
-            console.log(res.data)
-            setShops(res.data)
-        })
+        if(user !== null){
+            axios.get("http://localhost:8080/api/v1/shop/" + user.id + "?list=true").then((res) => {
+                console.log(res.data)
+                setShops(res.data)
+            })
+        }
     }, [status])
     return(
         <>

@@ -26,11 +26,11 @@ export const Category = () => {
         })
     }, [page, name, maxRange, discount, status])
 
-    useEffect(() => {
-        axios.get(`http://localhost:8080/api/v1/products/latest/category/${id}`).then((res) => {
-            setProductCategory(res.data)
-        })
-    },[])
+    // useEffect(() => {
+    //     axios.get(`http://localhost:8080/api/v1/products/latest/category/${id}`).then((res) => {
+    //         setProductCategory(res.data)
+    //     })
+    // },[])
 const getBiggestPrice = () => {
         let biggestPrice = 0;
         if (products !== null) {
@@ -154,7 +154,7 @@ const getBiggestPrice = () => {
                                                     className={'alias'}>( {prod.alias.length > 15 ? prod.alias.substring(0, 15) + "..." : prod.alias})</span>
                                                 <span className={'old-price'}>${prod.price}</span>
                                                 <span
-                                                    className={'new-price'}>${prod.price - (prod.price * prod.discountPercent / 100)}</span>
+                                                    className={'new-price'}>${(prod.price - (prod.price * prod.discountPercent / 100)).toFixed(2)}</span>
                                             </div>
                                         </div>
                                     </Link>
