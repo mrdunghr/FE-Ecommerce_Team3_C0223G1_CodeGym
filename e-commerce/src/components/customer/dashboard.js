@@ -1,5 +1,5 @@
 import "./dashboard.css"
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {useSelector} from "react-redux";
@@ -8,6 +8,7 @@ export default function Dashboard(){
     console.log(user)
     const [shops, setShops] = useState([])
     const status = useSelector(state => state.update)
+    const navigate = useNavigate()
     useEffect(() => {
         const tabs = document.querySelectorAll('.tab-dashboard')
         const tab = tabs[0]
@@ -18,7 +19,9 @@ export default function Dashboard(){
                 tab.classList.add('active')
             })
         })
-        if(user !== null){
+        if (user === null){
+            navigate('/')
+        }else{
             axios.get("http://localhost:8080/api/v1/shop/" + user.id + "?list=true").then((res) => {
                 console.log(res.data)
                 setShops(res.data)

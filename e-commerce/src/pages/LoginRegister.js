@@ -113,7 +113,7 @@ export function LoginRegister() {
                 Swal.fire({
                     position: 'center',
                     icon: 'warning',
-                    title:"Enter enough information!",
+                    title:"Error! Re-enter again information!",
                     showConfirmButton: false,
                     timer: 10000
                 })

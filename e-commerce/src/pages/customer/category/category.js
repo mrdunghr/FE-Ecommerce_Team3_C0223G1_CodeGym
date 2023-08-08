@@ -63,8 +63,8 @@ const getBiggestPrice = () => {
                     <CustomerHeader></CustomerHeader>
                 </div>
                 <div id={'category-banner'}>
-                    <h2>Shop Details</h2>
-                    <p><i className={'fa fa-home'} style={{fontSize: "26px"}}></i> / <span>Shop Details</span></p>
+                    <h2>Category Details</h2>
+                    <p><i className={'fa fa-home'} style={{fontSize: "26px"}}></i> / <span>Category Details</span></p>
                 </div>
                 <div id={'category-display'}>
                     <div id={'category-sidebar'}>
