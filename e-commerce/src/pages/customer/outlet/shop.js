@@ -83,7 +83,7 @@ import {useDispatch, useSelector} from "react-redux";
      };
     return(
         <>
-            <div id={'shop-container'}>
+            {shops.length === 0 ? <h3>You dont have a shop? <Link to={'add-shop'}>Create now!</Link></h3> : <div id={'shop-container'}>
                 <p>Manage Shops</p>
                 <div id={'main-shop'}>
                     <input type="text" placeholder={'Search'} id={'search'} onChange={(e) => setSearch(e.target.value)}/>
@@ -116,7 +116,7 @@ import {useDispatch, useSelector} from "react-redux";
                     <button onClick={handlePrevPage}>Previous</button>
                     <button onClick={handleNextPage}>Next</button>
                 </div>
-            </div>
+            </div>}
         </>
     )
 }

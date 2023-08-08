@@ -53,6 +53,7 @@ export const HomePortal = () =>{
             setProducts(res.data)
             setTotalPages(Math.ceil(res.data.length / itemsPerPage));
         })
+
         // if(user !== null){
         //     axios.get('http://localhost:8080/api/v1/order-details/' + user.id).then((res) => {
         //         console.log(res.data)
@@ -135,6 +136,9 @@ export const HomePortal = () =>{
                             responsive={responsive}>
                             {discountProds.map(item => (
                                 <Link to={'/product/' + item.id}><div className={'discount-product'}>
+                                    <div className={'discount-percent'}>
+                                        {item.discountPercent}%
+                                    </div>
                                     <div className={'discount-product-image'}>
                                         <Link to={'/product/' + item.id}><img src={item.mainImage === ".png" ? "/image/modern-teaching-concept-P7BTJU7.jpg" : item.mainImage} alt=""/></Link>
                                     </div>
