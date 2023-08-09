@@ -7,8 +7,15 @@ import CustomerHeader from "../../../components/customer/header";
 import Swal from "sweetalert2";
 import {getDownloadURL, getStorage, ref, uploadBytes} from "firebase/storage";
 import app from "../../../firebase";
-
-
+import Modal from 'react-modal';
+export const UploadModal = ({ isOpen }) => {
+    return (
+        <Modal isOpen={isOpen} id={'modal-upload'}>
+            <h2>Uploading Image...</h2>
+            <p>Please wait while the image is being uploaded.</p>
+        </Modal>
+    );
+};
 export const EditProduct = () =>{
     const {id} = useParams()
     const [shops, setShop] = useState([])
@@ -17,6 +24,7 @@ export const EditProduct = () =>{
     const user = JSON.parse(sessionStorage.getItem('user'))
     const [selectedImage, setSelectedImage] = useState(null)
     const [urlImage, setUrlImage ] = useState("")
+    const [isUploading, setIsUploading] = useState(false);
     const [product, setProduct] = useState({
         name : "",
         alias : "",
@@ -99,6 +107,7 @@ export const EditProduct = () =>{
         }
     };
     const uploadImageToFirebaseStorage = async (file) => {
+        setIsUploading(true);
         try {
             const storage = getStorage(app);
             const storageRef = ref(storage, "images/" + file.name);
@@ -109,6 +118,7 @@ export const EditProduct = () =>{
         } catch (error) {
             console.error("Lỗi khi tải hình ảnh lên Firebase Storage:", error);
         }
+        setIsUploading(false)
     };
 
     return(
@@ -247,6 +257,7 @@ export const EditProduct = () =>{
                                             <p>Main image: </p>
                                             {product.mainImage === ".png" ? <img src={'/image/image-thumbnail.png'}></img> : <img src={selectedImage}></img>}<br/>
                                             <input type="file" onChange={handleImageChange}/>
+                                            <UploadModal  isOpen={isUploading} ></UploadModal>
                                         </div>
                                     </div>
                                 </div>

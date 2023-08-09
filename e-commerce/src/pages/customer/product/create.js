@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import app from "../../../firebase";
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+import {UploadModal} from "./edit";
 
 
 export const CreateProduct = () =>{
@@ -22,6 +23,8 @@ export const CreateProduct = () =>{
     const [urlImage, setUrlImage ] = useState("")
     const [product, setProduct] = useState()
     const [file, setFile ] = useState()
+    const [isUploading, setIsUploading] = useState(false);
+
     console.log(urlImage)
     useEffect(() => {
         if(user === null){
@@ -88,6 +91,7 @@ export const CreateProduct = () =>{
         }
     };
     const uploadImageToFirebaseStorage = async (file) => {
+        setIsUploading(true)
         try {
             const storage = getStorage(app);
             const storageRef = ref(storage, "images/" + file.name);
@@ -98,6 +102,7 @@ export const CreateProduct = () =>{
         } catch (error) {
             console.error("Lỗi khi tải hình ảnh lên Firebase Storage:", error);
         }
+        setIsUploading(false)
     };
 
     return(
@@ -232,6 +237,7 @@ export const CreateProduct = () =>{
                                     {selectedImage ? <img src={selectedImage}></img> : <img src={'/image/image-thumbnail.png'}></img>}
                                     <input type={'file'}
                                     onChange={e => handleImageChange(e)}/>
+                                    <UploadModal isOpen={isUploading}></UploadModal>
                                 </div>
                             </div>
                         </div>
