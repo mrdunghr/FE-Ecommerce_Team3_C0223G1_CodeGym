@@ -135,7 +135,7 @@ export function LoginRegister() {
                         <span className={'span'}>or use your email for registration</span>
                         <input
                             hidden={true}
-                            onChange={(e) => setSignUp({ ...signUp, firstName: e.target.value })}
+                            onChange={(e) => setSignUp({ ...signUp, lastName: e.target.value })}
                         />
                         <input
                             hidden={true}
@@ -148,7 +148,7 @@ export function LoginRegister() {
                         <input
                             type="text"
                             placeholder="Name"
-                            onChange={(e) => setSignUp({ ...signUp, lastName: e.target.value })}
+                            onChange={(e) => setSignUp({ ...signUp, firstName: e.target.value })}
                         />
                         <input
                             type="email"

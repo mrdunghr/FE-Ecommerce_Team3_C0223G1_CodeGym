@@ -254,7 +254,8 @@ export const Cart = () =>{
                             </div>
                         </div>
                     </div>
-                    {cartItems.map(item => (
+                    <div id={'overflow-cart'}>
+                     {cartItems.map(item => (
                         <div className={'cart-product'}>
                            <div className={'cart-product-name-image'}>
                                <Link to={'/shop/' + item.product.shop.id}><div className={'shop-name'}>{item.product.shop.name.length > 10 ? item.product.shop.name.substring(0, 10) : item.product.shop.name} SHOP</div></Link>
@@ -288,6 +289,7 @@ export const Cart = () =>{
                             </div>
                         </div>
                     ))}
+                    </div>
                 </div>
             </div>
             <div id={'section-buying'}>

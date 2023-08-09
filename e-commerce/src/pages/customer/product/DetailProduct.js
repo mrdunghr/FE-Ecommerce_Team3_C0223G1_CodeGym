@@ -74,8 +74,12 @@ export function DetailProduct() {
         }).catch(err => {
             console.log(err)
         })
-        const link = "/product/" + id
-        sessionStorage.setItem('link', link)
+        if(JSON.parse(sessionStorage.getItem('user')) === null){
+            const link = "/product/" + id
+            sessionStorage.setItem('link', link)
+        }else{
+            sessionStorage.setItem('link', '/')
+        }
     }, []);
 
 
