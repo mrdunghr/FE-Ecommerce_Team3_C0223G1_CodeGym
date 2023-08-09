@@ -2,6 +2,7 @@ import "./orders.css"
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 export const OrdersManage = () =>{
     const shop = JSON.parse(sessionStorage.getItem('shop'))
@@ -17,30 +18,50 @@ export const OrdersManage = () =>{
             axios.get('http://localhost:8080/api/v1/order-details/shop/' + shop[0].id).then(res =>{
                 console.log(res)
                 setOrderDetail(res.data)
+            }).catch(err => {
+                console.log(err)
             })
         }
 
     }, [update])
     const confirmOrder = (id) =>{
-        axios.put('http://localhost:8080/api/v1/order-details/confirm-order/confirm/' + id).then(res =>{
-            if(update){
-                setUpdate(false)
+        Swal.fire({
+            showCancelButton : true,
+            title : "Confirm this order?"
+        }).then(res =>{
+            if(res.isConfirmed){
+                axios.put('http://localhost:8080/api/v1/order-details/confirm-order/confirm/' + id).then(res =>{
+                    if(update){
+                        setUpdate(false)
+                    }else{
+                        setUpdate(true)
+                    }
+                }).catch(res => {
+                    alert("The product quantity is not enough, please update more!")
+                })
             }else{
-                setUpdate(true)
+                Swal.fire("Cancel success!")
             }
-        }).catch(res => {
-            alert("The product quantity is not enough, please update more!")
         })
+
     }
     const cancelOrder = (id) =>{
-        axios.put('http://localhost:8080/api/v1/order-details/confirm-order/cancel/' + id).then(res =>{
-            if(update){
-                setUpdate(false)
-            }else{
-                setUpdate(true)
+        Swal.fire({
+            title : "Cancel this order?",
+            showCancelButton : true
+        }).then(res => {
+            if(res.isConfirmed){
+                axios.put('http://localhost:8080/api/v1/order-details/confirm-order/cancel/' + id).then(res =>{
+                    Swal.fire("Confirm success!")
+                    if(update){
+                        setUpdate(false)
+                    }else{
+                        setUpdate(true)
+                    }
+                }).catch(res => {
+                    alert("The product quantity is not enough, please update more!")
+                })
             }
-        }).catch(res => {
-            alert("The product quantity is not enough, please update more!")
         })
     }
     return(

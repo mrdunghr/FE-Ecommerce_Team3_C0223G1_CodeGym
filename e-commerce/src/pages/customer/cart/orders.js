@@ -17,6 +17,8 @@ export const CustomerOrders = () => {
             axios.get('http://localhost:8080/api/v1/order-details/' + user.id).then((res) => {
                 console.log(res.data)
                 setOrders(res.data)
+            }).catch(err => {
+                console.log(err)
             })
         }
     },[update, status])
@@ -33,6 +35,8 @@ export const CustomerOrders = () => {
                         setUpdate(true)
                     }
                     Swal.fire("Paid success!")
+                }).catch(err => {
+                    console.log(err)
                 })
             }
         })
@@ -50,6 +54,8 @@ export const CustomerOrders = () => {
                         setUpdate(true)
                     }
                     Swal.fire("Return success!")
+                }).catch(err => {
+                    console.log(err)
                 })
             }
         })

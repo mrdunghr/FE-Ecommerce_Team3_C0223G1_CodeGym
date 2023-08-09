@@ -71,6 +71,8 @@ export function DetailProduct() {
         axios.get(`http://localhost:8080/api/v1/reviews/${id}`).then((resp) => {
             console.log("reviews: " + resp)
             setReviews(resp.data)
+        }).catch(err => {
+            console.log(err)
         })
         const link = "/product/" + id
         sessionStorage.setItem('link', link)
@@ -100,6 +102,8 @@ export function DetailProduct() {
         axios.post('http://localhost:8080/api/v1/cart-item/add/' + item.customer.id, item).then(res => {
             console.log(res)
             alert('Adding successful!')
+        }).catch(err => {
+            console.log(err)
         })
     }
 

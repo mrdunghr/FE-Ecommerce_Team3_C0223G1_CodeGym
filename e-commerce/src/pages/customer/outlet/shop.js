@@ -26,6 +26,8 @@ import {useDispatch, useSelector} from "react-redux";
              console.log(res.data.content)
              setShops(res.data.content)
              sessionStorage.setItem('shop', JSON.stringify(res.data.content))
+         }).catch(err => {
+             console.log(err)
          })}
      }, [page, update, search, status])
 

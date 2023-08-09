@@ -34,6 +34,8 @@ export const ReviewProduct = () =>{
         axios.get('http://localhost:8080/api/v1/products/detail/' + id).then((res) =>{
             console.log(res)
             setProduct(res.data)
+        }).catch(err => {
+            console.log(err)
         })
     },[])
     return(
@@ -77,6 +79,8 @@ export const ReviewProduct = () =>{
                                     console.log(res)
                                     Swal.fire("Comment success!")
                                     navigate('/')
+                                }).catch(err => {
+                                    console.log(err)
                                 })
                             }
                         }

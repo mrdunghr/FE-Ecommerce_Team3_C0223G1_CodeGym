@@ -46,13 +46,19 @@ export const CreateProduct = () =>{
         })
         axios.get('http://localhost:8080/api/v1/shop/' + user.id + "?list=true").then((res) => {
             setShop(res.data.filter(shop => shop.enabled))
+        }).catch(err => {
+            console.log(err)
         })
         axios.get('http://localhost:8080/api/v1/category/all').then((res) =>{
             setCategory(res.data.filter(cate => cate.enabled === true))
+        }).catch(err => {
+            console.log(err)
         })
         }
         axios.get('http://localhost:8080/api/v1/brand/all?list=true').then((res) => {
             setBrand(res.data)
+        }).catch(err => {
+            console.log(err)
         })
     }, [isUpdated])
     const handleChangeSelect = (e) =>{
@@ -120,7 +126,6 @@ export const CreateProduct = () =>{
         }}
             enableReinitialize={true}
         onSubmit={async (values) =>{
-
             values ={...values, mainImage : urlImage}
             console.log(values)
             await axios.post('http://localhost:8080/api/v1/products/add', values).then(res =>
@@ -128,7 +133,9 @@ export const CreateProduct = () =>{
                     console.log(res)
                     Swal.fire("Create success!")
                 }
-            )
+            ).catch(err => {
+                console.log(err)
+            })
         }}
         >
             <Form>
@@ -223,14 +230,15 @@ export const CreateProduct = () =>{
                                 <div className={'image-box-product'}>
                                     <p>Main image: </p>
                                     {selectedImage ? <img src={selectedImage}></img> : <img src={'/image/image-thumbnail.png'}></img>}
-                                    <input type={'file'} />
+                                    <input type={'file'}
+                                    onChange={e => handleImageChange(e)}/>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                     <div id={'btn-submit'}>
-                        <span><button id={'create-product'} type={'submit'}>Create</button> <Link to={'/product-manager'}><button id={'cancel-product'} type={'button'}>Cancel</button></Link></span>
+                        <span><button id={'create-product'} type={'submit'}>Create</button> <Link to={'/customer/profile/product-manager'}><button id={'cancel-product'} type={'button'}>Cancel</button></Link></span>
                     </div>
             </div>
 

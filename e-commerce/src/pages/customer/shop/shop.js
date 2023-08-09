@@ -12,10 +12,14 @@ export const ChosenShop = () =>{
         axios.get('http://localhost:8080/api/v1/shop/get-shop/' + id).then(res =>{
             console.log(res.data)
             setShop(res.data)
+        }).catch(err => {
+            console.log(err)
         })
         axios.get('http://localhost:8080/api/v1/products/shop/' + id).then(res =>{
             console.log(res.data.content)
             setProducts(res.data.content)
+        }).catch(err => {
+            console.log(err)
         })
     },[])
     return(

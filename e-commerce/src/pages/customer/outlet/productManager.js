@@ -24,7 +24,10 @@ export const ProductManager= () =>{
         axios.get('http://localhost:8080/api/v1/products/customer-list/' + user.id +"?page="+ page + "&size=3").then((res) =>{
             console.log(res)
             setProducts(res.data.content)
-        })}
+        }).catch(err => {
+            console.log(err)
+        })
+        }
     },[page, isUpdated, search])
     const handlePrevPage = () => {
         if (page > 0) {

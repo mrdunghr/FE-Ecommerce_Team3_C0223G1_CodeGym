@@ -42,16 +42,24 @@ export const HomePortal = () =>{
     useEffect(() => {
         axios.get("http://localhost:8080/api/v1/products/list-product-discount").then((res) => {
             setBestSellerList(res.data)
+        }).catch(err => {
+            console.log(err)
         })
         axios.get("http://localhost:8080/api/v1/category/all").then((res) => {
             setCategories(res.data)
+        }).catch(err => {
+            console.log(err)
         })
         axios.get("http://localhost:8080/api/v1/products/list-product-discount-sale").then(res =>{
             setDiscountProds(res.data)
+        }).catch(err => {
+            console.log(err)
         })
         axios.get('http://localhost:8080/api/v1/products/all').then(res =>{
             setProducts(res.data)
             setTotalPages(Math.ceil(res.data.length / itemsPerPage));
+        }).catch(err => {
+            console.log(err)
         })
 
         // if(user !== null){

@@ -26,6 +26,8 @@ export const CustomerCart = () =>{
             navigate('/login')
         }else {
             axios.get('http://localhost:8080/api/v1/cart-item/view/' + user.id).then((res) =>{
+            }).catch(err => {
+                console.log(err)
             })
         }
     }, [status])
@@ -72,6 +74,8 @@ export const Cart = () =>{
             axios.get('http://localhost:8080/api/v1/cart-item/view/' + user.id).then((res) =>{
                 setCartItems(res.data)
 
+            }).catch(err => {
+                console.log(err)
             })
         }
     }, [updated, status])
@@ -117,6 +121,8 @@ export const Cart = () =>{
             }else{
                 setUpdated(true)
             }
+        }).catch(err => {
+            console.log(err)
         })
     }
     const increaseButton = (item) =>{
@@ -127,6 +133,8 @@ export const Cart = () =>{
             }else{
                 setUpdated(true)
             }
+        }).catch(err => {
+            console.log(err)
         })
     }
     const decreaseButton = (item) =>{
@@ -140,6 +148,8 @@ export const Cart = () =>{
             }else{
                 setUpdated(true)
             }
+        }).catch(err => {
+            console.log(err)
         })
     }
     }
@@ -196,6 +206,8 @@ export const Cart = () =>{
             }else{
                 setUpdated(true)
             }
+        }).catch(err => {
+            console.log(err)
         })
     }
     const removeFromCart = (id) =>{
@@ -211,6 +223,8 @@ export const Cart = () =>{
                     }else{
                         setUpdated(true)
                     }
+                }).catch(err => {
+                    console.log(err)
                 })
             }
         })

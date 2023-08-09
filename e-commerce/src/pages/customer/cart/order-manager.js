@@ -20,6 +20,8 @@ export const OrderManager = () =>{
             axios.get('http://localhost:8080/api/v1/order-details/' + user.id).then((res) => {
                 console.log(res.data)
                 setOrders(res.data)
+            }).catch(err => {
+                console.log(err)
             })
         }
         const tabs = document.querySelectorAll('.ord-tab')
@@ -51,6 +53,8 @@ export const OrderManager = () =>{
                         setUpdate(true)
                     }
                     Swal.fire("Paid success!")
+                }).catch(err => {
+                    console.log(err)
                 })
             }
         })
@@ -68,6 +72,8 @@ export const OrderManager = () =>{
                         setUpdate(true)
                     }
                     Swal.fire("Return success!")
+                }).catch(err => {
+                    console.log(err)
                 })
             }
         })

@@ -26,11 +26,13 @@ export const Category = () => {
         })
     }, [page, name, maxRange, discount, status])
 
-    // useEffect(() => {
-    //     axios.get(`http://localhost:8080/api/v1/products/latest/category/${id}`).then((res) => {
-    //         setProductCategory(res.data)
-    //     })
-    // },[])
+    useEffect(() => {
+        axios.get(`http://localhost:8080/api/v1/products/latest/category/${id}`).then((res) => {
+            setProductCategory(res.data)
+        }).catch(err => {
+            console.log(err)
+        })
+    },[])
 const getBiggestPrice = () => {
         let biggestPrice = 0;
         if (products !== null) {

@@ -41,6 +41,7 @@ export const EditProduct = () =>{
         inStock : false,
         enabled : false
     })
+    console.log(product)
     const [brands, setBrand] = useState([])
     const [isUpdate, setIsUpdate] = useState(false)
     useEffect(() => {
@@ -62,16 +63,24 @@ export const EditProduct = () =>{
     useEffect(() =>{
         axios.get('http://localhost:8080/api/v1/shop/' + user.id + "?list=true").then((res) => {
             setShop(res.data.filter(shop => shop.enabled))
+        }).catch(err => {
+            console.log(err)
         })
         axios.get('http://localhost:8080/api/v1/category/all').then((res) =>{
             setCategory(res.data.filter(cate => cate.enabled === true))
+        }).catch(err => {
+            console.log(err)
         })
         axios.get('http://localhost:8080/api/v1/brand/all?list=true').then((res) => {
             setBrand(res.data)
+        }).catch(err => {
+            console.log(err)
         })
         axios.get('http://localhost:8080/api/v1/products/detail/' + id).then((res) => {
             setProduct(res.data)
             setSelectedImage(res.data.mainImage)
+        }).catch(err => {
+            console.log(err)
         })
     }, [])
     const handleImageChange = (event) => {
@@ -126,10 +135,15 @@ export const EditProduct = () =>{
                 },
                 inStock : product.inStock,
                 enabled : product.enabled,
+                quantity : product.quantity,
+                mainImage : product.mainImage
             }}
             enableReinitialize={true}
             onSubmit={(values) =>{
-                values = {...values, mainImage : urlImage}
+                if(urlImage !== ""){
+                    values = {...values, mainImage : urlImage}
+                }
+                // values = {...values, mainImage : urlImage}
                 console.log(values)
                 axios.put('http://localhost:8080/api/v1/products/edit/' + id, values).then((res) => {
                     Swal.fire("Edit success!")
@@ -207,6 +221,12 @@ export const EditProduct = () =>{
                                                 <td><Field name={'price'}/></td>
                                             </tr>
                                             <tr>
+                                                <td>
+                                                    Quantity:
+                                                </td>
+                                                <td><Field name={'quantity'}></Field></td>
+                                            </tr>
+                                            <tr>
                                                 <td>Discount:</td>
                                                 <td><Field name={'discountPercent'}/></td>
                                             </tr>
@@ -233,7 +253,7 @@ export const EditProduct = () =>{
                             </div>
                         </div>
                         <div id={'btn-submit'}>
-                            <span><button id={'create-product'} type={'submit'}>Edit</button> <Link to={'/product-manager'}><button id={'cancel-product'} type={'button'}>Cancel</button></Link></span>
+                            <span><button id={'create-product'} type={'submit'}>Edit</button> <Link to={'/customer/profile/product-manager'}><button id={'cancel-product'} type={'button'}>Cancel</button></Link></span>
                         </div>
                     </div>
 
